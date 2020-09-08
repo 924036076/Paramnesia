@@ -7,6 +7,7 @@ var ui_sfx_volume = 0.7 setget set_ui_sfx_volume
 var music_volume = 0.05 setget set_music_volume
 
 var button_sound_effect = load("res://Audio/zapsplat_multimedia_button_click_fast_plastic_49161.wav")
+var music = load("res://Audio/CCX Ambient Piece - Final.wav")
 
 var muted = false setget set_mute
 var master_volume = 0.5 setget set_master_volume
@@ -15,6 +16,7 @@ func _ready():
 	set_ui_sfx_volume(ui_sfx_volume)
 	set_music_volume(music_volume)
 	set_master_volume(master_volume)
+	play_music(music)
 
 func play_music(music_file):
 	music_player.stream = music_file

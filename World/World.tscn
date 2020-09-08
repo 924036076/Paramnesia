@@ -17,7 +17,8 @@
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=16]
 [ext_resource path="res://World/gallows_1.png" type="Texture" id=17]
 [ext_resource path="res://World/gallowsfloor_1.png" type="Texture" id=18]
-[ext_resource path="res://Characters/Old People/OldLady1.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Characters/NPCs/OldLady1.tscn" type="PackedScene" id=20]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 16, 112, 16, 112, 48, 0, 48 )
