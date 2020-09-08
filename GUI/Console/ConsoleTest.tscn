@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/Console/Console.tscn" type="PackedScene" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Console" parent="." instance=ExtResource( 1 )]
+
+[editable path="Console"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/Trees/Pine/pine_tree.png" type="Texture" id=1]
+[ext_resource path="res://World/Trees/DestroyTree.gd" type="Script" id=2]
+
+
+
+[node name="DestroyPineTree" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -2, -63 )
+texture = ExtResource( 1 )

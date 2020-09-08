@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/MainMenu/MainMenu.gd" type="Script" id=1]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = -1.0
+margin_right = 499.0
+margin_bottom = 282.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 207.0
+margin_top = 48.0
+margin_right = 281.0
+margin_bottom = 62.0
+text = "Paramnesia"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadGame" type="Button" parent="."]
+margin_left = 201.0
+margin_top = 121.0
+margin_right = 298.0
+margin_bottom = 141.0
+text = "Load Game"
+
+[node name="NewGame" type="Button" parent="."]
+margin_left = 202.0
+margin_top = 93.0
+margin_right = 299.0
+margin_bottom = 113.0
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="."]
+margin_left = 201.0
+margin_top = 150.0
+margin_right = 298.0
+margin_bottom = 170.0
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 201.0
+margin_top = 178.0
+margin_right = 298.0
+margin_bottom = 198.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]

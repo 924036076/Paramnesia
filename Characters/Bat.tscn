@@ -1,0 +1,132 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Action RPG Resources/Enemies/Bat.png" type="Texture" id=1]
+[ext_resource path="res://Action RPG Resources/Shadows/SmallShadow.png" type="Texture" id=2]
+[ext_resource path="res://Characters/Bat.gd" type="Script" id=3]
+[ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Control/Stats.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI/SmallHealthbar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Control/DetectionZone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Control/Hitbox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Control/SoftCollision.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Control/Wander.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Control/TransTest.tscn" type="PackedScene" id=11]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 16, 24 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "Fly",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 4.0
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 8.0
+height = 6.0
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 56.0
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 4.0
+
+[node name="Bat" type="KinematicBody2D"]
+collision_layer = 16
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -18 )
+frames = SubResource( 6 )
+animation = "Fly"
+frame = 2
+playing = true
+
+[node name="Shadow" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 7 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+visible = false
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -17 )
+shape = SubResource( 8 )
+
+[node name="Stats" parent="." instance=ExtResource( 5 )]
+max_health = 100
+damage = 5
+
+[node name="TransTest" parent="." instance=ExtResource( 11 )]
+
+[node name="SmallHealthbar" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_left = -6.0
+margin_top = -33.0
+margin_right = 6.0
+margin_bottom = -30.0
+
+[node name="DetectionZone" parent="." instance=ExtResource( 7 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.156863 )
+
+[node name="CollisionShape2D" parent="DetectionZone" index="0"]
+position = Vector2( 0, -4 )
+shape = SubResource( 9 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 8 )]
+visible = false
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 1, -21 )
+shape = SubResource( 10 )
+
+[node name="SoftCollision" parent="." instance=ExtResource( 9 )]
+visible = false
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 11 )
+
+[node name="Wander" parent="." instance=ExtResource( 10 )]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+
+[editable path="Hurtbox"]
+
+[editable path="TransTest"]
+
+[editable path="DetectionZone"]
+
+[editable path="Hitbox"]
+
+[editable path="SoftCollision"]
