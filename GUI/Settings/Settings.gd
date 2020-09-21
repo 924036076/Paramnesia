@@ -40,6 +40,7 @@ func _on_ExitButton_pressed():
 	AudioManager.click_button()
 	get_tree().paused = false
 	Global.unpaused()
-	Global.save_game()
-	Global.switch_scene("res://GUI/MainMenu/MainMenu.tscn")
+	var save_path = get_tree().get_current_scene().save_path
+	Global.save_game(save_path)
+	Global.switch_scene("res://GUI/MainMenu/MainMenu.tscn", false)
 	queue_free()

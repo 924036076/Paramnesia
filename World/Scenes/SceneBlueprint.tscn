@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Scenes/SceneBlueprint/Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://GUI/Inventory/GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/Scenes/SceneBlueprint.gd" type="Script" id=4]
 
 [node name="SceneBlueprint" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-rotation = -0.261799
 current = true
 smoothing_enabled = true
 script = ExtResource( 2 )
 
 [node name="GlobalYSort" type="YSort" parent="."]
+
+[node name="World" type="YSort" parent="GlobalYSort"]
 
 [node name="Player" parent="GlobalYSort" instance=ExtResource( 1 )]
 

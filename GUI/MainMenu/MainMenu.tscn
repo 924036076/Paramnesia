@@ -34,6 +34,9 @@ margin_top = 121.0
 margin_right = 298.0
 margin_bottom = 141.0
 text = "Load Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NewGame" type="Button" parent="."]
 margin_left = 202.0
@@ -64,4 +67,5 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="LoadGame" to="." method="_on_LoadGame_pressed"]
 [connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]

@@ -61,31 +61,67 @@ func paused(hide_gui = true):
 		get_tree().get_current_scene().get_node("GUI").hide_visible()
 	get_tree().paused = true
 
-func switch_scene(path):
-	call_deferred("_deferred_goto_scene", path)
+func switch_scene(path, do_load):
+	call_deferred("_deferred_goto_scene", path, do_load)
 
-func _deferred_goto_scene(path):
+func _deferred_goto_scene(path, do_load):
 	current_scene.free()
 	var s = ResourceLoader.load(path)
 	current_scene = s.instance()
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
+	if do_load:
+		match path:
+			"res://World/Scenes/SpawnScene.tscn":
+				load_game("res://SpawnScene.save")
 
-func save_game():
+func save_game(path):
 	var save_game = File.new()
-	save_game.open("res://savegame.save", File.WRITE)
+	save_game.open(path, File.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
-		# Check the node is an instanced scene so it can be instanced again during load.
+
 		if node.filename.empty():
-			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+			print("'%s' is not instanced" % node.name)
 			continue
-		# Check the node has a save function.
+
 		if !node.has_method("save"):
-			print("persistent node '%s' is missing a save() function, skipped" % node.name)
+			print("'%s' has no save method" % node.name)
 			continue
-		# Call the node's save function.
+
 		var node_data = node.call("save")
-		# Store the save dictionary as a new line in the save file.
 		save_game.store_line(to_json(node_data))
+	save_game.close()
+
+func load_game(path):
+	var save_game = File.new()
+	if not save_game.file_exists(path):
+		print("no save file")
+		return
+		
+	var save_nodes = get_tree().get_nodes_in_group("Persist")
+	for i in save_nodes:
+		i.queue_free()
+		
+	save_game.open(path, File.READ)
+	var scene_root = get_tree().get_current_scene()
+	while save_game.get_position() < save_game.get_len():
+		
+		var node_data = parse_json(save_game.get_line())
+		
+		var new_object = load(node_data["filename"]).instance()
+		if node_data["id"] == "player":
+			scene_root.get_node("GlobalYSort").add_child(new_object)
+		else:
+			scene_root.get_node("GlobalYSort/World").add_child(new_object)
+
+		new_object.load_from_save(node_data)
+		
+		for i in node_data.keys():
+			if i == "filename":
+				continue
+			#new_object.set(i, node_data[i])
+	
+	scene_root.load_from_save()
+
 	save_game.close()

@@ -35,6 +35,11 @@ func _ready():
 	animationTree.active = true
 	set_direction(starting_direction)
 
+func load_from_save(data):
+	global_position.x = data["pos_x"]
+	global_position.y = data["pos_y"]
+	set_direction(data["direction"])
+
 func _physics_process(delta):
 	if can_move:
 		match state:
@@ -133,6 +138,6 @@ func save():
 		"health" : PlayerData.health,
 		"level" : PlayerData.level,
 		"inventory" : PlayerData.inventory,
-		"direction" : get_direction_facing()
+		"direction" : animationTree.get("parameters/Idle/blend_position")
 		}
 	return save_dict
