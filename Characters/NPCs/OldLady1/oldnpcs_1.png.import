@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dead_1.png-451e9d27a53d254dd008148cdf14f7e2.stex"
+path="res://.import/oldnpcs_1.png-0adf5ab22d46b0fc110e2a83e49d8d1e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/NPCs/dead_1.png"
-dest_files=[ "res://.import/dead_1.png-451e9d27a53d254dd008148cdf14f7e2.stex" ]
+source_file="res://Characters/NPCs/OldLady1/oldnpcs_1.png"
+dest_files=[ "res://.import/oldnpcs_1.png-0adf5ab22d46b0fc110e2a83e49d8d1e.stex" ]
 
 [params]
 

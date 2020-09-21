@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
-"path": "res://Character.gd"
+"path": "res://Characters/NPCs/Character.gd"
 }, {
 "base": "StaticBody2D",
 "class": "InteractableObject",

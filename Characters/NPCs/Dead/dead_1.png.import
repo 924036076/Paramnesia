@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/splatter.png-0c1e7b732eba34dc13d8ec732af6515c.stex"
+path="res://.import/dead_1.png-28c72a915a3bc502fc80b311d67783ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/NPCs/splatter.png"
-dest_files=[ "res://.import/splatter.png-0c1e7b732eba34dc13d8ec732af6515c.stex" ]
+source_file="res://Characters/NPCs/Dead/dead_1.png"
+dest_files=[ "res://.import/dead_1.png-28c72a915a3bc502fc80b311d67783ea.stex" ]
 
 [params]
 

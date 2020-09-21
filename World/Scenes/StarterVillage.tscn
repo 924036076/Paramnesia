@@ -3,7 +3,7 @@
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=1]
 [ext_resource path="res://World/Tilemaps/WaterTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Characters/NPCs/OldLady1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Characters/NPCs/OldLady1/OldLady1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GUI/Inventory/GUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Structures/Crops/Crop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/Trees/Oak/OakTree.tscn" type="PackedScene" id=7]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Structures/Bed/Bed.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Structures/Carpet/Carpet.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Structures/ThinTable/Table.tscn" type="PackedScene" id=14]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
@@ -1232,6 +1233,7 @@ tile_data = PoolIntArray( -2359353, 50, 0, -2359352, 51, 1, -2359351, 51, 1, -23
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 19, -390 )
 current = true
+smoothing_enabled = true
 
 [node name="Bed" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1405, -557 )

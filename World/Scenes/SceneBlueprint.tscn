@@ -7,7 +7,9 @@
 [node name="SceneBlueprint" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+rotation = -0.261799
 current = true
+smoothing_enabled = true
 script = ExtResource( 2 )
 
 [node name="GlobalYSort" type="YSort" parent="."]

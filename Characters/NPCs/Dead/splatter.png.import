@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/deer.png-ce17bab5235270918070166f970ab853.stex"
+path="res://.import/splatter.png-1f79bcf87ae03383260a77a9589093a3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/deer.png"
-dest_files=[ "res://.import/deer.png-ce17bab5235270918070166f970ab853.stex" ]
+source_file="res://Characters/NPCs/Dead/splatter.png"
+dest_files=[ "res://.import/splatter.png-1f79bcf87ae03383260a77a9589093a3.stex" ]
 
 [params]
 

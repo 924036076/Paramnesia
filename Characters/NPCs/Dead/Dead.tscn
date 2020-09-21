@@ -1,9 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Characters/NPCs/splatter.png" type="Texture" id=1]
-[ext_resource path="res://Characters/NPCs/dead_1.png" type="Texture" id=2]
-[ext_resource path="res://Characters/NPCs/Dead.gd" type="Script" id=3]
-
+[ext_resource path="res://Characters/NPCs/Dead/splatter.png" type="Texture" id=1]
+[ext_resource path="res://Characters/NPCs/Dead/dead_1.png" type="Texture" id=2]
+[ext_resource path="res://Characters/NPCs/Dead/Dead.gd" type="Script" id=3]
 
 [node name="Dead" type="Node2D"]
 position = Vector2( 1, -9 )

@@ -1,6 +1,6 @@
 extends Character
 
-const dead_scene = preload("res://Characters/NPCs/Dead.tscn")
+const dead_scene = preload("res://Characters/NPCs/Dead/Dead.tscn")
 
 func dead():
 	var dead = dead_scene.instance()

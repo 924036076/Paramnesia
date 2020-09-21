@@ -5,7 +5,7 @@
 [ext_resource path="res://World/Tilemaps/WaterTilemap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Inventory/GUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Characters/Bat.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Characters/Deer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Characters/Mobs/Deer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://GUI/Loading/Loading.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Trees/Pine/PineTreeSpawn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://World/Stones/Pebble/PebbleSpawn.tscn" type="PackedScene" id=10]
@@ -17,7 +17,9 @@
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=16]
 [ext_resource path="res://World/gallows_1.png" type="Texture" id=17]
 [ext_resource path="res://World/gallowsfloor_1.png" type="Texture" id=18]
-[ext_resource path="res://Characters/NPCs/OldLady1.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Characters/NPCs/OldLady1/OldLady1.tscn" type="PackedScene" id=20]
+
+
 
 
 [sub_resource type="ConvexPolygonShape2D" id=1]

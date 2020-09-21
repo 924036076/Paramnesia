@@ -1,8 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Characters/NPCs/oldnpcs_1.png" type="Texture" id=1]
-[ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Characters/NPCs/OldLady1.gd" type="Script" id=3]
+[ext_resource path="res://Characters/NPCs/OldLady1/oldnpcs_1.png" type="Texture" id=1]
+[ext_resource path="res://Characters/NPCs/Character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Characters/NPCs/OldLady1/OldLady1.gd" type="Script" id=3]
+
+
 
 
 [sub_resource type="Animation" id=1]
