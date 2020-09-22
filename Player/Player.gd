@@ -35,7 +35,7 @@ func _ready():
 	animationTree.active = true
 	set_direction(starting_direction)
 
-func load_from_save(data):
+func update_from_save(data):
 	global_position.x = data["pos_x"]
 	global_position.y = data["pos_y"]
 	set_direction(data["direction"])

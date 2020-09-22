@@ -73,11 +73,12 @@ func _deferred_goto_scene(path, do_load):
 	if do_load:
 		match path:
 			"res://World/Scenes/SpawnScene.tscn":
-				load_game("res://SpawnScene.save")
+				load_game("C:/Users/Eric/Desktop/Paramnesia/SpawnScene.save")
 
 func save_game(path):
 	var save_game = File.new()
 	save_game.open(path, File.WRITE)
+	
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
 
@@ -101,7 +102,8 @@ func load_game(path):
 		
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
-		i.queue_free()
+		if i.get_filename() != "res://Player/Player.tscn":
+			i.queue_free()
 		
 	save_game.open(path, File.READ)
 	var scene_root = get_tree().get_current_scene()
@@ -109,13 +111,13 @@ func load_game(path):
 		
 		var node_data = parse_json(save_game.get_line())
 		
-		var new_object = load(node_data["filename"]).instance()
+		var new_object
 		if node_data["id"] == "player":
-			scene_root.get_node("GlobalYSort").add_child(new_object)
+			scene_root.get_node("GlobalYSort/Player").update_from_save(node_data)
 		else:
+			new_object = load(node_data["filename"]).instance()
 			scene_root.get_node("GlobalYSort/World").add_child(new_object)
-
-		new_object.load_from_save(node_data)
+			new_object.load_from_save(node_data)
 		
 		for i in node_data.keys():
 			if i == "filename":

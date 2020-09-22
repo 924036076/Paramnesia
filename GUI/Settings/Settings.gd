@@ -40,7 +40,8 @@ func _on_ExitButton_pressed():
 	AudioManager.click_button()
 	get_tree().paused = false
 	Global.unpaused()
-	var save_path = get_tree().get_current_scene().save_path
-	Global.save_game(save_path)
+	var path = get_tree().get_current_scene().save_path
+	path = "C:/Users/Eric/Desktop/Paramnesia/SpawnScene.save"
+	Global.save_game(path)
 	Global.switch_scene("res://GUI/MainMenu/MainMenu.tscn", false)
 	queue_free()
