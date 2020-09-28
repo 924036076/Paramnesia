@@ -52,7 +52,7 @@ _global_script_class_icons={
 
 config/name="Paramnesia"
 run/main_scene="res://GUI/MainMenu/MainMenu.tscn"
-boot_splash/image="res://splashscreen1.png"
+boot_splash/image="res://splashscreen.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
@@ -70,7 +70,6 @@ Structures="*res://Structures/Structures.gd"
 
 window/size/width=500
 window/size/height=282
-window/size/borderless=true
 window/size/test_width=1000
 window/size/test_height=564
 mouse_cursor/custom_image="res://GUI/mouse_test.png"
