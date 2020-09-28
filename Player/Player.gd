@@ -38,7 +38,8 @@ func _ready():
 func update_from_save(data):
 	global_position.x = data["pos_x"]
 	global_position.y = data["pos_y"]
-	set_direction(data["direction"])
+	var direction = Vector2(data["dir_x"], data["dir_y"])
+	set_direction(direction)
 
 func _physics_process(delta):
 	if can_move:
@@ -138,6 +139,7 @@ func save():
 		"health" : PlayerData.health,
 		"level" : PlayerData.level,
 		"inventory" : PlayerData.inventory,
-		"direction" : animationTree.get("parameters/Idle/blend_position")
+		"dir_x" : animationTree.get("parameters/Idle/blend_position").x,
+		"dir_y" : animationTree.get("parameters/Idle/blend_position").y
 		}
 	return save_dict

@@ -41,7 +41,6 @@ func _on_ExitButton_pressed():
 	get_tree().paused = false
 	Global.unpaused()
 	var path = get_tree().get_current_scene().save_path
-	path = "C:/Users/Eric/Desktop/Paramnesia/SpawnScene.save"
 	Global.save_game(path)
-	Global.switch_scene("res://GUI/MainMenu/MainMenu.tscn", false)
+	Global.switch_scene("MainMenu", false)
 	queue_free()

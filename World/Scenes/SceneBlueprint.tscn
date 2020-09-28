@@ -10,7 +10,8 @@ script = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-smoothing_enabled = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 script = ExtResource( 2 )
 
 [node name="GlobalYSort" type="YSort" parent="."]

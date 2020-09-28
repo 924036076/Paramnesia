@@ -64,16 +64,22 @@ func paused(hide_gui = true):
 func switch_scene(path, do_load):
 	call_deferred("_deferred_goto_scene", path, do_load)
 
-func _deferred_goto_scene(path, do_load):
+func _deferred_goto_scene(scene, do_load):
 	current_scene.free()
+	var path
+	match scene:
+		"MainMenu":
+			path = "res://GUI/MainMenu/MainMenu.tscn"
+		"World1":
+			path = "res://World/Scenes/World1.tscn"
 	var s = ResourceLoader.load(path)
 	current_scene = s.instance()
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
 	if do_load:
-		match path:
-			"res://World/Scenes/SpawnScene.tscn":
-				load_game("C:/Users/Eric/Desktop/Paramnesia/SpawnScene.save")
+		match scene:
+			"World1":
+				load_game("C:/Users/Eric/Desktop/Paramnesia/World1.save")
 
 func save_game(path):
 	var save_game = File.new()
