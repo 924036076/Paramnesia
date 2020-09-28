@@ -17,11 +17,12 @@ Paramnesia is a unique RPG that gives you complete freedom to explore and build 
 * Player Movement and Attack System
 * Static and Selectable Foreground and Background Objects
 * Object Interaction System
+* Basic Persistence in Scenes for Saving/Loading
 
 ## Todo
 * Quest System
 * NPC Characters
-* Save Persistance with Multiple Scenes
+* Config Save/Master Save
 * Level/World Design
 * Boss Design
 * Visual GUI Overhaul
