@@ -5,12 +5,12 @@ var config_file
 
 var keybinds = {}
 
-onready var settings_menu = load("res://GUI/Settings/Settings.tscn")
+onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
 onready var console = load("res://GUI/Console/ConsoleTest.tscn")
 
-var one_frame = true
 var game_paused = false
 var current_scene
+var block_escape = true
 
 func _ready():
 	config_file = ConfigFile.new()
@@ -28,16 +28,14 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
-		if event.pressed and not event.echo and not game_paused and one_frame:
-			if event.scancode == KEY_ESCAPE and get_tree().get_current_scene().get_node("GUI").close_inventory():
-				get_tree().get_root().add_child(settings_menu.instance())
-				get_tree().get_current_scene().get_node("GUI").hide_visible()
-				paused()
+		if event.pressed and not event.echo:
+			if event.scancode == KEY_ESCAPE and get_tree().get_current_scene().get_node("GUI").close_inventory() and not block_escape:
+				get_tree().get_root().add_child(escape_menu.instance())
+				get_tree().paused = true
 			elif event.scancode == KEY_TAB:
 				get_tree().get_root().add_child(console.instance())
-				paused(false)
-	if not one_frame:
-		one_frame = true
+				get_tree().paused = true
+	block_escape = false
 
 func set_game_binds():
 	for key in keybinds.keys():
@@ -49,17 +47,6 @@ func set_game_binds():
 		var new_key = InputEventKey.new()
 		new_key.set_scancode(value)
 		InputMap.action_add_event(key, new_key)
-
-func unpaused():
-	game_paused = false
-	one_frame = false
-	get_tree().get_current_scene().get_node("GUI").show_visible()
-
-func paused(hide_gui = true):
-	game_paused = true
-	if hide_gui:
-		get_tree().get_current_scene().get_node("GUI").hide_visible()
-	get_tree().paused = true
 
 func switch_scene(path, do_load):
 	call_deferred("_deferred_goto_scene", path, do_load)
