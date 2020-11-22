@@ -41,3 +41,5 @@ margin_right = 114.0
 margin_bottom = 68.0
 text = "Exit to menu"
 [connection signal="pressed" from="Panel/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

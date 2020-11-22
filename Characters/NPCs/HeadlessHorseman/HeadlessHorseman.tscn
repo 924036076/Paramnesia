@@ -11,7 +11,7 @@ height = 24.8453
 radius = 11.3142
 height = 23.3731
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "WalkDown"
 length = 0.6
 loop = true
@@ -101,8 +101,7 @@ tracks/6/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "WalkLeft"
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 step = 0.2
@@ -372,6 +371,7 @@ tracks/6/keys = {
 }
 
 [node name="HeadlessHorseman" instance=ExtResource( 1 )]
+speed = 20000
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0.736099, -22.6351 )
@@ -388,7 +388,7 @@ position = Vector2( 0.368073, -20.7949 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="4"]
-anims/WalkDown = SubResource( 4 )
-anims/WalkLeft = SubResource( 3 )
+anims/WalkDown = SubResource( 3 )
+anims/WalkLeft = SubResource( 4 )
 anims/WalkRight = SubResource( 5 )
 anims/WalkUp = SubResource( 6 )
