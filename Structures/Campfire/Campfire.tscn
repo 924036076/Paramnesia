@@ -1,8 +1,10 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Structures/Structure.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Structures/Blueprint/Collidable/Structure.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Structures/Campfire/fire_base.png" type="Texture" id=3]
 [ext_resource path="res://Structures/Campfire/Campfire.gd" type="Script" id=4]
+
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.99996
@@ -78,5 +80,5 @@ shape = SubResource( 3 )
 [node name="Flames" type="Particles2D" parent="." index="5"]
 position = Vector2( 0, -10 )
 emitting = false
-amount = 1000000
+amount = 100
 process_material = SubResource( 8 )

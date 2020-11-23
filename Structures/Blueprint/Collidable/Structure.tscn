@@ -1,23 +1,25 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Structures/Structure.gd" type="Script" id=1]
-[ext_resource path="res://Structures/highlight_shader.shader" type="Shader" id=3]
-[ext_resource path="res://Control/outline_shader.shader" type="Shader" id=4]
+[ext_resource path="res://Control/outline_shader.shader" type="Shader" id=1]
+[ext_resource path="res://Structures/Blueprint/highlight_shader.shader" type="Shader" id=2]
+[ext_resource path="res://Structures/Blueprint/Collidable/Structure.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 4 )
+shader = ExtResource( 1 )
 shader_param/Smooth = false
 shader_param/line_thickness = 0.0
 shader_param/outline_color = Color( 1, 1, 1, 1 )
 shader_param/pixel_size = 1
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 3 )
+shader = ExtResource( 2 )
 shader_param/highlight_color = Color( 1, 1, 1, 1 )
 
-[node name="Structure" type="StaticBody2D"]
+[node name="Structure" type="StaticBody2D" groups=[
+"Persist",
+]]
 collision_mask = 0
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

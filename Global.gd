@@ -111,7 +111,8 @@ func load_game(path):
 			new_object = load(node_data["filename"]).instance()
 			scene_root.get_node("GlobalYSort/World").add_child(new_object)
 			new_object.load_from_save(node_data)
-		
+			if node_data["id"] == "structure":
+				new_object.place()
 		for i in node_data.keys():
 			if i == "filename":
 				continue

@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "BackgroundInteract",
 "language": "GDScript",
-"path": "res://Structures/BackgroundObjectInteract.gd"
+"path": "res://Structures/Blueprint/BackgroundObjectInteract.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Character",
@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "InteractableObject",
 "language": "GDScript",
-"path": "res://Structures/StaticBodyInteract.gd"
+"path": "res://Structures/Blueprint/Background/StaticBodyInteract.gd"
 }, {
 "base": "Node2D",
 "class": "SpawnNode",
@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "Structure",
 "language": "GDScript",
-"path": "res://Structures/Structure.gd"
+"path": "res://Structures/Blueprint/Collidable/Structure.gd"
 } ]
 _global_script_class_icons={
 "AreaSpawn": "",
@@ -70,7 +70,7 @@ Utility="*res://Utility.gd"
 Global="*res://Global.gd"
 AudioManager="*res://Audio/AudioManager.tscn"
 CommandHistory="*res://GUI/Console/CommandHistory.gd"
-Structures="*res://Structures/Structures.gd"
+Structures="*res://Structures/Blueprint/Structures.gd"
 
 [display]
 

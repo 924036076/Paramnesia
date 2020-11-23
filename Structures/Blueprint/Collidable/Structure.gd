@@ -54,3 +54,6 @@ func _on_InteractArea_input_event(_viewport, _event, _shape_idx):
 
 func object_interacted_with():
 	pass
+
+func save():
+	pass

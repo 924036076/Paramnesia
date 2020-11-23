@@ -4,13 +4,14 @@ onready var AudioSettings = get_node("AudioSettings")
 onready var VisualSettings = get_node("VisualSettings")
 onready var ControlsSettings = get_node("ControlsSettings")
 
+signal settings_closed
+
 var button_sound_effect = load("res://Audio/zapsplat_multimedia_button_click_fast_plastic_49161.wav")
 
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and not event.echo and event.scancode == KEY_ESCAPE:
-			get_tree().paused = false
-			Global.unpaused()
+			emit_signal("settings_closed")
 			queue_free()
 
 func _ready():
@@ -38,4 +39,5 @@ func _on_ControlsButton_pressed():
 
 func _on_ExitButton_pressed():
 	AudioManager.click_button()
+	emit_signal("settings_closed")
 	queue_free()
