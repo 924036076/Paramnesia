@@ -1,37 +1,29 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Structures/Blueprint/Collidable/Structure.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Structures/Blueprint/Structure/Structure.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Structures/Campfire/PlacementCollision.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Structures/Campfire/fire_base.png" type="Texture" id=3]
 [ext_resource path="res://Structures/Campfire/Campfire.gd" type="Script" id=4]
 
 
-
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 5.99996
-height = 12.0001
+radius = 6.2301
+height = 13.5214
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 5.99998
-height = 12.0
-
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 5.99997
-height = 12.0001
-
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.0817121, 0.357977, 0.540856, 1 )
 colors = PoolColorArray( 1, 0.912384, 0.613281, 1, 1, 0.46875, 0, 1, 1, 0.127019, 0.0992121, 0.605694, 1, 0.105469, 0.105469, 0.580828, 0.159668, 0.159668, 0.159668, 0.694118 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0.5125 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.303409 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 1
 emission_sphere_radius = 4.0
 flag_disable_z = true
@@ -46,8 +38,12 @@ orbit_velocity_random = 0.0
 linear_accel = 25.0
 angle = 45.0
 scale = 5.0
-scale_curve = SubResource( 7 )
-color_ramp = SubResource( 5 )
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 7.09738
+height = 9.50847
 
 [node name="Campfire" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -56,29 +52,22 @@ script = ExtResource( 4 )
 position = Vector2( 0, -4 )
 texture = ExtResource( 3 )
 
-[node name="Highlight" parent="." index="1"]
-position = Vector2( 0, -4 )
-texture = ExtResource( 3 )
+[node name="PlacementCollision" parent="." index="1" instance=ExtResource( 2 )]
+visible = false
+disabled = true
 
 [node name="CollisionShape2D" parent="." index="2"]
-visible = false
-position = Vector2( 0, -3 )
+position = Vector2( -0.28479, -3.4175 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D" parent="PlacementCollision" index="0"]
-visible = false
-position = Vector2( 0, -3 )
-rotation = 1.5708
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D" parent="InteractArea" index="0"]
-position = Vector2( 0, -4 )
-rotation = 1.5708
-shape = SubResource( 3 )
-
-[node name="Flames" type="Particles2D" parent="." index="5"]
+[node name="Flames" type="Particles2D" parent="." index="3"]
 position = Vector2( 0, -10 )
 emitting = false
 amount = 100
-process_material = SubResource( 8 )
+process_material = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="InteractArea" index="0"]
+position = Vector2( -0.142395, -4.56958 )
+rotation = 1.5708
+shape = SubResource( 7 )

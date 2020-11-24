@@ -18,6 +18,8 @@ var velocity = Vector2.ZERO
 var can_move = true
 var structure = null
 
+const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
+
 onready var animationPlayer = get_node("AnimationPlayer")
 onready var animationTree = get_node("AnimationTree")
 onready var animationState = animationTree.get("parameters/playback")
@@ -118,7 +120,8 @@ func get_direction_facing():
 		return DOWN
 
 func create_structure(structure_id):
-	structure = Structures.get_structure(structure_id)
+	structure = unplaced_structure.instance()
+	structure.id = structure_id
 	get_parent().call_deferred("add_child", structure)
 
 func set_direction(direction):

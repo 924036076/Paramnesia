@@ -1,19 +1,14 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=1]
 [ext_resource path="res://World/Tilemaps/WaterTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/NPCs/OldLady1/OldLady1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GUI/Inventory/GUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Structures/Crops/Crop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/Trees/Oak/OakTree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Control/Teleport.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Tilemaps/ff_master_tile_sheet.png" type="Texture" id=9]
-[ext_resource path="res://Structures/Sign/Sign.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Icons/black.png" type="Texture" id=11]
-[ext_resource path="res://Structures/Bed/Bed.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Structures/Carpet/Carpet.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Structures/ThinTable/Table.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
@@ -1234,12 +1229,6 @@ position = Vector2( 19, -390 )
 current = true
 smoothing_enabled = true
 
-[node name="Bed" parent="." instance=ExtResource( 12 )]
-position = Vector2( 1405, -557 )
-
-[node name="Carpet" parent="." instance=ExtResource( 13 )]
-position = Vector2( 1470, -509 )
-
 [node name="GlobalYSort" type="YSort" parent="."]
 
 [node name="Player" parent="GlobalYSort" instance=ExtResource( 3 )]
@@ -1304,60 +1293,6 @@ position = Vector2( 562, -19 )
 position = Vector2( 687, -80 )
 
 [node name="Objects" type="YSort" parent="GlobalYSort"]
-
-[node name="Sign" parent="GlobalYSort/Objects" instance=ExtResource( 10 )]
-position = Vector2( 27, -308 )
-text = "Welcome to the Farm"
-
-[node name="Crop" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 189, -447 )
-
-[node name="Crop2" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 188, -427 )
-type = 5
-
-[node name="Crop3" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 189, -407 )
-type = 9
-
-[node name="Crop4" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 207, -447 )
-type = 2
-
-[node name="Crop5" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 207, -427 )
-type = 6
-
-[node name="Crop6" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 207, -407 )
-type = 10
-
-[node name="Crop7" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 224, -407 )
-type = 11
-
-[node name="Crop8" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 224, -427 )
-type = 7
-
-[node name="Crop9" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 224, -447 )
-type = 3
-
-[node name="Crop10" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 243, -447 )
-type = 4
-
-[node name="Crop11" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 242, -427 )
-type = 8
-
-[node name="Crop12" parent="GlobalYSort/Objects" instance=ExtResource( 6 )]
-position = Vector2( 242, -407 )
-type = 12
-
-[node name="Table" parent="GlobalYSort/Objects" instance=ExtResource( 14 )]
-position = Vector2( 1496, -544 )
 
 [node name="Teleport" parent="." instance=ExtResource( 8 )]
 position = Vector2( 71, -419 )

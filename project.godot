@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://World/SpawnNodes/AreaSpawn.gd"
 }, {
-"base": "Area2D",
-"class": "BackgroundInteract",
-"language": "GDScript",
-"path": "res://Structures/Blueprint/BackgroundObjectInteract.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -29,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Characters/NPCs/HorseRider.gd"
 }, {
-"base": "StaticBody2D",
-"class": "InteractableObject",
-"language": "GDScript",
-"path": "res://Structures/Blueprint/Background/StaticBodyInteract.gd"
-}, {
 "base": "Node2D",
 "class": "SpawnNode",
 "language": "GDScript",
@@ -42,14 +32,12 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "Structure",
 "language": "GDScript",
-"path": "res://Structures/Blueprint/Collidable/Structure.gd"
+"path": "res://Structures/Blueprint/Structure/Structure.gd"
 } ]
 _global_script_class_icons={
 "AreaSpawn": "",
-"BackgroundInteract": "",
 "Character": "",
 "HorseRider": "",
-"InteractableObject": "",
 "SpawnNode": "",
 "Structure": ""
 }
