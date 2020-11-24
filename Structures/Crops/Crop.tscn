@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Structures/Blueprint/Structure/Structure.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Structures/Crops/crops_sheet.png" type="Texture" id=2]
+[ext_resource path="res://Structures/Crops/Crop.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.13554
+height = 0.0573349
+
+[node name="Crop" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+collision = false
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0, -6.4706 )
+texture = ExtResource( 2 )
+vframes = 12
+hframes = 4
+frame = 3
+
+[node name="CollisionShape2D" parent="InteractArea" index="0"]
+position = Vector2( -0.244171, -4.6393 )
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 10.0
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

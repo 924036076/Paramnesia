@@ -145,7 +145,7 @@ func max_craftable(item_recipe):
 	while (!out_of_items):
 		for item in item_recipe:
 			out_of_items = true
-			var amount_needed = item[1]
+			var _amount_needed = item[1]
 			for i in available_items:
 				if i[0] == item[0]:
 					if i[1] >= item[1]:

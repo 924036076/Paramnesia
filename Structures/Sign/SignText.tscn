@@ -1,38 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Fonts/type_writer.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Structures/Sign/gui_sign.png" type="Texture" id=2]
-[ext_resource path="res://Structures/Sign/SignText.gd" type="Script" id=3]
+[ext_resource path="res://Structures/Sign/SignText.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/8px_plain_type_writer.tres" type="DynamicFont" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 8
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_char = 1
-extra_spacing_space = 2
-font_data = ExtResource( 1 )
-
-[node name="SignText" type="TextureRect"]
-margin_left = 200.0
-margin_top = 103.0
-margin_right = 300.0
-margin_bottom = 178.0
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
+[node name="SignText" type="ColorRect"]
+self_modulate = Color( 0.698039, 0.580392, 0.45098, 1 )
+margin_left = -2.0
+margin_right = 2.0
+margin_bottom = 13.0
+grow_horizontal = 2
+rect_scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 88.0
-margin_bottom = 63.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Welcome to the cum zone"
-align = 1
-valign = 1
-autowrap = true
+margin_top = 2.0
+margin_bottom = 11.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
