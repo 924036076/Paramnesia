@@ -1,6 +1,7 @@
 extends Node
 
 var filepath = "res://game.ini"
+var save_path = "C:/Users/Eric/Desktop/Paramnesia/saves/"
 var config_file
 
 var keybinds = {}
@@ -64,12 +65,11 @@ func _deferred_goto_scene(scene, do_load):
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
 	if do_load:
-		match scene:
-			"World1":
-				load_game("C:/Users/Eric/Desktop/Paramnesia/World1.save")
+		load_game(scene)
 
-func save_game(path):
+func save_game(scene):
 	var save_game = File.new()
+	var path = save_path + scene + ".save"
 	save_game.open(path, File.WRITE)
 	
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -87,8 +87,9 @@ func save_game(path):
 		save_game.store_line(to_json(node_data))
 	save_game.close()
 
-func load_game(path):
+func load_game(scene):
 	var save_game = File.new()
+	var path = save_path + scene + ".save"
 	if not save_game.file_exists(path):
 		print("no save file")
 		return

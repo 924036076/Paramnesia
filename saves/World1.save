@@ -1,0 +1,7 @@
+{"filename":"res://Structures/Crops/Crop.tscn","id":"structure","pos_x":65.670097,"pos_y":60.737598,"state":0,"type":0}
+{"filename":"res://Structures/Crops/Crop.tscn","id":"structure","pos_x":144.893005,"pos_y":58.5369,"state":0,"type":1}
+{"filename":"res://Structures/Sign/Sign.tscn","id":"structure","pos_x":8.45352,"pos_y":69.099998,"text":"test test"}
+{"filename":"res://Structures/Sign/Sign.tscn","id":"structure","pos_x":316.542999,"pos_y":-8.3624,"text":"uh oh"}
+{"filename":"res://World/Trees/Oak/OakTree.tscn","id":"nature","pos_x":120.635002,"pos_y":-15.9136}
+{"filename":"res://World/Trees/Pine/PineTree.tscn","id":"nature","pos_x":201.229996,"pos_y":52.874199}
+{"dir_x":0,"dir_y":1,"filename":"res://Player/Player.tscn","health":100,"id":"player","inventory":[["stone_axe",1],[null,null],["lava_gloves",1],["lava_chest",1],["lava_legs",1],["lava_boots",1],["wood",100],["wood",100],["wood",100],["wood",100],["wood",100],["wood",100],["stone",100],["stone",100],["stone",100],["stone",100],["stone",100],["fiber",100],["fiber",100],["fiber",100],["fiber",100],["fiber",100],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],["lava_helmet",1],[null,null],[null,null],[null,null],[null,null]],"level":2,"pos_x":155.637894,"pos_y":33.666721}

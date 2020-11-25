@@ -4,7 +4,9 @@
 [ext_resource path="res://GUI/ResourceIndicator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Trees/Tree.gd" type="Script" id=3]
 
-[node name="Tree" type="StaticBody2D"]
+[node name="Tree" type="StaticBody2D" groups=[
+"Persist",
+]]
 collision_mask = 0
 script = ExtResource( 3 )
 

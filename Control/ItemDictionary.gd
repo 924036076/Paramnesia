@@ -35,6 +35,17 @@ const ITEMS = {
 		"recipe":[["wood", 20], ["stone", 20]],
 		"description": "Essential for light and cooking"
 	},
+	"cooking_pot": {
+		"icon": ICON_PATH + "cooking_pot.png",
+		"name": "Cooking Pot",
+		"type": "structure",
+		"subtype": null,
+		"stack": 10,
+		"craftable": true,
+		"level": 2,
+		"recipe":[["wood", 20], ["stone", 20]],
+		"description": "Used for more advanced cooking"
+	},
 	"bow": {
 		"icon": ICON_PATH + "bow.png",
 		"name": "Bow",

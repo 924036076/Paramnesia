@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 9.30564
+
+[node name="PlacementCollision" type="CollisionShape2D"]
+position = Vector2( 0, -2.4 )
+shape = SubResource( 1 )

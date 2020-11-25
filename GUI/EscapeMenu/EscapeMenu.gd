@@ -27,7 +27,7 @@ func exit_menu():
 
 #save world and exit to menu
 func _on_ExitButton_pressed():
-	var path: String = get_tree().get_current_scene().save_path
+	var path: String = get_tree().get_current_scene().key
 	Global.save_game(path)
 	Global.switch_scene("MainMenu", false)
 	exit_menu()

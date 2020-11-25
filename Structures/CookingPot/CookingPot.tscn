@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Structures/Blueprint/Structure/Structure.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Structures/CookingPot/cooking_pot.png" type="Texture" id=2]
+[ext_resource path="res://Structures/CookingPot/PlacementCollision.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.39013
+height = 6.07166
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 8.65467
+
+[node name="CookingPot" instance=ExtResource( 1 )]
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( -1.52588e-05, -1.10445 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="InteractArea" index="0"]
+position = Vector2( 0.157776, -1.42001 )
+shape = SubResource( 2 )
+
+[node name="PlacementCollision" parent="." index="3" instance=ExtResource( 3 )]
+disabled = true

@@ -5,10 +5,9 @@
 [ext_resource path="res://Structures/Campfire/fire_base.png" type="Texture" id=3]
 [ext_resource path="res://Structures/Campfire/Campfire.gd" type="Script" id=4]
 
-
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.2301
-height = 13.5214
+radius = 5.25774
+height = 15.5554
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.0817121, 0.357977, 0.540856, 1 )
@@ -42,8 +41,8 @@ scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 7.09738
-height = 9.50847
+radius = 7.85379
+height = 12.8389
 
 [node name="Campfire" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -53,11 +52,11 @@ position = Vector2( 0, -4 )
 texture = ExtResource( 3 )
 
 [node name="PlacementCollision" parent="." index="1" instance=ExtResource( 2 )]
-visible = false
+position = Vector2( 0.37114, -3.317 )
 disabled = true
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( -0.28479, -3.4175 )
+position = Vector2( -0.180405, -2.45485 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
@@ -67,7 +66,10 @@ emitting = false
 amount = 100
 process_material = SubResource( 6 )
 
+[node name="InteractArea" parent="." index="4"]
+position = Vector2( 12.0099, -2.31384 )
+
 [node name="CollisionShape2D" parent="InteractArea" index="0"]
-position = Vector2( -0.142395, -4.56958 )
+position = Vector2( -11.6884, -2.50509 )
 rotation = 1.5708
 shape = SubResource( 7 )
