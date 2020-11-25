@@ -8,6 +8,7 @@
 
 [node name="World1" instance=ExtResource( 1 )]
 save_path = "res://World1.save"
+key = "World1"
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 tile_set = ExtResource( 2 )

@@ -1,5 +1,7 @@
 extends Control
 
+var key = "MainMenu"
+
 func _on_NewGame_pressed():
 	Global.switch_scene("World1", false)
 

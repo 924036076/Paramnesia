@@ -16,6 +16,7 @@ func _input(event):
 		if event.pressed and not event.echo:
 				if event.scancode == KEY_ESCAPE or event.scancode == KEY_TAB:
 					get_tree().paused = false
+					Global.block_escape = true
 					queue_free()
 				elif event.scancode == KEY_UP:
 					goto_command_history(-1)

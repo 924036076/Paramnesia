@@ -8,9 +8,9 @@ var keybinds = {}
 onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
 onready var console = load("res://GUI/Console/ConsoleTest.tscn")
 
-var game_paused = false
+var game_paused: bool = false
 var current_scene
-var block_escape = true
+var block_escape: bool = true
 
 func _ready():
 	config_file = ConfigFile.new()
@@ -28,11 +28,11 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
-		if event.pressed and not event.echo:
-			if event.scancode == KEY_ESCAPE and get_tree().get_current_scene().get_node("GUI").close_inventory() and not block_escape:
+		if event.pressed and not event.echo and not block_escape:
+			if event.scancode == KEY_ESCAPE and get_tree().get_current_scene().key != "MainMenu" and get_tree().get_current_scene().get_node("GUI").close_inventory() and not block_escape:
 				get_tree().get_root().add_child(escape_menu.instance())
 				get_tree().paused = true
-			elif event.scancode == KEY_TAB:
+			elif event.scancode == KEY_TAB and get_tree().get_current_scene().key != "MainMenu":
 				get_tree().get_root().add_child(console.instance())
 				get_tree().paused = true
 	block_escape = false
