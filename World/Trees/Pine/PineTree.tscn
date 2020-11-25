@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World/Trees/Pine/PineTree.gd" type="Script" id=1]
 [ext_resource path="res://World/Trees/Pine/pine_tree.png" type="Texture" id=2]
-[ext_resource path="res://Control/SpawnBlockRadius.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/ResourceIndicator.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=5]
 
@@ -12,10 +11,6 @@ height = 10.0
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 8.0
-
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 15.0
-height = 12.0
 
 [node name="PineTree" type="StaticBody2D"]
 collision_mask = 0
@@ -51,17 +46,8 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TransTest"]
 polygon = PoolVector2Array( 0, -129, 29, -54, -27, -53 )
-
-[node name="SpawnBlockRadius" parent="." instance=ExtResource( 3 )]
-destroy = false
-
-[node name="CollisionShape2D" parent="SpawnBlockRadius" index="0"]
-position = Vector2( -1, -9 )
-shape = SubResource( 3 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="area_entered" from="TransTest" to="." method="_on_TransTest_area_entered"]
 [connection signal="area_exited" from="TransTest" to="." method="_on_TransTest_area_exited"]
 
 [editable path="Hurtbox"]
-
-[editable path="SpawnBlockRadius"]

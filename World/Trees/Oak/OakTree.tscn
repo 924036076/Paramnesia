@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://World/Trees/Oak/OakTree.gd" type="Script" id=1]
 [ext_resource path="res://World/Trees/Oak/oak_tree.png" type="Texture" id=2]
-[ext_resource path="res://Control/SpawnBlockRadius.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/ResourceIndicator.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=5]
 
@@ -15,10 +14,6 @@ radius = 8.0
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 34.7131
-
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 15.0
-height = 12.0
 
 [node name="OakTree" type="StaticBody2D"]
 collision_mask = 0
@@ -55,17 +50,8 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransTest"]
 position = Vector2( 0, -81 )
 shape = SubResource( 3 )
-
-[node name="SpawnBlockRadius" parent="." instance=ExtResource( 3 )]
-destroy = false
-
-[node name="CollisionShape2D" parent="SpawnBlockRadius" index="0"]
-position = Vector2( -1, -9 )
-shape = SubResource( 4 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="area_entered" from="TransTest" to="." method="_on_TransTest_area_entered"]
 [connection signal="area_exited" from="TransTest" to="." method="_on_TransTest_area_exited"]
 
 [editable path="Hurtbox"]
-
-[editable path="SpawnBlockRadius"]

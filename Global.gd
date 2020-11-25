@@ -6,7 +6,7 @@ var config_file
 var keybinds = {}
 
 onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
-onready var console = load("res://GUI/Console/ConsoleTest.tscn")
+onready var console = load("res://GUI/Console/Console.tscn")
 
 var game_paused: bool = false
 var current_scene
