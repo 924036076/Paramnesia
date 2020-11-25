@@ -1,10 +1,11 @@
 extends Node
 
-var filepath = "res://game.ini"
+var config_path = "res://game.ini"
 var save_path = "C:/Users/Eric/Desktop/Paramnesia/saves/"
 var config_file
 
 var keybinds = {}
+var audio = {}
 
 onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
 onready var console = load("res://GUI/Console/Console.tscn")
@@ -15,10 +16,13 @@ var block_escape: bool = true
 
 func _ready():
 	config_file = ConfigFile.new()
-	if config_file.load(filepath) == OK:
+	if config_file.load(config_path) == OK:
 		for key in config_file.get_section_keys("keybinds"):
 			var key_value = config_file.get_value("keybinds", key)
 			keybinds[key] = key_value
+		for key in config_file.get_section_keys("audio"):
+			var key_value = config_file.get_value("audio", key)
+			audio[key] = key_value
 	else:
 		print("game.ini is missing")
 		get_tree().quit()
@@ -120,3 +124,9 @@ func load_game(scene):
 	scene_root.load_from_save()
 
 	save_game.close()
+
+func update_config():
+	for key in audio.keys():
+		var key_value = audio[key]
+		config_file.set_value("audio", key, key_value)
+	config_file.save(config_path)

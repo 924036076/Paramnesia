@@ -41,3 +41,6 @@ func _on_ExitButton_pressed():
 	AudioManager.click_button()
 	emit_signal("settings_closed")
 	queue_free()
+
+func _exit_tree():
+	Global.update_config()

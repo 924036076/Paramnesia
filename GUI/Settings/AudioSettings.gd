@@ -19,9 +19,14 @@ onready var mute_box = get_node("MuteButton")
 var muted = false
 var master_volume
 
+var count = 0
+
 func _ready():
+	reload_all()
+
+func reload_all():
 	muted = AudioManager.muted
-	get_node("MuteButton").pressed = muted
+	mute_box.pressed = muted
 	
 	master_slider.value = AudioManager.master_volume
 	master_volume = AudioManager.master_volume
@@ -48,6 +53,8 @@ func _on_interface_volume_changed(value):
 	update_icon(interface_icon, value)
 
 func _on_master_volume_changed(value):
+	count += 1
+	print(count)
 	master_volume = value
 	AudioManager.master_volume = value
 	update_icon(master_icon, value)
@@ -71,12 +78,8 @@ func _on_MuteButton_toggled(button_pressed):
 func _on_ResetButton_pressed():
 	if !muted:
 		AudioManager.click_button()
-	muted = false
-	AudioManager.muted = false
-	mute_box.pressed = false
-	master_volume = 1
-	master_slider.value = 0.5
-	interface_slider.value = 0.7
-	music_slider.value = 0.05
-	world_slider.value = 1
-	
+	AudioManager.set_to_default()
+	reload_all()
+
+func _exit_tree():
+	Global.audio = AudioManager.get_current_settings()
