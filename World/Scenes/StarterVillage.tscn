@@ -1,11 +1,10 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=1]
 [ext_resource path="res://World/Tilemaps/WaterTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/NPCs/OldLady1/OldLady1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GUI/Inventory/GUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://World/Trees/Oak/OakTree.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Control/Teleport.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Tilemaps/ff_master_tile_sheet.png" type="Texture" id=9]
 [ext_resource path="res://Icons/black.png" type="Texture" id=11]
@@ -1246,51 +1245,6 @@ position = Vector2( 116.557, -302.896 )
 position = Vector2( 114, 150 )
 
 [node name="Trees" type="YSort" parent="GlobalYSort/World"]
-
-[node name="OakTree3" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 347, -488 )
-
-[node name="OakTree4" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 513, -425 )
-
-[node name="OakTree5" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 409, -396 )
-
-[node name="OakTree6" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 281, -286 )
-
-[node name="OakTree7" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 361, -266 )
-
-[node name="OakTree8" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 513, -276 )
-
-[node name="OakTree9" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 620, -323 )
-
-[node name="OakTree10" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 684, -197 )
-
-[node name="OakTree11" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 577, -159 )
-
-[node name="OakTree12" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 411, -143 )
-
-[node name="OakTree13" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 212, -177 )
-
-[node name="OakTree14" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 328, -52 )
-
-[node name="OakTree15" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 419, -35 )
-
-[node name="OakTree16" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 562, -19 )
-
-[node name="OakTree17" parent="GlobalYSort/World/Trees" instance=ExtResource( 7 )]
-position = Vector2( 687, -80 )
 
 [node name="Objects" type="YSort" parent="GlobalYSort"]
 

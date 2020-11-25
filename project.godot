@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "AreaSpawn",
-"language": "GDScript",
-"path": "res://World/SpawnNodes/AreaSpawn.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -25,9 +20,9 @@ _global_script_classes=[ {
 "path": "res://Characters/NPCs/HorseRider.gd"
 }, {
 "base": "Node2D",
-"class": "SpawnNode",
+"class": "NatureTree",
 "language": "GDScript",
-"path": "res://World/SpawnNodes/SpawnNode.gd"
+"path": "res://World/Trees/Tree.gd"
 }, {
 "base": "StaticBody2D",
 "class": "Structure",
@@ -35,10 +30,9 @@ _global_script_classes=[ {
 "path": "res://Structures/Blueprint/Structure/Structure.gd"
 } ]
 _global_script_class_icons={
-"AreaSpawn": "",
 "Character": "",
 "HorseRider": "",
-"SpawnNode": "",
+"NatureTree": "",
 "Structure": ""
 }
 
