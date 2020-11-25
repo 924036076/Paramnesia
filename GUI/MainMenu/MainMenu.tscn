@@ -11,8 +11,7 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = -1.0
-margin_right = 499.0
+margin_right = 500.0
 margin_bottom = 282.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,5 +66,12 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SettingsBackground" type="Panel" parent="."]
+visible = false
+margin_right = 500.0
+margin_bottom = 282.0
 [connection signal="pressed" from="LoadGame" to="." method="_on_LoadGame_pressed"]
 [connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
