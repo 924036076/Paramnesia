@@ -20,6 +20,7 @@ var structure = null
 var last_held
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
+const arrow = preload("res://Player/Arrow.tscn")
 
 onready var animationPlayer = get_node("AnimationPlayer")
 onready var animationTree = get_node("AnimationTree")
@@ -84,6 +85,7 @@ func move_state(delta):
 			if ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
 				create_structure(PlayerData.get_item_held())
 			else:
+				create_arrow()
 				state = ATTACK
 		elif structure.can_place():
 			structure.place()
@@ -136,6 +138,14 @@ func set_direction(direction):
 	animationTree.set("parameters/Run/blend_position", direction)
 	animationTree.set("parameters/Axe/blend_position", direction)
 	animationTree.set("parameters/Pick/blend_position", direction)
+
+func create_arrow():
+	var arr = arrow.instance()
+	arr.global_position = global_position + Vector2(0, -12)
+	var dir = global_position.direction_to(get_global_mouse_position())
+	arr.direction = dir
+	arr.rotate(dir.angle())
+	get_parent().add_child(arr)
 
 func apply_offset(offset):
 	global_position += offset

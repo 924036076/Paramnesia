@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/flying_arrow.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.93735, 3.49344 )
+
+[node name="Arrow" instance=ExtResource( 1 )]
+max_speed = 4500
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( -0.0460701, -0.552839 )
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )

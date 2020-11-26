@@ -4,9 +4,6 @@
 [ext_resource path="res://Characters/NPCs/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/NPCs/OldLady1/OldLady1.gd" type="Script" id=3]
 
-
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "WalkDown"
 length = 0.8
@@ -92,5 +89,6 @@ anims/WalkDown = SubResource( 1 )
 anims/WalkLeft = SubResource( 2 )
 anims/WalkRight = SubResource( 3 )
 anims/WalkUp = SubResource( 4 )
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
 
 [editable path="Hurtbox"]

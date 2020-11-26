@@ -15,3 +15,6 @@ func dead():
 			dead.get_node("Person").rotate(PI)
 	get_parent().add_child(dead)
 	queue_free()
+
+func _on_Hurtbox_body_entered(body):
+	dead()
