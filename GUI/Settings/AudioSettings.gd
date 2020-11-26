@@ -19,8 +19,6 @@ onready var mute_box = get_node("MuteButton")
 var muted = false
 var master_volume
 
-var count = 0
-
 func _ready():
 	reload_all()
 
@@ -53,8 +51,6 @@ func _on_interface_volume_changed(value):
 	update_icon(interface_icon, value)
 
 func _on_master_volume_changed(value):
-	count += 1
-	print(count)
 	master_volume = value
 	AudioManager.master_volume = value
 	update_icon(master_icon, value)

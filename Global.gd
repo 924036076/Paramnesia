@@ -14,6 +14,8 @@ var game_paused: bool = false
 var current_scene
 var block_escape: bool = true
 
+var num_interacted_with: int = 0
+
 func _ready():
 	config_file = ConfigFile.new()
 	if config_file.load(config_path) == OK:

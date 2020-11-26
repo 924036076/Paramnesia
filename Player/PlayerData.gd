@@ -24,6 +24,7 @@ func _ready():
 	for i in range(45):
 		inventory[i] = [null, null]
 	add_to_inventory(0, "stone_axe", 1)
+	add_to_inventory(0, "campfire",3)
 	add_to_inventory(0, "lava_helmet", 1)
 	add_to_inventory(0, "lava_gloves", 1)
 	add_to_inventory(0, "lava_chest", 1)
@@ -157,6 +158,13 @@ func max_craftable(item_recipe):
 		if num > 100:
 			break
 	return num - 1
+
+func remove_from_slot(slot, num):
+	if inventory[slot][1] > num:
+		inventory[slot][1] -= num
+	else:
+		clear_slot(slot)
+	emit_signal("inventory_updated")
 
 func set_health(value):
 	health = clamp(value, 0, max_health)

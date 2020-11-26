@@ -17,6 +17,7 @@ var state = MOVE
 var velocity = Vector2.ZERO
 var can_move = true
 var structure = null
+var last_held
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 
@@ -69,8 +70,14 @@ func move_state(delta):
 	
 	velocity = move_and_slide(velocity)
 	
-	if structure != null and can_move:
-		structure.global_position = get_global_mouse_position()
+	if structure != null:
+		if PlayerData.holding != last_held or PlayerData.get_item_held() != structure.id:
+			structure.queue_free()
+			structure = null
+		elif can_move:
+			structure.global_position = get_global_mouse_position()
+	
+	last_held = PlayerData.holding
 	
 	if Input.is_action_just_pressed("attack") and can_move:
 		if structure == null:
@@ -80,7 +87,7 @@ func move_state(delta):
 				state = ATTACK
 		elif structure.can_place():
 			structure.place()
-			PlayerData.clear_slot(PlayerData.holding)
+			PlayerData.remove_from_slot(PlayerData.holding, 1)
 			structure = null
 
 func attack_state(_delta):
