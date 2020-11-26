@@ -27,7 +27,7 @@ type = 1
 
 [node name="Sign" parent="GlobalYSort/World" index="2" instance=ExtResource( 5 )]
 position = Vector2( 8.45352, 69.1 )
-message = "test test"
+message = "bruhse"
 
 [node name="Sign2" parent="GlobalYSort/World" index="3" instance=ExtResource( 5 )]
 position = Vector2( 316.543, -8.3624 )
