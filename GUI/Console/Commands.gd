@@ -1,6 +1,6 @@
 extends Node
 
-const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]], ["mute", [0]], ["unmute", [0]]]
+const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]]]
 const spawnable_mobs = ["deer", "bat"]
 
 func teleport(x_coord, y_coord):
@@ -8,7 +8,7 @@ func teleport(x_coord, y_coord):
 	var y = str2var(y_coord)
 	if typeof(x) != TYPE_INT or typeof(y) != TYPE_INT:
 		return str("-Invalid parameter types (int, int required)-")
-	get_tree().get_current_scene().get_node("SpawnNodes/YSort/Player").teleport(x, y)
+	get_tree().get_current_scene().teleport(x, y)
 	return str("~Teleporting to (" + str(x) + ", " + str(y) + ")~")
 
 func spawn(obj, x_coord = "-37", y_coord = "37"):
@@ -31,11 +31,3 @@ func give_item(item_id, num = "1"):
 		return ('-"' + str(num) + '" is not a whole number-')
 	PlayerData.add_to_inventory(0, item_id, num, true)
 	return str("~Giving " + str(num) + " " + item_id + " to player~")
-
-func mute():
-	AudioManager.muted = true
-	return "~Audio muted~"
-
-func unmute():
-	AudioManager.muted = false
-	return "~Audio unmuted~"

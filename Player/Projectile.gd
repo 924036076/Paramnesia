@@ -14,3 +14,6 @@ func _physics_process(delta):
 
 func _on_Timer_timeout():
 	queue_free()
+
+func _on_Hitbox_area_entered(_area):
+	queue_free()

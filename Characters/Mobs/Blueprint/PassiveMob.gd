@@ -97,7 +97,10 @@ func _on_Hurtbox_area_entered(area):
 		hurtbox.start_invicibility(1)
 
 func dead():
-	queue_free()
+	var splatter = load("res://Effects/Disappear/Disappear.tscn").instance()
+	add_child(splatter)
+	set_physics_process(false)
+	animation_player.stop()
 
 func _on_Scared_timeout():
 	stay_scared = false
