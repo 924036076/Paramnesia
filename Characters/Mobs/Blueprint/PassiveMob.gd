@@ -3,7 +3,8 @@ extends KinematicBody2D
 class_name PassiveMob
 
 export var scared: bool = false
-export var walking_speed: int = 25
+export var scare_radius: int = 100
+export var walking_speed: int = 15
 
 enum {
 	LEFT,
@@ -19,14 +20,14 @@ enum {
 }
 
 onready var animation_player = get_node("AnimationPlayer")
-onready var health_bar = get_node("ResourceIndicator")
+onready var health_bar = get_node("HealthBar")
+onready var scared_timer = get_node("Scared")
+onready var hurtbox = get_node("Hurtbox")
 
-var running_speed = 1.5 * walking_speed
+var running_speed = 2.5 * walking_speed
 var dir = RIGHT
 var state = WALK
-
-func _ready():
-	health_bar.connect("no_health", self, "dead")
+var stay_scared: bool = false
 
 func _physics_process(delta):
 	match state:
@@ -36,6 +37,7 @@ func _physics_process(delta):
 			idle()
 		RUN:
 			run(delta)
+	check_for_predators()
 
 func walk(delta):
 	move(walking_speed, delta)
@@ -45,10 +47,15 @@ func idle():
 
 func run(delta):
 	move(running_speed, delta)
+	if not stay_scared:
+		state = WALK
+		check_for_predators()
+		if state == WALK:
+			animation_player.playback_speed = 1
 
 func move(speed, delta):
 	var velocity
-	speed *= 500
+	speed *= 100
 	match dir:
 		LEFT:
 			velocity = Vector2(-speed * delta, 0)
@@ -64,6 +71,13 @@ func move(speed, delta):
 			animation_player.play("WalkDown")
 	velocity = move_and_slide(velocity)
 
+func check_for_predators():
+	var scared_of = get_tree().get_nodes_in_group("Predator")
+	for node in scared_of:
+		if global_position.distance_to(node.global_position) < scare_radius:
+			state = RUN
+			animation_player.playback_speed = 2
+
 func _on_NewState_timeout():
 	if state != RUN:
 		var random = randi() % 5
@@ -74,7 +88,16 @@ func _on_NewState_timeout():
 			state = IDLE
 
 func _on_Hurtbox_area_entered(area):
-	health_bar.health -= 30
+	if area.has_method("get_damage"):
+		state = RUN
+		animation_player.playback_speed = 2
+		stay_scared = true
+		scared_timer.start()
+		health_bar.health -= area.get_damage()
+		hurtbox.start_invicibility(1)
 
 func dead():
 	queue_free()
+
+func _on_Scared_timeout():
+	stay_scared = false

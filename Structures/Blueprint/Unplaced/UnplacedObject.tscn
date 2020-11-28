@@ -18,6 +18,6 @@ material = SubResource( 1 )
 
 [node name="PlacementCollision" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 19
 [connection signal="body_entered" from="PlacementCollision" to="." method="_on_PlacementCollision_body_entered"]
 [connection signal="body_exited" from="PlacementCollision" to="." method="_on_PlacementCollision_body_exited"]

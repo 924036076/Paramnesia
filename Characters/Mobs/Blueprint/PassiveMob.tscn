@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Characters/Mobs/Blueprint/PassiveMob.gd" type="Script" id=1]
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GUI/ResourceIndicator.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Characters/Health Bar/HealthBar.tscn" type="PackedScene" id=3]
 
 [node name="PassiveMob" type="KinematicBody2D"]
 collision_layer = 16
@@ -17,13 +17,17 @@ script = ExtResource( 1 )
 wait_time = 2.0
 autostart = true
 
+[node name="Scared" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Hurtbox" parent="." instance=ExtResource( 2 )]
 collision_layer = 8
 
-[node name="ResourceIndicator" parent="." instance=ExtResource( 3 )]
-visible = false
-max_health = 100
+[node name="HealthBar" parent="." instance=ExtResource( 3 )]
 [connection signal="timeout" from="NewState" to="." method="_on_NewState_timeout"]
+[connection signal="timeout" from="Scared" to="." method="_on_Scared_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="HealthBar" to="." method="dead"]

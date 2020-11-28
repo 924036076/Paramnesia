@@ -7,11 +7,11 @@
 radius = 5.45517
 height = 1.83557
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 6.23768
 height = 24.2317
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "WalkDown"
 length = 0.8
 loop = true
@@ -50,7 +50,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 3 ) ]
+"values": [ SubResource( 2 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Hurtbox/CollisionShape2D:position")
@@ -77,8 +77,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "WalkLeft"
+[sub_resource type="Animation" id=4]
 length = 0.8
 loop = true
 step = 0.2
@@ -140,7 +139,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 3 ) ]
+"values": [ SubResource( 2 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -182,7 +181,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 3 ) ]
+"values": [ SubResource( 2 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Hurtbox/CollisionShape2D:position")
@@ -248,7 +247,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 3 ) ]
+"values": [ SubResource( 2 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Hurtbox/CollisionShape2D:position")
@@ -289,20 +288,21 @@ position = Vector2( 0.135277, -1.89386 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" parent="." index="3"]
-anims/WalkDown = SubResource( 4 )
-anims/WalkLeft = SubResource( 2 )
+[node name="AnimationPlayer" parent="." index="4"]
+anims/WalkDown = SubResource( 3 )
+anims/WalkLeft = SubResource( 4 )
 anims/WalkRight = SubResource( 5 )
 anims/WalkUp = SubResource( 6 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0.135277, -14.6099 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
-[node name="ResourceIndicator" parent="." index="5"]
-margin_left = -11.0
-margin_top = -33.0
-margin_right = 11.0
-margin_bottom = -29.0
+[node name="HealthBar" parent="." index="6"]
+margin_left = -11.228
+margin_top = -35.1719
+margin_right = 10.772
+margin_bottom = -31.1719
+max_health = 100
 
 [editable path="Hurtbox"]

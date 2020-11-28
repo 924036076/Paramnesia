@@ -46,3 +46,4 @@ position = Vector2( 201.23, 52.8742 )
 
 [node name="Deer" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 8 )]
 position = Vector2( -52.3806, 71.2305 )
+walking_speed = 15
