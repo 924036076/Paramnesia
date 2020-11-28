@@ -81,6 +81,6 @@ func _on_InteractArea_mouse_entered():
 func _on_InteractArea_mouse_exited():
 	sprite.get_material().set_shader_param("line_thickness", 0)
 
-func _on_InteractArea_input_event(viewport, event, shape_idx):
+func _on_InteractArea_input_event(_viewport, _event, _shape_idx):
 	if Input.is_action_just_pressed("inventory_alt"):
 		interact()

@@ -24,7 +24,9 @@ func _ready():
 	for i in range(45):
 		inventory[i] = [null, null]
 	add_to_inventory(0, "stone_axe", 1)
-	add_to_inventory(0, "campfire",3)
+	add_to_inventory(0, "campfire", 3)
+	add_to_inventory(0, "bow", 1)
+	add_to_inventory(0, "arrow", 10)
 	add_to_inventory(0, "lava_helmet", 1)
 	add_to_inventory(0, "lava_gloves", 1)
 	add_to_inventory(0, "lava_chest", 1)
@@ -107,6 +109,14 @@ func remove_items(item_list):
 				else:
 					i = [null, null]
 					break
+	emit_signal("inventory_updated")
+
+func remove_one(item):
+	for i in inventory:
+		if i[0] == item:
+			i[1] -= 1
+			if i[1] < 1:
+				inventory[inventory.rfind(i)] = [null, null]
 	emit_signal("inventory_updated")
 
 func add_to_slot(hovering_over, item_id, item_num):

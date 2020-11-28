@@ -9,7 +9,7 @@ func _physics_process(delta):
 	if (get_slide_count() > 0):
 		queue_free()
 	
-	velocity = direction * max_speed * delta
+	velocity = direction * max_speed * delta * 500
 	velocity = move_and_slide(velocity)
 
 func _on_Timer_timeout():

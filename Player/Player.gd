@@ -85,8 +85,11 @@ func move_state(delta):
 			if ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
 				create_structure(PlayerData.get_item_held())
 			else:
-				create_arrow()
-				state = ATTACK
+				if PlayerData.get_item_held() == "bow":
+					if PlayerData.get_num_held("arrow") > 0:
+						create_arrow()
+				else:
+					state = ATTACK
 		elif structure.can_place():
 			structure.place()
 			PlayerData.remove_from_slot(PlayerData.holding, 1)
@@ -140,6 +143,7 @@ func set_direction(direction):
 	animationTree.set("parameters/Pick/blend_position", direction)
 
 func create_arrow():
+	PlayerData.remove_one("arrow")
 	var arr = arrow.instance()
 	arr.global_position = global_position + Vector2(0, -12)
 	var dir = global_position.direction_to(get_global_mouse_position())

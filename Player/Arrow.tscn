@@ -7,7 +7,7 @@
 extents = Vector2( 9.93735, 3.49344 )
 
 [node name="Arrow" instance=ExtResource( 1 )]
-max_speed = 4500
+max_speed = 25
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -0.0460701, -0.552839 )
