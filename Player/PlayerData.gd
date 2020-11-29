@@ -117,6 +117,8 @@ func remove_one(item):
 			i[1] -= 1
 			if i[1] < 1:
 				inventory[inventory.rfind(i)] = [null, null]
+			emit_signal("inventory_updated")
+			return
 	emit_signal("inventory_updated")
 
 func add_to_slot(hovering_over, item_id, item_num):

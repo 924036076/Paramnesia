@@ -23,11 +23,16 @@ onready var animation_player = get_node("AnimationPlayer")
 onready var health_bar = get_node("HealthBar")
 onready var scared_timer = get_node("Scared")
 onready var hurtbox = get_node("Hurtbox")
+onready var sprite = get_node("Sprite")
+onready var hit_timer = get_node("HitEffect")
 
 var running_speed = 2.5 * walking_speed
 var dir = RIGHT
 var state = WALK
 var stay_scared: bool = false
+
+func _ready():
+	sprite.set_material(sprite.get_material().duplicate())
 
 func _physics_process(delta):
 	match state:
@@ -89,12 +94,15 @@ func _on_NewState_timeout():
 
 func _on_Hurtbox_area_entered(area):
 	if area.has_method("get_damage"):
+		sprite.get_material().set_shader_param("highlight", true)
+		hit_timer.start()
 		state = RUN
 		animation_player.playback_speed = 2
 		stay_scared = true
 		scared_timer.start()
 		health_bar.health -= area.get_damage()
 		hurtbox.start_invicibility(1)
+		area.get_parent().queue_free()
 
 func dead():
 	var splatter = load("res://Effects/Disappear/Disappear.tscn").instance()
@@ -104,3 +112,6 @@ func dead():
 
 func _on_Scared_timeout():
 	stay_scared = false
+
+func _on_HitEffect_timeout():
+	sprite.get_material().set_shader_param("highlight", false)

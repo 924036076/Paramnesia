@@ -19,9 +19,16 @@ shape = SubResource( 1 )
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
 
+[node name="Hitbox" parent="." index="3"]
+damage = 30
+
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( -0.0460701, -0.506767 )
 shape = SubResource( 2 )
+
+[node name="HitLocation" type="Position2D" parent="." index="4"]
+position = Vector2( 9.49038, -0.460697 )
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 
 [editable path="Hitbox"]
