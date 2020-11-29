@@ -94,6 +94,7 @@ func _on_NewState_timeout():
 
 func _on_Hurtbox_area_entered(area):
 	if area.has_method("get_damage"):
+		area.get_parent().hit()
 		sprite.get_material().set_shader_param("highlight", true)
 		hit_timer.start()
 		state = RUN
@@ -102,7 +103,6 @@ func _on_Hurtbox_area_entered(area):
 		scared_timer.start()
 		health_bar.health -= area.get_damage()
 		hurtbox.start_invicibility(1)
-		area.get_parent().queue_free()
 
 func dead():
 	var splatter = load("res://Effects/Disappear/Disappear.tscn").instance()

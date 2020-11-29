@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fork_media_warfare_arrow_impact.wav-ad7d58436e2f8b8a89047b379e6f7c9b.sample"
+
+[deps]
+
+source_file="res://Audio/fork_media_warfare_arrow_impact.wav"
+dest_files=[ "res://.import/fork_media_warfare_arrow_impact.wav-ad7d58436e2f8b8a89047b379e6f7c9b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
