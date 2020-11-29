@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://GUI/Inventory/CraftController.gd" type="Script" id=1]
 [ext_resource path="res://Icons/wrench.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Fonts/type_writer.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GUI/Inventory/FloatingNumbers.gd" type="Script" id=13]
 [ext_resource path="res://GUI/Inventory/FloatingItemNumber.tscn" type="PackedScene" id=14]
+[ext_resource path="res://GUI/Inventory/missions_indicator.png" type="Texture" id=15]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -277,6 +278,16 @@ margin_top = 9.0
 margin_right = 184.0
 margin_bottom = 37.0
 rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="MissionsButton" type="TextureButton" parent="."]
+margin_left = 479.749
+margin_top = 44.4877
+margin_right = 499.749
+margin_bottom = 64.4877
+texture_normal = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="done" from="FloatingNumbers/FloatingItemNumber" to="FloatingNumbers" method="_on_label_done"]
 [connection signal="done" from="FloatingNumbers/FloatingItemNumber2" to="FloatingNumbers" method="_on_label_done"]
 [connection signal="done" from="FloatingNumbers/FloatingItemNumber3" to="FloatingNumbers" method="_on_label_done"]
