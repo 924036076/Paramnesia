@@ -1,9 +1,8 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=1]
 [ext_resource path="res://World/Tilemaps/WaterTilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Characters/NPCs/OldLady1/OldLady1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GUI/Inventory/GUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Control/Teleport.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Tilemaps/ff_master_tile_sheet.png" type="Texture" id=9]
@@ -1237,9 +1236,6 @@ position = Vector2( 19, -390 )
 remote_path = NodePath("../../../Camera2D")
 
 [node name="Mobs" type="YSort" parent="GlobalYSort"]
-
-[node name="OldLady1" parent="GlobalYSort/Mobs" instance=ExtResource( 4 )]
-position = Vector2( 116.557, -302.896 )
 
 [node name="World" type="YSort" parent="GlobalYSort"]
 position = Vector2( 114, 150 )

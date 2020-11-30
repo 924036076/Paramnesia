@@ -9,16 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "Character",
-"language": "GDScript",
-"path": "res://Characters/NPCs/Character.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "HorseRider",
-"language": "GDScript",
-"path": "res://Characters/NPCs/HorseRider.gd"
-}, {
 "base": "Node2D",
 "class": "NatureTree",
 "language": "GDScript",
@@ -35,8 +25,6 @@ _global_script_classes=[ {
 "path": "res://Structures/Blueprint/Structure/Structure.gd"
 } ]
 _global_script_class_icons={
-"Character": "",
-"HorseRider": "",
 "NatureTree": "",
 "PassiveMob": "",
 "Structure": ""
