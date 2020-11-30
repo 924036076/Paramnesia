@@ -60,6 +60,7 @@ Global="*res://Global.gd"
 AudioManager="*res://Audio/AudioManager.tscn"
 CommandHistory="*res://GUI/Console/CommandHistory.gd"
 Structures="*res://Structures/Blueprint/Structures.gd"
+MissionController="*res://GUI/Missions/MissionController.gd"
 
 [display]
 

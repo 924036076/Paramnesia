@@ -291,3 +291,4 @@ __meta__ = {
 [connection signal="done" from="FloatingNumbers/FloatingItemNumber" to="FloatingNumbers" method="_on_label_done"]
 [connection signal="done" from="FloatingNumbers/FloatingItemNumber2" to="FloatingNumbers" method="_on_label_done"]
 [connection signal="done" from="FloatingNumbers/FloatingItemNumber3" to="FloatingNumbers" method="_on_label_done"]
+[connection signal="pressed" from="MissionsButton" to="." method="_on_MissionsButton_pressed"]

@@ -1,15 +1,18 @@
 extends CanvasLayer
 
 const inventory_open = preload("res://GUI/Inventory/InventoryOpened.tscn")
+const missions_open = preload("res://GUI/Missions/Missions.tscn")
 
 onready var controller = get_node("CraftController")
 onready var queue = get_node("CraftController/Queue")
 onready var hotbar = get_node("HotbarBounds")
 onready var debug_overlay = get_node("DebugText")
 onready var actual_hotbar = get_node("HotbarBounds/Hotbar")
+onready var missions_button = get_node("MissionsButton")
 
 var open = false
 var inventory = null
+var missions = null
 
 signal inventory_changed(value)
 
@@ -52,6 +55,23 @@ func exit_inventory():
 	queue.visible = false
 	hotbar.visible = true
 	actual_hotbar.redraw()
-	inventory.drop_items()
-	inventory.queue_free()
-	inventory = null
+	if inventory != null:
+		inventory.drop_items()
+		inventory.queue_free()
+		inventory = null
+	else:
+		missions.queue_free()
+		missions = null
+
+func _on_MissionsButton_pressed():
+	if not open:
+		open = true
+		hotbar.visible = false
+		missions = missions_open.instance()
+		add_child(missions)
+	elif missions != null:
+		missions.queue_free()
+		missions = null
+		open = false
+		hotbar.visible = true
+		actual_hotbar.redraw()
