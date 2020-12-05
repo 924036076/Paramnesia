@@ -19,6 +19,9 @@ signal inventory_changed(value)
 func _process(_delta):
 	var debug_text = str(Engine.get_frames_per_second()) + " fps"
 	debug_text += "\nRAM Usage: " + String.humanize_size(OS.get_static_memory_usage())
+	var x_coord = str(round(get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position.x))
+	var y_coord = str(round(get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position.y))
+	debug_text += "\nX: " + x_coord + " Y: " + y_coord
 	debug_overlay.text = debug_text
 
 func _input(_event):

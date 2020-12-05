@@ -214,6 +214,7 @@ shift={
 2d_physics/layer_6="TransTest"
 2d_physics/layer_7="SoftCollisions"
 2d_physics/layer_8="SpawnBlockRadius"
+2d_physics/layer_9="Raft"
 
 [rendering]
 

@@ -8,7 +8,7 @@ shader = ExtResource( 2 )
 shader_param/highlight_color = null
 
 [node name="UnplacedObject" type="StaticBody2D"]
-collision_mask = 0
+collision_mask = 256
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -18,6 +18,8 @@ material = SubResource( 1 )
 
 [node name="PlacementCollision" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 19
+collision_mask = 275
+[connection signal="area_entered" from="PlacementCollision" to="." method="_on_PlacementCollision_area_entered"]
+[connection signal="area_exited" from="PlacementCollision" to="." method="_on_PlacementCollision_area_exited"]
 [connection signal="body_entered" from="PlacementCollision" to="." method="_on_PlacementCollision_body_entered"]
 [connection signal="body_exited" from="PlacementCollision" to="." method="_on_PlacementCollision_body_exited"]
