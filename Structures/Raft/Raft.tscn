@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Structures/Raft/raft_wood.png" type="Texture" id=1]
 [ext_resource path="res://Structures/Raft/Raft.gd" type="Script" id=2]
+[ext_resource path="res://Structures/RaftAnchor/RaftAnchor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Structures/RaftAnchor/raft_rope.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 98.066, 86.6861 )
@@ -35,5 +37,25 @@ collision_mask = 0
 polygon = PoolVector2Array( -0.145714, 0.040144, -0.086174, -1.68647, 197.7, -1.66324, 196.988, 174, -2.44316, 174.402, -1.73683, -1.77796, -0.0702, -1.77796, 0.0209045, 172.776, 195.899, 172.834, 196.019, -0.495042 )
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
-position = Vector2( 96.7911, 81.5082 )
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
+position = Vector2( 98.4088, 15.8311 )
+
+[node name="RaftAnchor" parent="." instance=ExtResource( 3 )]
+position = Vector2( 98, 4 )
+
+[node name="RaftAnchor2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 98, -50 )
+
+[node name="Rope" type="TextureRect" parent="RaftAnchor2"]
+margin_left = 3.99999
+margin_top = -9.0
+margin_right = 59.0
+margin_bottom = -8.0
+rect_rotation = 90.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggle_hitch" from="RaftAnchor" to="." method="_on_RaftAnchor_toggle_hitch"]
+[connection signal="toggle_hitch" from="RaftAnchor2" to="." method="_on_RaftAnchor_toggle_hitch"]
