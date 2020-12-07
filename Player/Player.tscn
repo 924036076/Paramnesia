@@ -164,7 +164,7 @@ states/Run/node = SubResource( 26 )
 states/Run/position = Vector2( 230, 52 )
 transitions = [ "Idle", "Run", SubResource( 27 ), "Run", "Idle", SubResource( 28 ), "Attack", "Idle", SubResource( 29 ), "Idle", "Attack", SubResource( 30 ), "Axe", "Idle", SubResource( 31 ), "Idle", "Axe", SubResource( 32 ), "Pick", "Idle", SubResource( 33 ), "Idle", "Pick", SubResource( 34 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -257.158, -103.534 )
+graph_offset = Vector2( -395.405, -103.534 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
@@ -725,7 +725,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=49]
-resource_name = "PickDown"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -922,7 +921,6 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=52]
-resource_name = "PickUp"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -1063,6 +1061,7 @@ radius = 5.0
 height = 8.0
 
 [node name="Player" type="KinematicBody2D" groups=[
+"FriendlyArmy",
 "Persist",
 "Predator",
 ]]
@@ -1074,7 +1073,7 @@ position = Vector2( 0, -15 )
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 11
-frame = 72
+frame = 73
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708

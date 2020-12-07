@@ -108,7 +108,7 @@ func attack_animation_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
-	PlayerData.health -= get_enemy_damage(area)
+	PlayerData.health -= area.get_damage()
 	hurtbox.start_invicibility(1)
 
 func get_enemy_damage(area):

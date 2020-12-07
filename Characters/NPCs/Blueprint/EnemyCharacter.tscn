@@ -1,14 +1,180 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Health Bar/HealthBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/NPCs/Blueprint/EnemyCharacter.gd" type="Script" id=3]
 [ext_resource path="res://Characters/Mobs/Blueprint/Hit.shader" type="Shader" id=4]
+[ext_resource path="res://Fonts/8px_plain_type_writer.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Control/Stats.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 shader_param/highlight_color = null
 shader_param/highlight = false
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "AttackLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "AttackDown"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "AttackRight"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "AttackUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+blend_point_0/node = SubResource( 2 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 3 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 4 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 5 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "IdleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "IdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "IdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "IdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=11]
+blend_point_0/node = SubResource( 7 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 8 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 9 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 10 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "IdleWeaponLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "IdleWeaponDown"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "IdleWeaponRight"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "IdleWeaponUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=16]
+blend_point_0/node = SubResource( 12 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 13 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 14 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 15 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "WalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "WalkDown"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "WalkRight"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "WalkUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=21]
+blend_point_0/node = SubResource( 17 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 18 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 19 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 20 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "WalkWeaponLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "WalkWeaponDown"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "WalkWeaponRight"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "WalkWeaponUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=26]
+blend_point_0/node = SubResource( 22 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 23 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 24 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 25 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachine" id=39]
+states/Attack/node = SubResource( 6 )
+states/Attack/position = Vector2( 692, 49 )
+states/Idle/node = SubResource( 11 )
+states/Idle/position = Vector2( 517, 143 )
+states/IdleWeapon/node = SubResource( 16 )
+states/IdleWeapon/position = Vector2( 692, 143 )
+states/Walk/node = SubResource( 21 )
+states/Walk/position = Vector2( 517, 224 )
+states/WalkWeapon/node = SubResource( 26 )
+states/WalkWeapon/position = Vector2( 1030, 143 )
+transitions = [ "Idle", "Walk", SubResource( 27 ), "Walk", "Idle", SubResource( 28 ), "Attack", "IdleWeapon", SubResource( 29 ), "IdleWeapon", "Attack", SubResource( 30 ), "Idle", "IdleWeapon", SubResource( 31 ), "IdleWeapon", "Idle", SubResource( 32 ), "IdleWeapon", "WalkWeapon", SubResource( 33 ), "WalkWeapon", "IdleWeapon", SubResource( 34 ), "Attack", "WalkWeapon", SubResource( 35 ), "WalkWeapon", "Attack", SubResource( 36 ), "Walk", "WalkWeapon", SubResource( 37 ), "WalkWeapon", "Walk", SubResource( 38 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
 
 [node name="EnemyCharacter" type="KinematicBody2D"]
 collision_layer = 16
@@ -22,6 +188,17 @@ material = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 39 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 40 )
+parameters/Attack/blend_position = Vector2( 0, 0 )
+parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/IdleWeapon/blend_position = Vector2( 0, 0 )
+parameters/Walk/blend_position = Vector2( 0, 0 )
+parameters/WalkWeapon/blend_position = Vector2( 0, 0 )
+
 [node name="Hurtbox" parent="." instance=ExtResource( 1 )]
 collision_layer = 8
 
@@ -30,6 +207,29 @@ collision_layer = 8
 [node name="HitEffect" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Focus" type="Timer" parent="."]
+autostart = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="DebugText" type="Label" parent="."]
+margin_left = -6.0
+margin_top = -30.0
+margin_right = 33.0
+margin_bottom = 3.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 5 )
+text = "STATE:
+Goal:
+Agro:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MobStats" parent="." instance=ExtResource( 6 )]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="HealthBar" to="." method="dead"]
 [connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
+[connection signal="timeout" from="Focus" to="." method="_on_Focus_timeout"]
