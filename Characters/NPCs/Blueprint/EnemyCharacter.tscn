@@ -137,29 +137,41 @@ min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=39]
 states/Attack/node = SubResource( 6 )
@@ -171,8 +183,9 @@ states/IdleWeapon/position = Vector2( 692, 143 )
 states/Walk/node = SubResource( 21 )
 states/Walk/position = Vector2( 517, 224 )
 states/WalkWeapon/node = SubResource( 26 )
-states/WalkWeapon/position = Vector2( 1030, 143 )
-transitions = [ "Idle", "Walk", SubResource( 27 ), "Walk", "Idle", SubResource( 28 ), "Attack", "IdleWeapon", SubResource( 29 ), "IdleWeapon", "Attack", SubResource( 30 ), "Idle", "IdleWeapon", SubResource( 31 ), "IdleWeapon", "Idle", SubResource( 32 ), "IdleWeapon", "WalkWeapon", SubResource( 33 ), "WalkWeapon", "IdleWeapon", SubResource( 34 ), "Attack", "WalkWeapon", SubResource( 35 ), "WalkWeapon", "Attack", SubResource( 36 ), "Walk", "WalkWeapon", SubResource( 37 ), "WalkWeapon", "Walk", SubResource( 38 ) ]
+states/WalkWeapon/position = Vector2( 925, 143 )
+transitions = [ "Attack", "WalkWeapon", SubResource( 41 ), "WalkWeapon", "Attack", SubResource( 42 ), "IdleWeapon", "Attack", SubResource( 43 ), "Attack", "IdleWeapon", SubResource( 44 ), "Idle", "IdleWeapon", SubResource( 45 ), "IdleWeapon", "Idle", SubResource( 46 ), "Walk", "Idle", SubResource( 47 ), "Idle", "Walk", SubResource( 48 ), "Walk", "IdleWeapon", SubResource( 49 ), "IdleWeapon", "Walk", SubResource( 50 ), "IdleWeapon", "WalkWeapon", SubResource( 51 ), "WalkWeapon", "IdleWeapon", SubResource( 52 ) ]
+graph_offset = Vector2( 0, 37.6073 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=40]
 
@@ -191,7 +204,6 @@ material = SubResource( 1 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 39 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 40 )
 parameters/Attack/blend_position = Vector2( 0, 0 )
 parameters/Idle/blend_position = Vector2( 0, 0 )

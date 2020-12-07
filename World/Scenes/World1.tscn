@@ -65,4 +65,10 @@ script = ExtResource( 9 )
 position = Vector2( 0, -100 )
 
 [node name="SkeletonArcher" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 10 )]
-position = Vector2( -100, 0 )
+position = Vector2( -160.899, -176.648 )
+
+[node name="SkeletonArcher2" parent="GlobalYSort/Mobs" index="2" instance=ExtResource( 10 )]
+position = Vector2( 152.468, -173.881 )
+
+[node name="SkeletonArcher3" parent="GlobalYSort/Mobs" index="3" instance=ExtResource( 10 )]
+position = Vector2( 46.7253, 124.017 )

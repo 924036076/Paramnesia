@@ -31,15 +31,30 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "start_attack_animation"
+}, {
 "args": [  ],
 "method": "create_arrow"
 }, {
 "args": [  ],
 "method": "end_attack_animation"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ArrowSpawn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -7, -2 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -65,15 +80,30 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "start_attack_animation"
+}, {
 "args": [  ],
 "method": "create_arrow"
 }, {
 "args": [  ],
 "method": "end_attack_animation"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ArrowSpawn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -7 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -99,15 +129,30 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "start_attack_animation"
+}, {
 "args": [  ],
 "method": "create_arrow"
 }, {
 "args": [  ],
 "method": "end_attack_animation"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ArrowSpawn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -7 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -133,15 +178,30 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "start_attack_animation"
+}, {
 "args": [  ],
 "method": "create_arrow"
 }, {
 "args": [  ],
 "method": "end_attack_animation"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ArrowSpawn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, -18 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -437,7 +497,7 @@ ATTACK_RANGE = 100.0
 position = Vector2( 0, -10 )
 texture = ExtResource( 2 )
 hframes = 84
-frame = 50
+frame = 48
 
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 1.5708
@@ -467,12 +527,15 @@ anims/WalkWeaponUp = SubResource( 21 )
 
 [node name="AnimationTree" parent="." index="3"]
 parameters/playback = SubResource( 22 )
+parameters/Attack/blend_position = Vector2( -0.000791788, 1.1 )
+parameters/IdleWeapon/blend_position = Vector2( -0.000791788, 1.1 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -10 )
 shape = SubResource( 23 )
 
 [node name="HealthBar" parent="." index="5"]
+visible = false
 margin_left = -11.0
 margin_top = -27.0
 margin_right = 11.0
@@ -480,6 +543,7 @@ margin_bottom = -23.0
 max_health = 100
 
 [node name="DebugText" parent="." index="9"]
+visible = false
 margin_left = -11.0
 margin_top = -46.0
 margin_right = 28.0
@@ -487,6 +551,9 @@ margin_bottom = -13.0
 
 [node name="MobStats" parent="." index="10"]
 damage = 20
+
+[node name="ArrowSpawn" type="Position2D" parent="." index="11"]
+position = Vector2( -7, -2 )
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
 
 [editable path="Hurtbox"]

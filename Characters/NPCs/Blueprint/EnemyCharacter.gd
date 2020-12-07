@@ -56,6 +56,8 @@ func _ready():
 
 func _physics_process(delta):
 	set_direction(dir)
+	if agro:
+		agro_state()
 	match state:
 		WALK:
 			walk(delta)
@@ -64,8 +66,6 @@ func _physics_process(delta):
 		ATTACK:
 			attack()
 	check_for_enemies()
-	if agro:
-		agro_state()
 	update_debug_text()
 
 func walk(delta):
@@ -80,7 +80,10 @@ func agro_state():
 	dir = global_position.direction_to(nearest_enemy.global_position)
 	set_direction(dir)
 	if global_position.distance_to(nearest_enemy.global_position) < ATTACK_RANGE:
-		state = ATTACK
+		if can_attack:
+			state = ATTACK
+		else:
+			state = IDLE
 	else:
 		state = WALK
 
