@@ -26,6 +26,7 @@ enum {
 	IDLE
 }
 
+export var max_health: int = 100
 export var MAX_SPEED: float = 50.0
 export var ACCELERATION: float = 500.0
 export var AGRO_RANGE: float = 200.0
@@ -34,10 +35,11 @@ export var ATTACK_RANGE: float = 20.0
 export var FOCUS_TIME: float = 2.0
 export var ATTACK_COOLDOWN: float = 2.5
 
-var MAX_WANDER_DISTANCE: float = 50.0
+var health setget set_health
+var MAX_WANDER_DISTANCE: float = 20.0
 var dir = Vector2(1, 0)
-var state = WALK
-var goal = WANDER
+var state = IDLE
+export var goal = WANDER
 var velocity = Vector2.ZERO
 var spawn_location
 var path_target = Vector2.ZERO
@@ -46,6 +48,9 @@ var can_attack = true
 var nearest_enemy
 
 func _ready():
+	health_bar.max_value = max_health
+	health = max_health
+	health_bar.value = health
 	focus.wait_time = FOCUS_TIME
 	attack_timer.wait_time = ATTACK_COOLDOWN
 	spawn_location = global_position
@@ -58,6 +63,12 @@ func _physics_process(delta):
 	set_direction(dir)
 	if agro:
 		agro_state()
+		get_node("StateIndicator").frame = 2
+	else:
+		if goal == GUARD:
+			get_node("StateIndicator").frame = 1
+		else:
+			get_node("StateIndicator").frame = 0
 	match state:
 		WALK:
 			walk(delta)
@@ -153,12 +164,15 @@ func dead():
 	animation_player.stop()
 
 func _on_Hurtbox_area_entered(area):
-	if area.has_method("get_damage"):
-		area.get_parent().hit()
-		sprite.get_material().set_shader_param("highlight", true)
-		hit_timer.start()
-		health_bar.health -= area.get_damage()
-		hurtbox.start_invicibility(1)
+	var damage = 0
+	if area.get_parent().has_method("get_damage"):
+		damage = area.get_parent().get_damage()
+	if area.get_parent().has_method("resolve_hit"):
+		area.get_parent().resolve_hit()
+	sprite.get_material().set_shader_param("highlight", true)
+	hit_timer.start()
+	set_health(health - damage)
+	hurtbox.start_invicibility(1)
 
 func _on_HitEffect_timeout():
 	sprite.get_material().set_shader_param("highlight", false)
@@ -166,6 +180,14 @@ func _on_HitEffect_timeout():
 func _on_Focus_timeout():
 	if not agro:
 		choose_new_action()
+
+func set_health(new_health):
+	health = new_health
+	health_bar.value = health
+	health_bar.show()
+	health_bar.get_node("HealthBarTimer").start(15)
+	if health <= 0:
+		dead()
 
 func update_debug_text():
 	var debug_state = ""
@@ -188,3 +210,6 @@ func update_debug_text():
 			debug_goal = "GUARD"
 	var text = "State: " + debug_state + "\nGoal: " + debug_goal + "\nAgro: " + str(agro)
 	debug_text.text = text
+
+func _on_HealthBarTimer_timeout():
+	health_bar.hide()

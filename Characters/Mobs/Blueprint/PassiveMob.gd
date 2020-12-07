@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 class_name PassiveMob
 
+export var max_health: int = 100
 export var scared: bool = false
 export var scare_radius: int = 100
 export var walking_speed: int = 15
@@ -26,12 +27,16 @@ onready var hurtbox = get_node("Hurtbox")
 onready var sprite = get_node("Sprite")
 onready var hit_timer = get_node("HitEffect")
 
+var health setget set_health
 var running_speed = 2.5 * walking_speed
 var dir = RIGHT
 var state = WALK
 var stay_scared: bool = false
 
 func _ready():
+	health_bar.max_value = max_health
+	health = max_health
+	health_bar.value = health
 	sprite.set_material(sprite.get_material().duplicate())
 
 func _physics_process(delta):
@@ -93,16 +98,27 @@ func _on_NewState_timeout():
 			state = IDLE
 
 func _on_Hurtbox_area_entered(area):
-	if area.has_method("get_damage"):
-		area.get_parent().hit()
-		sprite.get_material().set_shader_param("highlight", true)
-		hit_timer.start()
-		state = RUN
-		animation_player.playback_speed = 2
-		stay_scared = true
-		scared_timer.start()
-		health_bar.health -= area.get_damage()
-		hurtbox.start_invicibility(1)
+	var damage = 0
+	if area.get_parent().has_method("get_damage"):
+		damage = area.get_parent().get_damage()
+	if area.get_parent().has_method("resolve_hit"):
+		area.get_parent().resolve_hit()
+	sprite.get_material().set_shader_param("highlight", true)
+	hit_timer.start()
+	state = RUN
+	animation_player.playback_speed = 2
+	stay_scared = true
+	scared_timer.start()
+	set_health(health - damage)
+	hurtbox.start_invicibility(1)
+
+func set_health(new_health):
+	health = new_health
+	health_bar.value = health
+	health_bar.show()
+	health_bar.get_node("HealthBarTimer").start(15)
+	if health <= 0:
+		dead()
 
 func dead():
 	var splatter = load("res://Effects/Disappear/Disappear.tscn").instance()
@@ -115,3 +131,6 @@ func _on_Scared_timeout():
 
 func _on_HitEffect_timeout():
 	sprite.get_material().set_shader_param("highlight", false)
+
+func _on_HealthBarTimer_timeout():
+	health_bar.hide()

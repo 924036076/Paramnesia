@@ -42,4 +42,3 @@ collision_layer = 8
 [connection signal="timeout" from="Scared" to="." method="_on_Scared_timeout"]
 [connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
-[connection signal="no_health" from="HealthBar" to="." method="dead"]

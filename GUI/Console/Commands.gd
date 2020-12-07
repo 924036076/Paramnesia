@@ -1,7 +1,7 @@
 extends Node
 
 const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]]]
-const spawnable_mobs = ["deer", "bat"]
+const spawnable_mobs = ["deer", "archer"]
 
 func teleport(x_coord, y_coord):
 	var x = str2var(x_coord)

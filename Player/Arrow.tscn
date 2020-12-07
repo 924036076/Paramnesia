@@ -19,9 +19,6 @@ shape = SubResource( 1 )
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
 
-[node name="Hitbox" parent="." index="3"]
-damage = 30
-
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( -0.0460701, -0.506767 )
 shape = SubResource( 2 )

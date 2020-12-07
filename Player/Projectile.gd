@@ -7,6 +7,7 @@ const hit_effect = preload("res://Effects/HitMarker/HitMarker.tscn")
 var sound = load("res://Audio/fork_media_warfare_arrow_impact.wav")
 
 var velocity
+var damage = 0
 
 func _physics_process(delta):
 	if (get_slide_count() > 0):
@@ -18,9 +19,12 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	queue_free()
 
-func hit():
+func resolve_hit():
 	AudioManager.play_ui_sfx(sound)
 	var hit = hit_effect.instance()
 	hit.global_position = get_node("HitLocation").global_position
 	get_parent().add_child(hit)
 	queue_free()
+
+func get_damage():
+	return damage

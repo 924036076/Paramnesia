@@ -14,6 +14,8 @@ func spawn_mob(mob, xcoord, ycoord):
 	match mob:
 		"deer":
 			spawn = load("res://Characters/Mobs/Deer/Deer.tscn").instance()
+		"archer":
+			spawn = load("res://Characters/NPCs/Skeleton/Archer/SkeletonArcher.tscn").instance()
 	if (xcoord == -37 and ycoord == 37):
 		spawn.global_position = get_node("GlobalYSort/Player").global_position
 	else:

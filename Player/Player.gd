@@ -108,7 +108,11 @@ func attack_animation_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
-	PlayerData.health -= area.get_damage()
+	var damage = 0
+	if area.get_parent().has_method("get_damage"):
+		damage = area.get_parent().get_damage()
+	if area.get_parent().has_method("resolve_hit"):
+		area.get_parent().resolve_hit()
 	hurtbox.start_invicibility(1)
 
 func get_enemy_damage(area):
@@ -149,6 +153,7 @@ func create_arrow():
 	var dir = global_position.direction_to(get_global_mouse_position())
 	arr.direction = dir
 	arr.rotate(dir.angle())
+	arr.damage = 30
 	get_parent().add_child(arr)
 
 func apply_offset(offset):

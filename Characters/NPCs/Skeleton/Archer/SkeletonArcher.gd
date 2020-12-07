@@ -17,9 +17,3 @@ func create_arrow():
 
 func _on_AttackCooldown_timeout():
 	can_attack = true
-
-func end_attack_animation():
-	print("ended")
-
-func start_attack_animation():
-	pass

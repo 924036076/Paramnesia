@@ -302,10 +302,13 @@ position = Vector2( 0.135277, -14.6099 )
 shape = SubResource( 2 )
 
 [node name="HealthBar" parent="." index="7"]
+visible = false
 margin_left = -11.228
 margin_top = -35.1719
 margin_right = 10.772
 margin_bottom = -31.1719
-max_health = 200
+[connection signal="timeout" from="HealthBar/HealthBarTimer" to="." method="_on_HealthBarTimer_timeout"]
 
 [editable path="Hurtbox"]
+
+[editable path="HealthBar"]
