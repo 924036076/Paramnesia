@@ -1,10 +1,10 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Characters/NPCs/Blueprint/EnemyCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/NPCs/Skeleton/skeleton.png" type="Texture" id=2]
 [ext_resource path="res://Characters/NPCs/Skeleton/Archer/SkeletonArcher.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=64]
 resource_name = "AttackDown"
 length = 0.6
 step = 0.2
@@ -47,7 +47,7 @@ tracks/2/keys = {
 "values": [ Vector2( -7, -2 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=65]
 resource_name = "AttackLeft"
 length = 0.6
 step = 0.2
@@ -90,7 +90,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -7 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=66]
 resource_name = "AttackRight"
 length = 0.6
 step = 0.2
@@ -133,7 +133,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -7 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=67]
 resource_name = "AttackUp"
 length = 0.6
 step = 0.2
@@ -176,7 +176,7 @@ tracks/2/keys = {
 "values": [ Vector2( 7, -18 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=68]
 resource_name = "IdleDown"
 length = 0.6
 loop = true
@@ -194,7 +194,7 @@ tracks/0/keys = {
 "values": [ 60, 61 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=69]
 resource_name = "IdleLeft"
 length = 0.6
 loop = true
@@ -212,7 +212,7 @@ tracks/0/keys = {
 "values": [ 64, 65 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=70]
 resource_name = "IdleRight"
 length = 0.6
 loop = true
@@ -230,7 +230,7 @@ tracks/0/keys = {
 "values": [ 62, 63 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=71]
 resource_name = "IdleUp"
 length = 0.6
 loop = true
@@ -248,7 +248,7 @@ tracks/0/keys = {
 "values": [ 66, 67 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=72]
 resource_name = "IdleWeaponDown"
 length = 0.6
 loop = true
@@ -266,7 +266,7 @@ tracks/0/keys = {
 "values": [ 76, 77 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=73]
 resource_name = "IdleWeaponLeft"
 length = 0.6
 loop = true
@@ -284,7 +284,7 @@ tracks/0/keys = {
 "values": [ 80, 81 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=74]
 length = 0.6
 loop = true
 step = 0.3
@@ -301,7 +301,7 @@ tracks/0/keys = {
 "values": [ 78, 79 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=75]
 resource_name = "IdleWeaponUp"
 length = 0.6
 loop = true
@@ -319,7 +319,7 @@ tracks/0/keys = {
 "values": [ 82, 83 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=76]
 length = 0.8
 loop = true
 step = 0.2
@@ -336,7 +336,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 1 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=77]
 length = 0.8
 loop = true
 step = 0.2
@@ -353,7 +353,7 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 7 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=78]
 length = 0.8
 loop = true
 step = 0.2
@@ -370,7 +370,7 @@ tracks/0/keys = {
 "values": [ 3, 4, 5, 4 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=79]
 length = 0.8
 loop = true
 step = 0.2
@@ -387,7 +387,7 @@ tracks/0/keys = {
 "values": [ 9, 10, 11, 10 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=80]
 length = 0.8
 loop = true
 step = 0.2
@@ -404,7 +404,7 @@ tracks/0/keys = {
 "values": [ 36, 37, 38, 37 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=81]
 length = 0.8
 loop = true
 step = 0.2
@@ -421,7 +421,7 @@ tracks/0/keys = {
 "values": [ 42, 43, 44, 43 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=82]
 length = 0.8
 loop = true
 step = 0.2
@@ -438,7 +438,7 @@ tracks/0/keys = {
 "values": [ 39, 40, 41, 40 ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=83]
 length = 0.8
 loop = true
 step = 0.2
@@ -616,6 +616,12 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id=58]
 states/Attack/node = SubResource( 25 )
 states/Attack/position = Vector2( 692, 49 )
@@ -624,19 +630,19 @@ states/Idle/position = Vector2( 517, 143 )
 states/IdleWeapon/node = SubResource( 35 )
 states/IdleWeapon/position = Vector2( 692, 143 )
 states/Walk/node = SubResource( 40 )
-states/Walk/position = Vector2( 517, 224 )
+states/Walk/position = Vector2( 517, 273 )
 states/WalkWeapon/node = SubResource( 45 )
 states/WalkWeapon/position = Vector2( 925, 143 )
-transitions = [ "Attack", "WalkWeapon", SubResource( 46 ), "WalkWeapon", "Attack", SubResource( 47 ), "IdleWeapon", "Attack", SubResource( 48 ), "Attack", "IdleWeapon", SubResource( 49 ), "Idle", "IdleWeapon", SubResource( 50 ), "IdleWeapon", "Idle", SubResource( 51 ), "Walk", "Idle", SubResource( 52 ), "Idle", "Walk", SubResource( 53 ), "Walk", "IdleWeapon", SubResource( 54 ), "IdleWeapon", "Walk", SubResource( 55 ), "IdleWeapon", "WalkWeapon", SubResource( 56 ), "WalkWeapon", "IdleWeapon", SubResource( 57 ) ]
-graph_offset = Vector2( 0, 37.6073 )
+transitions = [ "Attack", "WalkWeapon", SubResource( 46 ), "WalkWeapon", "Attack", SubResource( 47 ), "IdleWeapon", "Attack", SubResource( 48 ), "Attack", "IdleWeapon", SubResource( 49 ), "Idle", "IdleWeapon", SubResource( 50 ), "IdleWeapon", "Idle", SubResource( 51 ), "Walk", "Idle", SubResource( 52 ), "Idle", "Walk", SubResource( 53 ), "Walk", "IdleWeapon", SubResource( 54 ), "IdleWeapon", "Walk", SubResource( 55 ), "IdleWeapon", "WalkWeapon", SubResource( 56 ), "WalkWeapon", "IdleWeapon", SubResource( 57 ), "Walk", "WalkWeapon", SubResource( 62 ), "WalkWeapon", "Walk", SubResource( 63 ) ]
+graph_offset = Vector2( 0, 74.7853 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=59]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=84]
 
-[sub_resource type="CapsuleShape2D" id=60]
+[sub_resource type="CapsuleShape2D" id=85]
 radius = 4.0
-height = 8.0
+height = 6.0
 
-[sub_resource type="CapsuleShape2D" id=61]
+[sub_resource type="CapsuleShape2D" id=86]
 radius = 9.0
 height = 10.0
 
@@ -652,34 +658,34 @@ ATTACK_COOLDOWN = 1.0
 position = Vector2( 0, -10 )
 texture = ExtResource( 2 )
 hframes = 84
-frame = 48
+frame = 49
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-anims/AttackDown = SubResource( 1 )
-anims/AttackLeft = SubResource( 2 )
-anims/AttackRight = SubResource( 3 )
-anims/AttackUp = SubResource( 4 )
-anims/IdleDown = SubResource( 5 )
-anims/IdleLeft = SubResource( 6 )
-anims/IdleRight = SubResource( 7 )
-anims/IdleUp = SubResource( 8 )
-anims/IdleWeaponDown = SubResource( 9 )
-anims/IdleWeaponLeft = SubResource( 10 )
-anims/IdleWeaponRight = SubResource( 11 )
-anims/IdleWeaponUp = SubResource( 12 )
-anims/WalkDown = SubResource( 13 )
-anims/WalkLeft = SubResource( 14 )
-anims/WalkRight = SubResource( 15 )
-anims/WalkUp = SubResource( 16 )
-anims/WalkWeaponDown = SubResource( 17 )
-anims/WalkWeaponLeft = SubResource( 18 )
-anims/WalkWeaponRight = SubResource( 19 )
-anims/WalkWeaponUp = SubResource( 20 )
+anims/AttackDown = SubResource( 64 )
+anims/AttackLeft = SubResource( 65 )
+anims/AttackRight = SubResource( 66 )
+anims/AttackUp = SubResource( 67 )
+anims/IdleDown = SubResource( 68 )
+anims/IdleLeft = SubResource( 69 )
+anims/IdleRight = SubResource( 70 )
+anims/IdleUp = SubResource( 71 )
+anims/IdleWeaponDown = SubResource( 72 )
+anims/IdleWeaponLeft = SubResource( 73 )
+anims/IdleWeaponRight = SubResource( 74 )
+anims/IdleWeaponUp = SubResource( 75 )
+anims/WalkDown = SubResource( 76 )
+anims/WalkLeft = SubResource( 77 )
+anims/WalkRight = SubResource( 78 )
+anims/WalkUp = SubResource( 79 )
+anims/WalkWeaponDown = SubResource( 80 )
+anims/WalkWeaponLeft = SubResource( 81 )
+anims/WalkWeaponRight = SubResource( 82 )
+anims/WalkWeaponUp = SubResource( 83 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource( 58 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 59 )
+parameters/playback = SubResource( 84 )
 parameters/Attack/blend_position = Vector2( -0.000791788, 1.1 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/IdleWeapon/blend_position = Vector2( -0.000791788, 1.1 )
@@ -688,11 +694,11 @@ parameters/WalkWeapon/blend_position = Vector2( 0, 0 )
 
 [node name="CollisionShape2D" parent="." index="3"]
 rotation = 1.5708
-shape = SubResource( 60 )
+shape = SubResource( 85 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -10 )
-shape = SubResource( 61 )
+shape = SubResource( 86 )
 
 [node name="HealthBar" parent="." index="5"]
 visible = false
@@ -712,7 +718,6 @@ damage = 20
 
 [node name="ArrowSpawn" type="Position2D" parent="." index="11"]
 position = Vector2( -7, -2 )
-[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
 
 [editable path="Hurtbox"]
 

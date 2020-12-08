@@ -27,6 +27,7 @@ enum {
 }
 
 export var max_health: int = 100
+export var damage: int = 10
 export var MAX_SPEED: float = 50.0
 export var ACCELERATION: float = 500.0
 export var AGRO_RANGE: float = 200.0
@@ -164,14 +165,14 @@ func dead():
 	animation_player.stop()
 
 func _on_Hurtbox_area_entered(area):
-	var damage = 0
+	var area_damage = 0
 	if area.get_parent().has_method("get_damage"):
-		damage = area.get_parent().get_damage()
+		area_damage = area.get_parent().get_damage()
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
 	sprite.get_material().set_shader_param("highlight", true)
 	hit_timer.start()
-	set_health(health - damage)
+	set_health(health - area_damage)
 	hurtbox.start_invicibility(1)
 
 func _on_HitEffect_timeout():
@@ -188,6 +189,9 @@ func set_health(new_health):
 	health_bar.get_node("HealthBarTimer").start(15)
 	if health <= 0:
 		dead()
+
+func get_damage():
+	return damage
 
 func update_debug_text():
 	var debug_state = ""
@@ -213,3 +217,6 @@ func update_debug_text():
 
 func _on_HealthBarTimer_timeout():
 	health_bar.hide()
+
+func _on_AttackCooldown_timeout():
+	can_attack = true

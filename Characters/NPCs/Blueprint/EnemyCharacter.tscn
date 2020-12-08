@@ -63,5 +63,6 @@ hframes = 3
 [connection signal="timeout" from="HealthBar/HealthBarTimer" to="." method="_on_HealthBarTimer_timeout"]
 [connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
 [connection signal="timeout" from="Focus" to="." method="_on_Focus_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
 
 [editable path="HealthBar"]

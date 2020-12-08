@@ -13,7 +13,5 @@ func create_arrow():
 	var arrow_dir = global_position.direction_to(nearest_enemy.global_position)
 	arrow.rotate(arrow_dir.angle())
 	arrow.direction = arrow_dir
+	arrow.damage = damage
 	get_parent().add_child(arrow)
-
-func _on_AttackCooldown_timeout():
-	can_attack = true
