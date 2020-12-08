@@ -13,6 +13,7 @@ var hovering_over = null
 var active = true
 
 func _ready():
+# warning-ignore:return_value_discarded
 	PlayerData.connect("inventory_updated", self, "redraw")
 	redraw()
 

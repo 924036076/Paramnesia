@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name PassiveMob
 
+const floating_numbers = preload("res://Effects/DamageNumbers/FriendlyNumbers.tscn")
+
 export var max_health: int = 100
 export var scared: bool = false
 export var scare_radius: int = 100
@@ -110,6 +112,11 @@ func _on_Hurtbox_area_entered(area):
 	stay_scared = true
 	scared_timer.start()
 	set_health(health - damage)
+	
+	var numbers = floating_numbers.instance()
+	numbers.text = str(damage)
+	add_child(numbers)
+	
 	hurtbox.start_invicibility(1)
 
 func set_health(new_health):

@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name EnemyCharacter
 
+const floating_numbers = preload("res://Effects/DamageNumbers/FriendlyNumbers.tscn")
+
 onready var animation_player = get_node("AnimationPlayer")
 onready var health_bar = get_node("HealthBar")
 onready var hurtbox = get_node("Hurtbox")
@@ -173,6 +175,11 @@ func _on_Hurtbox_area_entered(area):
 	sprite.get_material().set_shader_param("highlight", true)
 	hit_timer.start()
 	set_health(health - area_damage)
+	
+	var numbers = floating_numbers.instance()
+	numbers.text = str(area_damage)
+	add_child(numbers)
+	
 	hurtbox.start_invicibility(1)
 
 func _on_HitEffect_timeout():

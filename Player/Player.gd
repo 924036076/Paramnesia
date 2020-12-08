@@ -21,12 +21,14 @@ var last_held
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const arrow = preload("res://Player/Arrow.tscn")
+const floating_numbers = preload("res://Effects/DamageNumbers/EnemyNumbers.tscn")
 
 onready var animationPlayer = get_node("AnimationPlayer")
 onready var animationTree = get_node("AnimationTree")
 onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = get_node("SwordHitbox Pivot/SwordHitbox")
 onready var hurtbox = get_node("Hurtbox")
+onready var sprite = get_node("Sprite")
 
 enum {
 	LEFT,
@@ -37,6 +39,7 @@ enum {
 
 func _ready():
 	animationTree.active = true
+	sprite.set_material(sprite.get_material().duplicate())
 	set_direction(starting_direction)
 
 func update_from_save(data):
@@ -108,11 +111,19 @@ func attack_animation_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
+	sprite.get_material().set_shader_param("highlight", true)
 	var damage = 0
 	if area.get_parent().has_method("get_damage"):
 		damage = area.get_parent().get_damage()
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
+	
+	get_node("HitEffect").start()
+	
+	var numbers = floating_numbers.instance()
+	numbers.text = str(damage)
+	add_child(numbers)
+	
 	hurtbox.start_invicibility(1)
 
 func get_enemy_damage(area):
@@ -172,3 +183,6 @@ func save():
 		"dir_y" : animationTree.get("parameters/Idle/blend_position").y
 		}
 	return save_dict
+
+func _on_HitEffect_timeout():
+	sprite.get_material().set_shader_param("highlight", false)

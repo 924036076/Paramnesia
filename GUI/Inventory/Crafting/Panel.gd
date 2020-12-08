@@ -16,6 +16,7 @@ var passed_index
 var shift = false
 
 func _ready():
+# warning-ignore:return_value_discarded
 	PlayerData.connect("inventory_updated", self, "redraw_last")
 
 func redraw_last():

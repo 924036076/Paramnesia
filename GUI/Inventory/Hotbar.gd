@@ -4,6 +4,7 @@ const item_base = preload("res://Control/ItemBase.tscn")
 const item_base_plain = preload("res://Control/ItemBasePlain.tscn")
 
 func _ready():
+# warning-ignore:return_value_discarded
 	PlayerData.connect("inventory_updated", self, "redraw")
 	redraw()
 

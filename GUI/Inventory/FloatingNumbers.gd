@@ -10,6 +10,7 @@ var num_active_labels = 0
 var frame_count = 0
 
 func _ready():
+# warning-ignore:return_value_discarded
 	PlayerData.connect("new_item_added", self, "add_label")
 
 func _process(_delta):
