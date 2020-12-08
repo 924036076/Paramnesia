@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Structure",
 "language": "GDScript",
 "path": "res://Structures/Blueprint/Structure/Structure.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "TamedMob",
+"language": "GDScript",
+"path": "res://Characters/Mobs/Blueprint/TamedMob.gd"
 } ]
 _global_script_class_icons={
 "EnemyCharacter": "",
 "NatureTree": "",
 "PassiveMob": "",
-"Structure": ""
+"Structure": "",
+"TamedMob": ""
 }
 
 [application]

@@ -6,7 +6,6 @@ export var MAX_SPEED = 100
 export var DRAIN = 10
 export var starting_direction = Vector2(1, 0)
 
-
 enum {
 	MOVE,
 	ATTACK
@@ -18,6 +17,8 @@ var velocity = Vector2.ZERO
 var can_move = true
 var structure = null
 var last_held
+var base_projectile_damge = 25
+var base_melee_damage = 40
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const arrow = preload("res://Player/Arrow.tscn")
@@ -126,14 +127,8 @@ func _on_Hurtbox_area_entered(area):
 	
 	hurtbox.start_invicibility(1)
 
-func get_enemy_damage(area):
-	return area.get_parent().get_node("Stats").damage
-
 func _on_GUI_inventory_changed(value):
 	can_move = not value
-
-func teleport(x_coord, y_coord):
-	global_position = Vector2(x_coord, y_coord)
 
 func get_direction_facing():
 	var blend_position = animationTree.get("parameters/Idle/blend_position")
@@ -164,8 +159,11 @@ func create_arrow():
 	var dir = global_position.direction_to(get_global_mouse_position())
 	arr.direction = dir
 	arr.rotate(dir.angle())
-	arr.damage = 30
+	arr.damage = base_projectile_damge
 	get_parent().add_child(arr)
+
+func get_damage():
+	return base_melee_damage
 
 func apply_offset(offset):
 	global_position += offset

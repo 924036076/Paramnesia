@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Characters/Mobs/Blueprint/outline_and_hit.shader" type="Shader" id=1]
+[ext_resource path="res://Characters/Mobs/Blueprint/TamedMob.gd" type="Script" id=2]
+[ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Characters/Health Bar/HealthBar.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/Smooth = false
+shader_param/line_thickness = 0.0
+shader_param/outline_color = Color( 1, 1, 1, 1 )
+shader_param/pixel_size = 1
+shader_param/highlight = false
+
+[node name="TamedMob" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 19
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HitEffect" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="FocusTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+collision_layer = 4
+
+[node name="HealthBar" parent="." instance=ExtResource( 4 )]
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+[connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="timeout" from="HealthBar/HealthBarTimer" to="." method="_on_HealthBarTimer_timeout"]
+[connection signal="input_event" from="InteractArea" to="." method="_on_InteractArea_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_InteractArea_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_InteractArea_mouse_exited"]
+
+[editable path="HealthBar"]

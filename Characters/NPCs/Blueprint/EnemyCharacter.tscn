@@ -10,7 +10,6 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/highlight_color = null
 shader_param/highlight = false
 
 [node name="EnemyCharacter" type="KinematicBody2D"]
