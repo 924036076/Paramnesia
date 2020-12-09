@@ -5,8 +5,9 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Inventory/GUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Control/Teleport.tscn" type="PackedScene" id=8]
-[ext_resource path="res://World/Tilemaps/ff_master_tile_sheet.png" type="Texture" id=9]
+[ext_resource path="res://World/Tilemaps/FarmAndFort/ff_master_tile_sheet.png" type="Texture" id=9]
 [ext_resource path="res://Icons/black.png" type="Texture" id=11]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
