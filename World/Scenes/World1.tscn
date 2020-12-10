@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://World/Scenes/SceneBlueprint/SceneBlueprint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://World/Scenes/PathFollow2D.gd" type="Script" id=9]
 [ext_resource path="res://World/Scenes/FarmTilemap.gd" type="Script" id=10]
 [ext_resource path="res://Characters/Mobs/Tamed/Cow/Cow.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Characters/NPCs/General/General.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -91,6 +92,9 @@ script = ExtResource( 9 )
 
 [node name="Cow" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 11 )]
 position = Vector2( -535, 44 )
+
+[node name="General" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 12 )]
+position = Vector2( 248, -87 )
 
 [node name="FarmRoof" type="TileMap" parent="." index="5"]
 tile_set = ExtResource( 5 )

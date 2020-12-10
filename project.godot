@@ -62,11 +62,11 @@ config/icon="res://icon.png"
 PlayerData="*res://Player/PlayerData.tscn"
 ItemDictionary="*res://Control/ItemDictionary.gd"
 Utility="*res://Utility.gd"
-Global="*res://Global.gd"
 AudioManager="*res://Audio/AudioManager.tscn"
+Global="*res://Global.gd"
 CommandHistory="*res://GUI/Console/CommandHistory.gd"
 Structures="*res://Structures/Blueprint/Structures.gd"
-MissionController="*res://GUI/Missions/MissionController.gd"
+MissionController="*res://Control/Missions/MissionController.gd"
 
 [display]
 
