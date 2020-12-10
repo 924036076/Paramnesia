@@ -3,10 +3,11 @@
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Health Bar/HealthBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/NPCs/Blueprint/EnemyCharacter.gd" type="Script" id=3]
-[ext_resource path="res://Characters/Mobs/Blueprint/Hit.shader" type="Shader" id=4]
+[ext_resource path="res://Effects/Shaders/Hit.shader" type="Shader" id=4]
 [ext_resource path="res://Fonts/8px_plain_type_writer.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Control/Stats.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Characters/NPCs/Blueprint/state_indicator.png" type="Texture" id=7]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )

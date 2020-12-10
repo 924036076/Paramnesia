@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Icons/crate.png" type="Texture" id=1]
 [ext_resource path="res://Control/GroundItem.gd" type="Script" id=2]
-[ext_resource path="res://Control/outline_shader.shader" type="Shader" id=3]
+[ext_resource path="res://Effects/Shaders/outline_shader.shader" type="Shader" id=3]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )

@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Characters/Mobs/Blueprint/outline_and_hit.shader" type="Shader" id=1]
+[ext_resource path="res://Effects/Shaders/outline_and_hit.shader" type="Shader" id=1]
 [ext_resource path="res://Characters/Mobs/Blueprint/TamedMob.gd" type="Script" id=2]
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Health Bar/HealthBar.tscn" type="PackedScene" id=4]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
