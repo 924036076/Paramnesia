@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name QuestCharacter
 
+const dialog_box = preload("res://Characters/NPCs/Blueprint/DialogueBox/DialogBox.tscn")
+
 onready var sprite = get_node("Sprite")
 onready var animation_player = get_node("AnimationPlayer")
 onready var animation_tree = get_node("AnimationTree")
@@ -15,6 +17,7 @@ enum {
 	IDLE
 }
 
+var dialog = null
 var missions = []
 var dir: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
@@ -75,6 +78,16 @@ func _on_InteractArea_input_event(_viewport, _event, _shape_idx):
 		interacted_with()
 
 func interacted_with():
+	if dialog != null:
+		dialog.queue_free()
 	for m in missions:
 		if MissionController.check_prereqs(m["prereqs"]):
 			MissionController.start_mission(m)
+			dialog = dialog_box.instance()
+			dialog.text = m["start_dialogue"]
+			get_parent().get_parent().get_parent().add_child(dialog)
+			dialog.rect_global_position += global_position + Vector2(-80, -30)
+			dialog.connect("tree_exiting", self, "dialog_freed")
+
+func dialog_freed():
+	dialog = null
