@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://GUI/Missions/background_ninepatch.png" type="Texture" id=1]
 [ext_resource path="res://GUI/Missions/Missions.gd" type="Script" id=2]
 
 [node name="Missions" type="Control"]
@@ -12,11 +13,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Panel" parent="."]
-margin_left = 84.0087
-margin_top = 35.9632
-margin_right = 434.009
-margin_bottom = 234.963
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = 84.0
+margin_top = 36.0
+margin_right = 434.0
+margin_bottom = 235.0
+texture = ExtResource( 1 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
