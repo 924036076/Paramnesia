@@ -10,12 +10,9 @@ onready var debug_overlay = get_node("DebugText")
 onready var actual_hotbar = get_node("HotbarBounds/Hotbar")
 onready var missions_button = get_node("MissionsButton")
 
-var open = false
-var inventory = null
+var is_inventory_open: bool = false
 var missions = null
 var current_window = null setget set_current_window
-
-signal inventory_changed(value)
 
 func _process(_delta):
 	var debug_text = str(Engine.get_frames_per_second()) + " fps"
@@ -25,66 +22,53 @@ func _process(_delta):
 	debug_text += "\nX: " + x_coord + " Y: " + y_coord
 	debug_overlay.text = debug_text
 
-func _input(_event):
+func _unhandled_key_input(_event):
 	if Input.is_action_just_pressed("inventory_open"):
-		if !open:
-			open = true
+		if current_window == null:
+			is_inventory_open = true
 			queue.visible = true
-			hotbar.visible = false
-			inventory = inventory_open.instance()
-			add_child(inventory)
-			emit_signal("inventory_changed", true)
-		else:
-			exit_inventory()
+			set_current_window(inventory_open.instance())
+		elif is_inventory_open:
+			queue.visible = false
+			current_window.drop_items()
+			is_inventory_open = false
+			close_open_window()
 
 func hide_visible():
 	get_node("HotbarBounds").visible = false
+	missions_button.visible = false
 
 func show_visible():
 	get_node("HotbarBounds").visible = true
+	missions_button.visible = true
 
 func return_controller():
 	return controller
 
-func close_inventory():
-	if not open:
+func close_open_window():
+	if current_window == null:
 		return true
 	else:
-		exit_inventory()
+		current_window.queue_free()
+		current_window = null
+		if is_inventory_open:
+			is_inventory_open = false
+		actual_hotbar.redraw()
+		show_visible()
+		get_parent().get_node("GlobalYSort/Player").lock_movement = false
 		return false
-
-func exit_inventory():
-	emit_signal("inventory_changed", false)
-	open = false
-	queue.visible = false
-	hotbar.visible = true
-	actual_hotbar.redraw()
-	if inventory != null:
-		inventory.drop_items()
-		inventory.queue_free()
-		inventory = null
-	else:
-		missions.queue_free()
-		missions = null
 
 func _on_MissionsButton_pressed():
 	missions_button.texture_normal = load("res://GUI/Inventory/missions_indicator_seen.png")
-	if not open:
-		open = true
-		hotbar.visible = false
-		missions = missions_open.instance()
-		add_child(missions)
-	elif missions != null:
-		missions.queue_free()
-		missions = null
-		open = false
-		hotbar.visible = true
-		actual_hotbar.redraw()
+	set_current_window(missions_open.instance())
 
 func new_mission():
 	missions_button.texture_normal = load("res://GUI/Inventory/missions_indicator.png")
 
 func set_current_window(window):
+	close_open_window()
+	hide_visible()
+	get_parent().get_node("GlobalYSort/Player").lock_movement = true
 	if current_window != null:
 		current_window.queue_free()
 	current_window = window

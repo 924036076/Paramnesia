@@ -13,12 +13,12 @@ enum {
 
 var weapon = 1
 var state = MOVE
-var velocity = Vector2.ZERO
-var can_move = true
+var velocity: Vector2 = Vector2.ZERO
 var structure = null
 var last_held
-var base_projectile_damge = 25
-var base_melee_damage = 40
+var base_projectile_damge: int = 25
+var base_melee_damage: int = 40
+var lock_movement: bool = false setget set_lock_movement
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const arrow = preload("res://Player/Arrow.tscn")
@@ -50,16 +50,31 @@ func update_from_save(data):
 	set_direction(direction)
 
 func _physics_process(delta):
-	if can_move:
-		match state:
-			MOVE:
-				move_state(delta)
-			ATTACK:
-				attack_state(delta)
+	match state:
+		MOVE:
+			move_state(delta)
+		ATTACK:
+			attack_state(delta)
+
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("attack"):
+		if structure == null:
+			if ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
+				create_structure(PlayerData.get_item_held())
+			else:
+				if PlayerData.get_item_held() == "bow":
+					if PlayerData.get_num_held("arrow") > 0:
+						create_arrow()
+				else:
+					state = ATTACK
+		elif structure.can_place():
+			structure.place()
+			PlayerData.remove_from_slot(PlayerData.holding, 1)
+			structure = null
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
-	if can_move:
+	if not lock_movement:
 		input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 		input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
@@ -79,25 +94,10 @@ func move_state(delta):
 		if PlayerData.holding != last_held or PlayerData.get_item_held() != structure.id:
 			structure.queue_free()
 			structure = null
-		elif can_move:
+		else:
 			structure.global_position = get_global_mouse_position()
 	
 	last_held = PlayerData.holding
-	
-	if Input.is_action_just_pressed("attack") and can_move:
-		if structure == null:
-			if ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
-				create_structure(PlayerData.get_item_held())
-			else:
-				if PlayerData.get_item_held() == "bow":
-					if PlayerData.get_num_held("arrow") > 0:
-						create_arrow()
-				else:
-					state = ATTACK
-		elif structure.can_place():
-			structure.place()
-			PlayerData.remove_from_slot(PlayerData.holding, 1)
-			structure = null
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO
@@ -126,9 +126,6 @@ func _on_Hurtbox_area_entered(area):
 	add_child(numbers)
 	
 	hurtbox.start_invicibility(1)
-
-func _on_GUI_inventory_changed(value):
-	can_move = not value
 
 func get_direction_facing():
 	var blend_position = animationTree.get("parameters/Idle/blend_position")
@@ -184,3 +181,9 @@ func save():
 
 func _on_HitEffect_timeout():
 	sprite.get_material().set_shader_param("highlight", false)
+
+func set_lock_movement(new_state):
+	lock_movement = new_state
+	if lock_movement == true and structure != null:
+		structure.queue_free()
+		structure = null

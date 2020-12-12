@@ -8,7 +8,6 @@
 [ext_resource path="res://Player/SwordHitbox Pivot.gd" type="Script" id=6]
 [ext_resource path="res://Effects/Shaders/Hit.shader" type="Shader" id=7]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
 shader_param/highlight = false

@@ -36,7 +36,7 @@ func _ready():
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and not event.echo and not block_escape:
-			if event.scancode == KEY_ESCAPE and get_tree().get_current_scene().key != "MainMenu" and get_tree().get_current_scene().get_node("GUI").close_inventory() and not block_escape:
+			if event.scancode == KEY_ESCAPE and get_tree().get_current_scene().key != "MainMenu" and get_tree().get_current_scene().get_node("GUI").close_open_window() and not block_escape:
 				get_tree().get_root().add_child(escape_menu.instance())
 				get_tree().paused = true
 			elif event.scancode == KEY_TAB and get_tree().get_current_scene().key != "MainMenu":
