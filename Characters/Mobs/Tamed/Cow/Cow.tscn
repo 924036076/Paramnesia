@@ -362,7 +362,7 @@ start_node = "Walk"
 [node name="Cow" instance=ExtResource( 1 )]
 MAX_SPEED = 8
 FOCUS_TIME = 3.0
-MALE = true
+SPECIES = "Cow"
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, -15 )
@@ -404,6 +404,11 @@ margin_bottom = -24.0
 position = Vector2( 0, -11 )
 rotation = 1.5708
 shape = SubResource( 3 )
+
+[node name="Name" parent="." index="9"]
+margin_top = -32.0
+margin_right = 136.0
+margin_bottom = -23.0
 [connection signal="timeout" from="FocusTimer" to="." method="_on_FocusTimer_timeout"]
 
 [editable path="Hurtbox"]

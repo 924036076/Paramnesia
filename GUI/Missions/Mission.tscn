@@ -7,7 +7,7 @@
 [ext_resource path="res://GUI/Missions/expand_down.png" type="Texture" id=5]
 [ext_resource path="res://GUI/Missions/Mission.gd" type="Script" id=6]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -48,7 +48,7 @@ margin_left = 35.0
 margin_top = 5.0
 margin_right = 284.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.423529, 0.235294, 0.290196, 1 )
 text = "test"
 __meta__ = {

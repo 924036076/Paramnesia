@@ -13,6 +13,7 @@ onready var missions_button = get_node("MissionsButton")
 var open = false
 var inventory = null
 var missions = null
+var current_window = null setget set_current_window
 
 signal inventory_changed(value)
 
@@ -67,6 +68,7 @@ func exit_inventory():
 		missions = null
 
 func _on_MissionsButton_pressed():
+	missions_button.texture_normal = load("res://GUI/Inventory/missions_indicator_seen.png")
 	if not open:
 		open = true
 		hotbar.visible = false
@@ -78,3 +80,12 @@ func _on_MissionsButton_pressed():
 		open = false
 		hotbar.visible = true
 		actual_hotbar.redraw()
+
+func new_mission():
+	missions_button.texture_normal = load("res://GUI/Inventory/missions_indicator.png")
+
+func set_current_window(window):
+	if current_window != null:
+		current_window.queue_free()
+	current_window = window
+	add_child(current_window)

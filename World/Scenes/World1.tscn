@@ -91,7 +91,7 @@ rotation = 0.00325977
 script = ExtResource( 9 )
 
 [node name="Cow" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 11 )]
-position = Vector2( -535, 44 )
+position = Vector2( 47, -33 )
 
 [node name="General" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 12 )]
 position = Vector2( 248, -87 )

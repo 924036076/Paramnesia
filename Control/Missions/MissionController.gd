@@ -16,7 +16,9 @@ func start_mission(m):
 		active_missions.append(m)
 		var n = notification.instance()
 		n.text = "Mission Started: " + m["title"]
-		get_tree().get_current_scene().get_node("GUI").add_child(n)
+		var gui = get_tree().get_current_scene().get_node("GUI")
+		gui.add_child(n)
+		gui.new_mission()
 
 func delete_mission(m):
 	if not m["required"]:

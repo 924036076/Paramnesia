@@ -14,7 +14,7 @@
 [ext_resource path="res://Fonts/type_writer.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GUI/Inventory/FloatingNumbers.gd" type="Script" id=13]
 [ext_resource path="res://GUI/Inventory/FloatingItemNumber.tscn" type="PackedScene" id=14]
-[ext_resource path="res://GUI/Inventory/missions_indicator.png" type="Texture" id=15]
+[ext_resource path="res://GUI/Inventory/missions_indicator_seen.png" type="Texture" id=15]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 3 )

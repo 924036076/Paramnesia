@@ -3,12 +3,13 @@ extends KinematicBody2D
 class_name TamedMob
 
 const floating_numbers = preload("res://Effects/DamageNumbers/EnemyNumbers.tscn")
+const interface = preload("res://Characters/Mobs/Blueprint/TamedMobInterface.tscn")
 
 export var max_health: int = 100
 export var MAX_SPEED: int = 5
 export var ACCELERATION: int = 50
 export var FOCUS_TIME: float = 1
-export var MALE: bool = false
+export var SPECIES: String = ""
 
 onready var health_bar = get_node("HealthBar")
 onready var hurtbox = get_node("Hurtbox")
@@ -24,6 +25,22 @@ enum {
 	IDLE
 }
 
+enum {
+	FOLLOW,
+	STAY,
+	WANDER
+}
+
+enum {
+	PASSIVE,
+	NEUTRAL,
+	AGGRESSIVE
+}
+
+var stance = PASSIVE
+var follow_mode = STAY
+var level: int = 1
+var given_name: String = "" setget name_changed
 var health setget set_health
 var has_focus: bool = false
 var dir: Vector2 = Vector2.ZERO
@@ -44,6 +61,8 @@ func _ready():
 	focus_timer.wait_time = FOCUS_TIME
 
 	sprite.set_material(sprite.get_material().duplicate())
+	
+	get_node("Name").text = get_name()
 
 func _physics_process(delta):
 	set_direction(dir)
@@ -101,12 +120,14 @@ func _on_HealthBarTimer_timeout():
 
 func _on_InteractArea_mouse_entered():
 	try_to_grab_focus()
+	get_node("Name").visible = true
 
 func _on_InteractArea_mouse_exited():
 	if has_focus:
 		has_focus = false
 		Global.num_interacted_with = 0
 	sprite.get_material().set_shader_param("line_thickness", 0)
+	get_node("Name").visible = false
 
 func _on_InteractArea_input_event(_viewport, _event, _shape_idx):
 	try_to_grab_focus()
@@ -120,7 +141,22 @@ func try_to_grab_focus():
 		sprite.get_material().set_shader_param("line_thickness", 1)
 
 func interacted_with():
-	print("interact")
+	var i = interface.instance()
+	i.mob = self
+	get_tree().get_current_scene().get_node("GUI").current_window = i
 
 func _on_FocusTimer_timeout():
 	random_direction()
+
+func get_name():
+	var n: String = ""
+	if given_name == "":
+		n = SPECIES
+	else:
+		n = given_name
+	n += " (" + SPECIES + ") - Lvl " + str(level)
+	return n
+
+func name_changed(new_name):
+	given_name = new_name
+	get_node("Name").text = get_name()

@@ -9,3 +9,4 @@ func _ready():
 		var mission_box = MissionBox.instance()
 		mission_box.mission = mission
 		vbox.add_child(mission_box)
+		get_node("NoMissions").visible = false
