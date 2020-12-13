@@ -34,6 +34,7 @@ var running_speed = 2.5 * walking_speed
 var dir = RIGHT
 var state = WALK
 var stay_scared: bool = false
+var knockback: Vector2 = Vector2.ZERO
 
 func _ready():
 	health_bar.max_value = max_health
@@ -49,6 +50,8 @@ func _physics_process(delta):
 			idle()
 		RUN:
 			run(delta)
+	knockback = knockback.move_toward(Vector2.ZERO, delta * 200)
+	knockback = move_and_slide(knockback)
 	check_for_predators()
 
 func walk(delta):
@@ -105,6 +108,8 @@ func _on_Hurtbox_area_entered(area):
 		damage = area.get_parent().get_damage()
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
+	if area.get_parent().has_method("get_knockback"):
+		knockback = area.get_parent().get_knockback()
 	sprite.get_material().set_shader_param("highlight", true)
 	hit_timer.start()
 	state = RUN

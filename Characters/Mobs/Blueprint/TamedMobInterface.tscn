@@ -17,9 +17,9 @@ __meta__ = {
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 65.0
+margin_left = 64.0
 margin_top = 54.0
-margin_right = 421.0
+margin_right = 420.0
 margin_bottom = 232.0
 texture = ExtResource( 1 )
 patch_margin_left = 5
@@ -45,20 +45,20 @@ __meta__ = {
 }
 
 [node name="FollowButton" type="Button" parent="."]
-margin_left = 208.0
-margin_top = 72.0
-margin_right = 273.0
-margin_bottom = 92.0
+margin_left = 209.0
+margin_top = 78.0
+margin_right = 274.0
+margin_bottom = 98.0
 text = "Follow"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StanceButton" type="Button" parent="."]
-margin_left = 199.0
-margin_top = 98.0
-margin_right = 280.0
-margin_bottom = 118.0
+margin_left = 202.0
+margin_top = 108.0
+margin_right = 283.0
+margin_bottom = 128.0
 text = "Neutral"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -70,6 +70,26 @@ margin_top = 198.0
 margin_right = 293.0
 margin_bottom = 218.0
 text = "Change Name"
+
+[node name="UnclaimButton" type="Button" parent="."]
+margin_left = 209.0
+margin_top = 138.0
+margin_right = 274.0
+margin_bottom = 158.0
+text = "Unclaim"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MatingButton" type="Button" parent="."]
+margin_left = 213.0
+margin_top = 168.0
+margin_right = 268.0
+margin_bottom = 188.0
+text = "Mating"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NameChange" type="NinePatchRect" parent="."]
 visible = false

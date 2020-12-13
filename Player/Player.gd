@@ -19,6 +19,7 @@ var last_held
 var base_projectile_damge: int = 25
 var base_melee_damage: int = 40
 var lock_movement: bool = false setget set_lock_movement
+var knockback: Vector2 = Vector2.ZERO
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const arrow = preload("res://Player/Arrow.tscn")
@@ -55,6 +56,8 @@ func _physics_process(delta):
 			move_state(delta)
 		ATTACK:
 			attack_state(delta)
+	knockback = knockback.move_toward(Vector2.ZERO, delta * 400)
+	knockback = move_and_slide(knockback)
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("attack"):
@@ -112,20 +115,23 @@ func attack_animation_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
-	sprite.get_material().set_shader_param("highlight", true)
-	var damage = 0
-	if area.get_parent().has_method("get_damage"):
-		damage = area.get_parent().get_damage()
-	if area.get_parent().has_method("resolve_hit"):
-		area.get_parent().resolve_hit()
+	if not hurtbox.invincible:
+		sprite.get_material().set_shader_param("highlight", true)
+		var damage = 0
+		if area.get_parent().has_method("get_damage"):
+			damage = area.get_parent().get_damage()
+		if area.get_parent().has_method("resolve_hit"):
+			area.get_parent().resolve_hit()
+		if area.get_parent().has_method("get_knockback"):
+			knockback = area.get_parent().get_knockback()
 	
-	get_node("HitEffect").start()
+		get_node("HitEffect").start()
 	
-	var numbers = floating_numbers.instance()
-	numbers.text = str(damage)
-	add_child(numbers)
+		var numbers = floating_numbers.instance()
+		numbers.text = str(damage)
+		add_child(numbers)
 	
-	hurtbox.start_invicibility(1)
+		hurtbox.start_invicibility(0.4)
 
 func get_direction_facing():
 	var blend_position = animationTree.get("parameters/Idle/blend_position")
@@ -161,6 +167,9 @@ func create_arrow():
 
 func get_damage():
 	return base_melee_damage
+
+func get_knockback():
+	return swordHitbox.knockback_vector * 150
 
 func apply_offset(offset):
 	global_position += offset

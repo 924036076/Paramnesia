@@ -8,7 +8,6 @@
 [ext_resource path="res://Control/Stats.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Characters/NPCs/Blueprint/state_indicator.png" type="Texture" id=7]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 shader_param/highlight = false

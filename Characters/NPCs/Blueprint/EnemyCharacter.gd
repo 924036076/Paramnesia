@@ -37,18 +37,21 @@ export var LEAVE_AGRO_RANGE: float = 300.0
 export var ATTACK_RANGE: float = 20.0
 export var FOCUS_TIME: float = 2.0
 export var ATTACK_COOLDOWN: float = 2.5
+export var KNOCKBACK_STRENGTH: int = 200
 
 var health setget set_health
 var MAX_WANDER_DISTANCE: float = 20.0
-var dir = Vector2(1, 0)
+var dir: Vector2 = Vector2(1, 0)
 var state = IDLE
 export var goal = WANDER
-var velocity = Vector2.ZERO
+var velocity: Vector2 = Vector2.ZERO
 var spawn_location
-var path_target = Vector2.ZERO
-var agro = false
-var can_attack = true
+var path_target: Vector2 = Vector2.ZERO
+var agro: bool = false
+var can_attack: bool = true
 var nearest_enemy
+var knockback: Vector2 = Vector2.ZERO
+var knockback_vector: Vector2 = Vector2.ZERO
 
 func _ready():
 	health_bar.max_value = max_health
@@ -79,6 +82,9 @@ func _physics_process(delta):
 			idle()
 		ATTACK:
 			attack()
+	knockback_vector = dir
+	knockback = knockback.move_toward(Vector2.ZERO, delta * 200)
+	knockback = move_and_slide(knockback)
 	check_for_enemies()
 	update_debug_text()
 
@@ -91,15 +97,16 @@ func walk(delta):
 		animationState.travel("Walk")
 
 func agro_state():
-	dir = global_position.direction_to(nearest_enemy.global_position)
-	set_direction(dir)
-	if global_position.distance_to(nearest_enemy.global_position) < ATTACK_RANGE:
-		if can_attack:
-			state = ATTACK
+	if is_instance_valid(nearest_enemy):
+		dir = global_position.direction_to(nearest_enemy.global_position)
+		set_direction(dir)
+		if global_position.distance_to(nearest_enemy.global_position) < ATTACK_RANGE:
+			if can_attack:
+				state = ATTACK
+			else:
+				state = IDLE
 		else:
-			state = IDLE
-	else:
-		state = WALK
+			state = WALK
 
 func idle():
 	if goal == GUARD or agro:
@@ -172,6 +179,8 @@ func _on_Hurtbox_area_entered(area):
 		area_damage = area.get_parent().get_damage()
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
+	if area.get_parent().has_method("get_knockback"):
+		knockback = area.get_parent().get_knockback()
 	sprite.get_material().set_shader_param("highlight", true)
 	hit_timer.start()
 	set_health(health - area_damage)
@@ -199,6 +208,9 @@ func set_health(new_health):
 
 func get_damage():
 	return damage
+
+func get_knockback():
+	return knockback_vector * KNOCKBACK_STRENGTH
 
 func update_debug_text():
 	var debug_state = ""

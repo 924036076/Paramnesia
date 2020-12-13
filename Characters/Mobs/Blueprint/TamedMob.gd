@@ -38,21 +38,21 @@ enum {
 }
 
 var stance = PASSIVE
-var follow_mode = STAY
+var follow_mode = STAY setget change_follow_mode
 var level: int = 1
 var given_name: String = "" setget name_changed
 var health setget set_health
 var has_focus: bool = false
 var dir: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
-var state = WALK
+var state = IDLE
+var knockback: Vector2 = Vector2.ZERO
 
 func _ready():
 	animation_tree.active = true
 	animation_state.start("Walk")
 	
-	random_direction()
-	set_direction(dir)
+	change_follow_mode(follow_mode)
 	
 	health_bar.max_value = max_health
 	health = max_health
@@ -69,15 +69,30 @@ func _physics_process(delta):
 	match state:
 		WALK:
 			walk(delta)
+		IDLE:
+			idle()
+	knockback = knockback.move_toward(Vector2.ZERO, delta * 300)
+	knockback = move_and_slide(knockback)
 
 func walk(delta):
 	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
 	velocity = move_and_slide(velocity)
+	animation_state.travel("Walk")
+
+func idle():
+	animation_state.travel("Idle")
 
 func random_direction():
-	var dir_x = randi() % 10 - 5
-	var dir_y = randi() % 10 - 5
-	dir = Vector2(dir_x, dir_y).normalized()
+	if follow_mode == WANDER:
+		var dir_x = randi() % 10 - 5
+		var dir_y = randi() % 10 - 5
+		dir = Vector2(dir_x, dir_y).normalized()
+	elif follow_mode == STAY:
+		var dir_x = randi() % 2
+		if dir_x == 0:
+			dir = Vector2(-1, 0)
+		else:
+			dir = Vector2(1, 0)
 
 func _on_Hurtbox_area_entered(area):
 	var damage = 0
@@ -85,6 +100,8 @@ func _on_Hurtbox_area_entered(area):
 		damage = area.get_parent().get_damage()
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
+	if area.get_parent().has_method("get_knockback"):
+		knockback = area.get_parent().get_knockback()
 	sprite.get_material().set_shader_param("highlight", true)
 	hit_timer.start()
 	set_health(health - damage)
@@ -105,6 +122,7 @@ func set_health(new_health):
 
 func set_direction(direction):
 	animation_tree.set("parameters/Walk/blend_position", direction)
+	animation_tree.set("parameters/Idle/blend_position", direction)
 
 func dead():
 	var splatter = load("res://Effects/Disappear/Disappear.tscn").instance()
@@ -160,3 +178,13 @@ func get_name():
 func name_changed(new_name):
 	given_name = new_name
 	get_node("Name").text = get_name()
+
+func change_follow_mode(mode):
+	follow_mode = mode
+	match follow_mode:
+		STAY:
+			state = IDLE
+		WANDER:
+			state = WALK
+		FOLLOW:
+			state = WALK

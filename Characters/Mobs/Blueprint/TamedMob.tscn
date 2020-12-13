@@ -14,7 +14,9 @@ shader_param/outline_color = Color( 1, 1, 1, 1 )
 shader_param/pixel_size = 1
 shader_param/highlight = false
 
-[node name="TamedMob" type="KinematicBody2D"]
+[node name="TamedMob" type="KinematicBody2D" groups=[
+"FriendlyArmy",
+]]
 collision_layer = 16
 collision_mask = 19
 script = ExtResource( 2 )
