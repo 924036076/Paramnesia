@@ -174,11 +174,13 @@ func dead():
 	animation_player.stop()
 
 func _on_Hurtbox_area_entered(area):
+	if area.get_parent().has_method("resolve_hit"):
+		area.get_parent().resolve_hit()
+	if hurtbox.invincible:
+		return
 	var area_damage = 0
 	if area.get_parent().has_method("get_damage"):
 		area_damage = area.get_parent().get_damage()
-	if area.get_parent().has_method("resolve_hit"):
-		area.get_parent().resolve_hit()
 	if area.get_parent().has_method("get_knockback"):
 		knockback = area.get_parent().get_knockback()
 	sprite.get_material().set_shader_param("highlight", true)
@@ -189,7 +191,7 @@ func _on_Hurtbox_area_entered(area):
 	numbers.text = str(area_damage)
 	add_child(numbers)
 	
-	hurtbox.start_invicibility(1)
+	hurtbox.start_invicibility(0.4)
 
 func _on_HitEffect_timeout():
 	sprite.get_material().set_shader_param("highlight", false)

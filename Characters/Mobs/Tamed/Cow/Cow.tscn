@@ -787,16 +787,9 @@ start_node = "Idle"
 radius = 5.0
 height = 26.0
 
-[sub_resource type="CapsuleShape2D" id=27]
+[sub_resource type="CapsuleShape2D" id=24]
 radius = 7.0
 height = 2.0
-
-[sub_resource type="CapsuleShape2D" id=24]
-radius = 12.0
-height = 18.0
-
-[sub_resource type="CapsuleShape2D" id=28]
-height = 8.0
 
 [sub_resource type="CapsuleShape2D" id=25]
 radius = 12.0
@@ -805,10 +798,18 @@ height = 18.0
 [sub_resource type="CapsuleShape2D" id=26]
 height = 8.0
 
+[sub_resource type="CapsuleShape2D" id=27]
+radius = 12.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id=28]
+height = 8.0
+
 [node name="Cow" instance=ExtResource( 1 )]
 MAX_SPEED = 8
 FOCUS_TIME = 3.0
 SPECIES = "Cow"
+CAN_ATTACK = false
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, -15 )
@@ -841,19 +842,19 @@ disabled = true
 
 [node name="SecondaryCollisionShape" type="CollisionShape2D" parent="." index="4"]
 position = Vector2( 0, -5 )
-shape = SubResource( 27 )
+shape = SubResource( 24 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -11 )
 rotation = 1.5708
-shape = SubResource( 24 )
+shape = SubResource( 25 )
 disabled = true
 
 [node name="SecondaryCollisionShape" type="CollisionShape2D" parent="Hurtbox" index="1"]
 position = Vector2( 0, -12 )
-shape = SubResource( 28 )
+shape = SubResource( 26 )
 
-[node name="HealthBar" parent="." index="8"]
+[node name="HealthBar" parent="." index="9"]
 visible = false
 margin_left = -11.0
 margin_top = -28.0
@@ -863,14 +864,14 @@ margin_bottom = -24.0
 [node name="CollisionShape2D" parent="InteractArea" index="0"]
 position = Vector2( 0, -11 )
 rotation = 1.5708
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 disabled = true
 
 [node name="SecondaryCollisionShape" type="CollisionShape2D" parent="InteractArea" index="1"]
 position = Vector2( 0, -12 )
-shape = SubResource( 26 )
+shape = SubResource( 28 )
 
-[node name="Name" parent="." index="10"]
+[node name="Name" parent="." index="11"]
 margin_top = -32.0
 margin_right = 136.0
 margin_bottom = -23.0

@@ -103,11 +103,13 @@ func _on_NewState_timeout():
 			state = IDLE
 
 func _on_Hurtbox_area_entered(area):
+	if area.get_parent().has_method("resolve_hit"):
+		area.get_parent().resolve_hit()
+	if hurtbox.invincible:
+		return
 	var damage = 0
 	if area.get_parent().has_method("get_damage"):
 		damage = area.get_parent().get_damage()
-	if area.get_parent().has_method("resolve_hit"):
-		area.get_parent().resolve_hit()
 	if area.get_parent().has_method("get_knockback"):
 		knockback = area.get_parent().get_knockback()
 	sprite.get_material().set_shader_param("highlight", true)
@@ -116,6 +118,7 @@ func _on_Hurtbox_area_entered(area):
 	animation_player.playback_speed = 2
 	stay_scared = true
 	scared_timer.start()
+	hurtbox.start_invicibility(0.4)
 	set_health(health - damage)
 	
 	var numbers = floating_numbers.instance()

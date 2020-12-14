@@ -25,6 +25,7 @@ func _ready():
 		inventory[i] = [null, null]
 	add_to_inventory(0, "stone_axe", 1)
 	add_to_inventory(0, "campfire", 3)
+	add_to_inventory(0, "target_dummy", 3)
 	add_to_inventory(0, "bow", 1)
 	add_to_inventory(0, "arrow", 10)
 	add_to_inventory(0, "lava_helmet", 1)

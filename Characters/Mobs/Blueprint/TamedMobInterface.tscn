@@ -55,9 +55,9 @@ __meta__ = {
 }
 
 [node name="StanceButton" type="Button" parent="."]
-margin_left = 202.0
+margin_left = 200.0
 margin_top = 108.0
-margin_right = 283.0
+margin_right = 291.0
 margin_bottom = 128.0
 text = "Neutral"
 __meta__ = {

@@ -5,10 +5,8 @@
 [ext_resource path="res://Characters/Health Bar/HealthBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/Shaders/Hit.shader" type="Shader" id=4]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/highlight_color = Color( 0.415686, 0, 0, 1 )
 shader_param/highlight = false
 
 [node name="PassiveMob" type="KinematicBody2D"]

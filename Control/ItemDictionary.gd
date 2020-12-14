@@ -46,6 +46,17 @@ const ITEMS = {
 		"recipe":[["wood", 20], ["stone", 20]],
 		"description": "Used for more advanced cooking"
 	},
+	"target_dummy": {
+		"icon": ICON_PATH + "target_dummy.png",
+		"name": "Target Dummy",
+		"type": "structure",
+		"subtype": null,
+		"stack": 10,
+		"craftable": false,
+		"level": 2,
+		"recipe":[["wood", 20], ["stone", 20]],
+		"description": "Used for target practice"
+	},
 	"bow": {
 		"icon": ICON_PATH + "bow.png",
 		"name": "Bow",

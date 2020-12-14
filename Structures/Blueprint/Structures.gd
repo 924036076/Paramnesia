@@ -13,6 +13,12 @@ const STRUCTURES = {
 		"collision": "res://Structures/CookingPot/PlacementCollision.tscn",
 		"y_offset": -2
 	},
+	"target_dummy": {
+		"sprite": "res://Structures/Dummy/dummy.png",
+		"instance": "res://Structures/Dummy/TargetDummy.tscn",
+		"collision": "res://Structures/Dummy/PlacementCollision.tscn",
+		"y_offset": -13
+	},
 	"null": {
 		"sprite": "null",
 		"instance": "null"

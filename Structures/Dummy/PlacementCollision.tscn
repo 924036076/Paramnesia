@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.0
+height = 8.0
+
+[node name="PlacementCollision" type="CollisionShape2D"]
+position = Vector2( 0, -2 )
+rotation = 1.5708
+shape = SubResource( 1 )

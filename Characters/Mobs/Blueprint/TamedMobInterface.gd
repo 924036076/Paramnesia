@@ -11,6 +11,7 @@ enum {
 
 enum {
 	PASSIVE,
+	FLEE,
 	NEUTRAL,
 	AGGRESSIVE
 }
@@ -29,6 +30,8 @@ func _ready():
 	match mob.stance:
 		PASSIVE:
 			get_node("StanceButton").text = "Passive"
+		FLEE:
+			get_node("StanceButton").text = "Passive Flee"
 		NEUTRAL:
 			get_node("StanceButton").text = "Neutral"
 		AGGRESSIVE:
@@ -71,11 +74,13 @@ func _on_DoneButton_pressed():
 
 func _on_StanceButton_pressed():
 	mob.stance += 1
-	if mob.stance > AGGRESSIVE:
+	if mob.stance > AGGRESSIVE or (not mob.CAN_ATTACK and mob.stance > FLEE):
 		mob.stance = PASSIVE
 	match mob.stance:
 		PASSIVE:
 			get_node("StanceButton").text = "Passive"
+		FLEE:
+			get_node("StanceButton").text = "Passive Flee"
 		NEUTRAL:
 			get_node("StanceButton").text = "Neutral"
 		AGGRESSIVE:

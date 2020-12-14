@@ -10,6 +10,7 @@ export var MAX_SPEED: int = 5
 export var ACCELERATION: int = 50
 export var FOCUS_TIME: float = 1
 export var SPECIES: String = ""
+export var CAN_ATTACK: bool = true
 
 onready var health_bar = get_node("HealthBar")
 onready var hurtbox = get_node("Hurtbox")
@@ -33,6 +34,7 @@ enum {
 
 enum {
 	PASSIVE,
+	FLEE,
 	NEUTRAL,
 	AGGRESSIVE
 }
@@ -47,6 +49,8 @@ var dir: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 var state = IDLE
 var knockback: Vector2 = Vector2.ZERO
+var flee: bool = false
+var flee_dir: Vector2 = Vector2.ZERO
 
 func _ready():
 	animation_tree.active = true
@@ -65,12 +69,18 @@ func _ready():
 	get_node("Name").text = get_name()
 
 func _physics_process(delta):
-	set_direction(dir)
-	match state:
-		WALK:
-			walk(delta)
-		IDLE:
-			idle()
+	if flee:
+		set_direction(flee_dir)
+		animation_state.travel("Walk")
+		velocity = velocity.move_toward(flee_dir * MAX_SPEED * 5, ACCELERATION * 10 * delta)
+		velocity = move_and_slide(velocity)
+	else:
+		set_direction(dir)
+		match state:
+			WALK:
+				walk(delta)
+			IDLE:
+				idle()
 	knockback = knockback.move_toward(Vector2.ZERO, delta * 300)
 	knockback = move_and_slide(knockback)
 
@@ -84,10 +94,15 @@ func idle():
 
 func random_direction():
 	if follow_mode == WANDER:
+		if randi() % 3 == 0:
+			state = IDLE
+		else:
+			state = WALK
+	if state == WALK:
 		var dir_x = randi() % 10 - 5
 		var dir_y = randi() % 10 - 5
 		dir = Vector2(dir_x, dir_y).normalized()
-	elif follow_mode == STAY:
+	elif state == IDLE:
 		var dir_x = randi() % 2
 		if dir_x == 0:
 			dir = Vector2(-1, 0)
@@ -95,11 +110,13 @@ func random_direction():
 			dir = Vector2(1, 0)
 
 func _on_Hurtbox_area_entered(area):
+	if area.get_parent().has_method("resolve_hit"):
+		area.get_parent().resolve_hit()
+	if hurtbox.invincible:
+		return
 	var damage = 0
 	if area.get_parent().has_method("get_damage"):
 		damage = area.get_parent().get_damage()
-	if area.get_parent().has_method("resolve_hit"):
-		area.get_parent().resolve_hit()
 	if area.get_parent().has_method("get_knockback"):
 		knockback = area.get_parent().get_knockback()
 	sprite.get_material().set_shader_param("highlight", true)
@@ -110,7 +127,13 @@ func _on_Hurtbox_area_entered(area):
 	numbers.text = str(damage)
 	add_child(numbers)
 	
-	hurtbox.start_invicibility(1)
+	if stance == FLEE:
+		get_node("FleeTimer").start()
+		flee_dir = global_position.direction_to(area.get_parent().global_position)
+		flee_dir = -flee_dir
+		flee = true
+	
+	hurtbox.start_invicibility(0.4)
 
 func set_health(new_health):
 	health = new_health
@@ -164,7 +187,8 @@ func interacted_with():
 	get_tree().get_current_scene().get_node("GUI").current_window = i
 
 func _on_FocusTimer_timeout():
-	random_direction()
+	if not flee:
+		random_direction()
 
 func get_name():
 	var n: String = ""
@@ -188,3 +212,6 @@ func change_follow_mode(mode):
 			state = WALK
 		FOLLOW:
 			state = WALK
+
+func _on_FleeTimer_timeout():
+	flee = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://World/Scenes/SceneBlueprint/SceneBlueprint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=2]
@@ -12,7 +12,8 @@
 [ext_resource path="res://World/Scenes/FarmTilemap.gd" type="Script" id=10]
 [ext_resource path="res://Characters/Mobs/Tamed/Cow/Cow.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Characters/NPCs/General/General.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Characters/NPCs/Skeleton/Swordsman/SkeletonSwordsman.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Characters/NPCs/Skeleton/Archer/SkeletonArcher.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Structures/Dummy/TargetDummy.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -97,8 +98,11 @@ position = Vector2( 47, -33 )
 [node name="General" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 12 )]
 position = Vector2( 248, -87 )
 
-[node name="SkeletonSwordsman" parent="GlobalYSort/Mobs" index="2" instance=ExtResource( 14 )]
-position = Vector2( -100, 0 )
+[node name="SkeletonArcher" parent="GlobalYSort/Mobs" index="2" instance=ExtResource( 13 )]
+position = Vector2( -219, 60 )
+
+[node name="TargetDummy" parent="GlobalYSort/Mobs" index="3" instance=ExtResource( 14 )]
+position = Vector2( 0, -100 )
 
 [node name="FarmRoof" type="TileMap" parent="." index="5"]
 tile_set = ExtResource( 5 )
