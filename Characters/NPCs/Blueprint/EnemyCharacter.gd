@@ -15,11 +15,13 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var focus = get_node("Focus")
 onready var attack_timer = get_node("AttackCooldown")
 onready var debug_text = get_node("DebugText")
+onready var path_line = get_node("PathLine")
 
 enum {
 	WANDER,
 	PATH,
-	GUARD
+	GUARD,
+	STAY
 }
 
 enum {
@@ -38,20 +40,22 @@ export var ATTACK_RANGE: float = 20.0
 export var FOCUS_TIME: float = 2.0
 export var ATTACK_COOLDOWN: float = 2.5
 export var KNOCKBACK_STRENGTH: int = 200
+export var DEBUG_CAN_TARGET: bool = true
+export var path_target: Vector2 = Vector2.ZERO
 
 var health setget set_health
 var MAX_WANDER_DISTANCE: float = 20.0
 var dir: Vector2 = Vector2(1, 0)
-var state = IDLE
-export var goal = WANDER
+var state = WALK
+export var goal = PATH
 var velocity: Vector2 = Vector2.ZERO
 var spawn_location
-var path_target: Vector2 = Vector2.ZERO
 var agro: bool = false
 var can_attack: bool = true
 var nearest_enemy
 var knockback: Vector2 = Vector2.ZERO
 var knockback_vector: Vector2 = Vector2.ZERO
+var pathfinding
 
 func _ready():
 	health_bar.max_value = max_health
@@ -62,8 +66,13 @@ func _ready():
 	spawn_location = global_position
 	sprite.set_material(sprite.get_material().duplicate())
 	animationTree.active = true
-	animationState.start("Walk")
+	animationState.start("Idle")
 	set_direction(dir)
+	set_physics_process(false)
+
+func initialize(passed_pathfinding):
+	pathfinding = passed_pathfinding
+	set_physics_process(true)
 
 func _physics_process(delta):
 	set_direction(dir)
@@ -71,6 +80,7 @@ func _physics_process(delta):
 		agro_state()
 		get_node("StateIndicator").frame = 2
 	else:
+		path_line.visible = false
 		if goal == GUARD:
 			get_node("StateIndicator").frame = 1
 		else:
@@ -85,21 +95,38 @@ func _physics_process(delta):
 	knockback_vector = dir
 	knockback = knockback.move_toward(Vector2.ZERO, delta * 200)
 	knockback = move_and_slide(knockback)
-	check_for_enemies()
+	if DEBUG_CAN_TARGET:
+		check_for_enemies()
 	update_debug_text()
 
 func walk(delta):
-	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
-	velocity = move_and_slide(velocity)
 	if goal == GUARD or agro:
 		animationState.travel("WalkWeapon")
+	elif goal == PATH:
+		start_new_path(path_target)
+		animationState.travel("Walk")
 	else:
 		animationState.travel("Walk")
+	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
+	velocity = move_and_slide(velocity)
+	if goal == PATH:
+		if global_position.distance_to(path_target) < 10:
+			goal = STAY
+			path_line.visible = false
+			state = IDLE
+
+func start_new_path(target: Vector2):
+	var path = pathfinding.get_new_path(global_position, target)
+	if path.size() > 1:
+		update_path_line(path)
+		path.pop_front()
+		target = path.pop_front()
+		dir = global_position.direction_to(target)
+		set_direction(dir)
 
 func agro_state():
 	if is_instance_valid(nearest_enemy):
-		dir = global_position.direction_to(nearest_enemy.global_position)
-		set_direction(dir)
+		start_new_path(nearest_enemy.global_position)
 		if global_position.distance_to(nearest_enemy.global_position) < ATTACK_RANGE:
 			if can_attack:
 				state = ATTACK
@@ -139,7 +166,6 @@ func choose_new_action():
 		dir = Vector2(dir_x, dir_y).normalized()
 	elif goal == PATH:
 		state = WALK
-		dir = global_position.direction_to(path_target)
 
 func check_for_enemies():
 	agro = false
@@ -241,3 +267,17 @@ func _on_HealthBarTimer_timeout():
 
 func _on_AttackCooldown_timeout():
 	can_attack = true
+
+func update_path_line(points: Array):
+	if Global.debug_mode:
+		path_line.visible = true
+		var local_points: Array = []
+		for point in points:
+			local_points.append(point - global_position)
+		local_points[0] = Vector2.ZERO
+	
+		path_line.points = local_points
+		if local_points.size() <= 2:
+			path_line.visible = false
+	else:
+		path_line.visible = false

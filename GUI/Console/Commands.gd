@@ -1,6 +1,6 @@
 extends Node
 
-const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]]]
+const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]], ["debug_on", [0]], ["debug_off", [0]]]
 const spawnable_mobs = ["deer", "archer", "swordsman"]
 
 func teleport(x_coord, y_coord):
@@ -31,3 +31,11 @@ func give_item(item_id, num = "1"):
 		return ('-"' + str(num) + '" is not a whole number-')
 	PlayerData.add_to_inventory(0, item_id, num, true)
 	return str("~Giving " + str(num) + " " + item_id + " to player~")
+
+func debug_on():
+	Global.debug_mode = true
+	return "~Debug mode on~"
+
+func debug_off():
+	Global.debug_mode = false
+	return "~Debug mode off~"

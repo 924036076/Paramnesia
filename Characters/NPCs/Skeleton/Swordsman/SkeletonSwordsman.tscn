@@ -751,6 +751,7 @@ LEAVE_AGRO_RANGE = 200.0
 FOCUS_TIME = 1.0
 ATTACK_COOLDOWN = 0.5
 KNOCKBACK_STRENGTH = 100
+goal = 2
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, -10 )

@@ -1,7 +1,22 @@
 extends Node2D
 
+class_name RootScene
+
+onready var pathfinding = get_node("Pathfinding")
+onready var tilemap = get_node("TileMap")
+
 export(String, FILE) var save_path
 export var key: String
+
+func _ready():
+	pathfinding.create_navigation_map(tilemap)
+	add_other_tilemaps()
+	var nodes = get_tree().get_nodes_in_group("Pathfinding")
+	for node in nodes:
+		node.initialize(pathfinding)
+
+func add_other_tilemaps():
+	pass
 
 func load_from_save():
 	return

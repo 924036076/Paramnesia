@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Characters/NPCs/Blueprint/QuestCharacter.gd"
 }, {
+"base": "Node2D",
+"class": "RootScene",
+"language": "GDScript",
+"path": "res://World/Scenes/SceneBlueprint/SceneBlueprint.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Structure",
 "language": "GDScript",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "NatureTree": "",
 "PassiveMob": "",
 "QuestCharacter": "",
+"RootScene": "",
 "Structure": "",
 "TamedMob": ""
 }
