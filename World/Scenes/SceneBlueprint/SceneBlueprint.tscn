@@ -28,7 +28,9 @@ script = ExtResource( 2 )
 
 [node name="Mobs" type="YSort" parent="GlobalYSort"]
 
-[node name="Player" parent="GlobalYSort" instance=ExtResource( 3 )]
+[node name="Player" parent="GlobalYSort" groups=[
+"Pathfinding",
+] instance=ExtResource( 3 )]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="GlobalYSort/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -37,3 +39,7 @@ remote_path = NodePath("../../../Camera2D")
 
 [node name="Pathfinding" type="Node2D" parent="."]
 script = ExtResource( 6 )
+enabled_color = Color( 0.541176, 0.87451, 0.529412, 1 )
+disabled_color = Color( 0.635294, 0.396078, 0.396078, 1 )
+
+[node name="Grid" type="Node2D" parent="Pathfinding"]

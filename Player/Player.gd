@@ -8,7 +8,8 @@ export var starting_direction = Vector2(1, 0)
 
 enum {
 	MOVE,
-	ATTACK
+	ATTACK,
+	PLACE
 }
 
 var weapon = 1
@@ -20,6 +21,7 @@ var base_projectile_damge: int = 25
 var base_melee_damage: int = 40
 var lock_movement: bool = false setget set_lock_movement
 var knockback: Vector2 = Vector2.ZERO
+var pathfinding
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const arrow = preload("res://Player/Arrow.tscn")
@@ -44,6 +46,9 @@ func _ready():
 	sprite.set_material(sprite.get_material().duplicate())
 	set_direction(starting_direction)
 
+func initialize(passed_pathfinding):
+	pathfinding = passed_pathfinding
+
 func update_from_save(data):
 	global_position.x = data["pos_x"]
 	global_position.y = data["pos_y"]
@@ -56,6 +61,8 @@ func _physics_process(delta):
 			move_state(delta)
 		ATTACK:
 			attack_state(delta)
+		PLACE:
+			place_state()
 	knockback = knockback.move_toward(Vector2.ZERO, delta * 400)
 	knockback = move_and_slide(knockback)
 
@@ -64,6 +71,7 @@ func _unhandled_input(_event):
 		if structure == null:
 			if ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
 				create_structure(PlayerData.get_item_held())
+				state = PLACE
 			else:
 				if PlayerData.get_item_held() == "bow":
 					if PlayerData.get_num_held("arrow") > 0:
@@ -74,6 +82,22 @@ func _unhandled_input(_event):
 			structure.place()
 			PlayerData.remove_from_slot(PlayerData.holding, 1)
 			structure = null
+			state = MOVE
+		else:
+			structure.queue_free()
+			structure = null
+			state = MOVE
+
+func place_state():
+	animationState.travel("Idle")
+	if structure != null:
+		var x = int(get_global_mouse_position().x) - int(get_global_mouse_position().x) % 16 + 8
+		var y = int(get_global_mouse_position().y) - int(get_global_mouse_position().y) % 16 + 8
+		structure.global_position = Vector2(x, y)
+		if PlayerData.get_item_held() != structure.id:
+			structure.queue_free()
+			structure = null
+			state = MOVE
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -92,13 +116,6 @@ func move_state(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	velocity = move_and_slide(velocity)
-	
-	if structure != null:
-		if PlayerData.holding != last_held or PlayerData.get_item_held() != structure.id:
-			structure.queue_free()
-			structure = null
-		else:
-			structure.global_position = get_global_mouse_position()
 	
 	last_held = PlayerData.holding
 

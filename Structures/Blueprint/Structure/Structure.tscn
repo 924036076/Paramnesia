@@ -3,7 +3,6 @@
 [ext_resource path="res://Effects/Shaders/outline_shader.shader" type="Shader" id=1]
 [ext_resource path="res://Structures/Blueprint/Structure/Structure.gd" type="Script" id=3]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/Smooth = false

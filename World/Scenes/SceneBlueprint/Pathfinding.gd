@@ -1,10 +1,18 @@
 extends Node2D
 
+export var enabled_color: Color
+export var disabled_color: Color
+
+onready var grid = get_node("Grid")
+
+var grid_rects := {}
+var static_blocked_tiles: Array = []
 var astar = AStar2D.new()
 var tilemap: TileMap
 var half_cell_size: Vector2
 var used_rect: Rect2
 var do_diagonals: bool = false
+export var debug: bool = false
 
 func create_navigation_map(passed_tilemap: TileMap):
 	tilemap = passed_tilemap
@@ -16,11 +24,50 @@ func create_navigation_map(passed_tilemap: TileMap):
 	
 	add_traversable_tiles(tiles)
 	connect_traversable_tiles(tiles)
+	add_obstacles()
+
+func add_structure(structure):
+	var obstacles = get_tree().get_nodes_in_group("Obstacle")
+	for obstacle in obstacles:
+		if obstacle.get_parent() == structure:
+			var tile_coord = tilemap.world_to_map(obstacle.global_position)
+			var id = get_id(tile_coord)
+			if astar.has_point(id):
+				astar.set_point_disabled(id, true)
+
+func remove_structure(structure):
+	var obstacles = get_tree().get_nodes_in_group("Obstacle")
+	for obstacle in obstacles:
+		if obstacle.get_parent() == structure:
+			var tile_coord = tilemap.world_to_map(obstacle.global_position)
+			var id = get_id(tile_coord)
+			if astar.has_point(id) and not id in static_blocked_tiles:
+				astar.set_point_disabled(id, false)
+
+func add_obstacles():
+	var obstacles = get_tree().get_nodes_in_group("Obstacle")
+	for obstacle in obstacles:
+		var tile_coord = tilemap.world_to_map(obstacle.global_position)
+		var id = get_id(tile_coord)
+		if astar.has_point(id):
+			astar.set_point_disabled(id, true)
+			if debug:
+				grid_rects[str(id)].color = disabled_color
 
 func add_traversable_tiles(tiles: Array):
 	for tile in tiles:
 		var id = get_id(tile)
 		astar.add_point(id, tile)
+	
+		if debug:
+			var rect: ColorRect = ColorRect.new()
+			grid.add_child(rect)
+			grid_rects[str(id)] = rect
+			rect.modulate = Color(1, 1, 1, 0.5)
+			rect.color = enabled_color
+			rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			rect.rect_size = tilemap.cell_size
+			rect.rect_position = tilemap.map_to_world(tile)
 
 func connect_traversable_tiles(tiles: Array):
 	for tile in tiles:
@@ -53,6 +100,10 @@ func add_tilemap_to_navigation(passed_tilemap: TileMap):
 		var id = get_id(tile)
 		if astar.has_point(id):
 			astar.set_point_disabled(id, true)
+			if not id in static_blocked_tiles:
+				static_blocked_tiles.append(id)
+			if debug:
+				grid_rects[str(id)].color = disabled_color
 
 func get_id(point: Vector2):
 	var x = point.x - used_rect.position.x

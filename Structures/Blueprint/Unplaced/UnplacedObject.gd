@@ -34,12 +34,9 @@ func can_place():
 
 func place():
 	var struct = load(Structures.get_structure(id)["instance"]).instance()
+	get_parent().add_child(struct)
 	struct.global_position = global_position
-	if raft_placement:
-		raft.add_child(struct)
-		struct.global_position = global_position
-	else:
-		get_parent().add_child(struct)
+	get_tree().get_current_scene().get_node("Pathfinding").add_structure(struct)
 	queue_free()
 
 func _on_PlacementCollision_area_entered(area):

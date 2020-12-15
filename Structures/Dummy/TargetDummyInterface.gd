@@ -22,5 +22,6 @@ func _on_AnchoredButton_toggled(button_pressed):
 
 func _on_PickupButton_pressed():
 	PlayerData.add_to_inventory(0, "target_dummy", 1)
+	get_tree().get_current_scene().get_node("Pathfinding").remove_structure(dummy)
 	dummy.queue_free()
 	get_parent().close_open_window()

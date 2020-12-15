@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="BlockPath" type="Position2D" groups=[
+"Obstacle",
+]]
