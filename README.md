@@ -9,7 +9,7 @@ Paramnesia is a unique RPG that gives you complete freedom to explore and build 
 ---
 
 ## Done
-* Player Inventory
+* AStar Pathfinding for Enemies
 * Crafting System
 * Audio Manager
 * Settings
@@ -17,14 +17,12 @@ Paramnesia is a unique RPG that gives you complete freedom to explore and build 
 * Player Movement and Attack System
 * Static and Selectable Foreground and Background Objects
 * Object Interaction System
-* Basic Persistence in Scenes for Saving/Loading
+* Saving/Loading
 
 ## Todo
 * Quest System
-* NPC Characters
-* Config Save/Master Save
-* Level/World Design
+* Config Save/Better Level Save System
 * Boss Design
-* Visual GUI Overhaul
-* Graphics Overhaul
-* Friendly/Aggressive Animals
+* Taming System for Wild Creatures
+* Improve Pathfinding (Especially for Invalid Paths)
+* Implement AStar Pathfinding for Friendly Mobs
