@@ -24,4 +24,5 @@ Paramnesia is a unique RPG that gives you complete freedom to explore and build 
 * Config Save/Better Level Save System
 * Boss Design
 * Taming System for Wild Creatures
-* Improve Pathfinding (Esepcially for Invalid Paths)
+* Improve Pathfinding (Especially for Invalid Paths)
+* Implement AStar Pathfinding for Friendly Mobs
