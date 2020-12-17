@@ -34,6 +34,8 @@ func add_structure(structure):
 			var id = get_id(tile_coord)
 			if astar.has_point(id):
 				astar.set_point_disabled(id, true)
+				if debug:
+					grid_rects[str(id)].color = disabled_color
 
 func remove_structure(structure):
 	var obstacles = get_tree().get_nodes_in_group("Obstacle")
@@ -43,6 +45,8 @@ func remove_structure(structure):
 			var id = get_id(tile_coord)
 			if astar.has_point(id) and not id in static_blocked_tiles:
 				astar.set_point_disabled(id, false)
+				if debug:
+					grid_rects[str(id)].color = enabled_color
 
 func add_obstacles():
 	var obstacles = get_tree().get_nodes_in_group("Obstacle")

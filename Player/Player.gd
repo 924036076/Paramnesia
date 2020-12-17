@@ -66,27 +66,27 @@ func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, delta * 400)
 	knockback = move_and_slide(knockback)
 
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("attack"):
-		if structure == null:
-			if ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
-				create_structure(PlayerData.get_item_held())
-				state = PLACE
-			else:
-				if PlayerData.get_item_held() == "bow":
-					if PlayerData.get_num_held("arrow") > 0:
-						create_arrow()
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if Input.is_action_just_pressed("attack"):
+			if PlayerData.get_item_held() == "bow":
+				if PlayerData.get_num_held("arrow") > 0:
+					create_arrow()
+			elif ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
+				if structure == null:
+					create_structure(PlayerData.get_item_held())
+					state = PLACE
+				elif structure.can_place():
+					structure.place()
+					PlayerData.remove_from_slot(PlayerData.holding, 1)
+					structure = null
+					state = MOVE
 				else:
-					state = ATTACK
-		elif structure.can_place():
-			structure.place()
-			PlayerData.remove_from_slot(PlayerData.holding, 1)
-			structure = null
-			state = MOVE
-		else:
-			structure.queue_free()
-			structure = null
-			state = MOVE
+					structure.queue_free()
+					structure = null
+					state = MOVE
+			else:
+				state = ATTACK
 
 func place_state():
 	animationState.travel("Idle")

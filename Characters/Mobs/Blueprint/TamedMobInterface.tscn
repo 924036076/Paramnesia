@@ -1,36 +1,28 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GUI/Missions/background_ninepatch.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Mobs/Blueprint/TamedMobInterface.gd" type="Script" id=2]
 [ext_resource path="res://Fonts/type_writer.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://global_theme.tres" type="Theme" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 8
 font_data = ExtResource( 3 )
 
 [node name="TamedMobInterface" type="Control"]
 margin_right = 500.0
 margin_bottom = 282.0
+theme = ExtResource( 4 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect" type="Panel" parent="."]
 margin_left = 64.0
 margin_top = 54.0
 margin_right = 420.0
 margin_bottom = 232.0
-texture = ExtResource( 1 )
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="."]
 margin_left = 235.0
@@ -38,7 +30,7 @@ margin_top = 59.0
 margin_right = 243.0
 margin_bottom = 67.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

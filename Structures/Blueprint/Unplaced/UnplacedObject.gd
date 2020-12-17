@@ -34,7 +34,8 @@ func can_place():
 
 func place():
 	var struct = load(Structures.get_structure(id)["instance"]).instance()
-	get_parent().add_child(struct)
+	if get_parent() != null:
+		get_parent().add_child(struct)
 	struct.global_position = global_position
 	get_tree().get_current_scene().get_node("Pathfinding").add_structure(struct)
 	queue_free()

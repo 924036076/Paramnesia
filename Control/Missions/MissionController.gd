@@ -1,9 +1,10 @@
 extends Node
 
+const notification = preload("res://Control/Missions/Notification.tscn")
+
 var completed_missions = []
 var active_missions = []
 
-const notification = preload("res://Control/Missions/Notification.tscn")
 
 func check_prereqs(prereqs):
 	for req in prereqs:
