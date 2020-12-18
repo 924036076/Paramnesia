@@ -11,7 +11,9 @@ var test_mission = {
 		"required": true,
 		"prereqs": [],
 		"type": "item",
-		"item_list": [["stone_axe", 1], ["apple", 15]]
+		"item_list": [["stone_axe", 1], ["apple", 15]],
+		"reward": "item",
+		"reward_items": [["campfire", 1]]
 		}
 var test_mission2 = {
 	"id": -1,
@@ -19,7 +21,9 @@ var test_mission2 = {
 	"description": "Gather wood and stone to craft an axe Gather wood and stone to craft an axe Gather wood and stone to craft an axe",
 	"required": false,
 	"prereqs": [],
-	"type": "none"
+	"type": "none",
+	"reward": "blueprint",
+	"blueprint": "cooking_pot"
 	}
 
 func _ready():
