@@ -10,6 +10,14 @@ var audio = {}
 onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
 onready var console = load("res://GUI/Console/Console.tscn")
 
+enum {
+	EASY,
+	NORMAL,
+	HARD
+}
+
+var difficulty = NORMAL
+
 var game_paused: bool = false
 var current_scene
 var block_escape: bool = true
@@ -65,8 +73,12 @@ func _deferred_goto_scene(scene, do_load):
 	match scene:
 		"MainMenu":
 			path = "res://GUI/MainMenu/MainMenu.tscn"
-		"World1":
-			path = "res://World/Scenes/World1.tscn"
+		"WorldSettings":
+			path = "res://GUI/Embark/Embark.tscn"
+		"Supplies":
+			path = "res://GUI/Embark/Supplies.tscn"
+		"Test1":
+			path = "res://World/Scenes/Test1.tscn"
 	var s = ResourceLoader.load(path)
 	current_scene = s.instance()
 	get_tree().get_root().add_child(current_scene)

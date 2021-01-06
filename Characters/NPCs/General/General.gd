@@ -7,6 +7,10 @@ func define_missions():
 		"description": "Gather wood and stone to craft an axe",
 		"required": true,
 		"prereqs": [],
-		"start_dialogue": ["We've run out of axes in our stores. Can you forage for materials around camp and", "craft a stone axe?"]
+		"start_dialogue": ["We've run out of axes in our stores. Can you forage for materials around camp and", "craft a stone axe?"],
+		"type": "item",
+		"item_list": [["stone_axe", 1]],
+		"reward": "item",
+		"reward_items": [["wood", 20], ["stone", 20]]
 	}
 	missions.append(mission1)

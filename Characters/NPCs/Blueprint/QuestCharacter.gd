@@ -81,7 +81,7 @@ func interacted_with():
 	if dialog != null:
 		dialog.queue_free()
 	for m in missions:
-		if MissionController.check_prereqs(m["prereqs"]):
+		if MissionController.can_start(m):
 			MissionController.start_mission(m)
 			dialog = dialog_box.instance()
 			dialog.text = m["start_dialogue"]

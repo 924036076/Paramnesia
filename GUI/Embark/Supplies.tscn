@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://global_theme.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/Embark/Supplies.gd" type="Script" id=2]
+
+[node name="Supplies" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="."]
+margin_right = 500.0
+margin_bottom = 282.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmbarkButton" type="Button" parent="."]
+margin_left = 200.0
+margin_top = 235.0
+margin_right = 280.0
+margin_bottom = 272.0
+text = "Embark"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 235.0
+margin_right = 72.0
+margin_bottom = 272.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Label" parent="."]
+margin_left = 170.0
+margin_top = 6.0
+margin_right = 306.0
+margin_bottom = 39.0
+text = "Points Left: 0/0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="EmbarkButton" to="." method="_on_EmbarkButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

@@ -48,10 +48,11 @@ __meta__ = {
 }
 
 [node name="DeleteButton" type="TextureButton" parent="."]
-margin_left = 270.0
-margin_top = 2.0
-margin_right = 290.0
-margin_bottom = 22.0
+visible = false
+margin_left = 297.0
+margin_top = 5.0
+margin_right = 315.0
+margin_bottom = 23.0
 texture_normal = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

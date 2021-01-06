@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://global_theme.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/Embark/Embark.gd" type="Script" id=2]
+
+[node name="Embark" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="."]
+margin_right = 500.0
+margin_bottom = 282.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Difficulty" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 13.0
+margin_right = 102.0
+margin_bottom = 46.0
+text = "Difficulty: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DifficultyButton" type="Button" parent="."]
+margin_left = 107.0
+margin_top = 10.0
+margin_right = 181.0
+margin_bottom = 47.0
+text = "Normal"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Embark Location" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 53.0
+margin_right = 167.0
+margin_bottom = 86.0
+text = "Embark Location: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LocationButton" type="Button" parent="."]
+margin_left = 171.0
+margin_top = 52.0
+margin_right = 247.0
+margin_bottom = 89.0
+text = "Default"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextButton" type="Button" parent="."]
+margin_left = 173.0
+margin_top = 235.0
+margin_right = 332.0
+margin_bottom = 272.0
+text = "Choose Supplies"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 235.0
+margin_right = 72.0
+margin_bottom = 272.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="DifficultyButton" to="." method="_on_DifficultyButton_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

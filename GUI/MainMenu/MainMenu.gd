@@ -7,10 +7,10 @@ onready var settings_back = get_node("SettingsBackground")
 var key = "MainMenu"
 
 func _on_NewGame_pressed():
-	Global.switch_scene("World1", false)
+	Global.switch_scene("WorldSettings", false)
 
 func _on_LoadGame_pressed():
-	Global.switch_scene("World1", true)
+	Global.switch_scene("Test1", true)
 
 func _on_Exit_pressed():
 	get_tree().quit()

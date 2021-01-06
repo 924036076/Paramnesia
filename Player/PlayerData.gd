@@ -36,6 +36,7 @@ func _ready():
 	add_to_inventory(0, "wood", 600)
 	add_to_inventory(0, "stone", 500)
 	add_to_inventory(0, "fiber", 500)
+	self.connect("inventory_updated", MissionController, "player_inventory_changed")
 
 func get_all_items():
 	var item_list = []
@@ -50,6 +51,10 @@ func get_all_items():
 			if !in_array:
 				item_list.append([item[0], item[1]])
 	return item_list
+
+func add_list_to_inventory(start_index, item_list):
+	for item in item_list:
+		add_to_inventory(start_index, item[0], item[1])
 
 func add_to_inventory(start_index, item_id, item_num, display_text = false):
 	var num_left = item_num
@@ -71,7 +76,6 @@ func add_to_inventory(start_index, item_id, item_num, display_text = false):
 			else:
 				add_to_slot(i, item_id, get_item_num(i) + num_left)
 				num_left = 0
-	emit_signal("inventory_updated")
 	var item_name = item_id
 	if ItemDictionary.get_item(item_id).has("name"):
 		item_name = ItemDictionary.get_item(item_id)["name"]
@@ -111,6 +115,20 @@ func remove_items(item_list):
 					i = [null, null]
 					break
 	emit_signal("inventory_updated")
+
+func has_items(item_list):
+	for item in item_list:
+		var amount_needed = item[1]
+		for i in inventory:
+			if i[0] == item[0]:
+				if i[1] < amount_needed:
+					amount_needed = amount_needed - i[1]
+				else:
+					amount_needed = 0
+					break
+		if amount_needed > 0:
+			return false
+	return true
 
 func remove_one(item):
 	for i in inventory:

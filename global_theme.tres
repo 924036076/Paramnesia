@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=13 format=2]
+[gd_resource type="Theme" load_steps=20 format=2]
 
-[ext_resource path="res://Fonts/8px_no_outline.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/LandasansMedium-ALJ6m.otf" type="DynamicFontData" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.00392157, 0.0862745, 0.152941, 1 )
@@ -123,7 +123,9 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxFlat" id=12]
 content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 2.0
@@ -135,8 +137,23 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="DynamicFont" id=18]
+size = 32
+use_filter = true
+font_data = ExtResource( 1 )
+
 [resource]
-default_font = ExtResource( 1 )
+default_font = SubResource( 18 )
 Button/colors/font_color = Color( 0.00392157, 0.0862745, 0.152941, 1 )
 Button/colors/font_color_disabled = Color( 0.901961, 0.901961, 0.901961, 0.2 )
 Button/colors/font_color_hover = Color( 0.992157, 1, 0.988235, 1 )
@@ -186,9 +203,19 @@ OptionButton/styles/hover = SubResource( 8 )
 OptionButton/styles/normal = SubResource( 9 )
 OptionButton/styles/pressed = null
 Panel/styles/panel = SubResource( 10 )
+ScrollContainer/styles/bg = SubResource( 11 )
 TooltipLabel/colors/font_color = Color( 0.992157, 1, 0.988235, 1 )
 TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 TooltipLabel/constants/shadow_offset_x = 1
 TooltipLabel/constants/shadow_offset_y = 1
 TooltipLabel/fonts/font = null
-TooltipPanel/styles/panel = SubResource( 11 )
+TooltipPanel/styles/panel = SubResource( 12 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 13 )
+VScrollBar/styles/grabber_highlight = SubResource( 14 )
+VScrollBar/styles/grabber_pressed = SubResource( 15 )
+VScrollBar/styles/scroll = SubResource( 16 )
+VScrollBar/styles/scroll_focus = SubResource( 17 )

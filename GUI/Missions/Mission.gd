@@ -13,6 +13,9 @@ onready var background = get_node("Background")
 onready var descr_label = get_node("Description")
 onready var resource_mission = get_node("ResourceMission")
 onready var reward = get_node("Reward")
+onready var delete = get_node("DeleteButton")
+
+signal expand(node)
 
 func _ready():
 	get_node("Title").text = mission["title"]
@@ -20,7 +23,7 @@ func _ready():
 	required = mission["required"]
 	type = mission["type"]
 	resource_mission.rect_position.y = descr_label.get_line_count() * 11 + 28
-	reward.rect_position.y = descr_label.get_line_count() * 11 + 24
+	reward.rect_position.y = descr_label.get_line_count() * 11 + 28
 	if mission["reward"] == "item":
 		var item_list = mission["reward_items"]
 		var x = 40
@@ -48,7 +51,7 @@ func _ready():
 			resource_mission.add_child(visual)
 			visual.rect_position.x += x
 			x += 35
-		reward.rect_position.y += 18
+		reward.rect_position.y += 14
 	if required:
 		get_node("DeleteButton").queue_free()
 
@@ -57,27 +60,40 @@ func _on_DeleteButton_pressed():
 		MissionController.delete_mission(mission)
 		queue_free()
 
+func collapse():
+	if get_node("ExpandButton").pressed:
+		get_node("ExpandButton").pressed = false
+		do_collapse()
+
+func do_collapse():
+	var total_size_y = 46 + descr_label.get_line_count() * 11
+	if type == "item":
+		total_size_y += 14
+	contract_tween.interpolate_property(background, "rect_size", Vector2(320, total_size_y), Vector2(320, 24), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	contract_tween.interpolate_property(self, "rect_min_size", Vector2(0, total_size_y), Vector2(0, 24), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	contract_tween.start()
+	descr_label.visible = false
+	reward.visible = false
+	resource_mission.visible = false
+	if not required:
+		delete.visible = false
+
 func _on_ExpandButton_toggled(button_pressed):
 	if button_pressed:
-		var total_size_y = 42 + descr_label.get_line_count() * 11
+		emit_signal("expand", self)
+		var total_size_y = 46 + descr_label.get_line_count() * 11
 		if type == "item":
-			total_size_y += 18
+			total_size_y += 14
 		expand_tween.interpolate_property(background, "rect_size", Vector2(320, 24), Vector2(320, total_size_y), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		expand_tween.interpolate_property(self, "rect_min_size", Vector2(0, 24), Vector2(0, total_size_y), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		expand_tween.start()
 	else:
-		var total_size_y = 42 + descr_label.get_line_count() * 11
-		if type == "item":
-			total_size_y += 18
-		contract_tween.interpolate_property(background, "rect_size", Vector2(320, total_size_y), Vector2(320, 24), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		contract_tween.interpolate_property(self, "rect_min_size", Vector2(0, total_size_y), Vector2(0, 24), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		contract_tween.start()
-		descr_label.visible = false
-		reward.visible = false
-		resource_mission.visible = false
+		do_collapse()
 
 func _on_ExpandTween_tween_all_completed():
 	descr_label.visible = true
 	reward.visible = true
+	if not required:
+		delete.visible = true
 	if type == "item":
 		resource_mission.visible = true
