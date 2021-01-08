@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://global_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/Embark/Supplies.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Embark/SupplyCounter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/Embark/LivestockPage.gd" type="Script" id=4]
 
 [node name="Supplies" type="Control"]
 anchor_right = 1.0
@@ -39,14 +41,165 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Points" type="Label" parent="."]
-margin_left = 170.0
-margin_top = 6.0
-margin_right = 306.0
-margin_bottom = 39.0
-text = "Points Left: 0/0"
+[node name="LivestockPage" type="Control" parent="."]
+margin_right = 500.0
+margin_bottom = 235.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Points" type="Label" parent="LivestockPage"]
+margin_top = 6.0
+margin_right = 500.0
+margin_bottom = 39.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CattleCounter" parent="LivestockPage" instance=ExtResource( 3 )]
+margin_left = -47.5
+margin_top = 43.255
+margin_right = -457.0
+margin_bottom = -150.745
+
+[node name="Resource" parent="LivestockPage/CattleCounter/HBoxContainer" index="0"]
+margin_right = 59.0
+text = "Cattle "
+
+[node name="MinusButton" parent="LivestockPage/CattleCounter/HBoxContainer" index="1"]
+margin_left = 63.0
+margin_right = 83.0
+
+[node name="Amount" parent="LivestockPage/CattleCounter/HBoxContainer" index="2"]
+margin_left = 87.0
+margin_right = 125.0
+
+[node name="PlusButton" parent="LivestockPage/CattleCounter/HBoxContainer" index="3"]
+margin_left = 129.0
+margin_right = 149.0
+
+[node name="PigCounter" parent="LivestockPage" instance=ExtResource( 3 )]
+margin_left = -47.5
+margin_top = 96.255
+margin_right = -457.0
+margin_bottom = -97.745
+
+[node name="Resource" parent="LivestockPage/PigCounter/HBoxContainer" index="0"]
+margin_right = 59.0
+text = "Swine "
+
+[node name="MinusButton" parent="LivestockPage/PigCounter/HBoxContainer" index="1"]
+margin_left = 63.0
+margin_right = 83.0
+
+[node name="Amount" parent="LivestockPage/PigCounter/HBoxContainer" index="2"]
+margin_left = 87.0
+margin_right = 125.0
+
+[node name="PlusButton" parent="LivestockPage/PigCounter/HBoxContainer" index="3"]
+margin_left = 129.0
+margin_right = 149.0
+
+[node name="GoatCounter" parent="LivestockPage" instance=ExtResource( 3 )]
+margin_left = -34.5
+margin_top = 149.255
+margin_right = -444.0
+margin_bottom = -44.745
+
+[node name="Resource" parent="LivestockPage/GoatCounter/HBoxContainer" index="0"]
+margin_right = 46.0
+text = "Goat "
+
+[node name="MinusButton" parent="LivestockPage/GoatCounter/HBoxContainer" index="1"]
+margin_left = 50.0
+margin_right = 70.0
+
+[node name="Amount" parent="LivestockPage/GoatCounter/HBoxContainer" index="2"]
+margin_left = 74.0
+margin_right = 112.0
+
+[node name="PlusButton" parent="LivestockPage/GoatCounter/HBoxContainer" index="3"]
+margin_left = 116.0
+margin_right = 136.0
+
+[node name="SheepCounter" parent="LivestockPage" instance=ExtResource( 3 )]
+margin_left = 185.5
+margin_top = 43.255
+margin_right = -224.0
+margin_bottom = -150.745
+
+[node name="Resource" parent="LivestockPage/SheepCounter/HBoxContainer" index="0"]
+margin_right = 60.0
+text = "Sheep "
+
+[node name="MinusButton" parent="LivestockPage/SheepCounter/HBoxContainer" index="1"]
+margin_left = 64.0
+margin_right = 84.0
+
+[node name="Amount" parent="LivestockPage/SheepCounter/HBoxContainer" index="2"]
+margin_left = 88.0
+margin_right = 126.0
+
+[node name="PlusButton" parent="LivestockPage/SheepCounter/HBoxContainer" index="3"]
+margin_left = 130.0
+margin_right = 150.0
+
+[node name="ChickenCounter" parent="LivestockPage" instance=ExtResource( 3 )]
+margin_left = 170.5
+margin_top = 96.255
+margin_right = -239.0
+margin_bottom = -97.745
+
+[node name="Resource" parent="LivestockPage/ChickenCounter/HBoxContainer" index="0"]
+margin_right = 75.0
+text = "Chicken "
+
+[node name="MinusButton" parent="LivestockPage/ChickenCounter/HBoxContainer" index="1"]
+margin_left = 79.0
+margin_right = 99.0
+
+[node name="Amount" parent="LivestockPage/ChickenCounter/HBoxContainer" index="2"]
+margin_left = 103.0
+margin_right = 141.0
+
+[node name="PlusButton" parent="LivestockPage/ChickenCounter/HBoxContainer" index="3"]
+margin_left = 145.0
+margin_right = 165.0
+
+[node name="RabbitCounter" parent="LivestockPage" instance=ExtResource( 3 )]
+margin_left = 183.5
+margin_top = 149.255
+margin_right = -226.0
+margin_bottom = -44.745
+
+[node name="Resource" parent="LivestockPage/RabbitCounter/HBoxContainer" index="0"]
+margin_right = 62.0
+text = "Rabbit "
+
+[node name="MinusButton" parent="LivestockPage/RabbitCounter/HBoxContainer" index="1"]
+margin_left = 66.0
+margin_right = 86.0
+
+[node name="Amount" parent="LivestockPage/RabbitCounter/HBoxContainer" index="2"]
+margin_left = 90.0
+margin_right = 128.0
+
+[node name="PlusButton" parent="LivestockPage/RabbitCounter/HBoxContainer" index="3"]
+margin_left = 132.0
+margin_right = 152.0
 [connection signal="pressed" from="EmbarkButton" to="." method="_on_EmbarkButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+
+[editable path="LivestockPage/CattleCounter"]
+
+[editable path="LivestockPage/PigCounter"]
+
+[editable path="LivestockPage/GoatCounter"]
+
+[editable path="LivestockPage/SheepCounter"]
+
+[editable path="LivestockPage/ChickenCounter"]
+
+[editable path="LivestockPage/RabbitCounter"]
