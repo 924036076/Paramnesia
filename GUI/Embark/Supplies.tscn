@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://global_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/Embark/Supplies.gd" type="Script" id=2]
 [ext_resource path="res://GUI/Embark/SupplyCounter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Embark/LivestockPage.gd" type="Script" id=4]
+[ext_resource path="res://GUI/Embark/SpecialistPage.gd" type="Script" id=5]
+[ext_resource path="res://GUI/Embark/ResourcePage.gd" type="Script" id=6]
 
 [node name="Supplies" type="Control"]
 anchor_right = 1.0
@@ -22,21 +24,32 @@ __meta__ = {
 }
 
 [node name="EmbarkButton" type="Button" parent="."]
-margin_left = 200.0
-margin_top = 235.0
-margin_right = 280.0
-margin_bottom = 272.0
+margin_left = 204.0
+margin_top = 234.0
+margin_right = 284.0
+margin_bottom = 271.0
 text = "Embark"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" type="Button" parent="."]
-margin_left = 10.0
-margin_top = 235.0
-margin_right = 72.0
-margin_bottom = 272.0
-text = "Back"
+[node name="NextButton" type="Button" parent="."]
+margin_left = 385.0
+margin_top = 234.0
+margin_right = 439.0
+margin_bottom = 271.0
+text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrevButton" type="Button" parent="."]
+visible = false
+margin_left = 50.0
+margin_top = 234.0
+margin_right = 101.0
+margin_bottom = 271.0
+text = "Prev"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -189,8 +202,275 @@ margin_right = 128.0
 [node name="PlusButton" parent="LivestockPage/RabbitCounter/HBoxContainer" index="3"]
 margin_left = 132.0
 margin_right = 152.0
+
+[node name="ResourcePage" type="Control" parent="."]
+visible = false
+margin_right = 500.0
+margin_bottom = 235.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Label" parent="ResourcePage"]
+margin_top = 6.0
+margin_right = 500.0
+margin_bottom = 39.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wood" parent="ResourcePage" instance=ExtResource( 3 )]
+margin_left = -42.5
+margin_top = 43.255
+margin_right = -452.0
+margin_bottom = -176.0
+
+[node name="Resource" parent="ResourcePage/Wood/HBoxContainer" index="0"]
+margin_right = 54.0
+text = "Wood "
+
+[node name="MinusButton" parent="ResourcePage/Wood/HBoxContainer" index="1"]
+margin_left = 58.0
+margin_right = 78.0
+
+[node name="Amount" parent="ResourcePage/Wood/HBoxContainer" index="2"]
+margin_left = 82.0
+margin_right = 120.0
+
+[node name="PlusButton" parent="ResourcePage/Wood/HBoxContainer" index="3"]
+margin_left = 124.0
+margin_right = 144.0
+
+[node name="Stone" parent="ResourcePage" instance=ExtResource( 3 )]
+margin_left = -45.5
+margin_top = 96.255
+margin_right = -455.0
+margin_bottom = -123.0
+
+[node name="Resource" parent="ResourcePage/Stone/HBoxContainer" index="0"]
+margin_right = 57.0
+text = "Stone "
+
+[node name="MinusButton" parent="ResourcePage/Stone/HBoxContainer" index="1"]
+margin_left = 61.0
+margin_right = 81.0
+
+[node name="Amount" parent="ResourcePage/Stone/HBoxContainer" index="2"]
+margin_left = 85.0
+margin_right = 123.0
+
+[node name="PlusButton" parent="ResourcePage/Stone/HBoxContainer" index="3"]
+margin_left = 127.0
+margin_right = 147.0
+
+[node name="Fiber" parent="ResourcePage" instance=ExtResource( 3 )]
+margin_left = -36.5
+margin_top = 149.255
+margin_right = -446.0
+margin_bottom = -70.0
+
+[node name="Resource" parent="ResourcePage/Fiber/HBoxContainer" index="0"]
+margin_right = 48.0
+text = "Fiber "
+
+[node name="MinusButton" parent="ResourcePage/Fiber/HBoxContainer" index="1"]
+margin_left = 52.0
+margin_right = 72.0
+
+[node name="Amount" parent="ResourcePage/Fiber/HBoxContainer" index="2"]
+margin_left = 76.0
+margin_right = 114.0
+
+[node name="PlusButton" parent="ResourcePage/Fiber/HBoxContainer" index="3"]
+margin_left = 118.0
+margin_right = 138.0
+
+[node name="Ingots" parent="ResourcePage" instance=ExtResource( 3 )]
+margin_left = 184.5
+margin_top = 43.255
+margin_right = -225.0
+margin_bottom = -176.0
+
+[node name="Resource" parent="ResourcePage/Ingots/HBoxContainer" index="0"]
+margin_right = 61.0
+text = "Ingots "
+
+[node name="MinusButton" parent="ResourcePage/Ingots/HBoxContainer" index="1"]
+margin_left = 65.0
+margin_right = 85.0
+
+[node name="Amount" parent="ResourcePage/Ingots/HBoxContainer" index="2"]
+margin_left = 89.0
+margin_right = 127.0
+
+[node name="PlusButton" parent="ResourcePage/Ingots/HBoxContainer" index="3"]
+margin_left = 131.0
+margin_right = 151.0
+
+[node name="Obsidian" parent="ResourcePage" instance=ExtResource( 3 )]
+margin_left = 165.5
+margin_top = 96.255
+margin_right = -244.0
+margin_bottom = -123.0
+
+[node name="Resource" parent="ResourcePage/Obsidian/HBoxContainer" index="0"]
+margin_right = 80.0
+text = "Obsidian "
+
+[node name="MinusButton" parent="ResourcePage/Obsidian/HBoxContainer" index="1"]
+margin_left = 84.0
+margin_right = 104.0
+
+[node name="Amount" parent="ResourcePage/Obsidian/HBoxContainer" index="2"]
+margin_left = 108.0
+margin_right = 146.0
+
+[node name="PlusButton" parent="ResourcePage/Obsidian/HBoxContainer" index="3"]
+margin_left = 150.0
+margin_right = 170.0
+
+[node name="Coins" parent="ResourcePage" instance=ExtResource( 3 )]
+margin_left = 192.5
+margin_top = 149.255
+margin_right = -217.0
+margin_bottom = -70.0
+
+[node name="Resource" parent="ResourcePage/Coins/HBoxContainer" index="0"]
+margin_right = 53.0
+text = "Coins "
+
+[node name="MinusButton" parent="ResourcePage/Coins/HBoxContainer" index="1"]
+margin_left = 57.0
+margin_right = 77.0
+
+[node name="Amount" parent="ResourcePage/Coins/HBoxContainer" index="2"]
+margin_left = 81.0
+margin_right = 119.0
+
+[node name="PlusButton" parent="ResourcePage/Coins/HBoxContainer" index="3"]
+margin_left = 123.0
+margin_right = 143.0
+
+[node name="SpecialistPage" type="Control" parent="."]
+visible = false
+margin_right = 500.0
+margin_bottom = 235.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Label" parent="SpecialistPage"]
+margin_top = 6.0
+margin_right = 500.0
+margin_bottom = 39.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConstructionCounter" parent="SpecialistPage" instance=ExtResource( 3 )]
+margin_left = -64.5
+margin_top = 74.255
+margin_right = -474.0
+margin_bottom = -145.0
+
+[node name="Resource" parent="SpecialistPage/ConstructionCounter/HBoxContainer" index="0"]
+margin_right = 115.0
+text = "Construction"
+
+[node name="MinusButton" parent="SpecialistPage/ConstructionCounter/HBoxContainer" index="1"]
+margin_left = 119.0
+margin_right = 139.0
+
+[node name="Amount" parent="SpecialistPage/ConstructionCounter/HBoxContainer" index="2"]
+margin_left = 143.0
+margin_right = 181.0
+
+[node name="PlusButton" parent="SpecialistPage/ConstructionCounter/HBoxContainer" index="3"]
+margin_left = 185.0
+margin_right = 205.0
+
+[node name="FarmingCounter" parent="SpecialistPage" instance=ExtResource( 3 )]
+margin_left = -20.5
+margin_top = 135.255
+margin_right = -430.0
+margin_bottom = -58.745
+
+[node name="Resource" parent="SpecialistPage/FarmingCounter/HBoxContainer" index="0"]
+margin_right = 72.0
+text = "Farming"
+
+[node name="MinusButton" parent="SpecialistPage/FarmingCounter/HBoxContainer" index="1"]
+margin_left = 76.0
+margin_right = 96.0
+
+[node name="Amount" parent="SpecialistPage/FarmingCounter/HBoxContainer" index="2"]
+margin_left = 100.0
+margin_right = 138.0
+
+[node name="PlusButton" parent="SpecialistPage/FarmingCounter/HBoxContainer" index="3"]
+margin_left = 142.0
+margin_right = 162.0
+
+[node name="TradingCounter" parent="SpecialistPage" instance=ExtResource( 3 )]
+margin_left = 183.5
+margin_top = 74.255
+margin_right = -226.0
+margin_bottom = -119.745
+
+[node name="Resource" parent="SpecialistPage/TradingCounter/HBoxContainer" index="0"]
+margin_right = 66.0
+text = "Trading"
+
+[node name="MinusButton" parent="SpecialistPage/TradingCounter/HBoxContainer" index="1"]
+margin_left = 70.0
+margin_right = 90.0
+
+[node name="Amount" parent="SpecialistPage/TradingCounter/HBoxContainer" index="2"]
+margin_left = 94.0
+margin_right = 132.0
+
+[node name="PlusButton" parent="SpecialistPage/TradingCounter/HBoxContainer" index="3"]
+margin_left = 136.0
+margin_right = 156.0
+
+[node name="ForagingCounter" parent="SpecialistPage" instance=ExtResource( 3 )]
+margin_left = 173.5
+margin_top = 138.255
+margin_right = -236.0
+margin_bottom = -55.745
+
+[node name="Resource" parent="SpecialistPage/ForagingCounter/HBoxContainer" index="0"]
+margin_right = 76.0
+text = "Foraging"
+
+[node name="MinusButton" parent="SpecialistPage/ForagingCounter/HBoxContainer" index="1"]
+margin_left = 80.0
+margin_right = 100.0
+
+[node name="Amount" parent="SpecialistPage/ForagingCounter/HBoxContainer" index="2"]
+margin_left = 104.0
+margin_right = 142.0
+
+[node name="PlusButton" parent="SpecialistPage/ForagingCounter/HBoxContainer" index="3"]
+margin_left = 146.0
+margin_right = 166.0
+
+[node name="PointWarning" type="Label" parent="."]
+visible = false
+margin_left = 306.0
+margin_top = 244.0
+margin_right = 552.0
+margin_bottom = 277.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0.827451, 0, 0, 1 )
+text = "Warning: not all points used"
 [connection signal="pressed" from="EmbarkButton" to="." method="_on_EmbarkButton_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="PrevButton" to="." method="_on_PrevButton_pressed"]
 
 [editable path="LivestockPage/CattleCounter"]
 
@@ -203,3 +483,23 @@ margin_right = 152.0
 [editable path="LivestockPage/ChickenCounter"]
 
 [editable path="LivestockPage/RabbitCounter"]
+
+[editable path="ResourcePage/Wood"]
+
+[editable path="ResourcePage/Stone"]
+
+[editable path="ResourcePage/Fiber"]
+
+[editable path="ResourcePage/Ingots"]
+
+[editable path="ResourcePage/Obsidian"]
+
+[editable path="ResourcePage/Coins"]
+
+[editable path="SpecialistPage/ConstructionCounter"]
+
+[editable path="SpecialistPage/FarmingCounter"]
+
+[editable path="SpecialistPage/TradingCounter"]
+
+[editable path="SpecialistPage/ForagingCounter"]

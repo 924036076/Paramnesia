@@ -4,7 +4,7 @@ const settings = preload("res://GUI/Settings/Settings.tscn")
 
 onready var settings_back = get_node("SettingsBackground")
 
-var key = "MainMenu"
+var key = "Menu"
 
 func _on_NewGame_pressed():
 	Global.switch_scene("WorldSettings", false)
@@ -13,6 +13,9 @@ func _on_LoadGame_pressed():
 	Global.switch_scene("Test1", true)
 
 func _on_Exit_pressed():
+	back()
+
+func back():
 	get_tree().quit()
 
 func _on_Settings_pressed():

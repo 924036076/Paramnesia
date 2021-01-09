@@ -2,7 +2,7 @@ extends Control
 
 onready var difficulty_button = get_node("DifficultyButton")
 
-var key = "Embark"
+var key = "Menu"
 
 enum {
 	EASY,
