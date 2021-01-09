@@ -15,6 +15,29 @@ func _ready():
 	for node in nodes:
 		node.initialize(pathfinding)
 
+func initialize():
+	var used_points = []
+	#spawn in resources here
+	get_node("SpawnArea").queue_free()
+
+func get_point_in_spawn_area(used_points):
+	var starting_pos = get_node("SpawnArea").rect_global_position
+	var bounds = get_node("SpawnArea").rect_size
+	
+	var x: int = randi() % int(bounds.x / 32) + 1
+	x = x * 32 + starting_pos.x
+	var y: int = randi() % int(bounds.y / 32) + 1
+	y = y * 32 + starting_pos.y
+	
+	while(Vector2(x, y) in used_points):
+		x = randi() % int(bounds.x / 32) + 1
+		x = y * 32 + starting_pos.x
+		y = randi() % int(bounds.y / 32) + 1
+		y = y * 32 + starting_pos.y
+	
+	used_points.append(Vector2(x, y))
+	return Vector2(x, y)
+
 func add_other_tilemaps():
 	pass
 

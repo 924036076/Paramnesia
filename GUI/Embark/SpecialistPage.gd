@@ -42,3 +42,9 @@ func set_available_points(new_amount):
 		for node in get_children():
 			if node != get_node("Points"):
 				node.set_plus_disabled()
+
+func save_points():
+	Global.starting_items["construction"] = construction.current_amount
+	Global.starting_items["farming"] = farming.current_amount
+	Global.starting_items["trading"] = trading.current_amount
+	Global.starting_items["foraging"] = foraging.current_amount

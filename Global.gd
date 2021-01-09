@@ -17,6 +17,24 @@ enum {
 }
 
 var difficulty = NORMAL
+var starting_items = {
+	"cow": 0,
+	"pig": 0,
+	"sheep": 0,
+	"goat": 0,
+	"chicken": 0,
+	"rabbit": 0,
+	"wood": 0,
+	"stone": 0,
+	"fiber": 0,
+	"ingot": 0,
+	"obsidian": 0,
+	"coin": 0,
+	"construction": 0,
+	"farming": 0,
+	"trading": 0,
+	"foraging": 0
+}
 
 var game_paused: bool = false
 var current_scene
@@ -44,6 +62,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
+		#this needs to be rewritten very badly lmao
 		if event.pressed and not event.echo and not block_escape:
 			if event.scancode == KEY_ESCAPE and get_tree().get_current_scene().key == "Menu":
 				get_tree().get_current_scene().back()
@@ -87,6 +106,9 @@ func _deferred_goto_scene(scene, do_load):
 	get_tree().set_current_scene(current_scene)
 	if do_load:
 		load_game(scene)
+	else:
+		if get_tree().get_current_scene().has_method("initialize"):
+			get_tree().get_current_scene().initialize()
 
 func save_game(scene):
 	var save_game = File.new()

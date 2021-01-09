@@ -14,6 +14,7 @@ func redraw():
 			else:
 				base.value = item[1]
 			base.texture = load(ItemDictionary.get_item(item[0])["icon"])
+# warning-ignore:integer_division
 			base.rect_position = Vector2(25 * (i % 8) + 6, 25 * (int(i / 8) - 1) + 6)
 			add_child(base)
 

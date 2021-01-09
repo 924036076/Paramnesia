@@ -60,3 +60,11 @@ func set_available_points(new_amount):
 		for node in get_children():
 			if node != get_node("Points"):
 				node.set_plus_disabled()
+
+func save_points():
+	Global.starting_items["cow"] = cattle.current_amount
+	Global.starting_items["pig"] = pig.current_amount
+	Global.starting_items["goat"] = goat.current_amount
+	Global.starting_items["sheep"] = sheep.current_amount
+	Global.starting_items["chicken"] = chicken.current_amount
+	Global.starting_items["rabbit"] = rabbit.current_amount

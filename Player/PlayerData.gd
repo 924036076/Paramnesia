@@ -36,6 +36,7 @@ func _ready():
 	add_to_inventory(0, "wood", 600)
 	add_to_inventory(0, "stone", 500)
 	add_to_inventory(0, "fiber", 500)
+# warning-ignore:return_value_discarded
 	self.connect("inventory_updated", MissionController, "player_inventory_changed")
 
 func get_all_items():

@@ -60,3 +60,11 @@ func set_available_points(new_amount):
 		for node in get_children():
 			if node != get_node("Points"):
 				node.set_plus_disabled()
+
+func save_points():
+	Global.starting_items["wood"] = wood.current_amount
+	Global.starting_items["stone"] = stone.current_amount
+	Global.starting_items["fiber"] = fiber.current_amount
+	Global.starting_items["ingot"] = ingots.current_amount
+	Global.starting_items["obsidian"] = obsidian.current_amount
+	Global.starting_items["coin"] = coins.current_amount

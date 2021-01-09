@@ -24,6 +24,7 @@ __meta__ = {
 }
 
 [node name="EmbarkButton" type="Button" parent="."]
+visible = false
 margin_left = 204.0
 margin_top = 234.0
 margin_right = 284.0

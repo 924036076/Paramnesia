@@ -21,6 +21,9 @@ func back():
 		_on_PrevButton_pressed()
 
 func _on_EmbarkButton_pressed():
+	livestock.save_points()
+	resource.save_points()
+	specialist.save_points()
 	Global.switch_scene("Test1", false)
 
 func _on_NextButton_pressed():
@@ -31,11 +34,11 @@ func _on_NextButton_pressed():
 		get_node("EmbarkButton").visible = true
 	match page:
 		2:
-			get_node("LivestockPage").visible = false
-			get_node("ResourcePage").visible = true
+			livestock.visible = false
+			resource.visible = true
 		3:
-			get_node("ResourcePage").visible = false
-			get_node("SpecialistPage").visible = true
+			resource.visible = false
+			specialist.visible = true
 
 func _on_PrevButton_pressed():
 	page -= 1
@@ -45,8 +48,8 @@ func _on_PrevButton_pressed():
 		get_node("PrevButton").visible = false
 	match page:
 		1:
-			get_node("ResourcePage").visible = false
-			get_node("LivestockPage").visible = true
+			resource.visible = false
+			livestock.visible = true
 		2:
-			get_node("SpecialistPage").visible = false
-			get_node("ResourcePage").visible = true
+			specialist.visible = false
+			resource.visible = true
