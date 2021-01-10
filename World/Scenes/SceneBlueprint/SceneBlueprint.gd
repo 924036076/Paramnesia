@@ -16,6 +16,11 @@ func _ready():
 		node.initialize(pathfinding)
 
 func initialize():
+	
+	var cage = load("res://Structures/Cage/Cage.tscn").instance()
+	cage.creature = "cow"
+	get_node("GlobalYSort/World").add_child(cage)
+	
 	var used_points = []
 	#spawn in resources here
 	get_node("SpawnArea").queue_free()
