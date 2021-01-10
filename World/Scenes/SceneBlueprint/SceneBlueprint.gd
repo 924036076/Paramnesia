@@ -18,8 +18,13 @@ func _ready():
 func initialize():
 	
 	var cage = load("res://Structures/Cage/Cage.tscn").instance()
-	cage.creature = "cow"
+	cage.creature = "Cow"
 	get_node("GlobalYSort/World").add_child(cage)
+	
+	cage = load("res://Structures/Cage/Cage.tscn").instance()
+	cage.creature = "empty"
+	get_node("GlobalYSort/World").add_child(cage)
+	cage.global_position.x -= 50
 	
 	var used_points = []
 	#spawn in resources here
@@ -56,7 +61,7 @@ func spawn_mob(mob, xcoord, ycoord):
 	var spawn
 	match mob:
 		"deer":
-			spawn = load("res://Characters/Mobs/Deer/Deer.tscn").instance()
+			spawn = load("res://Characters/Mobs/Wild/Deer/Deer.tscn").instance()
 		"archer":
 			spawn = load("res://Characters/NPCs/Skeleton/Archer/SkeletonArcher.tscn").instance()
 		"swordsman":

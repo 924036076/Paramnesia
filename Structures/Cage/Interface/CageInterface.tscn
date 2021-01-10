@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://global_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Fonts/LandasansMedium-ALJ6m.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Structures/Cage/Interface/CageInterface.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="CageInterface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Panel" parent="."]
+margin_left = 152.0
+margin_top = 29.0
+margin_right = 335.0
+margin_bottom = 251.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Background"]
+margin_left = 70.0
+margin_top = 2.0
+margin_right = 114.0
+margin_bottom = 35.0
+text = "Cage"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReleaseButton" type="Button" parent="Background"]
+margin_left = 46.0
+margin_top = 134.0
+margin_right = 136.0
+margin_bottom = 171.0
+text = "Release"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PickupButton" type="Button" parent="Background"]
+margin_left = 46.0
+margin_top = 177.0
+margin_right = 137.0
+margin_bottom = 214.0
+text = "Pickup"
+
+[node name="Creature" type="TextureRect" parent="Background"]
+margin_left = 51.0
+margin_top = 44.0
+margin_right = 77.0
+margin_bottom = 62.0
+rect_scale = Vector2( 3, 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Background"]
+margin_left = 51.0
+margin_top = 103.0
+margin_right = 125.0
+margin_bottom = 126.0
+custom_fonts/font = SubResource( 1 )
+align = 1

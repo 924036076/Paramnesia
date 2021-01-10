@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cow.png-a8c5b4329ef3111fba234614fb9c82ce.stex"
+path="res://.import/Cow.png-1d7b44dc1150acd2e945d74f287e6f70.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Structures/Cage/cow.png"
-dest_files=[ "res://.import/cow.png-a8c5b4329ef3111fba234614fb9c82ce.stex" ]
+source_file="res://Structures/Cage/Creatures/Cow.png"
+dest_files=[ "res://.import/Cow.png-1d7b44dc1150acd2e945d74f287e6f70.stex" ]
 
 [params]
 
