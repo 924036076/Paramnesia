@@ -6,6 +6,10 @@ var creature: String
 var empty: bool = false
 var level: int = 1
 
+var collide = true
+
+signal collision_disabled
+
 func extra_init():
 	var path: String = "res://Structures/Cage/Creatures/" + creature + ".png"
 	
@@ -22,7 +26,22 @@ func object_interacted_with():
 	i.creature = creature
 	i.empty = empty
 	i.level = level
-	get_tree().get_current_scene().get_node("GUI").current_window = i
+	i.connect("free", self, "mob_freed")
+	get_tree().get_current_scene().set_gui_window(i)
+
+func _process(_delta):
+	collision = collide
+	emit_signal("collision_disabled")
+
+func mob_freed():
+	collide = false
+	yield(self, "collision_disabled")
+	var pos = global_position + Vector2(0, 4)
+	var mob = get_tree().get_current_scene().spawn_mob(creature.to_lower(), pos.x, pos.y)
+	mob.level = level
+	mob.initialize()
+	get_tree().get_current_scene().close_gui_window()
+	queue_free()
 
 func save():
 	var save_dict = {

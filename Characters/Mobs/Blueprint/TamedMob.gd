@@ -53,6 +53,9 @@ var flee: bool = false
 var flee_dir: Vector2 = Vector2.ZERO
 
 func _ready():
+	initialize()
+
+func initialize():
 	animation_tree.active = true
 	animation_state.start("Walk")
 	

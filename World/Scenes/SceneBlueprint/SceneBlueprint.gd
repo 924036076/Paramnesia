@@ -19,6 +19,7 @@ func initialize():
 	
 	var cage = load("res://Structures/Cage/Cage.tscn").instance()
 	cage.creature = "Cow"
+	cage.level = 5
 	get_node("GlobalYSort/World").add_child(cage)
 	
 	cage = load("res://Structures/Cage/Cage.tscn").instance()
@@ -26,7 +27,7 @@ func initialize():
 	get_node("GlobalYSort/World").add_child(cage)
 	cage.global_position.x -= 50
 	
-	var used_points = []
+	var _used_points = []
 	#spawn in resources here
 	get_node("SpawnArea").queue_free()
 
@@ -57,17 +58,28 @@ func load_from_save():
 func teleport(xcoord, ycoord):
 	get_node("GlobalYSort/Player").global_position = Vector2(xcoord, ycoord)
 
+func set_gui_window(i):
+	get_node("GUI").current_window = i
+
+func close_gui_window():
+	get_node("GUI").close_open_window()
+
 func spawn_mob(mob, xcoord, ycoord):
 	var spawn
 	match mob:
+		#tamed
+		"cow":
+			spawn = load("res://Characters/Mobs/Tamed/Cow/Cow.tscn").instance()
+		#wild
 		"deer":
 			spawn = load("res://Characters/Mobs/Wild/Deer/Deer.tscn").instance()
 		"archer":
 			spawn = load("res://Characters/NPCs/Skeleton/Archer/SkeletonArcher.tscn").instance()
 		"swordsman":
 			spawn = load("res://Characters/NPCs/Skeleton/Swordsman/SkeletonSwordsman.tscn").instance()
-	if (xcoord == -37 and ycoord == 37):
+	get_node("GlobalYSort/Mobs").add_child(spawn)
+	if (xcoord == -10000 and ycoord == 10000):
 		spawn.global_position = get_node("GlobalYSort/Player").global_position
 	else:
 		spawn.global_position = Vector2(xcoord, ycoord)
-	get_node("GlobalYSort/Mobs").add_child(spawn)
+	return spawn

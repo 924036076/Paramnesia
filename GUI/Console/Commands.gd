@@ -1,7 +1,7 @@
 extends Node
 
 const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]], ["debug_on", [0]], ["debug_off", [0]]]
-const spawnable_mobs = ["deer", "archer", "swordsman"]
+const spawnable_mobs = ["cow", "deer", "archer", "swordsman"]
 
 func teleport(x_coord, y_coord):
 	var x = str2var(x_coord)
@@ -11,7 +11,7 @@ func teleport(x_coord, y_coord):
 	get_tree().get_current_scene().teleport(x, y)
 	return str("~Teleporting to (" + str(x) + ", " + str(y) + ")~")
 
-func spawn(obj, x_coord = "-37", y_coord = "37"):
+func spawn(obj, x_coord = "-10000", y_coord = "10000"):
 	var mob = obj.to_lower()
 	x_coord = str2var(x_coord)
 	y_coord = str2var(y_coord)

@@ -872,9 +872,7 @@ position = Vector2( 0, -12 )
 shape = SubResource( 28 )
 
 [node name="Name" parent="." index="11"]
-margin_top = -32.0
 margin_right = 136.0
-margin_bottom = -23.0
 [connection signal="timeout" from="FocusTimer" to="." method="_on_FocusTimer_timeout"]
 
 [editable path="Hurtbox"]
