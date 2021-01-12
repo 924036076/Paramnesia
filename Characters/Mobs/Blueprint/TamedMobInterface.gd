@@ -19,7 +19,13 @@ enum {
 var mob = null
 
 func _ready():
-	get_node("Title").text = mob.get_name()
+	if mob.given_name == "":
+		get_node("Name").text = mob.SPECIES
+	else:
+		get_node("Name").text = mob.given_name
+	get_node("Species").text = mob.SPECIES + " - Lvl " + str(mob.level)
+	get_node("Sprite").texture = load(mob.idle_animation)
+	get_node("AnimationPlayer").play("Idle")
 	match mob.follow_mode:
 		FOLLOW:
 			get_node("FollowButton").text = "Follow"
@@ -31,7 +37,7 @@ func _ready():
 		PASSIVE:
 			get_node("StanceButton").text = "Passive"
 		FLEE:
-			get_node("StanceButton").text = "Passive Flee"
+			get_node("StanceButton").text = "Flee"
 		NEUTRAL:
 			get_node("StanceButton").text = "Neutral"
 		AGGRESSIVE:
@@ -60,7 +66,10 @@ func _on_ChangeNameButton_pressed():
 
 func _on_LineEdit_text_entered(new_text):
 	mob.given_name = new_text
-	get_node("Title").text = mob.get_name()
+	if mob.given_name == "":
+		get_node("Name").text = mob.SPECIES
+	else:
+		get_node("Name").text = mob.given_name
 	name_change.visible = false
 
 func _on_TamedMobInterface_gui_input(event):
@@ -69,7 +78,10 @@ func _on_TamedMobInterface_gui_input(event):
 
 func _on_DoneButton_pressed():
 	mob.given_name = name_input.text
-	get_node("Title").text = mob.get_name()
+	if mob.given_name == "":
+		get_node("Name").text = mob.SPECIES
+	else:
+		get_node("Name").text = mob.given_name
 	name_change.visible = false
 
 func _on_StanceButton_pressed():
@@ -80,7 +92,7 @@ func _on_StanceButton_pressed():
 		PASSIVE:
 			get_node("StanceButton").text = "Passive"
 		FLEE:
-			get_node("StanceButton").text = "Passive Flee"
+			get_node("StanceButton").text = "Flee"
 		NEUTRAL:
 			get_node("StanceButton").text = "Neutral"
 		AGGRESSIVE:

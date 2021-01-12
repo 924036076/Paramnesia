@@ -5,6 +5,7 @@ class_name TamedMob
 const floating_numbers = preload("res://Effects/DamageNumbers/EnemyNumbers.tscn")
 const interface = preload("res://Characters/Mobs/Blueprint/TamedMobInterface.tscn")
 
+export var idle_animation: String
 export var max_health: int = 100
 export var MAX_SPEED: int = 5
 export var ACCELERATION: int = 50

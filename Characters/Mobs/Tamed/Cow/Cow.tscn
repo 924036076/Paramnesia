@@ -806,6 +806,7 @@ height = 18.0
 height = 8.0
 
 [node name="Cow" instance=ExtResource( 1 )]
+idle_animation = "res://Characters/Mobs/Tamed/Cow/female_cow_idle.png"
 MAX_SPEED = 8
 FOCUS_TIME = 3.0
 SPECIES = "Cow"
