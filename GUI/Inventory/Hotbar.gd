@@ -1,7 +1,7 @@
-extends TextureRect
+extends Control
 
-const item_base = preload("res://Control/ItemBase.tscn")
-const item_base_plain = preload("res://Control/ItemBasePlain.tscn")
+const item_base = preload("res://GUI/ObjectInventory/InventoryItem.tscn")
+const item_background = preload("res://GUI/ObjectInventory/ItemBackground.tscn")
 
 func _ready():
 # warning-ignore:return_value_discarded
@@ -10,15 +10,22 @@ func _ready():
 
 func redraw():
 	Utility.delete_children(self)
+	var x = 0
+	var y = 0
 	for i in range(0, 8):
-		var item = PlayerData.inventory[i]
-		if item[0] != null:
-			var base = item_base.instance()
-			if ItemDictionary.get_item(item[0])["stack"] == 1:
-				base = item_base_plain.instance()
-			else:
-				base.value = item[1]
-			base.texture = load(ItemDictionary.get_item(item[0])["icon"])
-			base.rect_position = Vector2(25 * i + 6, 6)
-			add_child(base)
+		var panel = item_background.instance()
+		panel.rect_position = Vector2(x - 4, y - 4)
+		add_child(panel)
+		if i < PlayerData.inventory.size():
+			var slot = PlayerData.inventory[i]
+			var id = slot[0]
+			var num = slot[1]
+		
+			var item = item_base.instance()
+			item.get_node("TextureRect").texture = load(ItemDictionary.get_item(id)["icon"])
+			if num > 0:
+				item.get_node("Label").text = "x " + str(num)
+			item.rect_position = Vector2(x, y)
+			add_child(item)
+		x += 42
 

@@ -1,20 +1,18 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://GUI/Inventory/CraftController.gd" type="Script" id=1]
 [ext_resource path="res://Icons/wrench.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Inventory/GUI.gd" type="Script" id=3]
 [ext_resource path="res://GUI/Inventory/Crafting/texture_progress.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/8px_plain_type_writer.tres" type="DynamicFont" id=5]
-[ext_resource path="res://GUI/Inventory/hotbar.png" type="Texture" id=6]
+[ext_resource path="res://global_theme.tres" type="Theme" id=6]
 [ext_resource path="res://GUI/Inventory/selector.png" type="Texture" id=7]
 [ext_resource path="res://GUI/Inventory/Selector.gd" type="Script" id=8]
-[ext_resource path="res://Icons/hand.png" type="Texture" id=9]
-[ext_resource path="res://GUI/Inventory/Crafting/queue_boxes.png" type="Texture" id=10]
-[ext_resource path="res://GUI/Inventory/Hotbar.gd" type="Script" id=11]
 [ext_resource path="res://Fonts/type_writer.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GUI/Inventory/FloatingNumbers.gd" type="Script" id=13]
 [ext_resource path="res://GUI/Inventory/FloatingItemNumber.tscn" type="PackedScene" id=14]
 [ext_resource path="res://GUI/Inventory/missions_indicator_seen.png" type="Texture" id=15]
+[ext_resource path="res://GUI/Inventory/Hotbar.gd" type="Script" id=16]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -52,168 +50,30 @@ margin_bottom = 13.0
 margin_right = 500.0
 margin_bottom = 282.0
 mouse_filter = 2
+theme = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hotbar" type="TextureRect" parent="HotbarBounds"]
-modulate = Color( 1, 1, 1, 0.784314 )
-margin_left = 155.0
-margin_top = 243.0
-margin_right = 358.0
-margin_bottom = 271.0
-texture = ExtResource( 6 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HandsBox" type="TextureRect" parent="HotbarBounds"]
-modulate = Color( 1, 1, 1, 0.509804 )
-margin_left = 127.803
-margin_top = 243.0
-margin_right = 155.803
-margin_bottom = 271.0
-texture = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HandsIcon" type="TextureRect" parent="HotbarBounds"]
-modulate = Color( 1, 1, 1, 0.509804 )
-margin_left = 133.803
-margin_top = 249.0
-margin_right = 149.803
-margin_bottom = 265.0
-texture = ExtResource( 9 )
+[node name="Hotbar" type="Control" parent="HotbarBounds"]
+modulate = Color( 1, 1, 1, 0.705882 )
+margin_left = 85.0
+margin_top = 236.0
+margin_right = 419.0
+margin_bottom = 276.0
+script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Selector" type="TextureRect" parent="HotbarBounds"]
+visible = false
 margin_left = 157.0
 margin_top = 245.0
 margin_right = 181.0
 margin_bottom = 269.0
 texture = ExtResource( 7 )
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Numbers" type="Control" parent="HotbarBounds"]
-margin_left = 129.0
-margin_top = 269.0
-margin_right = 358.0
-margin_bottom = 280.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="1" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 11.0
-margin_top = 5.0
-margin_right = 17.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="2" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 39.0
-margin_top = 5.0
-margin_right = 45.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="3" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 64.0
-margin_top = 5.0
-margin_right = 70.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "3"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="4" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 88.0
-margin_top = 5.0
-margin_right = 94.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "4"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="5" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 113.0
-margin_top = 5.0
-margin_right = 119.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "5"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="6" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 138.0
-margin_top = 5.0
-margin_right = 144.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "6"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="7" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 163.0
-margin_top = 5.0
-margin_right = 169.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "7"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="8" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 188.0
-margin_top = 5.0
-margin_right = 194.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "8"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="9" type="Label" parent="HotbarBounds/Numbers"]
-margin_left = 214.0
-margin_top = 5.0
-margin_right = 220.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "9"
 __meta__ = {
 "_edit_use_anchors_": false
 }
