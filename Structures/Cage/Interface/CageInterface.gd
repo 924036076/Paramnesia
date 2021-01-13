@@ -15,3 +15,6 @@ func _ready():
 
 func _on_ReleaseButton_pressed():
 	emit_signal("free")
+
+func _on_ExitButton_pressed():
+	pass # Replace with function body.

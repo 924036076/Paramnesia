@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://global_theme.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/ObjectInventory/ObjectInventory.gd" type="Script" id=2]
+[ext_resource path="res://GUI/ObjectInventory/PlayerInventory.gd" type="Script" id=3]
+[ext_resource path="res://GUI/ObjectInventory/ObjectInventoryInterface.gd" type="Script" id=4]
+
+[node name="ObjectInventoryInterface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerInventory" type="Control" parent="."]
+margin_left = 35.0
+margin_top = 31.0
+margin_right = 299.0
+margin_bottom = 201.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ObjectInventory" type="Control" parent="."]
+margin_left = 315.0
+margin_top = 37.0
+margin_right = 475.0
+margin_bottom = 253.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

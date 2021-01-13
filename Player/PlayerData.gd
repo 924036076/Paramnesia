@@ -19,25 +19,59 @@ var inventory = []
 var holding = -1
 var level = 2
 
+var max_slots: int = 24
+
 func _ready():
-	inventory.resize(45)
-	for i in range(45):
-		inventory[i] = [null, null]
-	add_to_inventory(0, "stone_axe", 1)
-	add_to_inventory(0, "campfire", 3)
-	add_to_inventory(0, "target_dummy", 3)
-	add_to_inventory(0, "bow", 1)
-	add_to_inventory(0, "arrow", 10)
-	add_to_inventory(0, "lava_helmet", 1)
-	add_to_inventory(0, "lava_gloves", 1)
-	add_to_inventory(0, "lava_chest", 1)
-	add_to_inventory(0, "lava_legs", 1)
-	add_to_inventory(0, "lava_boots", 1)
-	add_to_inventory(0, "wood", 600)
-	add_to_inventory(0, "stone", 500)
-	add_to_inventory(0, "fiber", 500)
+	add_item(["wood", 500])
+	add_item(["stone", 200])
+	add_item(["stone_axe", 1])
 # warning-ignore:return_value_discarded
 	self.connect("inventory_updated", MissionController, "player_inventory_changed")
+
+func pop_item_at_slot(slot: int):
+	if slot > inventory.size() - 1:
+		return null
+	var item = inventory[slot]
+	inventory.remove(slot)
+	emit_signal("inventory_updated")
+	return item
+
+func insert_at_slot(slot: int, item: Array):
+	if inventory.size() < max_slots:
+		inventory.insert(slot, [item[0], item[1]])
+	else:
+		#drop items
+		pass
+
+func add_item(item: Array):
+	var id = item[0]
+	var num = item[1]
+	var stack = ItemDictionary.get_item(id)["stack"]
+	
+	for i in range(max_slots):
+		if i >= inventory.size():
+			if num > stack:
+				num -= stack
+				inventory.append([id, stack])
+			else:
+				inventory.append([id, num])
+				num = 0
+				break
+		if inventory[i][0] == id:
+			if inventory[i][1] + num > stack:
+				num -= stack - inventory[i][1]
+				inventory[i][1] = stack
+			else:
+				inventory[i][1] = inventory[i][1] + num
+				num = 0
+				break
+	
+	if num > 0:
+		return [id, num]
+	else:
+		return null
+
+#old functions from before rework
 
 func get_all_items():
 	var item_list = []

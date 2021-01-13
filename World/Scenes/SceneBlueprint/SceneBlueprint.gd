@@ -8,6 +8,8 @@ onready var tilemap = get_node("TileMap")
 export(String, FILE) var save_path
 export var key: String
 
+var item_spawn_distance: int = 64
+
 func _ready():
 	pathfinding.create_navigation_map(tilemap)
 	add_other_tilemaps()
@@ -16,36 +18,42 @@ func _ready():
 		node.initialize(pathfinding)
 
 func initialize():
-	
-	var cage = load("res://Structures/Cage/Cage.tscn").instance()
-	cage.creature = "Cow"
-	cage.level = 5
-	get_node("GlobalYSort/World").add_child(cage)
-	
-	cage = load("res://Structures/Cage/Cage.tscn").instance()
-	cage.creature = "empty"
-	get_node("GlobalYSort/World").add_child(cage)
-	cage.global_position.x -= 50
-	
-	var _used_points = []
-	#spawn in resources here
+	var used_points = []
+	var creatures = ["Cow", "Pig", "Goat", "Chicken", "Sheep", "Rabbit"]
+	for creature in creatures:
+		for _i in range(Global.starting_items[creature.to_lower()]):
+			var cage = load("res://Structures/Cage/Cage.tscn").instance()
+			cage.creature = creature
+			cage.level = 1
+			cage.global_position = get_point_in_spawn_area(used_points)
+			get_node("GlobalYSort/World").add_child(cage)
 	get_node("SpawnArea").queue_free()
 
 func get_point_in_spawn_area(used_points):
 	var starting_pos = get_node("SpawnArea").rect_global_position
 	var bounds = get_node("SpawnArea").rect_size
 	
-	var x: int = randi() % int(bounds.x / 32) + 1
-	x = x * 32 + starting_pos.x
-	var y: int = randi() % int(bounds.y / 32) + 1
-	y = y * 32 + starting_pos.y
+	var x: int = randi() % int(bounds.x / item_spawn_distance) + 1
+	x = x * item_spawn_distance + starting_pos.x
+	var y: int = randi() % int(bounds.y / item_spawn_distance) + 1
+	y = y * item_spawn_distance + starting_pos.y
 	
+	var tries: int = 0
 	while(Vector2(x, y) in used_points):
-		x = randi() % int(bounds.x / 32) + 1
-		x = y * 32 + starting_pos.x
-		y = randi() % int(bounds.y / 32) + 1
-		y = y * 32 + starting_pos.y
-	
+		x = randi() % int(bounds.x / item_spawn_distance) + 1
+		x = y * item_spawn_distance + starting_pos.x
+		y = randi() % int(bounds.y / item_spawn_distance) + 1
+		y = y * item_spawn_distance + starting_pos.y
+		
+# warning-ignore:narrowing_conversion
+		x = clamp(x, starting_pos.x, starting_pos.x + bounds.x)
+# warning-ignore:narrowing_conversion
+		y = clamp(y, starting_pos.y, starting_pos.y + bounds.y)
+		
+		tries += 1
+		if tries > 100:
+			print("ERROR: Not enough spawn space")
+			break
 	used_points.append(Vector2(x, y))
 	return Vector2(x, y)
 
