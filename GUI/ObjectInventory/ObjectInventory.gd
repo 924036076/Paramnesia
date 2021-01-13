@@ -10,18 +10,18 @@ var buffer: int = 10
 
 func redraw():
 	Utility.delete_children(self)
-	var x = -4
-	var y = -4
+	var x = 0
+	var y = 0
 	for _i in range(max_slots):
 		var panel = item_background.instance()
 		panel.rect_position = Vector2(x, y)
 		add_child(panel)
 		x += item_size + buffer
 		if x + item_size + buffer > rect_size.x:
-			x = -4
+			x = 0
 			y += item_size + buffer
-	x = 0
-	y = 0
+	x = 4
+	y = 4
 	for slot in inventory:
 		if slot[0] != null:
 			var id = slot[0]
@@ -33,8 +33,8 @@ func redraw():
 			item.rect_position = Vector2(x, y)
 			add_child(item)
 			x += item_size + buffer
-			if x + item_size + buffer > rect_size.x:
-				x = 0
+			if x + item_size + buffer - 4 > rect_size.x:
+				x = 4
 				y += item_size + buffer
 
 func pop_item_at_pos(cursor_pos: Vector2):

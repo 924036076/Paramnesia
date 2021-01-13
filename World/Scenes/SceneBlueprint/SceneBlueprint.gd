@@ -27,6 +27,8 @@ func initialize():
 			cage.level = 1
 			cage.global_position = get_point_in_spawn_area(used_points)
 			get_node("GlobalYSort/World").add_child(cage)
+	var sack = load("res://Structures/ItemSack/ItemSack.tscn").instance()
+	get_node("GlobalYSort/World").add_child(sack)
 	get_node("SpawnArea").queue_free()
 
 func get_point_in_spawn_area(used_points):

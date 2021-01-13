@@ -28,6 +28,7 @@ position = Vector2( 661.228, 40.7871 )
 position = Vector2( -255, 19 )
 
 [node name="SpawnArea" type="ColorRect" parent="." index="6"]
+visible = false
 margin_left = -214.0
 margin_top = -97.0
 margin_right = 42.0

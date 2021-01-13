@@ -36,6 +36,12 @@ func pop_item_at_slot(slot: int):
 	emit_signal("inventory_updated")
 	return item
 
+func get_item_at_slot(slot: int):
+	if slot > inventory.size() - 1:
+		return null
+	var item = inventory[slot]
+	return item
+
 func insert_at_slot(slot: int, item: Array):
 	if inventory.size() < max_slots:
 		inventory.insert(slot, [item[0], item[1]])
@@ -70,6 +76,36 @@ func add_item(item: Array):
 		return [id, num]
 	else:
 		return null
+
+func set_primary(slot: int):
+	if slot > inventory.size() - 1:
+		return
+	if slot != 0:
+		var temp_item = inventory[0]
+		inventory[0] = inventory[slot]
+		inventory[slot] = temp_item
+	emit_signal("inventory_updated")
+
+func set_secondary(slot: int):
+	if slot > inventory.size() - 1:
+		return
+	if slot != 1:
+		var temp_item = inventory[1]
+		inventory[1] = inventory[slot]
+		inventory[slot] = temp_item
+	emit_signal("inventory_updated")
+
+func set_slot(slot: int, item: Array):
+	if slot > inventory.size() - 1:
+		return
+	inventory[slot] = item
+	emit_signal("inventory_updated")
+
+func add_without_stacking(item: Array):
+	if inventory.size() >= max_slots:
+		return item
+	inventory.append(item)
+	return null
 
 #old functions from before rework
 
