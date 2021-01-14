@@ -87,6 +87,8 @@ func _unhandled_input(event):
 					state = MOVE
 			else:
 				state = ATTACK
+	elif Input.is_action_just_pressed("control"):
+		PlayerData.holding = 1 - PlayerData.holding
 
 func place_state():
 	animationState.travel("Idle")

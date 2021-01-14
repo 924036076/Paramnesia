@@ -5,14 +5,14 @@
 [ext_resource path="res://GUI/Inventory/GUI.gd" type="Script" id=3]
 [ext_resource path="res://GUI/Inventory/Crafting/texture_progress.png" type="Texture" id=4]
 [ext_resource path="res://Fonts/8px_plain_type_writer.tres" type="DynamicFont" id=5]
-[ext_resource path="res://global_theme.tres" type="Theme" id=6]
-[ext_resource path="res://GUI/Inventory/selector.png" type="Texture" id=7]
-[ext_resource path="res://GUI/Inventory/Selector.gd" type="Script" id=8]
+[ext_resource path="res://Fonts/18pt OUTLINE Landasa.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Fonts/14pt OUTLINE Landasa.tres" type="DynamicFont" id=7]
+[ext_resource path="res://GUI/ObjectInventory/ItemBackground.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GUI/Inventory/ItemsOverlay.gd" type="Script" id=10]
 [ext_resource path="res://Fonts/type_writer.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GUI/Inventory/FloatingNumbers.gd" type="Script" id=13]
 [ext_resource path="res://GUI/Inventory/FloatingItemNumber.tscn" type="PackedScene" id=14]
 [ext_resource path="res://GUI/Inventory/missions_indicator_seen.png" type="Texture" id=15]
-[ext_resource path="res://GUI/Inventory/Hotbar.gd" type="Script" id=16]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -45,38 +45,6 @@ margin_top = 5.0
 margin_bottom = 13.0
 
 [node name="FloatingItemNumber3" parent="FloatingNumbers" instance=ExtResource( 14 )]
-
-[node name="HotbarBounds" type="Control" parent="."]
-margin_right = 500.0
-margin_bottom = 282.0
-mouse_filter = 2
-theme = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Hotbar" type="Control" parent="HotbarBounds"]
-modulate = Color( 1, 1, 1, 0.705882 )
-margin_left = 85.0
-margin_top = 236.0
-margin_right = 419.0
-margin_bottom = 276.0
-script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Selector" type="TextureRect" parent="HotbarBounds"]
-visible = false
-margin_left = 157.0
-margin_top = 245.0
-margin_right = 181.0
-margin_bottom = 269.0
-texture = ExtResource( 7 )
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CraftController" type="Control" parent="."]
 visible = false
@@ -145,6 +113,70 @@ margin_top = 44.4877
 margin_right = 499.749
 margin_bottom = 64.4877
 texture_normal = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemsOverlay" type="Control" parent="."]
+margin_top = 188.0
+margin_right = 64.0
+margin_bottom = 282.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedItem" parent="ItemsOverlay" instance=ExtResource( 9 )]
+self_modulate = Color( 0.737255, 0.635294, 0.858824, 1 )
+margin_left = 11.0
+margin_top = 9.0
+margin_right = 51.0
+margin_bottom = 49.0
+
+[node name="TextureRect" type="TextureRect" parent="ItemsOverlay/SelectedItem"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ItemsOverlay/SelectedItem"]
+margin_left = 8.0
+margin_top = 21.0
+margin_right = 35.0
+margin_bottom = 40.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 6 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackItem" parent="ItemsOverlay" instance=ExtResource( 9 )]
+self_modulate = Color( 0.529412, 0.611765, 0.890196, 1 )
+margin_left = 12.0
+margin_top = 52.0
+margin_right = 44.0
+margin_bottom = 84.0
+
+[node name="TextureRect" type="TextureRect" parent="ItemsOverlay/BackItem"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
+
+[node name="Label" type="Label" parent="ItemsOverlay/BackItem"]
+margin_left = 7.0
+margin_top = 16.0
+margin_right = 27.0
+margin_bottom = 33.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 7 )
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

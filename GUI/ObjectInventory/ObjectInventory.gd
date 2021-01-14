@@ -44,6 +44,7 @@ func pop_item_at_pos(cursor_pos: Vector2):
 		return null
 	var item = inventory[slot]
 	inventory.remove(slot)
+	get_parent().object_inventory_updated()
 	return item
 
 func add_item(item: Array):
@@ -69,6 +70,7 @@ func add_item(item: Array):
 				num = 0
 				break
 	
+	get_parent().object_inventory_updated()
 	if num > 0:
 		return [id, num]
 	else:
@@ -85,3 +87,4 @@ func insert_at_slot(slot: int, item: Array):
 	else:
 		#drop items
 		pass
+	get_parent().object_inventory_updated()

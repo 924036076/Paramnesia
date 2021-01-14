@@ -5,9 +5,7 @@ const missions_open = preload("res://GUI/Missions/Missions.tscn")
 
 onready var controller = get_node("CraftController")
 onready var queue = get_node("CraftController/Queue")
-onready var hotbar = get_node("HotbarBounds")
 onready var debug_overlay = get_node("DebugText")
-onready var actual_hotbar = get_node("HotbarBounds/Hotbar")
 onready var missions_button = get_node("MissionsButton")
 
 var is_inventory_open: bool = false
@@ -35,11 +33,11 @@ func _unhandled_key_input(_event):
 			close_open_window()
 
 func hide_visible():
-	get_node("HotbarBounds").visible = false
+	#get_node("HotbarBounds").visible = false
 	missions_button.visible = false
 
 func show_visible():
-	get_node("HotbarBounds").visible = true
+	#get_node("HotbarBounds").visible = true
 	missions_button.visible = true
 
 func return_controller():
@@ -53,7 +51,6 @@ func close_open_window():
 		current_window = null
 		if is_inventory_open:
 			is_inventory_open = false
-		actual_hotbar.redraw()
 		show_visible()
 		get_parent().get_node("GlobalYSort/Player").lock_movement = false
 		return false

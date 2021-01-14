@@ -16,21 +16,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerInventory" type="Control" parent="."]
-margin_left = 35.0
-margin_top = 31.0
-margin_right = 287.0
-margin_bottom = 201.0
+[node name="InventoryHeader" type="Label" parent="."]
+margin_left = 116.0
+margin_top = 29.0
+margin_right = 201.0
+margin_bottom = 62.0
+text = "Inventory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="Panel" parent="."]
+margin_left = 37.0
+margin_top = 62.0
+margin_right = 297.0
+margin_bottom = 238.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerInventory" type="Control" parent="Player"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 257.0
+margin_bottom = 175.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ObjectInventory" type="Control" parent="."]
-margin_left = 315.0
-margin_top = 37.0
-margin_right = 441.0
-margin_bottom = 253.0
+margin_left = 344.0
+margin_top = 36.0
+margin_right = 470.0
+margin_bottom = 252.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

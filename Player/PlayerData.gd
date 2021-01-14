@@ -16,12 +16,13 @@ signal inventory_updated
 signal new_item_added
 
 var inventory = []
-var holding = -1
+var holding = 0 setget set_holding
 var level = 2
 
 var max_slots: int = 24
 
 func _ready():
+	add_item(["stone_axe", 1])
 	add_item(["wood", 500])
 	add_item(["stone", 200])
 	add_item(["stone_axe", 1])
@@ -48,6 +49,10 @@ func insert_at_slot(slot: int, item: Array):
 	else:
 		#drop items
 		pass
+
+func set_holding(value):
+	holding = value
+	emit_signal("inventory_updated")
 
 func add_item(item: Array):
 	var id = item[0]
@@ -106,6 +111,12 @@ func add_without_stacking(item: Array):
 		return item
 	inventory.append(item)
 	return null
+
+func get_item_held():
+	if holding > inventory.size() - 1:
+		return null
+	else:
+		return inventory[holding]
 
 #old functions from before rework
 
@@ -233,12 +244,6 @@ func get_num_held(item_id):
 		if slot[0] == item_id:
 			count = count + slot[1]
 	return count
-
-func get_item_held():
-	if (holding == -1):
-		return "hands"
-	else:
-		return inventory[holding][0]
 
 func max_craftable(item_recipe):
 	var num = 0

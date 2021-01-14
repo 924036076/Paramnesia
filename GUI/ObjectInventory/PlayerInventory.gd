@@ -17,7 +17,7 @@ func redraw():
 			panel.modulate = Color("#bca2db")
 		elif i == 1:
 			panel.modulate = Color("#879ce3")
-		if i == get_parent().selected_slot:
+		if i == get_parent().get_parent().selected_slot:
 			panel.modulate = Color("#ebeaa4")
 		add_child(panel)
 		x += item_size + buffer
@@ -56,6 +56,7 @@ func slot_center_location(slot: int):
 		if x + item_size + buffer - 4 > rect_size.x:
 			x = 4
 			y += item_size + buffer
+# warning-ignore:integer_division
 	return Vector2(x + item_size / 2, y + item_size / 2)
 
 func get_slot_at_pos(cursor_pos: Vector2):

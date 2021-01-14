@@ -1,18 +1,24 @@
+class_name ObjectInventory
+
 extends Control
 
-onready var player = get_node("PlayerInventory")
+onready var player = get_node("Player/PlayerInventory")
 onready var object = get_node("ObjectInventory")
 onready var dropdown = get_node("DropDownMenu")
 onready var line_edit = get_node("DropDownMenu/LineEdit")
 
-export var num_object_slots: int = 5
+export var inventory: Array = []
+export var can_deposit: bool = true
+export var max_slots: int = 5
 
-var object_inventory = [["apple", 5], ["stone", 90], ["wood", 100]]
 var item_held = null
 var selected_slot: int = -1
 
+signal inventory_changed
+
 func _ready():
-	object.inventory = object_inventory
+	object.max_slots = max_slots
+	object.inventory = inventory
 # warning-ignore:return_value_discarded
 	PlayerData.connect("inventory_updated", self, "redraw")
 	redraw()
@@ -25,7 +31,7 @@ func _input(_event):
 				return
 			else:
 				close_dropdown()
-		if player.get_global_rect().has_point(cursor_pos):
+		if player.get_global_rect().has_point(cursor_pos) and can_deposit:
 			var slot = player.get_slot_at_pos(cursor_pos)
 			var item = player.pop_item_at_pos(cursor_pos)
 			if item != null:
@@ -115,3 +121,6 @@ func _on_LineEdit_text_entered(new_text):
 	close_dropdown()
 		
 	close_dropdown()
+
+func object_inventory_updated():
+	emit_signal("inventory_changed")
