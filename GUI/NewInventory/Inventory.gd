@@ -1,24 +1,13 @@
-class_name ObjectInventory
+extends Panel
 
-extends Control
-
-onready var player = get_node("Player/PlayerInventory")
-onready var object = get_node("ObjectInventory")
-onready var dropdown = get_node("DropDownMenu")
-onready var line_edit = get_node("DropDownMenu/LineEdit")
-
-export var inventory: Array = []
-export var can_deposit: bool = true
-export var max_slots: int = 5
+onready var player = get_node("PlayerInventory")
+onready var dropdown = get_node("../DropDownMenu")
+onready var line_edit = get_node("../DropDownMenu/LineEdit")
 
 var item_held = null
 var selected_slot: int = -1
 
-signal inventory_changed
-
 func _ready():
-	object.max_slots = max_slots
-	object.inventory = inventory
 # warning-ignore:return_value_discarded
 	PlayerData.connect("inventory_updated", self, "redraw")
 	redraw()
@@ -31,20 +20,11 @@ func _input(_event):
 				return
 			else:
 				close_dropdown()
-		if player.get_global_rect().has_point(cursor_pos) and can_deposit:
+		if player.get_global_rect().has_point(cursor_pos):
 			var slot = player.get_slot_at_pos(cursor_pos)
 			var item = PlayerData.pop_item_at_slot(slot)
 			if item != null:
-				var remainder = object.add_item(item)
-				if remainder != null:
-					PlayerData.insert_at_slot(slot, remainder)
-		elif object.get_global_rect().has_point(cursor_pos):
-			var slot = object.get_slot_at_pos(cursor_pos)
-			var item = object.pop_item_at_pos(cursor_pos)
-			if item != null:
-				var remainder = PlayerData.add_item(item)
-				if remainder != null:
-					object.insert_at_slot(slot, remainder)
+				PlayerData.insert_at_slot(0, item)
 		redraw()
 	if Input.is_action_just_pressed("inventory_alt"):
 		var cursor_pos = get_global_mouse_position()
@@ -61,7 +41,6 @@ func _input(_event):
 
 func redraw():
 	player.redraw()
-	object.redraw()
 
 func close_dropdown():
 	line_edit.visible = false
@@ -119,6 +98,3 @@ func _on_LineEdit_text_entered(new_text):
 			if remainder != null:
 				PlayerData.add_item(remainder)
 	close_dropdown()
-
-func object_inventory_updated():
-	emit_signal("inventory_changed")

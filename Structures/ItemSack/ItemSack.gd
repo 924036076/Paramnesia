@@ -2,7 +2,7 @@ extends Structure
 
 const interface = preload("res://Structures/ItemSack/Interface/ItemSackInterface.tscn")
 
-var inventory: Array = [["stone_axe", 1]]
+var inventory: Array = []
 
 func object_interacted_with():
 	var i = interface.instance()

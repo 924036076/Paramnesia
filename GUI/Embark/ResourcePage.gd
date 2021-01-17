@@ -65,6 +65,6 @@ func save_points():
 	Global.starting_items["wood"] = wood.current_amount
 	Global.starting_items["stone"] = stone.current_amount
 	Global.starting_items["fiber"] = fiber.current_amount
-	Global.starting_items["ingot"] = ingots.current_amount
+	Global.starting_items["metal"] = ingots.current_amount
 	Global.starting_items["obsidian"] = obsidian.current_amount
 	Global.starting_items["coin"] = coins.current_amount

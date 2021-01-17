@@ -1,0 +1,332 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://GUI/NewInventory/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://GUI/NewInventory/InventoryTabs.tres" type="Theme" id=2]
+[ext_resource path="res://GUI/ObjectInventory/PlayerInventory.gd" type="Script" id=3]
+[ext_resource path="res://GUI/ObjectInventory/dropdown_menu.tres" type="Theme" id=4]
+[ext_resource path="res://global_theme.tres" type="Theme" id=5]
+[ext_resource path="res://Fonts/24pt Landasan.tres" type="DynamicFont" id=6]
+[ext_resource path="res://GUI/NewInventory/InventoryController.gd" type="Script" id=7]
+[ext_resource path="res://GUI/NewInventory/Crafting.gd" type="Script" id=8]
+[ext_resource path="res://GUI/NewInventory/Recipes.gd" type="Script" id=9]
+[ext_resource path="res://GUI/NewInventory/InfoPanel.gd" type="Script" id=10]
+[ext_resource path="res://Fonts/16pt Landasa.tres" type="DynamicFont" id=11]
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_top = 3.0
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.00392157, 0.0862745, 0.152941, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0, 0, 0, 0 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_top = 3.0
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.00392157, 0.0862745, 0.152941, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0, 0, 0, 0 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_top = 3.0
+bg_color = Color( 0.00392157, 0.0862745, 0.152941, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.6, 0.6, 0.6, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0, 0, 0, 0 )
+anti_aliasing = false
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 6 )
+Button/colors/font_color = Color( 0.00392157, 0.0862745, 0.152941, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.168627, 0.196078, 0.215686, 1 )
+Button/colors/font_color_pressed = Color( 0.6, 0.6, 0.6, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )
+
+[node name="Inventory" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 35.0
+margin_top = 76.0
+margin_right = -205.0
+margin_bottom = -30.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerInventory" type="Control" parent="Inventory"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 257.0
+margin_bottom = 175.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Crafting" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 35.0
+margin_top = 76.0
+margin_right = -205.0
+margin_bottom = -30.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoPanel" type="Panel" parent="Crafting"]
+margin_left = 290.0
+margin_right = 434.0
+margin_bottom = 176.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedItem" type="Control" parent="Crafting/InfoPanel"]
+margin_right = 144.0
+margin_bottom = 176.0
+
+[node name="Options" type="Control" parent="Crafting/InfoPanel"]
+margin_right = 144.0
+margin_bottom = 176.0
+theme = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Filter" type="Label" parent="Crafting/InfoPanel/Options"]
+margin_left = 56.0
+margin_top = 3.0
+margin_right = 90.0
+margin_bottom = 28.0
+text = "Filter"
+
+[node name="Sort" type="Label" parent="Crafting/InfoPanel/Options"]
+margin_left = 60.0
+margin_top = 100.0
+margin_right = 87.0
+margin_bottom = 125.0
+text = "Sort"
+
+[node name="CraftableButton" type="Button" parent="Crafting/InfoPanel/Options"]
+margin_left = 41.0
+margin_top = 36.0
+margin_right = 100.0
+margin_bottom = 58.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 11 )
+toggle_mode = true
+text = "Craftable"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponButton" type="Button" parent="Crafting/InfoPanel/Options"]
+margin_left = 42.0
+margin_top = 62.0
+margin_right = 99.0
+margin_bottom = 84.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 11 )
+toggle_mode = true
+text = "Weapon"
+
+[node name="LevelButton" type="Button" parent="Crafting/InfoPanel/Options"]
+margin_left = 37.0
+margin_top = 127.0
+margin_right = 106.0
+margin_bottom = 148.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 11 )
+toggle_mode = true
+text = "Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Crafting/InfoPanel/Options"]
+margin_left = 37.0
+margin_top = 149.0
+margin_right = 106.0
+margin_bottom = 170.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 11 )
+toggle_mode = true
+text = "Alphabetical"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Crafting"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 257.0
+margin_bottom = 175.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Recipes" type="Control" parent="Crafting/ScrollContainer"]
+margin_right = 252.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 252, 170 )
+script = ExtResource( 9 )
+
+[node name="ClickBounds" type="Control" parent="Crafting"]
+visible = false
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 257.0
+margin_bottom = 173.0
+
+[node name="DropDownMenu" type="Control" parent="."]
+visible = false
+margin_right = 82.0
+margin_bottom = 89.0
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="DropDownMenu"]
+margin_right = 82.0
+margin_bottom = 89.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PrimaryButton" type="Button" parent="DropDownMenu"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 80.0
+margin_bottom = 19.0
+theme = ExtResource( 4 )
+text = "Make Primary"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondaryButton" type="Button" parent="DropDownMenu"]
+margin_left = 2.0
+margin_top = 19.0
+margin_right = 80.0
+margin_bottom = 36.0
+text = "Make Secondary"
+
+[node name="HalfButton" type="Button" parent="DropDownMenu"]
+margin_left = 2.0
+margin_top = 36.0
+margin_right = 80.0
+margin_bottom = 53.0
+text = "Split Half"
+
+[node name="OneButton" type="Button" parent="DropDownMenu"]
+margin_left = 2.0
+margin_top = 53.0
+margin_right = 80.0
+margin_bottom = 70.0
+text = "Split One"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountButton" type="Button" parent="DropDownMenu"]
+margin_left = 2.0
+margin_top = 70.0
+margin_right = 80.0
+margin_bottom = 87.0
+text = "Split Amount"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="DropDownMenu"]
+visible = false
+margin_left = 80.0
+margin_top = 64.0
+margin_right = 111.0
+margin_bottom = 89.0
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DropDownMenu/LineEdit"]
+margin_left = -8.0
+margin_top = 1.0
+margin_right = 1.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">"
+
+[node name="InventoryButton" type="Button" parent="."]
+margin_left = 42.0
+margin_top = 41.0
+margin_right = 137.0
+margin_bottom = 78.0
+focus_mode = 0
+theme = ExtResource( 2 )
+disabled = true
+text = "Inventory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CraftingButton" type="Button" parent="."]
+margin_left = 135.0
+margin_top = 41.0
+margin_right = 217.0
+margin_bottom = 78.0
+focus_mode = 0
+theme = ExtResource( 2 )
+text = "Crafting"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="DropDownMenu/PrimaryButton" to="Inventory" method="_on_PrimaryButton_pressed"]
+[connection signal="pressed" from="DropDownMenu/SecondaryButton" to="Inventory" method="_on_SecondaryButton_pressed"]
+[connection signal="pressed" from="DropDownMenu/HalfButton" to="Inventory" method="_on_HalfButton_pressed"]
+[connection signal="pressed" from="DropDownMenu/OneButton" to="Inventory" method="_on_OneButton_pressed"]
+[connection signal="pressed" from="DropDownMenu/AmountButton" to="Inventory" method="_on_AmountButton_pressed"]
+[connection signal="text_entered" from="DropDownMenu/LineEdit" to="Inventory" method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="InventoryButton" to="." method="_on_InventoryButton_pressed"]
+[connection signal="pressed" from="CraftingButton" to="." method="_on_CraftingButton_pressed"]

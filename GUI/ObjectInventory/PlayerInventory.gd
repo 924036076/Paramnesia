@@ -17,7 +17,7 @@ func redraw():
 			panel.modulate = Color("#bca2db")
 		elif i == 1:
 			panel.modulate = Color("#879ce3")
-		if i == get_parent().get_parent().selected_slot:
+		if i == get_parent().selected_slot:
 			panel.modulate = Color("#ebeaa4")
 		add_child(panel)
 		x += item_size + buffer
@@ -40,13 +40,6 @@ func redraw():
 		if x + item_size + buffer - 4 > rect_size.x:
 			x = 4
 			y += item_size + buffer
-
-func pop_item_at_pos(cursor_pos: Vector2):
-	var slot = get_slot_at_pos(cursor_pos)
-	return PlayerData.pop_item_at_slot(slot)
-
-func get_item_at_slot(slot: int):
-	return PlayerData.get_item_at_slot(slot)
 
 func slot_center_location(slot: int):
 	var x = 4

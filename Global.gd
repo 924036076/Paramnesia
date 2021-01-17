@@ -27,7 +27,7 @@ var starting_items = {
 	"wood": 0,
 	"stone": 0,
 	"fiber": 0,
-	"ingot": 0,
+	"metal": 0,
 	"obsidian": 0,
 	"coin": 0,
 	"construction": 0,

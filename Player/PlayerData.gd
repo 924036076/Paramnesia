@@ -18,7 +18,7 @@ signal new_item_added
 var inventory = []
 var holding = 0 setget set_holding
 var level = 2
-
+var coins: int = 0
 var max_slots: int = 24
 
 func _ready():
@@ -28,6 +28,12 @@ func _ready():
 	add_item(["stone_axe", 1])
 # warning-ignore:return_value_discarded
 	self.connect("inventory_updated", MissionController, "player_inventory_changed")
+
+func initialize():
+	coins = 0
+	holding = 0
+	level = 1
+	inventory = []
 
 func pop_item_at_slot(slot: int):
 	if slot > inventory.size() - 1:
