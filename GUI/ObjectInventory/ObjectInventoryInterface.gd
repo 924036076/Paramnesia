@@ -12,6 +12,8 @@ export var can_deposit: bool = true
 export var max_slots: int = 5
 
 var item_held = null
+var hovering = null
+var object_hovering = null
 var selected_slot: int = -1
 
 signal inventory_changed
@@ -24,8 +26,19 @@ func _ready():
 	redraw()
 
 func _input(_event):
+	var cursor_pos = get_global_mouse_position()
+	if player.get_global_rect().has_point(cursor_pos):
+		hovering = player.get_slot_at_pos(cursor_pos)
+	elif not (dropdown.get_global_rect().has_point(cursor_pos) or line_edit.get_global_rect().has_point(cursor_pos)):
+		hovering = null
+	if object.get_global_rect().has_point(cursor_pos):
+		object_hovering = object.get_slot_at_pos(cursor_pos)
+	else:
+		object_hovering = null
+	if selected_slot != -1:
+		hovering = null
+
 	if Input.is_action_just_pressed("inventory_main"):
-		var cursor_pos = get_global_mouse_position()
 		if dropdown.visible:
 			if dropdown.get_global_rect().has_point(cursor_pos) or line_edit.get_global_rect().has_point(cursor_pos):
 				return
@@ -45,9 +58,7 @@ func _input(_event):
 				var remainder = PlayerData.add_item(item)
 				if remainder != null:
 					object.insert_at_slot(slot, remainder)
-		redraw()
 	if Input.is_action_just_pressed("inventory_alt"):
-		var cursor_pos = get_global_mouse_position()
 		if dropdown.visible and not (dropdown.get_global_rect().has_point(cursor_pos) or line_edit.get_global_rect().has_point(cursor_pos)):
 			close_dropdown()
 		if player.get_global_rect().has_point(cursor_pos):
@@ -56,8 +67,10 @@ func _input(_event):
 			if item != null:
 				selected_slot = slot
 				dropdown.rect_global_position = Vector2(0, 10) + player.slot_center_location(slot) + player.rect_global_position
+				if slot > 11:
+					dropdown.rect_global_position.y -= dropdown.rect_size.y + 10
 				dropdown.visible = true
-		redraw()
+	redraw()
 
 func redraw():
 	player.redraw()

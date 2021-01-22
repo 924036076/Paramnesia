@@ -17,7 +17,7 @@ func redraw():
 			panel.modulate = Color("#bca2db")
 		elif i == 1:
 			panel.modulate = Color("#879ce3")
-		if i == get_parent().hovering or i == get_parent().selected_slot:
+		if i == get_parent().get_parent().hovering or i == get_parent().get_parent().selected_slot:
 			panel.modulate = Color("#ebeaa4")
 		add_child(panel)
 		

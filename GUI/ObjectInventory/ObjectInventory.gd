@@ -12,9 +12,11 @@ func redraw():
 	Utility.delete_children(self)
 	var x = 0
 	var y = 0
-	for _i in range(max_slots):
+	for i in range(max_slots):
 		var panel = item_background.instance()
 		panel.rect_position = Vector2(x, y)
+		if i == get_parent().object_hovering:
+			panel.modulate = Color("#ebeaa4")
 		add_child(panel)
 		x += item_size + buffer
 		if x + item_size + buffer > rect_size.x:
@@ -79,6 +81,8 @@ func add_item(item: Array):
 func get_slot_at_pos(cursor_pos: Vector2):
 	cursor_pos -= rect_global_position
 	var slot = int(cursor_pos.x / (item_size + buffer)) + int(cursor_pos.y / (item_size + buffer)) * int(rect_size.x / (item_size + buffer))
+	if slot > max_slots - 1:
+		return null
 	return slot
 
 func insert_at_slot(slot: int, item: Array):
