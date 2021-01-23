@@ -69,10 +69,10 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed("attack"):
-			if PlayerData.get_item_held() == "bow":
-				if PlayerData.get_num_held("arrow") > 0:
+			if PlayerData.get_item_held()[0] == "bow":
+				if PlayerData.get_num_held("arrow")[0] > 0:
 					create_arrow()
-			elif ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "structure":
+			elif ItemDictionary.get_item(PlayerData.get_item_held()[0])["type"] == "structure":
 				if structure == null:
 					create_structure(PlayerData.get_item_held())
 					state = PLACE
@@ -123,9 +123,9 @@ func move_state(delta):
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO
-	if PlayerData.get_item_held() == "stone_axe":
+	if PlayerData.get_item_held()[0] == "stone_axe":
 		animationState.travel("Axe")
-	elif PlayerData.get_item_held() == null or ItemDictionary.get_item(PlayerData.get_item_held())["type"] == "resource" or PlayerData.get_item_held() == "hands":
+	elif PlayerData.get_item_held() == null or ItemDictionary.get_item(PlayerData.get_item_held()[0])["type"] == "resource" or PlayerData.get_item_held()[0] == "hands":
 		animationState.travel("Pick")
 	else:
 		state = MOVE

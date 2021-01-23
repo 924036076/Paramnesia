@@ -3,8 +3,6 @@ extends CanvasLayer
 const inventory_open = preload("res://GUI/NewInventory/Inventory.tscn")
 const missions_open = preload("res://GUI/Missions/Missions.tscn")
 
-onready var controller = get_node("CraftController")
-onready var queue = get_node("CraftController/Queue")
 onready var debug_overlay = get_node("DebugText")
 onready var missions_button = get_node("MissionsButton")
 
@@ -24,10 +22,8 @@ func _unhandled_key_input(_event):
 	if Input.is_action_just_pressed("inventory_open"):
 		if current_window == null:
 			is_inventory_open = true
-			queue.visible = true
 			set_current_window(inventory_open.instance())
 		elif is_inventory_open:
-			queue.visible = false
 			is_inventory_open = false
 			close_open_window()
 
@@ -38,9 +34,6 @@ func hide_visible():
 func show_visible():
 	get_node("ItemsOverlay").visible = true
 	missions_button.visible = true
-
-func return_controller():
-	return controller
 
 func close_open_window():
 	if current_window == null:

@@ -1,18 +1,15 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://GUI/Inventory/CraftController.gd" type="Script" id=1]
-[ext_resource path="res://Icons/wrench.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Inventory/GUI.gd" type="Script" id=3]
-[ext_resource path="res://GUI/Inventory/Crafting/texture_progress.png" type="Texture" id=4]
-[ext_resource path="res://Fonts/8px_plain_type_writer.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Fonts/18pt OUTLINE Landasa.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Fonts/14pt OUTLINE Landasa.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Fonts/24pt Landasan.tres" type="DynamicFont" id=8]
 [ext_resource path="res://GUI/ObjectInventory/ItemBackground.tscn" type="PackedScene" id=9]
 [ext_resource path="res://GUI/Inventory/ItemsOverlay.gd" type="Script" id=10]
+[ext_resource path="res://Icons/coin.png" type="Texture" id=11]
 [ext_resource path="res://Fonts/type_writer.tres" type="DynamicFont" id=12]
-[ext_resource path="res://GUI/Inventory/FloatingNumbers.gd" type="Script" id=13]
-[ext_resource path="res://GUI/Inventory/FloatingItemNumber.tscn" type="PackedScene" id=14]
 [ext_resource path="res://GUI/Inventory/missions_indicator_seen.png" type="Texture" id=15]
+[ext_resource path="res://GUI/Inventory/Coins.gd" type="Script" id=16]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -26,86 +23,6 @@ custom_fonts/font = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="FloatingNumbers" type="Control" parent="."]
-margin_right = 39.0
-margin_bottom = 12.0
-mouse_filter = 2
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FloatingItemNumber" parent="FloatingNumbers" instance=ExtResource( 14 )]
-margin_top = 10.0
-margin_bottom = 18.0
-
-[node name="FloatingItemNumber2" parent="FloatingNumbers" instance=ExtResource( 14 )]
-margin_top = 5.0
-margin_bottom = 13.0
-
-[node name="FloatingItemNumber3" parent="FloatingNumbers" instance=ExtResource( 14 )]
-
-[node name="CraftController" type="Control" parent="."]
-visible = false
-margin_left = -1.19745
-margin_top = 242.0
-margin_right = 78.8026
-margin_bottom = 282.0
-mouse_filter = 2
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WrenchIcon" type="TextureRect" parent="CraftController"]
-margin_left = 5.0
-margin_top = 18.0
-margin_right = 21.0
-margin_bottom = 34.0
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CraftingProgress" type="TextureProgress" parent="CraftController"]
-margin_left = 24.0
-margin_top = 20.0
-margin_right = 40.0
-margin_bottom = 28.0
-texture_progress = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ItemCount" type="Label" parent="CraftController"]
-margin_left = 31.0
-margin_top = 33.0
-margin_right = 59.0
-margin_bottom = 42.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 5 )
-text = "x"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ItemIcon" type="TextureRect" parent="CraftController"]
-margin_left = 22.0
-margin_top = 31.0
-margin_right = 38.0
-margin_bottom = 47.0
-rect_scale = Vector2( 0.5, 0.5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Queue" type="Control" parent="CraftController"]
-margin_left = 48.0
-margin_top = 9.0
-margin_right = 184.0
-margin_bottom = 37.0
-rect_scale = Vector2( 0.7, 0.7 )
 
 [node name="MissionsButton" type="TextureButton" parent="."]
 margin_left = 479.749
@@ -180,7 +97,35 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="done" from="FloatingNumbers/FloatingItemNumber" to="FloatingNumbers" method="_on_label_done"]
-[connection signal="done" from="FloatingNumbers/FloatingItemNumber2" to="FloatingNumbers" method="_on_label_done"]
-[connection signal="done" from="FloatingNumbers/FloatingItemNumber3" to="FloatingNumbers" method="_on_label_done"]
+
+[node name="Coins" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="Coins"]
+margin_left = 474.0
+margin_top = 3.0
+margin_right = 489.0
+margin_bottom = 18.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Amount" type="Label" parent="Coins"]
+margin_left = 447.0
+margin_top = 4.0
+margin_right = 469.0
+margin_bottom = 29.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MissionsButton" to="." method="_on_MissionsButton_pressed"]

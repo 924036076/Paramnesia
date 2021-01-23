@@ -32,7 +32,10 @@ func _input(_event):
 			var slot = player.get_slot_at_pos(cursor_pos)
 			var item = PlayerData.pop_item_at_slot(slot)
 			if item != null:
-				PlayerData.insert_at_slot(0, item)
+				if item[1] == ItemDictionary.get_item(item[0])["stack"]:
+					PlayerData.insert_at_slot(0, item)
+				else:
+					PlayerData.add_item(item)
 	if Input.is_action_just_pressed("inventory_alt"):
 		if dropdown.visible and not (dropdown.get_global_rect().has_point(cursor_pos) or line_edit.get_global_rect().has_point(cursor_pos)):
 			close_dropdown()

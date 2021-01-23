@@ -46,6 +46,7 @@ func slot_center_location(slot: int):
 			x = 4
 			y += item_size + buffer
 # warning-ignore:integer_division
+# warning-ignore:integer_division
 	return Vector2(x + item_size / 2, y + item_size / 2)
 
 func get_slot_at_pos(cursor_pos: Vector2):
