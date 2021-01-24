@@ -6,6 +6,7 @@ export var max_water = 100
 export var damage = 20
 
 signal coins_changed
+signal day_changed
 signal inventory_updated
 
 var inventory = []
@@ -13,6 +14,9 @@ var holding = 0 setget set_holding
 var level = 2
 var coins: int = 0 setget set_coins
 var max_slots: int = 24
+var day: int = 1 setget set_day
+var season: String = "Summer"
+var time_of_day: float = 0
 
 func _ready():
 	initialize()
@@ -30,6 +34,12 @@ func initialize():
 	add_item(["wood", 500])
 	add_item(["stone", 200])
 	add_item(["stone_axe", 1])
+
+func _process(delta):
+	time_of_day += delta
+	if time_of_day > 10:
+		set_day(day + 1)
+		time_of_day = 0
 
 func pop_item_at_slot(slot: int):
 	if slot > inventory.size() - 1:
@@ -123,3 +133,7 @@ func get_item_held():
 func set_coins(value: int):
 	coins = value
 	emit_signal("coins_changed")
+
+func set_day(value: int):
+	day = value
+	emit_signal("day_changed")

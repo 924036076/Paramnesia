@@ -25,10 +25,10 @@ __meta__ = {
 }
 
 [node name="MissionsButton" type="TextureButton" parent="."]
-margin_left = 479.749
-margin_top = 44.4877
-margin_right = 499.749
-margin_bottom = 64.4877
+margin_left = 480.0
+margin_top = 54.0
+margin_right = 500.0
+margin_bottom = 74.0
 texture_normal = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -106,7 +106,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon" type="TextureRect" parent="Coins"]
+[node name="CoinsIcon" type="TextureRect" parent="Coins"]
 margin_left = 474.0
 margin_top = 3.0
 margin_right = 489.0
@@ -117,11 +117,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Amount" type="Label" parent="Coins"]
+[node name="CoinsAmount" type="Label" parent="Coins"]
 margin_left = 447.0
 margin_top = 4.0
 margin_right = 469.0
 margin_bottom = 29.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Day" type="Label" parent="Coins"]
+margin_left = 446.0
+margin_top = 26.0
+margin_right = 496.0
+margin_bottom = 51.0
 grow_horizontal = 0
 custom_fonts/font = ExtResource( 8 )
 align = 2

@@ -1,0 +1,98 @@
+{
+	"type" : "item",
+  "rolls" : 1,
+	"pools" : {
+		"basic" : 4,
+		"livestock" : 2,
+		"exotic_creature" : 0,
+		"nonbasic_resource" : 0
+	},
+  "basic" : {
+  	"stone" : {
+			"weight" : 1,
+			"minimum_price" : 0.1,
+			"maximum_price" : 0.4,
+			"minimum_amount" : 50,
+			"maximum_amount" : 100
+		},
+  	"wood" : {
+			"weight" : 1,
+			"minimum_price" : 0.1,
+			"maximum_price" : 0.4,
+			"minimum_amount" : 50,
+			"maximum_amount" : 100
+		},
+  	"fiber" : {
+			"weight" : 1,
+			"minimum_price" : 0.1,
+			"maximum_price" : 0.3,
+			"minimum_amount" : 50,
+			"maximum_amount" : 100
+		},
+  	"metal" : {
+			"weight" : 1,
+			"minimum_price" : 0.3,
+			"maximum_price" : 1.2,
+			"minimum_amount" : 50,
+			"maximum_amount" : 100
+		},
+  	"obsidian" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 50,
+			"maximum_amount" : 100
+		}
+	},
+	"livestock" : {
+		"cow" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 1,
+			"maximum_amount" : 1
+		},
+		"chicken" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 1,
+			"maximum_amount" : 1
+		},
+		"goat" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 1,
+			"maximum_amount" : 1
+		},
+		"sheep" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 1,
+			"maximum_amount" : 1
+		},
+		"rabbit" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 1,
+			"maximum_amount" : 1
+		},
+		"duck" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 1,
+			"maximum_amount" : 1
+		},
+		"pig" : {
+			"weight" : 1,
+			"minimum_price" : 0.5,
+			"maximum_price" : 1,
+			"minimum_amount" : 1,
+			"maximum_amount" : 1
+		}
+	}
+}

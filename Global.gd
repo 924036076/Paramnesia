@@ -8,6 +8,7 @@ var keybinds = {}
 var audio = {}
 
 var embark_loot_table: LootTable
+var shop_loot_table: MultiPoolLootTable
 
 onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
 onready var console = load("res://GUI/Console/Console.tscn")
@@ -67,6 +68,7 @@ func _ready():
 
 func load_loot_tables():
 	embark_loot_table = LootTable.new(load_json("res://Data/EmbarkLootTable.json"))
+	shop_loot_table = MultiPoolLootTable.new(load_json("res://Data/Shop1LootTable.json"))
 
 func load_json(file_path):
 	var data_file = File.new()
