@@ -10,6 +10,12 @@ export var key: String
 
 var item_spawn_distance: int = 64
 
+enum {
+	EASY,
+	NORMAL,
+	HARD
+}
+
 func _ready():
 	pathfinding.create_navigation_map(tilemap)
 	add_other_tilemaps()
@@ -18,10 +24,12 @@ func _ready():
 		node.initialize(pathfinding)
 
 func initialize():
-	var used_points = []
+	var used_points: Array = []
 	var starting_pos = get_node("SpawnArea").rect_global_position
 	var bounds = get_node("SpawnArea").rect_size
 	used_points.append(Vector2(starting_pos.x + bounds.x / 2, starting_pos.y + bounds.y / 2))
+	
+# Starting animals
 	var creatures = ["Cow", "Pig", "Goat", "Chicken", "Sheep", "Rabbit"]
 	for creature in creatures:
 		for _i in range(Global.starting_items[creature.to_lower()]):
@@ -31,21 +39,37 @@ func initialize():
 			cage.global_position = get_point_in_spawn_area(used_points)
 			get_node("GlobalYSort/World").add_child(cage)
 	
-	var sacks = []
+	PlayerData.coins = Global.starting_items["coin"] * 10 + int(rand_range(0, (2 - Global.difficulty) * 10))
+	
+# Starting items
+	var sacks: Array = []
 	for _i in range(4):
 		var sack = load("res://Structures/ItemSack/ItemSack.tscn").instance()
 		sacks.append(sack)
 		sack.global_position = get_point_in_spawn_area(used_points)
 		get_node("GlobalYSort/World").add_child(sack)
-	var resources = ["wood", "stone", "fiber", "metal", "obsidian"]
-	for resource in resources:
-		var amount: int = Global.starting_items[resource] * 4 + randi() % 8 + 4
-		while amount > 0:
-			var sack = sacks[randi() % 4]
-			if sack.inventory.size() < 3:
-				sack.inventory.append([resource, amount])
-				amount = 0
 	
+	var starting_items: Array
+	match Global.difficulty:
+		EASY:
+			starting_items = Global.embark_loot_table.roll_table(1, 30)
+		NORMAL:
+			starting_items = Global.embark_loot_table.roll_table(1, 20)
+		HARD:
+			starting_items = Global.embark_loot_table.roll_table(1, 10)
+	
+	var current_sack: int = 0
+	for i in range(starting_items.size()):
+		var sack = sacks[current_sack]
+		sack.inventory.append(starting_items[i])
+		if sack.inventory.size() == 1:
+			if randi() % 2 == 1:
+				current_sack += 1
+		else:
+			current_sack += 1
+		if current_sack >= 4:
+			current_sack = 0
+
 	get_node("SpawnArea").queue_free()
 
 func get_point_in_spawn_area(used_points):

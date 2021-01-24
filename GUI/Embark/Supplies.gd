@@ -24,6 +24,7 @@ func _on_EmbarkButton_pressed():
 	livestock.save_points()
 	resource.save_points()
 	specialist.save_points()
+	PlayerData.initialize()
 	Global.switch_scene("Test1", false)
 
 func _on_NextButton_pressed():

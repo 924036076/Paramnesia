@@ -1,0 +1,12 @@
+{
+	"type" : "item",
+  "rolls" : 5,
+  "bonus_rolls" : 2,
+  "entries" : {
+  	"stone" : 1,
+  	"wood" : 1,
+  	"fiber" : 1,
+  	"metal" : 1,
+  	"obsidian" : 1
+    }
+}

@@ -200,7 +200,6 @@ func save():
 		"id" : "player",
 		"pos_x" : position.x,
 		"pos_y" : position.y,
-		"health" : PlayerData.health,
 		"level" : PlayerData.level,
 		"inventory" : PlayerData.inventory,
 		"dir_x" : animationTree.get("parameters/Idle/blend_position").x,

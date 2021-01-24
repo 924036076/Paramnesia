@@ -1,2 +1,4 @@
-{"creature":"Cow","filename":"res://Structures/Cage/Cage.tscn","id":"structure","level":1,"pos_x":9,"pos_y":-22}
-{"dir_x":0,"dir_y":-1,"filename":"res://Player/Player.tscn","health":100,"id":"player","inventory":[["stone_axe",1],["campfire",3],["target_dummy",3],["bow",1],["arrow",10],["lava_helmet",1],["lava_gloves",1],["lava_chest",1],["lava_legs",1],["lava_boots",1],["wood",100],["wood",100],["wood",100],["wood",100],["wood",100],["wood",100],["stone",100],["stone",100],["stone",100],["stone",100],["stone",100],["fiber",100],["fiber",100],["fiber",100],["fiber",100],["fiber",100],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null],[null,null]],"level":2,"pos_x":-79.010208,"pos_y":44.252083}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":20,"pos_y":-60}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-236,"pos_y":-60}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-172,"pos_y":-60}
+{"dir_x":1,"dir_y":0,"filename":"res://Player/Player.tscn","id":"player","inventory":[["stone",26],["wood",35]],"level":1,"pos_x":-91.083328,"pos_y":-22.916674}

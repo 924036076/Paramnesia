@@ -172,6 +172,20 @@ const ITEMS = {
 		"stack": 100,
 		"craftable": false
 	},
+	"obsidian": {
+		"icon": ICON_PATH + "obsidian.png",
+		"type": "resource",
+		"subtype": null,
+		"stack": 100,
+		"craftable": false
+	},
+	"metal": {
+		"icon": ICON_PATH + "metal.png",
+		"type": "resource",
+		"subtype": null,
+		"stack": 100,
+		"craftable": false
+	},
 	"null": {
 		"icon": ICON_PATH + "null.png",
 		"type": null,

@@ -7,6 +7,8 @@ var config_file
 var keybinds = {}
 var audio = {}
 
+var embark_loot_table: LootTable
+
 onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
 onready var console = load("res://GUI/Console/Console.tscn")
 
@@ -44,6 +46,7 @@ var debug_mode: bool = false
 var num_interacted_with: int = 0
 
 func _ready():
+	
 	config_file = ConfigFile.new()
 	if config_file.load(config_path) == OK:
 		for key in config_file.get_section_keys("keybinds"):
@@ -56,9 +59,21 @@ func _ready():
 		print("game.ini is missing")
 		get_tree().quit()
 	
+	load_loot_tables()
+	
 	current_scene = get_tree().get_current_scene()
 	
 	#set_game_binds()
+
+func load_loot_tables():
+	embark_loot_table = LootTable.new(load_json("res://Data/EmbarkLootTable.json"))
+
+func load_json(file_path):
+	var data_file = File.new()
+	data_file.open(file_path, File.READ)
+	var json_data = JSON.parse(data_file.get_as_text())
+	data_file.close()
+	return json_data.result
 
 func _input(event):
 	if event is InputEventKey:
