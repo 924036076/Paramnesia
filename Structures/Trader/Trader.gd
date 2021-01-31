@@ -3,11 +3,16 @@ extends YSort
 const packed_cage = preload("res://Structures/Cage/Cage.tscn")
 const packed_pedestal = preload("res://Structures/Trader/Pedestal.tscn")
 
+const SPEED: float = 10.0
+
 var stock: Array = []
+var path: PathFollow2D
+var travel: bool = true
+
+signal docked
 
 func _ready():
 	stock = Global.shop_loot_table.roll_table()
-	print(stock)
 	var creatures = ["Cow", "Pig", "Goat", "Chicken", "Sheep", "Rabbit", "Duck"]
 	
 	for i in range(stock.size()):
@@ -19,13 +24,21 @@ func _ready():
 				var cage = packed_cage.instance()
 				cage.creature = item
 				cage.level = 1
-				cage.global_position = get_node("Pedestals").get_children()[i].global_position
+				cage.position = get_node("Pedestals").get_children()[i].position
 				add_child(cage)
 				creature_flag = true
 				break
 
 		if not creature_flag:
 			var pedestal = packed_pedestal.instance()
-			pedestal.global_position = get_node("Pedestals").get_children()[i].global_position
+			pedestal.position = get_node("Pedestals").get_children()[i].position
 			pedestal.get_node("Item").texture = load(ItemDictionary.get_item(item)["icon"])
 			add_child(pedestal)
+
+func _physics_process(delta):
+	if travel:
+		path.unit_offset += (SPEED / 500) * delta
+		global_position = path.global_position
+		if path.unit_offset >= 1:
+			travel = false
+			emit_signal("docked")

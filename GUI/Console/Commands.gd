@@ -1,6 +1,6 @@
 extends Node
 
-const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]], ["debug_on", [0]], ["debug_off", [0]]]
+const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]], ["debug_on", [0]], ["debug_off", [0]], ["spawn_trader", [0]]]
 const spawnable_mobs = ["cow", "deer", "archer", "swordsman"]
 
 func teleport(x_coord, y_coord):
@@ -39,3 +39,7 @@ func debug_on():
 func debug_off():
 	Global.debug_mode = false
 	return "~Debug mode off~"
+
+func spawn_trader():
+	get_tree().get_current_scene().spawn_trader()
+	return "~Spawning trader~"

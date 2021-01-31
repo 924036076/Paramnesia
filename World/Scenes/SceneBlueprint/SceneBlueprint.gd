@@ -2,8 +2,11 @@ extends Node2D
 
 class_name RootScene
 
+const trader = preload("res://Structures/Trader/Trader.tscn")
+
 onready var pathfinding = get_node("Pathfinding")
 onready var tilemap = get_node("TileMap")
+onready var trade_enter_path = get_node("TraderEnter/PathFollow2D")
 
 export(String, FILE) var save_path
 export var key: String
@@ -134,3 +137,11 @@ func spawn_mob(mob, xcoord, ycoord):
 	else:
 		spawn.global_position = Vector2(xcoord, ycoord)
 	return spawn
+
+func spawn_trader():
+	var new_trader = trader.instance()
+	trade_enter_path.unit_offset = 0
+	new_trader.path = trade_enter_path
+	new_trader.global_position = trade_enter_path.global_position
+	new_trader.connect("docked", get_node("GlobalYSort/World/Dock"), "open")
+	get_node("GlobalYSort/World").add_child(new_trader)

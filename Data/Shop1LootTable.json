@@ -1,6 +1,7 @@
 {
 	"type" : "item",
   "rolls" : 1,
+	"unique_drops": true,
 	"pools" : {
 		"basic" : 4,
 		"livestock" : 2,
