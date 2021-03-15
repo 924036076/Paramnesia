@@ -188,7 +188,7 @@ func try_to_grab_focus():
 func interacted_with():
 	var i = interface.instance()
 	i.mob = self
-	get_tree().get_current_scene().get_node("GUI").current_window = i
+	get_tree().get_current_scene().set_gui_window(i)
 
 func _on_FocusTimer_timeout():
 	if not flee:

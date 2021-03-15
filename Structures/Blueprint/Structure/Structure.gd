@@ -8,6 +8,7 @@ export var collision: bool = true
 export var background: bool = false
 
 var has_focus: bool = false
+var can_interact: bool = true
 
 func _ready():
 	sprite.set_material(sprite.get_material().duplicate())
@@ -18,7 +19,8 @@ func _ready():
 	extra_init()
 
 func _on_InteractArea_mouse_entered():
-	try_to_grab_focus()
+	if can_interact:
+		try_to_grab_focus()
 
 func _on_InteractArea_mouse_exited():
 	if has_focus:
@@ -27,9 +29,10 @@ func _on_InteractArea_mouse_exited():
 	sprite.get_material().set_shader_param("line_thickness", 0)
 
 func _on_InteractArea_input_event(_viewport, _event, _shape_idx):
-	try_to_grab_focus()
-	if Input.is_action_just_pressed("inventory_alt") and has_focus:
-		object_interacted_with()
+	if can_interact:
+		try_to_grab_focus()
+		if Input.is_action_just_pressed("inventory_alt") and has_focus:
+			object_interacted_with()
 
 func try_to_grab_focus():
 	if Global.num_interacted_with < 1:

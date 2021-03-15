@@ -1,4 +1,1 @@
-{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-108,"pos_y":132}
-{"creature":"duck","filename":"res://Structures/Cage/Cage.tscn","id":"structure","level":1,"pos_x":121,"pos_y":114}
-{"creature":"chicken","filename":"res://Structures/Cage/Cage.tscn","id":"structure","level":1,"pos_x":51,"pos_y":165}
-{"dir_x":1,"dir_y":0,"filename":"res://Player/Player.tscn","id":"player","inventory":[["stone",100],["stone_axe",1],["wood",100],["wood",100],["wood",100],["wood",100],["wood",100],["stone",100],["stone_axe",1],["obsidian",23],["wood",32],["fiber",29],["metal",21],["stone",35]],"level":1,"pos_x":18.918488,"pos_y":259.006775}
+{"dir_x":0,"dir_y":-1,"filename":"res://Player/Player.tscn","id":"player","inventory":[["stone",100],["stone_axe",1],["stone",100],["wood",100],["wood",100],["stone_axe",1],["wood",100],["wood",100],["wood",86],["wood",41],["metal",34],["obsidian",24],["fiber",24],["stone",31]],"level":1,"pos_x":-124.914879,"pos_y":85.892136}
