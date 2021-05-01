@@ -3,6 +3,8 @@ extends Node2D
 class_name NatureTree
 
 const FellEffect = preload("res://World/Trees/DestroyTree.tscn")
+const HitEffectRight = preload("res://Effects/Particles/TreeBurstRight.tscn")
+const HitEffectLeft = preload("res://Effects/Particles/TreeBurstLeft.tscn")
 const MOD_AMOUNT = 0.6
 
 onready var health_bar = get_node("ResourceIndicator")
@@ -31,8 +33,16 @@ func fell_tree():
 	queue_free()
 
 func _on_Hurtbox_area_entered(_area):
-	if PlayerData.get_item_held() == "stone_axe":
+	if PlayerData.get_item_held()[0] == "stone_axe":
 		health_bar.health = health_bar.health - 20
+		var hit_effect
+		if get_node("Hurtbox/CollisionShape2D").position.x < get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position.x:
+			hit_effect = HitEffectLeft.instance()
+		else:
+			hit_effect = HitEffectRight.instance()
+		hit_effect.position = get_node("Hurtbox/CollisionShape2D").position
+		add_child(hit_effect)
+		hit_effect.emitting = true
 
 func _on_TransTest_area_entered(_area):
 	sprite.modulate.a = MOD_AMOUNT
