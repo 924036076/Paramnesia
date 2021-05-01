@@ -115,6 +115,8 @@ func _deferred_goto_scene(scene, do_load):
 			path = "res://GUI/Embark/Embark.tscn"
 		"Supplies":
 			path = "res://GUI/Embark/Supplies.tscn"
+		"CharacterCustomize":
+			path = "res://GUI/Embark/CharacterCustomize.tscn"
 		"Test1":
 			path = "res://World/Scenes/Test1.tscn"
 	var s = ResourceLoader.load(path)

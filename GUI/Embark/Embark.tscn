@@ -60,19 +60,19 @@ __meta__ = {
 }
 
 [node name="NextButton" type="Button" parent="."]
-margin_left = 173.0
+margin_left = 385.0
 margin_top = 235.0
-margin_right = 332.0
+margin_right = 447.0
 margin_bottom = 272.0
-text = "Choose Supplies"
+text = "Next"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BackButton" type="Button" parent="."]
-margin_left = 10.0
+margin_left = 50.0
 margin_top = 235.0
-margin_right = 72.0
+margin_right = 112.0
 margin_bottom = 272.0
 text = "Back"
 __meta__ = {

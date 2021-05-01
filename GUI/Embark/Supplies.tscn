@@ -37,7 +37,7 @@ __meta__ = {
 [node name="NextButton" type="Button" parent="."]
 margin_left = 385.0
 margin_top = 234.0
-margin_right = 439.0
+margin_right = 447.0
 margin_bottom = 271.0
 text = "Next"
 __meta__ = {
@@ -45,12 +45,11 @@ __meta__ = {
 }
 
 [node name="PrevButton" type="Button" parent="."]
-visible = false
 margin_left = 50.0
 margin_top = 234.0
-margin_right = 101.0
+margin_right = 112.0
 margin_bottom = 271.0
-text = "Prev"
+text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -31,7 +31,7 @@ func _on_BackButton_pressed():
 	back()
 
 func _on_NextButton_pressed():
-	Global.switch_scene("Supplies", false)
+	Global.switch_scene("CharacterCustomize", false)
 
 func _on_DifficultyButton_pressed():
 	difficulty += 1

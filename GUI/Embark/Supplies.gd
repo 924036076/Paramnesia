@@ -16,7 +16,7 @@ func _input(_event):
 
 func back():
 	if page == 1:
-		Global.switch_scene("WorldSettings", false)
+		Global.switch_scene("CharacterCustomize", false)
 	else:
 		_on_PrevButton_pressed()
 
@@ -29,7 +29,6 @@ func _on_EmbarkButton_pressed():
 
 func _on_NextButton_pressed():
 	page += 1
-	get_node("PrevButton").visible = true
 	if page == 3:
 		get_node("NextButton").visible = false
 		get_node("EmbarkButton").visible = true
@@ -42,11 +41,11 @@ func _on_NextButton_pressed():
 			specialist.visible = true
 
 func _on_PrevButton_pressed():
+	if page == 1:
+		back()
 	page -= 1
 	get_node("NextButton").visible = true
 	get_node("EmbarkButton").visible = false
-	if page == 1:
-		get_node("PrevButton").visible = false
 	match page:
 		1:
 			resource.visible = false

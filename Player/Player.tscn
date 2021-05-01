@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Control/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player_48_latest.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/SwordHitbox Pivot.gd" type="Script" id=6]
 [ext_resource path="res://Effects/Shaders/Hit.shader" type="Shader" id=7]
+[ext_resource path="res://Player/base.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
@@ -1075,12 +1076,19 @@ collision_layer = 2
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 material = SubResource( 1 )
 position = Vector2( 0, -15 )
 texture = ExtResource( 2 )
 vframes = 11
 hframes = 11
 frame = 73
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 1, -14 )
+texture = ExtResource( 8 )
+vframes = 4
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708

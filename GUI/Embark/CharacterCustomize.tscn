@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://global_theme.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/Embark/CharacterCustomize.gd" type="Script" id=2]
+
+[node name="CharacterCustomize" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 500.0
+margin_bottom = 282.0
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+margin_left = 216.0
+margin_top = 11.0
+margin_right = 537.0
+margin_bottom = 537.0
+rect_scale = Vector2( 0.5, 0.5 )
+edit_alpha = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextButton" type="Button" parent="."]
+margin_left = 385.0
+margin_top = 234.0
+margin_right = 439.0
+margin_bottom = 271.0
+text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 50.0
+margin_top = 235.0
+margin_right = 112.0
+margin_bottom = 272.0
+text = "Back"
+[connection signal="pressed" from="NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
