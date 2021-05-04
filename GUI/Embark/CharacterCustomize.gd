@@ -3,7 +3,7 @@ extends Control
 var key = "Menu"
 
 var hair: int = 1
-var max_hair: int = 1
+var max_hair: int = 2
 var outfit: int = 1
 var max_outfit: int = 1
 
@@ -19,10 +19,12 @@ onready var brow_palette = get_node("EyebrowPalette")
 onready var pupil_palette = get_node("PupilPalette")
 
 func _ready():
-	body_sprite.modulate = skin_palette.get_node("Color0").modulate
-	hair_sprite.modulate = hair_palette.get_node("Color3").modulate
-	brow_sprite.modulate = brow_palette.get_node("Color3").modulate
-	pupil_sprite.modulate = pupil_palette.get_node("Color0").modulate
+	body_sprite.modulate = PlayerData.skin_color
+	hair_sprite.modulate = PlayerData.hair_color
+	brow_sprite.modulate = PlayerData.brow_color
+	pupil_sprite.modulate = PlayerData.eye_color
+	hair = PlayerData.hair
+	outfit = PlayerData.outfit
 	update_sprites()
 
 func _input(_event):
@@ -48,6 +50,12 @@ func _on_BackButton_pressed():
 	back()
 
 func _on_NextButton_pressed():
+	PlayerData.skin_color = body_sprite.modulate
+	PlayerData.hair_color = hair_sprite.modulate
+	PlayerData.brow_color = brow_sprite.modulate
+	PlayerData.eye_color = pupil_sprite.modulate
+	PlayerData.hair = hair
+	PlayerData.outfit = outfit
 	Global.switch_scene("Supplies", false)
 
 func _on_HairMinus_pressed():
@@ -75,8 +83,8 @@ func _on_OutfitPlus_pressed():
 	update_sprites()
 	
 func update_sprites():
-	hair_sprite.texture = load("res://Player/Parts/hair" + str(hair) + ".png")
-	outfit_sprite.texture = load("res://Player/Parts/outfit" + str(outfit) + ".png")
+	hair_sprite.texture = load("res://Player/Parts/hair/hair_" + str(hair) + ".png")
+	outfit_sprite.texture = load("res://Player/Parts/outfits/outfit_" + str(outfit) + ".png")
 
 func _on_WalkButton_toggled(button_pressed):
 	if button_pressed:

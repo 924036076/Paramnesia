@@ -18,6 +18,13 @@ var day: int = 1 setget set_day
 var season: String = "Summer"
 var time_of_day: float = 0
 
+var hair: int = 1
+var outfit: int = 1
+var skin_color: Color = Color("#f0b577")
+var hair_color: Color = Color("#8d3d21")
+var brow_color: Color = Color("#261604")
+var eye_color: Color = Color("#143eae")
+
 func _ready():
 	initialize()
 # warning-ignore:return_value_discarded

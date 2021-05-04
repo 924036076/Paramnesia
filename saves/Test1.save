@@ -1,1 +1,5 @@
-{"dir_x":0,"dir_y":-1,"filename":"res://Player/Player.tscn","id":"player","inventory":[["stone",100],["stone_axe",1],["stone",100],["wood",100],["wood",100],["stone_axe",1],["wood",100],["wood",100],["wood",86],["wood",41],["metal",34],["obsidian",24],["fiber",24],["stone",31]],"level":1,"pos_x":-124.914879,"pos_y":85.892136}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-236,"pos_y":132}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-108,"pos_y":68}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-44,"pos_y":68}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-108,"pos_y":132}
+{"dir_x":0,"dir_y":-1,"filename":"res://Player/Player.tscn","id":"player","inventory":[["stone_axe",1],["wood",100],["wood",100],["wood",100],["wood",100],["wood",100],["stone",100],["stone",100],["stone_axe",1]],"level":1,"pos_x":-203.126434,"pos_y":-313.732147}

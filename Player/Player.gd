@@ -45,6 +45,15 @@ func _ready():
 	animationTree.active = true
 	sprite.set_material(sprite.get_material().duplicate())
 	set_direction(starting_direction)
+	set_sprites()
+
+func set_sprites():
+	get_node("Hair").texture = load("res://Player/Parts/hair/hair_" + str(PlayerData.hair) + ".png")
+	get_node("Outfit").texture = load("res://Player/Parts/outfits/outfit_" + str(PlayerData.outfit) + ".png")
+	get_node("Body").modulate = PlayerData.skin_color
+	get_node("Hair").modulate = PlayerData.hair_color
+	get_node("Brows").modulate = PlayerData.brow_color
+	get_node("Eyes").modulate = PlayerData.eye_color
 
 func initialize(passed_pathfinding):
 	pathfinding = passed_pathfinding

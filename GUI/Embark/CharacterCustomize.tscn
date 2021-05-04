@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://global_theme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/Embark/CharacterCustomize.gd" type="Script" id=2]
 [ext_resource path="res://Player/Parts/base.png" type="Texture" id=3]
-[ext_resource path="res://Player/Parts/hair1.png" type="Texture" id=4]
-[ext_resource path="res://Player/Parts/outfit1.png" type="Texture" id=5]
+[ext_resource path="res://Player/Parts/hair/hair_1.png" type="Texture" id=4]
+[ext_resource path="res://Player/Parts/outfits/outfit_1.png" type="Texture" id=5]
 [ext_resource path="res://Player/Parts/eye_pupils.png" type="Texture" id=6]
 [ext_resource path="res://Player/Parts/eyebrows.png" type="Texture" id=7]
 [ext_resource path="res://Player/Parts/eye_whites.png" type="Texture" id=8]
+[ext_resource path="res://Icons/play.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Walk"
@@ -97,8 +98,7 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = -2.0
-margin_right = 498.0
+margin_right = 500.0
 margin_bottom = 282.0
 mouse_filter = 2
 __meta__ = {
@@ -297,15 +297,22 @@ __meta__ = {
 }
 
 [node name="WalkButton" type="Button" parent="."]
-margin_left = 24.0
-margin_top = 130.0
-margin_right = 93.0
-margin_bottom = 167.0
+margin_left = 39.0
+margin_top = 127.0
+margin_right = 79.0
+margin_bottom = 164.0
+focus_mode = 0
 toggle_mode = true
-text = "Walk"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TextureRect" type="TextureRect" parent="WalkButton"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 28.0
+margin_bottom = 26.0
+texture = ExtResource( 9 )
 
 [node name="SkinPalette" type="Control" parent="."]
 margin_left = 255.0
