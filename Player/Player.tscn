@@ -7,7 +7,8 @@
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/SwordHitbox Pivot.gd" type="Script" id=6]
 [ext_resource path="res://Effects/Shaders/Hit.shader" type="Shader" id=7]
-[ext_resource path="res://Player/base.png" type="Texture" id=8]
+[ext_resource path="res://Player/Parts/base.png" type="Texture" id=8]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
