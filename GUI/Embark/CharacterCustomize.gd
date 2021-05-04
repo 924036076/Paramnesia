@@ -9,10 +9,21 @@ var max_outfit: int = 1
 
 onready var body_sprite = get_node("BaseSprite")
 onready var hair_sprite = get_node("HairSprite")
+onready var brow_sprite = get_node("BrowsSprite")
+onready var pupil_sprite = get_node("PupilsSprite")
 onready var outfit_sprite = get_node("OutfitSprite")
 onready var animation_player = get_node("AnimationPlayer")
 onready var skin_palette = get_node("SkinPalette")
 onready var hair_palette = get_node("HairPalette")
+onready var brow_palette = get_node("EyebrowPalette")
+onready var pupil_palette = get_node("PupilPalette")
+
+func _ready():
+	body_sprite.modulate = skin_palette.get_node("Color0").modulate
+	hair_sprite.modulate = hair_palette.get_node("Color3").modulate
+	brow_sprite.modulate = brow_palette.get_node("Color3").modulate
+	pupil_sprite.modulate = pupil_palette.get_node("Color0").modulate
+	update_sprites()
 
 func _input(_event):
 	if Input.is_action_just_pressed("inventory_main"):
@@ -23,6 +34,12 @@ func _input(_event):
 		if hair_palette.get_global_rect().has_point(cursor_pos):
 			var color: Color = hair_palette.get_node("Color" + str(int((cursor_pos.x - hair_palette.rect_global_position.x) / 20))).modulate
 			hair_sprite.modulate = color
+		if brow_palette.get_global_rect().has_point(cursor_pos):
+			var color: Color = brow_palette.get_node("Color" + str(int((cursor_pos.x - brow_palette.rect_global_position.x) / 20))).modulate
+			brow_sprite.modulate = color
+		if pupil_palette.get_global_rect().has_point(cursor_pos):
+			var color: Color = pupil_palette.get_node("Color" + str(int((cursor_pos.x - pupil_palette.rect_global_position.x) / 20))).modulate
+			pupil_sprite.modulate = color
 
 func back():
 	Global.switch_scene("WorldSettings", false)
