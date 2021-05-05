@@ -53,7 +53,7 @@ func set_sprites():
 	get_node("Body").modulate = PlayerData.skin_color
 	get_node("Hair").modulate = PlayerData.hair_color
 	get_node("Brows").modulate = PlayerData.brow_color
-	get_node("Eyes").modulate = PlayerData.eye_color
+	get_node("Pupils").modulate = PlayerData.eye_color
 
 func initialize(passed_pathfinding):
 	pathfinding = passed_pathfinding
@@ -63,6 +63,18 @@ func update_from_save(data):
 	global_position.y = data["pos_y"]
 	var direction = Vector2(data["dir_x"], data["dir_y"])
 	set_direction(direction)
+	
+	PlayerData.hair = data["hair"]
+	PlayerData.outfit = data["outfit"]
+	PlayerData.skin_color = data["skin_color"]
+	PlayerData.hair_color = data["hair_color"]
+	PlayerData.brow_color = data["brow_color"]
+	PlayerData.eye_color = data["eye_color"]
+	set_sprites()
+	
+	PlayerData.level = data["level"]
+	PlayerData.inventory = data["inventory"]
+	PlayerData.emit_signal("inventory_updated")
 
 func _physics_process(delta):
 	match state:
@@ -211,6 +223,12 @@ func save():
 		"pos_y" : position.y,
 		"level" : PlayerData.level,
 		"inventory" : PlayerData.inventory,
+		"hair" : PlayerData.hair,
+		"outfit" : PlayerData.outfit,
+		"skin_color" : PlayerData.skin_color.to_html(false),
+		"hair_color" : PlayerData.hair_color.to_html(false),
+		"brow_color" : PlayerData.brow_color.to_html(false),
+		"eye_color" : PlayerData.eye_color.to_html(false),
 		"dir_x" : animationTree.get("parameters/Idle/blend_position").x,
 		"dir_y" : animationTree.get("parameters/Idle/blend_position").y
 		}
