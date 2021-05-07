@@ -129,7 +129,7 @@ __meta__ = {
 position = Vector2( 59, 70 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
-vframes = 4
+vframes = 14
 hframes = 3
 frame = 1
 
@@ -137,7 +137,7 @@ frame = 1
 position = Vector2( 59, 70 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
-vframes = 4
+vframes = 14
 hframes = 3
 frame = 1
 
@@ -145,7 +145,7 @@ frame = 1
 position = Vector2( 59, 70 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 6 )
-vframes = 4
+vframes = 14
 hframes = 3
 frame = 1
 
@@ -153,7 +153,7 @@ frame = 1
 position = Vector2( 59, 70 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 8 )
-vframes = 4
+vframes = 14
 hframes = 3
 frame = 1
 
@@ -161,7 +161,7 @@ frame = 1
 position = Vector2( 59, 70 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 7 )
-vframes = 4
+vframes = 14
 hframes = 3
 frame = 1
 
@@ -169,7 +169,7 @@ frame = 1
 position = Vector2( 59, 70 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
-vframes = 4
+vframes = 14
 hframes = 3
 frame = 1
 

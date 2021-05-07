@@ -1,4 +1,6 @@
 {"filename":"res://World/Trees/Oak/OakTree.tscn","id":"nature","pos_x":20,"pos_y":-166}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-236,"pos_y":132}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-108,"pos_y":68}
+{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-44,"pos_y":68}
 {"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-108,"pos_y":132}
-{"filename":"res://Structures/ItemSack/ItemSack.tscn","id":"structure","pos_x":-172,"pos_y":-60}
-{"brow_color":"e1d912","dir_x":1,"dir_y":0,"eye_color":"000000","filename":"res://Player/Player.tscn","hair":0,"hair_color":"261604","id":"player","inventory":[["stone_axe",1],["stone",31],["fiber",27],["wood",100],["wood",100],["wood",100],["wood",100],["stone",100],["stone",100],["stone_axe",1],["obsidian",24],["wood",100]],"level":1,"outfit":1,"pos_x":-19.464689,"pos_y":-123.732193,"skin_color":"f0b577"}
+{"brow_color":"261604","dir_x":1,"dir_y":0,"eye_color":"004627","filename":"res://Player/Player.tscn","hair":1,"hair_color":"7d7d7d","id":"player","inventory":[["stone_axe",1],["wood",100],["wood",100],["wood",100],["wood",100],["wood",100],["stone",100],["stone",100],["stone_axe",1]],"level":1,"outfit":1,"pos_x":-13,"pos_y":-166,"skin_color":"6f491d"}

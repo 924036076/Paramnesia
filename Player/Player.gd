@@ -147,7 +147,7 @@ func attack_state(_delta):
 	if PlayerData.get_item_held()[0] == "stone_axe":
 		animationState.travel("Axe")
 	elif PlayerData.get_item_held() == null or ItemDictionary.get_item(PlayerData.get_item_held()[0])["type"] == "resource" or PlayerData.get_item_held()[0] == "hands":
-		animationState.travel("Pick")
+		animationState.travel("Eat")
 	else:
 		state = MOVE
 
@@ -194,7 +194,7 @@ func set_direction(direction):
 	animationTree.set("parameters/Idle/blend_position", direction)
 	animationTree.set("parameters/Run/blend_position", direction)
 	animationTree.set("parameters/Axe/blend_position", direction)
-	animationTree.set("parameters/Pick/blend_position", direction)
+	animationTree.set("parameters/Eat/blend_position", direction)
 
 func create_arrow():
 	PlayerData.remove_one("arrow")
