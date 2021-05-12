@@ -43,10 +43,11 @@ func initialize():
 	add_item(["stone_axe", 1])
 
 func _process(delta):
-	time_of_day += delta
-	if time_of_day > 10:
-		set_day(day + 1)
-		time_of_day = 0
+	if Global.do_day_cycle:
+		time_of_day += delta
+		if time_of_day > 25:
+			set_day(day + 1)
+			time_of_day = 1
 
 func pop_item_at_slot(slot: int):
 	if slot > inventory.size() - 1:

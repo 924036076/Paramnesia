@@ -43,3 +43,5 @@ enabled_color = Color( 0.541176, 0.87451, 0.529412, 1 )
 disabled_color = Color( 0.635294, 0.396078, 0.396078, 1 )
 
 [node name="Grid" type="Node2D" parent="Pathfinding"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]

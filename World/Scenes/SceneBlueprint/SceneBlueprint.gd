@@ -3,10 +3,13 @@ extends Node2D
 class_name RootScene
 
 const trader = preload("res://Structures/Trader/Trader.tscn")
+const DAY_COLOR = Color("#ffffff")
+const NIGHT_COLOR = Color("#2f4951")
 
 onready var pathfinding = get_node("Pathfinding")
 onready var tilemap = get_node("TileMap")
 onready var trade_enter_path = get_node("TraderEnter/PathFollow2D")
+onready var canvas_modulate = get_node("CanvasModulate")
 
 export(String, FILE) var save_path
 export var key: String
@@ -25,6 +28,17 @@ func _ready():
 	var nodes = get_tree().get_nodes_in_group("Pathfinding")
 	for node in nodes:
 		node.initialize(pathfinding)
+
+func _process(_delta):
+	if Global.do_day_cycle:
+		var time_float: float = 0.0
+		if PlayerData.time_of_day > 13:
+			time_float = (13 - (PlayerData.time_of_day - 13)) / 12
+		else:
+			time_float = PlayerData.time_of_day / 12
+		canvas_modulate.color = NIGHT_COLOR.linear_interpolate(DAY_COLOR, time_float)
+	else:
+		canvas_modulate.color = DAY_COLOR
 
 func initialize():
 	var used_points: Array = []

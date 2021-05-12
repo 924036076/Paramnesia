@@ -31,9 +31,9 @@ func goto_command_history(step):
 		input.call_deferred("set_cursor_position", 999999)
 
 func output_text(new_text):
-	if output.rect_size.y < 120:
-		output.rect_size.y += 12
-		output.rect_global_position.y -= 6
+	if output.rect_size.y < 160:
+		output.rect_size.y += 20
+		output.rect_global_position.y -= 10
 	if output.text.length() != 0:
 		output.text += "\n"
 	else:

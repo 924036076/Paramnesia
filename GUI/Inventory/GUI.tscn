@@ -140,4 +140,16 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Time" type="Label" parent="Coins"]
+margin_left = 454.0
+margin_top = 81.0
+margin_right = 494.0
+margin_bottom = 95.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MissionsButton" to="." method="_on_MissionsButton_pressed"]

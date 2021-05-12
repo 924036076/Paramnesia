@@ -59,3 +59,6 @@ curve = SubResource( 1 )
 position = Vector2( 716, -342 )
 rotation = 3.03021
 loop = false
+
+[node name="CanvasModulate" parent="." index="8"]
+color = Color( 0.184314, 0.286275, 0.317647, 1 )

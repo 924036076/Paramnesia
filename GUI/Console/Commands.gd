@@ -1,6 +1,6 @@
 extends Node
 
-const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]], ["debug_on", [0]], ["debug_off", [0]], ["spawn_trader", [0]]]
+const command_words = [["teleport", [2]], ["spawn", [1, 3]], ["give_item", [1, 2]], ["debug_on", [0]], ["debug_off", [0]], ["spawn_trader", [0]], ["day_cycle_on", [0]], ["day_cycle_off", [0]]]
 const spawnable_mobs = ["cow", "deer", "archer", "swordsman"]
 
 func teleport(x_coord, y_coord):
@@ -43,3 +43,11 @@ func debug_off():
 func spawn_trader():
 	get_tree().get_current_scene().spawn_trader()
 	return "~Spawning trader~"
+
+func day_cycle_on():
+	Global.do_day_cycle = true
+	return "~Day cycle on~"
+
+func day_cycle_off():
+	Global.do_day_cycle = false
+	return "~Day cycle off~"
