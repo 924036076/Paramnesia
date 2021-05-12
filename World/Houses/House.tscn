@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://World/Tilemaps/Steampunk/SteampunkTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://World/Houses/Door.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 48 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -32, -96, 48, -96, 48, -48, 48, 0, -32, 0 )
+
+[node name="House" type="StaticBody2D"]
+
+[node name="Base" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -131074, 4, 196608, -131073, 2, 1, -196608, 2, 2, -196607, 2, 1, -196606, 4, 196612, -65538, 2, 0, -65537, 0, 3, -131072, 0, 4, -131071, 0, 5, -131070, 2, 3, -2, 2, 65536, -1, 0, 65539, -65536, 0, 65540, -65535, 0, 65541, -65534, 2, 65539 )
+
+[node name="Roof" type="TileMap" parent="."]
+z_index = 5
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -589824, 4, 2, -458753, 4, 1, -524288, 4, 65538, -524287, 4, 3, -393218, 4, 0, -393217, 4, 65537, -458752, 4, 65538, -458751, 4, 65539, -458750, 4, 4, -327682, 4, 65536, -327681, 4, 65537, -393216, 4, 131074, -393215, 4, 65539, -393214, 4, 65540, -262146, 4, 65536, -262145, 4, 131073, -327680, 4, 196610, -327679, 4, 131075, -327678, 4, 65540, -196610, 4, 131072, -196609, 4, 196609, -262144, 2, 1, -262143, 4, 196611, -262142, 4, 131076 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, -48 )
+shape = SubResource( 1 )
+
+[node name="Door" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8, 0 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )

@@ -12,7 +12,6 @@ func _ready():
 	get_node("Duration").wait_time = duration
 
 func start_shake():
-	initial_pos = sprite.position
 	get_node("Frequency").start()
 	get_node("Duration").start()
 	shake()
@@ -30,6 +29,7 @@ func _on_Duration_timeout():
 	reset()
 
 func reset():
+	get_node("Tween").stop_all()
 	sprite.position = initial_pos
 	get_node("Frequency").stop()
 	get_node("Duration").stop()

@@ -1,6 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 5.0
 flag_disable_z = true
 direction = Vector3( -10, -10, 0 )
 gravity = Vector3( 0, 98, 0 )
@@ -10,15 +12,16 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 3.0
 scale_random = 1.0
-color = Color( 0.321569, 0.215686, 0.113725, 1 )
+color = Color( 0.470588, 0.286275, 0.109804, 1 )
 hue_variation = 0.1
 hue_variation_random = 0.5
 
 [node name="TreeBurstLeft" type="Particles2D"]
 emitting = false
 amount = 20
+lifetime = 0.5
 one_shot = true
-speed_scale = 0.5
+speed_scale = 2.0
 explosiveness = 0.9
 randomness = 0.5
 process_material = SubResource( 1 )

@@ -5,6 +5,7 @@ class_name NatureTree
 const FellEffect = preload("res://World/Trees/DestroyTree.tscn")
 const HitEffectRight = preload("res://Effects/Particles/TreeBurstRight.tscn")
 const HitEffectLeft = preload("res://Effects/Particles/TreeBurstLeft.tscn")
+const hit_sound = preload("res://Audio/Hitting-Tree-Branch-C-www.fesliyanstudios.com.wav")
 const MOD_AMOUNT = 0.6
 
 onready var health_bar = get_node("ResourceIndicator")
@@ -36,7 +37,7 @@ func _on_Hurtbox_area_entered(_area):
 	if PlayerData.get_item_held()[0] == "stone_axe":
 		health_bar.health = health_bar.health - 20
 		var hit_effect
-		if get_node("Hurtbox/CollisionShape2D").position.x < get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position.x:
+		if get_node("Hurtbox/CollisionShape2D").global_position.x < get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position.x:
 			hit_effect = HitEffectLeft.instance()
 		else:
 			hit_effect = HitEffectRight.instance()
@@ -45,6 +46,7 @@ func _on_Hurtbox_area_entered(_area):
 		hit_effect.emitting = true
 		get_node("ShakeSpriteEffect").reset()
 		get_node("ShakeSpriteEffect").start_shake()
+		AudioManager.play_ui_sfx(hit_sound)
 
 func _on_TransTest_area_entered(_area):
 	sprite.modulate.a = MOD_AMOUNT

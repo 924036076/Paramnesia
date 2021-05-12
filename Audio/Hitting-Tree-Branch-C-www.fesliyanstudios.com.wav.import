@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Hitting-Tree-Branch-C-www.fesliyanstudios.com.wav-9b29b24d3776d22df461f935cd2d29e2.sample"
+
+[deps]
+
+source_file="res://Audio/Hitting-Tree-Branch-C-www.fesliyanstudios.com.wav"
+dest_files=[ "res://.import/Hitting-Tree-Branch-C-www.fesliyanstudios.com.wav-9b29b24d3776d22df461f935cd2d29e2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
