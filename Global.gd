@@ -9,6 +9,8 @@ var audio = {}
 
 var embark_loot_table: LootTable
 var shop_loot_table: MultiPoolLootTable
+var current_world
+var current_interior
 
 onready var escape_menu = load("res://GUI/EscapeMenu/EscapeMenu.tscn")
 onready var console = load("res://GUI/Console/Console.tscn")
@@ -103,10 +105,10 @@ func set_game_binds():
 		new_key.set_scancode(value)
 		InputMap.action_add_event(key, new_key)
 
-func switch_scene(path, do_load):
-	call_deferred("_deferred_goto_scene", path, do_load)
+func switch_scene(scene: String, do_load: bool = false):
+	call_deferred("_deferred_goto_scene", scene, do_load)
 
-func _deferred_goto_scene(scene, do_load):
+func _deferred_goto_scene(scene: String, do_load: bool):
 	current_scene.free()
 	var path
 	match scene:
@@ -120,6 +122,8 @@ func _deferred_goto_scene(scene, do_load):
 			path = "res://GUI/Embark/CharacterCustomize.tscn"
 		"Test1":
 			path = "res://World/Scenes/Test1.tscn"
+		_:
+			path = scene
 	var s = ResourceLoader.load(path)
 	current_scene = s.instance()
 	get_tree().get_root().add_child(current_scene)
@@ -130,7 +134,7 @@ func _deferred_goto_scene(scene, do_load):
 		if get_tree().get_current_scene().has_method("initialize"):
 			get_tree().get_current_scene().initialize()
 
-func save_game(scene):
+func save_game(scene: String):
 	var save_game = File.new()
 	var path = save_path + scene + ".save"
 	save_game.open(path, File.WRITE)
@@ -150,7 +154,7 @@ func save_game(scene):
 		save_game.store_line(to_json(node_data))
 	save_game.close()
 
-func load_game(scene):
+func load_game(scene: String):
 	var save_game = File.new()
 	var path = save_path + scene + ".save"
 	if not save_game.file_exists(path):
@@ -183,6 +187,27 @@ func load_game(scene):
 	scene_root.load_from_save()
 
 	save_game.close()
+
+func enter_interior(path: String):
+	call_deferred("_deferred_enter_interior", path)
+
+func _deferred_enter_interior(path: String):
+	current_world = get_tree().get_current_scene()
+	get_tree().get_root().remove_child(current_world)
+	
+	var s = ResourceLoader.load(path)
+	current_interior = s.instance()
+	get_tree().get_root().add_child(current_interior)
+	get_tree().set_current_scene(current_interior)
+
+func exit_interior():
+	call_deferred("_deferred_exit_interior")
+
+func _deferred_exit_interior():
+	current_interior.free()
+	
+	get_tree().get_root().add_child(current_world)
+	get_tree().set_current_scene(current_world)
 
 func update_config():
 	for key in audio.keys():
