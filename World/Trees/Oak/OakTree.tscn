@@ -46,4 +46,8 @@ position = Vector2( -5, -1 )
 [node name="BlockPath2" parent="." index="7" instance=ExtResource( 3 )]
 position = Vector2( 6, -1 )
 
+[node name="ShakeSpriteEffect" parent="." index="8"]
+frequency = 0.05
+duration = 0.3
+
 [editable path="Hurtbox"]

@@ -86,6 +86,11 @@ func _physics_process(delta):
 			place_state()
 	knockback = knockback.move_toward(Vector2.ZERO, delta * 400)
 	knockback = move_and_slide(knockback)
+	
+	if not Global.do_day_cycle:
+		get_node("Light2D").visible = false
+	else:
+		get_node("Light2D").visible = true 
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:

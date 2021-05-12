@@ -43,6 +43,8 @@ func _on_Hurtbox_area_entered(_area):
 		hit_effect.position = get_node("Hurtbox/CollisionShape2D").position
 		add_child(hit_effect)
 		hit_effect.emitting = true
+		get_node("ShakeSpriteEffect").reset()
+		get_node("ShakeSpriteEffect").start_shake()
 
 func _on_TransTest_area_entered(_area):
 	sprite.modulate.a = MOD_AMOUNT
