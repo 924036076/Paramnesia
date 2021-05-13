@@ -54,27 +54,31 @@ script = ExtResource( 4 )
 position = Vector2( 0, -4 )
 texture = ExtResource( 3 )
 
-[node name="PlacementCollision" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Light2D" type="Light2D" parent="." index="1"]
+show_behind_parent = true
+position = Vector2( 0, -10 )
+texture = ExtResource( 6 )
+color = Color( 0.890196, 0.627451, 0.258824, 1 )
+energy = 0.6
+shadow_enabled = true
+shadow_gradient_length = 50.0
+shadow_filter = 2
+
+[node name="PlacementCollision" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( 0.37114, -3.317 )
 disabled = true
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2( -0.180405, -2.45485 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="Flames" type="Particles2D" parent="." index="3"]
+[node name="Flames" type="Particles2D" parent="." index="4"]
 position = Vector2( 0, -10 )
-emitting = false
 amount = 100
 process_material = SubResource( 6 )
 
-[node name="Light2D" type="Light2D" parent="Flames" index="0"]
-texture = ExtResource( 6 )
-color = Color( 0.890196, 0.627451, 0.258824, 1 )
-shadow_enabled = true
-
-[node name="InteractArea" parent="." index="4"]
+[node name="InteractArea" parent="." index="5"]
 position = Vector2( 12.0099, -2.31384 )
 
 [node name="CollisionShape2D" parent="InteractArea" index="0"]
@@ -82,5 +86,5 @@ position = Vector2( -11.6884, -2.50509 )
 rotation = 1.5708
 shape = SubResource( 7 )
 
-[node name="BlockPath" parent="." index="5" instance=ExtResource( 5 )]
+[node name="BlockPath" parent="." index="6" instance=ExtResource( 5 )]
 position = Vector2( 0, -3 )

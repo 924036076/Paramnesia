@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/door_interior.png-4a81787a2815cb47524c8cdd2529d3e7.stex"
+path="res://.import/door_interior.png-2ba8c22a92a0b06c65c8ebe2a4354248.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Houses/Interiors/door_interior.png"
-dest_files=[ "res://.import/door_interior.png-4a81787a2815cb47524c8cdd2529d3e7.stex" ]
+source_file="res://World/Houses/Interiors/Blueprint/door_interior.png"
+dest_files=[ "res://.import/door_interior.png-2ba8c22a92a0b06c65c8ebe2a4354248.stex" ]
 
 [params]
 

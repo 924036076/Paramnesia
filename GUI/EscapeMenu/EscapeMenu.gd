@@ -29,6 +29,7 @@ func exit_menu():
 func _on_ExitButton_pressed():
 	var path: String = get_tree().get_current_scene().key
 	Global.save_game(path)
+	get_tree().get_current_scene().get_node("GUI").set_process(false)
 	Global.switch_scene("MainMenu", false)
 	exit_menu()
 

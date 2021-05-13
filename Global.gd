@@ -135,6 +135,11 @@ func _deferred_goto_scene(scene: String, do_load: bool):
 			get_tree().get_current_scene().initialize()
 
 func save_game(scene: String):
+	if scene == "Interior":
+		call_deferred("_deferred_exit_interior")
+		call_deferred("save_game", current_world.key)
+		return
+	
 	var save_game = File.new()
 	var path = save_path + scene + ".save"
 	save_game.open(path, File.WRITE)
@@ -204,7 +209,9 @@ func exit_interior():
 	call_deferred("_deferred_exit_interior")
 
 func _deferred_exit_interior():
-	current_interior.free()
+	if current_interior != null:
+		current_interior.queue_free()
+		current_interior = null
 	
 	get_tree().get_root().add_child(current_world)
 	get_tree().set_current_scene(current_world)

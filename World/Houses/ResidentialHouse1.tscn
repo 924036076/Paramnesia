@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://World/Houses/Blueprint/House.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Tilemaps/BasicHouses.tres" type="TileSet" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 52, 35 )
+
+[node name="House" instance=ExtResource( 1 )]
+interior_path = "res://World/Houses/Interiors/ResidentialInterior1.tscn"
+
+[node name="Base" parent="." index="0"]
+tile_set = ExtResource( 2 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+tile_data = PoolIntArray( -196611, 9, 65536, -196610, 9, 65539, -196609, 9, 65540, -262144, 9, 65537, -262143, 9, 65539, -262142, 9, 65540, -262141, 9, 65543, -131075, 9, 131072, -131074, 9, 131075, -131073, 9, 131076, -196608, 9, 131073, -196607, 9, 131075, -196606, 9, 131076, -196605, 9, 131079, -65539, 10, 131072, -65538, 10, 131078, -65537, 10, 131075, -131072, 10, 4, -131071, 10, 131077, -131070, 10, 131078, -131069, 10, 131074, -3, 10, 196608, -2, 10, 196614, -1, 10, 196611, -65536, 10, 65540, -65535, 10, 196613, -65534, 10, 196614, -65533, 10, 196610 )
+
+[node name="Roof" parent="." index="1"]
+tile_set = ExtResource( 2 )
+tile_data = PoolIntArray( -524289, 8, 2, -589824, 8, 3, -589823, 8, 4, -458755, 8, 65536, -458754, 8, 65537, -458753, 8, 65538, -524288, 8, 65539, -524287, 8, 65540, -524286, 8, 65541, -524285, 8, 65542, -393219, 8, 131072, -393218, 8, 131073, -393217, 8, 131074, -458752, 8, 131075, -458751, 8, 131076, -458750, 8, 131077, -458749, 8, 131078, -327683, 8, 196608, -327682, 8, 196609, -327681, 8, 196610, -393216, 8, 327683, -393215, 8, 196612, -393214, 8, 196613, -393213, 8, 196614, -262147, 8, 393216, -262146, 8, 393217, -262145, 8, 262146, -327680, 8, 393219, -327679, 8, 262148, -327678, 8, 262149, -327677, 8, 393222, -196611, 9, 65536, -262141, 9, 65543 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 8, -37 )
+shape = SubResource( 1 )
+
+[node name="Door" parent="." index="4"]
+position = Vector2( 8, -3 )

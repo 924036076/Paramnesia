@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Interior",
 "language": "GDScript",
-"path": "res://World/Houses/Interiors/InteriorBlueprint.gd"
+"path": "res://World/Houses/Interiors/Blueprint/InteriorBlueprint.gd"
 }, {
 "base": "Node",
 "class": "LootTable",
