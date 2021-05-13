@@ -10,14 +10,15 @@ Originally, Paramnesia was going to be an open-world RPG that was primarily stor
 
 ## Timeline
 Updated 5/13/2021
+
 I don't have an expected release date or even progress goals at this point. With that said, here is a realistic plan for the next year.
 * September 2021 - NPC characters, enemies, and mobs are complete. The AI is functioning and they can pathfind and interact with each other and their environment. Everything that the player can do that isn't quest based (i.e. building, taming, resource gathering, etc.) is in its final state.
 * January 2022 - Level design is complete for all main worlds and quest areas. Work on some quests has begun.
-* May 2022 - The majority of quests are completed and polished, boss fights are designed and first implemented.
-* September 2022 - Final art/music is created, all mechanics are polished. Potential commercial release.
+* May 2022 - The majority of quests are completed and polished, boss fights have been designed and first implemented.
+* September 2022 - Final art/music has been created, all mechanics are polished. Potential commercial release.
 
 ## Mechanics
-Paramnesia is set in a complex medieval city environment. As you play you will build your economic empire and be inadvertently dragged in military conflict against real and fantastic threats. You can build and organize your businesses and resource production and fight and tame wild creatures. The way your character interacts with the NPCs will change the city and the way they treat you.
+Paramnesia is set in a complex medieval city environment. As you play you will build your economic empire and be inadvertently dragged in military conflict against real and fantastic threats. You can build and organize your businesses and resource production and fight and tame wild creatures. The way your character interacts with the NPCs will change the city and the way the NPCs treat you.
 
 ---
 
