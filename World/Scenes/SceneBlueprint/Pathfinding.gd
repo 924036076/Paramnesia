@@ -51,12 +51,14 @@ func remove_structure(structure):
 func add_obstacles():
 	var obstacles = get_tree().get_nodes_in_group("Obstacle")
 	for obstacle in obstacles:
-		var tile_coord = tilemap.world_to_map(obstacle.global_position)
-		var id = get_id(tile_coord)
-		if astar.has_point(id):
-			astar.set_point_disabled(id, true)
-			if debug:
-				grid_rects[str(id)].color = disabled_color
+		var rectangles: Array = obstacle.get_pathfinding_rectangles()
+		for r in rectangles:
+			var tile_coord = tilemap.world_to_map(r)
+			var id = get_id(tile_coord)
+			if astar.has_point(id):
+				astar.set_point_disabled(id, true)
+				if debug:
+					grid_rects[str(id)].color = disabled_color
 
 func add_traversable_tiles(tiles: Array):
 	for tile in tiles:

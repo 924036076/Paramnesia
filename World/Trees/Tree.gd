@@ -12,6 +12,7 @@ onready var health_bar = get_node("ResourceIndicator")
 onready var sprite = get_node("Sprite")
 
 var trans_counter = 0
+var pathfinding_rect: Vector2
 
 enum {
 	RIGHT,
@@ -20,6 +21,11 @@ enum {
 
 func _ready():
 	health_bar.connect("no_health", self, "fell_tree")
+	pathfinding_rect = get_node("Pathfinding").get_global_position()
+	get_node("Pathfinding").queue_free()
+
+func get_pathfinding_rectangles() -> Array:
+	return [pathfinding_rect]
 
 func fell_tree():
 	var fellEffect = FellEffect.instance()

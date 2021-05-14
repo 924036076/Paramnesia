@@ -6,6 +6,7 @@
 [ext_resource path="res://Effects/ShakeSpriteEffect.tscn" type="PackedScene" id=4]
 
 [node name="Tree" type="StaticBody2D" groups=[
+"Obstacle",
 "Persist",
 ]]
 collision_mask = 0
@@ -34,6 +35,13 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="ShakeSpriteEffect" parent="." instance=ExtResource( 4 )]
+
+[node name="Pathfinding" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="area_entered" from="TransTest" to="." method="_on_TransTest_area_entered"]
 [connection signal="area_exited" from="TransTest" to="." method="_on_TransTest_area_exited"]

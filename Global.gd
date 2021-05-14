@@ -44,7 +44,7 @@ var starting_items = {
 var game_paused: bool = false
 var current_scene
 var block_escape: bool = true
-var debug_mode: bool = false
+var debug_mode: bool = true
 var do_day_cycle: bool = false
 
 var num_interacted_with: int = 0

@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Structures/Blueprint/Structure/Structure.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Structures/Campfire/PlacementCollision.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Structures/Campfire/fire_base.png" type="Texture" id=3]
 [ext_resource path="res://Structures/Campfire/Campfire.gd" type="Script" id=4]
-[ext_resource path="res://Control/BlockPath.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Effects/light.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -85,6 +84,3 @@ position = Vector2( 12.0099, -2.31384 )
 position = Vector2( -11.6884, -2.50509 )
 rotation = 1.5708
 shape = SubResource( 7 )
-
-[node name="BlockPath" parent="." index="6" instance=ExtResource( 5 )]
-position = Vector2( 0, -3 )
