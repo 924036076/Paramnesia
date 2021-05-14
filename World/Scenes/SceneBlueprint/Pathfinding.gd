@@ -11,7 +11,7 @@ var astar = AStar2D.new()
 var tilemap: TileMap
 var half_cell_size: Vector2
 var used_rect: Rect2
-var do_diagonals: bool = false
+var do_diagonals: bool = true
 export var debug: bool = false
 
 func create_navigation_map(passed_tilemap: TileMap):
@@ -25,28 +25,6 @@ func create_navigation_map(passed_tilemap: TileMap):
 	add_traversable_tiles(tiles)
 	connect_traversable_tiles(tiles)
 	add_obstacles()
-
-func add_structure(structure):
-	var obstacles = get_tree().get_nodes_in_group("Obstacle")
-	for obstacle in obstacles:
-		if obstacle.get_parent() == structure:
-			var tile_coord = tilemap.world_to_map(obstacle.global_position)
-			var id = get_id(tile_coord)
-			if astar.has_point(id):
-				astar.set_point_disabled(id, true)
-				if debug:
-					grid_rects[str(id)].color = disabled_color
-
-func remove_structure(structure):
-	var obstacles = get_tree().get_nodes_in_group("Obstacle")
-	for obstacle in obstacles:
-		if obstacle.get_parent() == structure:
-			var tile_coord = tilemap.world_to_map(obstacle.global_position)
-			var id = get_id(tile_coord)
-			if astar.has_point(id) and not id in static_blocked_tiles:
-				astar.set_point_disabled(id, false)
-				if debug:
-					grid_rects[str(id)].color = enabled_color
 
 func add_obstacles():
 	var obstacles = get_tree().get_nodes_in_group("Obstacle")
@@ -169,3 +147,9 @@ func get_new_path(start: Vector2, end: Vector2, allow_nearest_alternative: bool 
 		path_world.append(point_world)
 	
 	return path_world
+
+func is_valid_path(start: Vector2, end: Vector2, allow_nearest_alternative: bool = false, search_distance: int = 2) -> bool:
+	if start.distance_to(end) < search_distance * 16:
+		return true
+	var path = get_new_path(start, end, allow_nearest_alternative, search_distance)
+	return (path.size() > 0)

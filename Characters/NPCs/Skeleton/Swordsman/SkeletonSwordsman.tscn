@@ -757,7 +757,7 @@ goal = 2
 position = Vector2( 0, -10 )
 texture = ExtResource( 3 )
 hframes = 84
-frame = 64
+frame = 65
 
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 1.5708

@@ -19,7 +19,6 @@ onready var path_line = get_node("PathLine")
 
 enum {
 	WANDER,
-	PATH,
 	GUARD,
 	STAY
 }
@@ -46,8 +45,8 @@ export var path_target: Vector2 = Vector2.ZERO
 var health setget set_health
 var MAX_WANDER_DISTANCE: float = 20.0
 var dir: Vector2 = Vector2(1, 0)
-var state = WALK
-export var goal = PATH
+var state = IDLE
+export var goal = GUARD
 var velocity: Vector2 = Vector2.ZERO
 var spawn_location
 var agro: bool = false
@@ -100,22 +99,19 @@ func _physics_process(delta):
 	update_debug_text()
 
 func walk(delta):
+	if not agro:
+		start_new_path(path_target)
+		if global_position.distance_to(path_target) < 10:
+			state = IDLE
 	if goal == GUARD or agro:
 		animationState.travel("WalkWeapon")
-	elif goal == PATH:
-		start_new_path(path_target)
-		animationState.travel("Walk")
 	else:
 		animationState.travel("Walk")
+
 	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
 	velocity = move_and_slide(velocity)
-	if goal == PATH:
-		if global_position.distance_to(path_target) < 10:
-			goal = STAY
-			path_line.visible = false
-			state = IDLE
 
-func start_new_path(target: Vector2) -> bool:
+func start_new_path(target: Vector2):
 	var path = pathfinding.get_new_path(global_position, target, true)
 	if path.size() > 1:
 		update_path_line(path)
@@ -123,9 +119,6 @@ func start_new_path(target: Vector2) -> bool:
 		target = path.pop_front()
 		dir = global_position.direction_to(target)
 		set_direction(dir)
-		return true
-	else:
-		return false
 
 func agro_state():
 	if is_instance_valid(nearest_enemy):
@@ -149,26 +142,27 @@ func attack():
 
 func choose_new_action():
 	if goal == GUARD:
-		if randi() % 2 == 0:
-			state = WALK
-		else:
-			state = IDLE
-		var dir_x = randi() % 10 - 5
-		var dir_y = randi() % 10 - 5
-		dir = Vector2(dir_x, dir_y).normalized()
-		if global_position.distance_to(spawn_location) > MAX_WANDER_DISTANCE:
-			dir = global_position.direction_to(spawn_location)
-			state = WALK
+		state = WALK
+		for i in range(10):
+			path_target = global_position + Vector2(randi() % 100 - 50, randi() % 100 - 50)
+			if global_position.distance_to(spawn_location) > MAX_WANDER_DISTANCE:
+				path_target = spawn_location
+			if pathfinding.is_valid_path(global_position, path_target, true):
+				break
+			if i == 9:
+				state = IDLE
+
 	elif goal == WANDER:
 		if randi() % 4 == 0:
 			state = IDLE
 		else:
 			state = WALK
-		var dir_x = randi() % 10 - 5
-		var dir_y = randi() % 10 - 5
-		dir = Vector2(dir_x, dir_y).normalized()
-	elif goal == PATH:
-		state = WALK
+			for i in range(10):
+				path_target = global_position + Vector2(randi() % 200 - 100, randi() % 200 - 100)
+				if pathfinding.is_valid_path(global_position, path_target, true):
+					break
+				if i == 9:
+					state = IDLE
 
 func check_for_enemies():
 	agro = false
@@ -177,19 +171,17 @@ func check_for_enemies():
 	for enemy in enemies:
 		var enemy_distance = global_position.distance_to(enemy.global_position)
 		if not agro:
-			if enemy_distance < AGRO_RANGE and pathfinding.get_new_path(global_position, enemy.global_position, true).size() > 0:
+			if enemy_distance < AGRO_RANGE and pathfinding.is_valid_path(global_position, enemy.global_position, true):
 				agro = true
 				if enemy_distance < smallest_distance:
 					nearest_enemy = enemy
 					smallest_distance = enemy_distance
 		else:
-			if enemy_distance < LEAVE_AGRO_RANGE and pathfinding.get_new_path(global_position, enemy.global_position, true).size() > 0:
+			if enemy_distance < LEAVE_AGRO_RANGE and pathfinding.is_valid_path(global_position, enemy.global_position, true):
 				agro = true
 				if enemy_distance < smallest_distance:
 					nearest_enemy = enemy
 					smallest_distance = enemy_distance
-	
-		
 
 func set_direction(direction):
 	animationTree.set("parameters/Idle/blend_position", direction)
@@ -267,9 +259,12 @@ func update_debug_text():
 	var text = "State: " + debug_state + "\nGoal: " + debug_goal + "\nAgro: " + str(agro)
 	debug_text.text = text
 	
-	if agro and Global.debug_mode:
+	if Global.debug_mode:
 		get_node("EndPoint").visible = true
-		get_node("Target").visible = true
+		if agro:
+			get_node("Target").visible = true
+		else:
+			get_node("Target").visible = false
 	else:
 		get_node("EndPoint").visible = false
 		get_node("Target").visible = false
@@ -295,7 +290,10 @@ func update_path_line(points: Array):
 		
 		if local_points.size() > 0:
 			get_node("EndPoint").rect_position = local_points[local_points.size() - 1] - (get_node("EndPoint").rect_size / 2)
-		get_node("Target").rect_global_position = nearest_enemy.global_position - (get_node("Target").rect_size / 2)
+		if agro:
+			get_node("Target").rect_global_position = nearest_enemy.global_position - (get_node("Target").rect_size / 2)
+		else:
+			get_node("Target").rect_global_position = path_target - (get_node("Target").rect_size / 2)
 	else:
 		path_line.visible = false
 		get_node("EndPoint").visible = false
