@@ -130,14 +130,14 @@ func get_new_path(start: Vector2, end: Vector2, allow_nearest_alternative: bool 
 			return []
 		
 		#check the tiles surrounding the start to see if a valid one is nearby
-		var nearest_point: Vector2 = start * 2 + Vector2(16, 16) * search_distance
+		var nearest_point: Vector2 = end
 		for x in range(-search_distance, search_distance + 1):
 			for y in range(-search_distance, search_distance + 1):
 				var new_coord: Vector2 = Vector2(x, y) * 16 + start
 				if astar.has_point(get_id(tilemap.world_to_map(new_coord))):
-					if end.distance_to(new_coord) < end.distance_to(nearest_point):
+					if start.distance_to(new_coord) < start.distance_to(nearest_point):
 						nearest_point = new_coord
-		if nearest_point == start * 2 + Vector2(16, 16) * search_distance:
+		if nearest_point == end:
 			return []
 		
 		start_tile = tilemap.world_to_map(nearest_point)
@@ -148,14 +148,14 @@ func get_new_path(start: Vector2, end: Vector2, allow_nearest_alternative: bool 
 			return []
 		
 		#check the tiles surrounding the end to see if a valid one is nearby
-		var nearest_point: Vector2 = end * 2 + Vector2(16, 16) * search_distance
+		var nearest_point: Vector2 = start
 		for x in range(-search_distance, search_distance + 1):
 			for y in range(-search_distance, search_distance + 1):
 				var new_coord: Vector2 = Vector2(x, y) * 16 + end
 				if astar.has_point(get_id(tilemap.world_to_map(new_coord))):
-					if start.distance_to(new_coord) < start.distance_to(nearest_point):
+					if end.distance_to(new_coord) < end.distance_to(nearest_point):
 						nearest_point = new_coord
-		if nearest_point == end * 2 + Vector2(16, 16) * search_distance:
+		if nearest_point == start:
 			return []
 		
 		end_tile = tilemap.world_to_map(nearest_point)
