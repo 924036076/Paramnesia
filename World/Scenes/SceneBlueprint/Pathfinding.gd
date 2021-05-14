@@ -118,16 +118,50 @@ func get_id(point: Vector2):
 	return x + y * used_rect.size.x
 
 #params are world coordinates
-func get_new_path(start: Vector2, end: Vector2):
+func get_new_path(start: Vector2, end: Vector2, allow_nearest_alternative: bool = false, search_distance: int = 2) -> Array:
 	var start_tile = tilemap.world_to_map(start)
 	var end_tile = tilemap.world_to_map(end)
 	
 	var start_id = get_id(start_tile)
 	var end_id = get_id(end_tile)
 	
-	if not astar.has_point(start_id) or not astar.has_point(end_id):
-		return []
+	if not astar.has_point(start_id):
+		if not allow_nearest_alternative:
+			return []
+		
+		#check the tiles surrounding the start to see if a valid one is nearby
+		var nearest_point: Vector2 = start * 2 + Vector2(16, 16) * search_distance
+		for x in range(-search_distance, search_distance + 1):
+			for y in range(-search_distance, search_distance + 1):
+				var new_coord: Vector2 = Vector2(x, y) * 16 + start
+				if astar.has_point(get_id(tilemap.world_to_map(new_coord))):
+					if end.distance_to(new_coord) < end.distance_to(nearest_point):
+						nearest_point = new_coord
+		if nearest_point == start * 2 + Vector2(16, 16) * search_distance:
+			return []
+		
+		start_tile = tilemap.world_to_map(nearest_point)
+		start_id = get_id(start_tile)
+
+	if not astar.has_point(end_id):
+		if not allow_nearest_alternative:
+			return []
+		
+		#check the tiles surrounding the end to see if a valid one is nearby
+		var nearest_point: Vector2 = end * 2 + Vector2(16, 16) * search_distance
+		for x in range(-search_distance, search_distance + 1):
+			for y in range(-search_distance, search_distance + 1):
+				var new_coord: Vector2 = Vector2(x, y) * 16 + end
+				if astar.has_point(get_id(tilemap.world_to_map(new_coord))):
+					if start.distance_to(new_coord) < start.distance_to(nearest_point):
+						nearest_point = new_coord
+		if nearest_point == end * 2 + Vector2(16, 16) * search_distance:
+			return []
+		
+		end_tile = tilemap.world_to_map(nearest_point)
+		end_id = get_id(end_tile)
 	
+	#generate path
 	var path_map = astar.get_point_path(start_id, end_id)
 	var path_world = []
 	for point in path_map:

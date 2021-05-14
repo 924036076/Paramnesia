@@ -735,6 +735,7 @@ states/Walk/position = Vector2( 266, 221 )
 states/WalkWeapon/node = SubResource( 47 )
 states/WalkWeapon/position = Vector2( 712, 103 )
 transitions = [ "Idle", "IdleWeapon", SubResource( 48 ), "IdleWeapon", "Idle", SubResource( 49 ), "IdleWeapon", "Attack", SubResource( 50 ), "Attack", "IdleWeapon", SubResource( 51 ), "IdleWeapon", "WalkWeapon", SubResource( 52 ), "WalkWeapon", "IdleWeapon", SubResource( 53 ), "Attack", "WalkWeapon", SubResource( 54 ), "Idle", "Walk", SubResource( 55 ), "Walk", "Idle", SubResource( 56 ), "Walk", "IdleWeapon", SubResource( 57 ), "IdleWeapon", "Walk", SubResource( 58 ), "Walk", "WalkWeapon", SubResource( 59 ), "WalkWeapon", "Walk", SubResource( 60 ), "WalkWeapon", "Attack", SubResource( 61 ) ]
+start_node = "Idle"
 graph_offset = Vector2( -324.885, -35.3037 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=63]
@@ -747,7 +748,6 @@ height = 10.0
 script = ExtResource( 4 )
 damage = 20
 AGRO_RANGE = 300.0
-LEAVE_AGRO_RANGE = 300.0
 FOCUS_TIME = 1.0
 ATTACK_COOLDOWN = 0.5
 KNOCKBACK_STRENGTH = 100
@@ -757,7 +757,7 @@ goal = 2
 position = Vector2( 0, -10 )
 texture = ExtResource( 3 )
 hframes = 84
-frame = 24
+frame = 64
 
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 1.5708

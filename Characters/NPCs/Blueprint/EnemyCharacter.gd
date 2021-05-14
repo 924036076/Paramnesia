@@ -115,14 +115,17 @@ func walk(delta):
 			path_line.visible = false
 			state = IDLE
 
-func start_new_path(target: Vector2):
-	var path = pathfinding.get_new_path(global_position, target)
+func start_new_path(target: Vector2) -> bool:
+	var path = pathfinding.get_new_path(global_position, target, true)
 	if path.size() > 1:
 		update_path_line(path)
 		path.pop_front()
 		target = path.pop_front()
 		dir = global_position.direction_to(target)
 		set_direction(dir)
+		return true
+	else:
+		return false
 
 func agro_state():
 	if is_instance_valid(nearest_enemy):
@@ -174,17 +177,19 @@ func check_for_enemies():
 	for enemy in enemies:
 		var enemy_distance = global_position.distance_to(enemy.global_position)
 		if not agro:
-			if enemy_distance < AGRO_RANGE:
+			if enemy_distance < AGRO_RANGE and pathfinding.get_new_path(global_position, enemy.global_position, true).size() > 0:
 				agro = true
 				if enemy_distance < smallest_distance:
 					nearest_enemy = enemy
 					smallest_distance = enemy_distance
 		else:
-			if enemy_distance < LEAVE_AGRO_RANGE:
+			if enemy_distance < LEAVE_AGRO_RANGE and pathfinding.get_new_path(global_position, enemy.global_position, true).size() > 0:
 				agro = true
 				if enemy_distance < smallest_distance:
 					nearest_enemy = enemy
 					smallest_distance = enemy_distance
+	
+		
 
 func set_direction(direction):
 	animationTree.set("parameters/Idle/blend_position", direction)
@@ -261,6 +266,14 @@ func update_debug_text():
 			debug_goal = "GUARD"
 	var text = "State: " + debug_state + "\nGoal: " + debug_goal + "\nAgro: " + str(agro)
 	debug_text.text = text
+	
+	if agro and Global.debug_mode:
+		get_node("EndPoint").visible = true
+		get_node("Target").visible = true
+	else:
+		get_node("EndPoint").visible = false
+		get_node("Target").visible = false
+
 
 func _on_HealthBarTimer_timeout():
 	health_bar.hide()
@@ -279,5 +292,11 @@ func update_path_line(points: Array):
 		path_line.points = local_points
 		if local_points.size() <= 2:
 			path_line.visible = false
+		
+		if local_points.size() > 0:
+			get_node("EndPoint").rect_position = local_points[local_points.size() - 1] - (get_node("EndPoint").rect_size / 2)
+		get_node("Target").rect_global_position = nearest_enemy.global_position - (get_node("Target").rect_size / 2)
 	else:
 		path_line.visible = false
+		get_node("EndPoint").visible = false
+		get_node("Target").visible = false

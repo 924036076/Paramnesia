@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Control/Hurtbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Health Bar/HealthBar.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Fonts/8px_plain_type_writer.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Control/Stats.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Characters/NPCs/Blueprint/state_indicator.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/24pt Landasan.tres" type="DynamicFont" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -68,6 +69,28 @@ width = 2.0
 default_color = Color( 0.780392, 0.0392157, 0, 0.866667 )
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="Target" type="Label" parent="."]
+visible = false
+margin_right = 9.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "O"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndPoint" type="Label" parent="."]
+visible = false
+margin_right = 8.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.411765, 0, 0, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="HealthBar/HealthBarTimer" to="." method="_on_HealthBarTimer_timeout"]
 [connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
