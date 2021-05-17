@@ -20,6 +20,13 @@ shader_param/highlight = false
 collision_layer = 16
 collision_mask = 19
 script = ExtResource( 2 )
+idle_animation = null
+max_health = null
+MAX_SPEED = null
+ACCELERATION = null
+FOCUS_TIME = null
+SPECIES = null
+CAN_ATTACK = null
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

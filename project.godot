@@ -10,9 +10,19 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Characters/Blueprint/Character.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "EnemyCharacter",
 "language": "GDScript",
 "path": "res://Characters/NPCs/Blueprint/EnemyCharacter.gd"
+}, {
+"base": "Character",
+"class": "FriendlyCharacter",
+"language": "GDScript",
+"path": "res://Characters/FriendlyCharacter/Blueprint/FriendlyCharacter.gd"
 }, {
 "base": "StaticBody2D",
 "class": "House",
@@ -69,13 +79,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Structures/Blueprint/Structure/Structure.gd"
 }, {
+"base": "FriendlyCharacter",
+"class": "TamedCreature",
+"language": "GDScript",
+"path": "res://Characters/FriendlyCharacter/TamedCreature/Blueprint/TamedCreature.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "TamedMob",
 "language": "GDScript",
 "path": "res://Characters/Mobs/Blueprint/TamedMob.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
 "EnemyCharacter": "",
+"FriendlyCharacter": "",
 "House": "",
 "Interior": "",
 "LootTable": "",
@@ -87,6 +104,7 @@ _global_script_class_icons={
 "RootScene": "",
 "StaticStructure": "",
 "Structure": "",
+"TamedCreature": "",
 "TamedMob": ""
 }
 

@@ -7,7 +7,7 @@
 [ext_resource path="res://World/Trees/Oak/OakTree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://World/Houses/ResidentialHouse1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Structures/Campfire/Campfire.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Characters/NPCs/Skeleton/Swordsman/SkeletonSwordsman.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Cow/Cow.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -37,74 +37,18 @@ z_index = 0
 [node name="OakTree" parent="GlobalYSort/World" index="1" instance=ExtResource( 5 )]
 position = Vector2( -40, -184 )
 
-[node name="OakTree2" parent="GlobalYSort/World" index="2" instance=ExtResource( 5 )]
-position = Vector2( -328, 72 )
-
-[node name="OakTree4" parent="GlobalYSort/World" index="3" instance=ExtResource( 5 )]
-position = Vector2( -392, 72 )
-
-[node name="OakTree6" parent="GlobalYSort/World" index="4" instance=ExtResource( 5 )]
-position = Vector2( -456, 72 )
-
-[node name="OakTree12" parent="GlobalYSort/World" index="5" instance=ExtResource( 5 )]
-position = Vector2( -360, 104 )
-
-[node name="OakTree10" parent="GlobalYSort/World" index="6" instance=ExtResource( 5 )]
-position = Vector2( -424, 104 )
-
-[node name="OakTree8" parent="GlobalYSort/World" index="7" instance=ExtResource( 5 )]
-position = Vector2( -488, 104 )
-
-[node name="OakTree19" parent="GlobalYSort/World" index="8" instance=ExtResource( 5 )]
-position = Vector2( -360, 136 )
-
-[node name="OakTree17" parent="GlobalYSort/World" index="9" instance=ExtResource( 5 )]
-position = Vector2( -424, 136 )
-
-[node name="OakTree15" parent="GlobalYSort/World" index="10" instance=ExtResource( 5 )]
-position = Vector2( -488, 136 )
-
-[node name="OakTree27" parent="GlobalYSort/World" index="11" instance=ExtResource( 5 )]
-position = Vector2( -328, 168 )
-
-[node name="OakTree25" parent="GlobalYSort/World" index="12" instance=ExtResource( 5 )]
-position = Vector2( -392, 168 )
-
-[node name="OakTree23" parent="GlobalYSort/World" index="13" instance=ExtResource( 5 )]
-position = Vector2( -456, 168 )
-
-[node name="Campfire" parent="GlobalYSort/World" index="14" instance=ExtResource( 7 )]
+[node name="Campfire" parent="GlobalYSort/World" index="2" instance=ExtResource( 7 )]
 position = Vector2( -257, -76 )
 
-[node name="House" parent="GlobalYSort/World" index="15" instance=ExtResource( 6 )]
+[node name="House" parent="GlobalYSort/World" index="3" instance=ExtResource( 6 )]
 position = Vector2( -192, -192 )
-
-[node name="House2" parent="GlobalYSort/World" index="16" instance=ExtResource( 6 )]
-position = Vector2( -320, -192 )
-
-[node name="House3" parent="GlobalYSort/World" index="17" instance=ExtResource( 6 )]
-position = Vector2( -448, -192 )
-
-[node name="House6" parent="GlobalYSort/World" index="18" instance=ExtResource( 6 )]
-position = Vector2( -192, -304 )
-
-[node name="House5" parent="GlobalYSort/World" index="19" instance=ExtResource( 6 )]
-position = Vector2( -320, -304 )
-
-[node name="House4" parent="GlobalYSort/World" index="20" instance=ExtResource( 6 )]
-position = Vector2( -448, -304 )
 
 [node name="Raft" parent="GlobalYSort/Raft" index="0"]
 visible = false
 position = Vector2( 661.228, 40.7871 )
 
-[node name="SkeletonSwordsman" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 8 )]
-position = Vector2( -202, -42 )
-goal = 1
-
-[node name="SkeletonSwordsman2" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 8 )]
-position = Vector2( -407, 119 )
-goal = 1
+[node name="Cow" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 9 )]
+position = Vector2( -32, -124 )
 
 [node name="Player" parent="GlobalYSort" index="3"]
 position = Vector2( -88, -168 )

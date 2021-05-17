@@ -6,7 +6,7 @@ const trader = preload("res://Structures/Trader/Trader.tscn")
 const DAY_COLOR = Color("#ffffff")
 const NIGHT_COLOR = Color("#2f4951")
 
-onready var pathfinding = get_node("Pathfinding")
+onready var pathfinding_controller = get_node("Pathfinding")
 onready var tilemap = get_node("TileMap")
 onready var trade_enter_path = get_node("TraderEnter/PathFollow2D")
 onready var canvas_modulate = get_node("CanvasModulate")
@@ -23,11 +23,8 @@ enum {
 }
 
 func _ready():
-	pathfinding.create_navigation_map(tilemap)
+	pathfinding_controller.create_navigation_map(tilemap)
 	add_other_tilemaps()
-	var nodes = get_tree().get_nodes_in_group("Pathfinding")
-	for node in nodes:
-		node.initialize(pathfinding)
 
 func _process(_delta):
 	if Global.do_day_cycle:
