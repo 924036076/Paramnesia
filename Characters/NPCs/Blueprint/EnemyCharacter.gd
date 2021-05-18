@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-class_name EnemyCharacter
+class_name EnemyCharacterOld
 
 const floating_numbers = preload("res://Effects/DamageNumbers/FriendlyNumbers.tscn")
 

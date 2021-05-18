@@ -31,7 +31,7 @@ export var PLAYER_OWNED: bool = true
 
 var stance = PASSIVE
 var state = IDLE
-var follow_mode = STAY setget change_follow_mode
+var follow_mode = WANDER setget change_follow_mode
 var level: int = 1
 var given_name: String = "" setget name_changed
 

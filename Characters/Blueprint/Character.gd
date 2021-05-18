@@ -5,19 +5,20 @@ class_name Character
 const VALID_OUTLINE_COLOR: Color = Color("#ffffff")
 const INVALID_OUTLINE_COLOR: Color = Color("#0081ff")
 
-var floating_numbers = preload("res://Effects/DamageNumbers/EnemyNumbers.tscn")
-
 onready var health_bar = get_node("HealthBar")
 onready var hurtbox = get_node("Hurtbox")
 onready var sprite = get_node("Sprite")
 onready var hit_timer = get_node("HitEffect")
+onready var invincibility_timer = get_node("InvincibilityTimer")
 onready var animation_player = get_node("AnimationPlayer")
 onready var animation_tree = get_node("AnimationTree")
 onready var animation_state = animation_tree.get("parameters/playback")
 
 export var MAX_HEALTH: int = 100
-export var MAX_SPEED: int = 5
-export var ACCELERATION: int = 50
+export var MAX_SPEED: int = 100
+export var MAX_SPEED_RUNNING: int = 10
+export var ACCELERATION: int = 500
+export var FRICTION: int = 400
 export var INVINCIBILITY_TIME: float = 0.4
 export var FLEE_ON_HIT: bool = false
 export var FLEE_ON_LOW_HEALTH: bool = false
@@ -30,6 +31,7 @@ var health: int setget set_health
 var dir: Vector2 = Vector2(1, 0)
 var velocity: Vector2 = Vector2.ZERO
 var knockback: Vector2 = Vector2.ZERO
+var invincible: bool = false
 var has_focus: bool = false
 var is_pathing: bool = false
 var path_target: Vector2 = Vector2.ZERO
@@ -37,6 +39,7 @@ var current_path: Array = []
 var pathfinding_controller = null
 var frames_elapsed: int = 0
 var fleeing: bool = false
+var last_damage_source: Object = null
 var current_threat
 
 func _ready():
@@ -50,8 +53,7 @@ func _ready():
 	health_bar.hide()
 	
 	sprite.set_material(sprite.get_material().duplicate())
-	
-	pathfinding_controller = get_tree().get_current_scene().pathfinding_controller
+	invincibility_timer.wait_time = INVINCIBILITY_TIME
 	
 	extra_init()
 
@@ -62,12 +64,19 @@ func _physics_process(delta):
 		if is_pathing:
 			is_pathing = start_path(path_target)
 	
-	state_logic(delta)
+	if fleeing:
+		flee_logic(delta)
+	else:
+		state_logic(delta)
 	apply_knockback(delta)
 	update_debug_info(Global.debug_show_paths)
 
 func move(delta):
-	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
+	if fleeing:
+		velocity = velocity.move_toward(dir * MAX_SPEED_RUNNING, ACCELERATION * delta)
+	else:
+		velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
+	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	velocity = move_and_slide(velocity)
 
 func apply_knockback(delta):
@@ -107,6 +116,12 @@ func follow_current_path(delta):
 			set_direction(dir)
 			move(delta)
 
+func flee_logic(delta):
+	if not is_pathing:
+		path_target = global_position - 32 * global_position.direction_to(last_damage_source.global_position) + Vector2(rand_range(-16, 16), rand_range(-16, 16))
+		is_pathing = start_path(path_target)
+	follow_current_path(delta)
+
 func _on_HitEffect_timeout():
 	sprite.get_material().set_shader_param("highlight", false)
 
@@ -114,14 +129,14 @@ func set_health(new_health):
 	health = new_health
 	health_bar.value = health
 	health_bar.show()
-	health_bar.get_node("HealthBarTimer").start(15)
+	health_bar.get_node("VisibilityTimer").start(15)
 	if health <= 0:
 		dead()
 
 func _on_Hurtbox_area_entered(area):
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
-	if hurtbox.invincible:
+	if invincible:
 		return
 	var damage = 0
 	if area.get_parent().has_method("get_damage"):
@@ -133,11 +148,18 @@ func _on_Hurtbox_area_entered(area):
 	set_health(health - damage)
 	
 	# show hit numbers above character
-	var numbers = floating_numbers.instance()
-	numbers.text = str(damage)
-	add_child(numbers)
+	floating_damage_numbers(damage)
 	
-	hurtbox.start_invicibility(INVINCIBILITY_TIME)
+	if damage >= 1:
+		invincible = true
+		invincibility_timer.start()
+	
+	var damage_info: Dictionary = area.get_parent().get_damage_info()
+	
+	if FLEE_ON_HIT:
+		fleeing = true
+		is_pathing = false
+		last_damage_source = damage_info["reference"]
 
 func _on_HealthBarTimer_timeout():
 	health_bar.hide()
@@ -201,14 +223,13 @@ func update_debug_info(show_debug: bool):
 		get_node("PathTarget").visible = false
 		get_node("PathTarget2").visible = false
 
+func set_direction(direction: Vector2):
+	animation_tree.set("parameters/Idle/blend_position", direction)
+	animation_tree.set("parameters/Walk/blend_position", direction)
+
 # determine what the character should do each physics process
 # warning-ignore:unused_argument
 func state_logic(delta):
-	pass
-
-# set the blend position of the animations
-# warning-ignore:unused_argument
-func set_direction(direction: Vector2):
 	pass
 
 # executed when the current path has been follow completely
@@ -217,7 +238,7 @@ func finished_path():
 
 # executed when the health of the character is zero
 func dead():
-	pass
+	queue_free()
 
 # executed on _ready() for classes that need additional setup
 func extra_init():
@@ -234,3 +255,14 @@ func mouse_exited():
 # executed if CAN_INTERACT is true and the player right clicks the character
 func object_interacted_with():
 	pass
+
+# display the damage taken overhead
+# warning-ignore:unused_argument
+func floating_damage_numbers(damage):
+	pass
+
+func _on_InvincibilityTimer_timeout():
+	invincible = false
+
+func _on_VisibilityTimer_timeout():
+	health_bar.hide()

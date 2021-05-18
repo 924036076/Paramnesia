@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Characters/Blueprint/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/EnemyCharacter/Blueprint/EnemyCharacter.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/24pt Landasan.tres" type="DynamicFont" id=3]
+
+[node name="EnemyCharacter" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+CAN_HOVER = true
+
+[node name="Hurtbox" parent="." index="2"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Name" type="Label" parent="." index="7"]
+visible = false
+margin_left = -35.0
+margin_top = -39.0
+margin_right = 105.0
+margin_bottom = -14.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 3 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WanderTimer" type="Timer" parent="." index="10"]
+one_shot = true
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]

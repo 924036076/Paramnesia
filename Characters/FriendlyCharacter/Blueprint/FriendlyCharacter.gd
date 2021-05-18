@@ -2,8 +2,11 @@ extends Character
 
 class_name FriendlyCharacter
 
+const floating_numbers = preload("res://Effects/DamageNumbers/EnemyNumbers.tscn")
+
 export var CAN_ATTACK: bool = true
 
-func set_direction(direction: Vector2):
-	animation_tree.set("parameters/Idle/blend_position", direction)
-	animation_tree.set("parameters/Walk/blend_position", direction)
+func floating_damage_numbers(damage):
+	var numbers = floating_numbers.instance()
+	numbers.text = str(damage)
+	add_child(numbers)

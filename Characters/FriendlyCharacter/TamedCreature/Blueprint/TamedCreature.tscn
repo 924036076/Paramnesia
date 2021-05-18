@@ -10,9 +10,6 @@ CAN_HOVER = true
 CAN_INTERACT = true
 INTERACT_DISTANCE = 100
 
-[node name="HealthBar" parent="." index="4"]
-visible = false
-
 [node name="Name" type="Label" parent="." index="6"]
 visible = false
 margin_left = -50.0

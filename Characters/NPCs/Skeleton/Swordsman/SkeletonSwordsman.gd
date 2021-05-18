@@ -1,4 +1,4 @@
-extends EnemyCharacter
+extends EnemyCharacterOld
 
 func end_attack_animation():
 	can_attack = false

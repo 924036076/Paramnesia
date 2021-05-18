@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Characters/Health Bar/health_bar_bottom.png" type="Texture" id=2]
-[ext_resource path="res://Characters/Health Bar/health_bar_top.png" type="Texture" id=3]
+[ext_resource path="res://Characters/Blueprint/health_bar_bottom.png" type="Texture" id=2]
+[ext_resource path="res://Characters/Blueprint/health_bar_top.png" type="Texture" id=3]
 
 [node name="HealthBar" type="TextureProgress"]
 margin_right = 22.0

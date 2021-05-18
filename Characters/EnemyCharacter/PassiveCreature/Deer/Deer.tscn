@@ -1,14 +1,20 @@
 [gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Characters/Mobs/Blueprint/TamedMob.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Cow/female_cow.png" type="Texture" id=2]
+[ext_resource path="res://Characters/EnemyCharacter/PassiveCreature/Blueprint/PassiveCreature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/EnemyCharacter/PassiveCreature/Deer/Deer.png" type="Texture" id=2]
 
+[sub_resource type="CapsuleShape2D" id=27]
+radius = 4.0
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="CapsuleShape2D" id=28]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="Animation" id=29]
 resource_name = "IdleDown"
-length = 0.8
+length = 0.4
 loop = true
-step = 0.4
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -16,10 +22,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 12, 13 ]
+"values": [ 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -34,7 +40,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -43,10 +49,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -55,10 +61,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -70,7 +76,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -82,7 +88,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -94,11 +100,11 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=30]
 resource_name = "IdleLeft"
-length = 0.8
+length = 0.4
 loop = true
-step = 0.4
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -106,10 +112,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 14, 15 ]
+"values": [ 4 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -124,7 +130,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -133,10 +139,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -145,10 +151,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -160,7 +166,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -172,7 +178,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -184,11 +190,11 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=31]
 resource_name = "IdleRight"
-length = 0.8
+length = 0.4
 loop = true
-step = 0.4
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -196,10 +202,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 16, 17 ]
+"values": [ 7 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -214,7 +220,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -223,10 +229,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -235,10 +241,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -250,7 +256,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -262,7 +268,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -274,11 +280,11 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=32]
 resource_name = "IdleUp"
-length = 0.8
+length = 0.4
 loop = true
-step = 0.4
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -286,10 +292,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 18, 19 ]
+"values": [ 10 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -304,7 +310,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -313,10 +319,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -325,10 +331,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -340,7 +346,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -352,7 +358,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -364,10 +370,11 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
-length = 1.2
+[sub_resource type="Animation" id=33]
+resource_name = "WalkDown"
+length = 0.8
 loop = true
-step = 0.3
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -375,7 +382,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 1 ]
@@ -393,7 +400,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -402,10 +409,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -414,10 +421,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -429,7 +436,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -441,7 +448,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -453,10 +460,11 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
-length = 1.2
+[sub_resource type="Animation" id=34]
+resource_name = "WalkLeft"
+length = 0.8
 loop = true
-step = 0.3
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -464,7 +472,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 3, 4, 5, 4 ]
@@ -482,7 +490,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -491,10 +499,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -503,10 +511,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -518,7 +526,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -530,7 +538,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -542,10 +550,11 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=7]
-length = 1.2
+[sub_resource type="Animation" id=35]
+resource_name = "WalkRight"
+length = 0.8
 loop = true
-step = 0.3
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -553,7 +562,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 6, 7, 8, 7 ]
@@ -571,7 +580,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -580,10 +589,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -592,10 +601,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -607,7 +616,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -619,7 +628,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -631,10 +640,11 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
-length = 1.2
+[sub_resource type="Animation" id=36]
+resource_name = "WalkUp"
+length = 0.8
 loop = true
-step = 0.3
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -642,7 +652,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 9, 10, 11, 10 ]
@@ -660,7 +670,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("SecondaryCollisionShape:disabled")
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -669,10 +679,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SecondaryCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -681,10 +691,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Hurtbox/SecondaryCollisionShape:disabled")
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -696,7 +706,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -708,7 +718,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("InteractArea/SecondaryCollisionShape:disabled")
+tracks/6/path = NodePath("Hurtbox/SecondaryCollision:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -720,165 +730,153 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "IdleUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=13]
-blend_point_0/node = SubResource( 9 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=24]
+blend_point_0/node = SubResource( 20 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 10 )
+blend_point_1/node = SubResource( 21 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 11 )
+blend_point_2/node = SubResource( 22 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 12 )
+blend_point_3/node = SubResource( 23 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "WalkLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "WalkDown"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "WalkRight"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "WalkUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=18]
-blend_point_0/node = SubResource( 14 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=9]
+blend_point_0/node = SubResource( 12 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 15 )
+blend_point_1/node = SubResource( 13 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 16 )
+blend_point_2/node = SubResource( 14 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 17 )
+blend_point_3/node = SubResource( 15 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 
-[sub_resource type="AnimationNodeStateMachine" id=21]
-states/Idle/node = SubResource( 13 )
-states/Idle/position = Vector2( 247, 100 )
-states/Walk/node = SubResource( 18 )
-states/Walk/position = Vector2( 392, 100 )
-transitions = [ "Idle", "Walk", SubResource( 19 ), "Walk", "Idle", SubResource( 20 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/Idle/node = SubResource( 24 )
+states/Idle/position = Vector2( 442, 160 )
+states/Walk/node = SubResource( 9 )
+states/Walk/position = Vector2( 635, 160 )
+transitions = [ "Walk", "Idle", SubResource( 25 ), "Idle", "Walk", SubResource( 26 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
-[sub_resource type="CapsuleShape2D" id=23]
-radius = 5.0
-height = 26.0
+[sub_resource type="CapsuleShape2D" id=40]
+radius = 14.0
+height = 12.0
 
-[sub_resource type="CapsuleShape2D" id=24]
-radius = 7.0
-height = 2.0
+[sub_resource type="CapsuleShape2D" id=41]
 
-[sub_resource type="CapsuleShape2D" id=25]
-radius = 12.0
-height = 18.0
+[sub_resource type="CapsuleShape2D" id=38]
+radius = 13.0
+height = 10.0
 
-[sub_resource type="CapsuleShape2D" id=26]
-height = 8.0
+[sub_resource type="CapsuleShape2D" id=39]
+radius = 9.0
 
-[sub_resource type="CapsuleShape2D" id=27]
-radius = 12.0
-height = 18.0
-
-[sub_resource type="CapsuleShape2D" id=28]
-height = 8.0
-
-[node name="Cow" instance=ExtResource( 1 )]
-idle_animation = "res://Characters/Mobs/Tamed/Cow/female_cow_idle.png"
-max_health = 100
-MAX_SPEED = 8
-ACCELERATION = 50
-FOCUS_TIME = 3.0
-SPECIES = "Cow"
-CAN_ATTACK = false
+[node name="Deer" instance=ExtResource( 1 )]
+collision_layer = 16
+collision_mask = 19
+MAX_SPEED = 25
+MAX_SPEED_RUNNING = 120
+SPECIES = "Deer"
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0, -15 )
+position = Vector2( 0, -21 )
 texture = ExtResource( 2 )
-hframes = 20
-frame = 9
+vframes = 4
+hframes = 3
+frame = 6
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-anims/IdleDown = SubResource( 1 )
-anims/IdleLeft = SubResource( 2 )
-anims/IdleRight = SubResource( 3 )
-anims/IdleUp = SubResource( 4 )
-anims/WalkDown = SubResource( 5 )
-anims/WalkLeft = SubResource( 6 )
-anims/WalkRight = SubResource( 7 )
-anims/WalkUp = SubResource( 8 )
-
-[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = SubResource( 21 )
-anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 22 )
-parameters/Idle/blend_position = Vector2( -0.00156248, -0.0190752 )
-parameters/Walk/blend_position = Vector2( 0, 0 )
-
-[node name="CollisionShape2D" parent="." index="3"]
-position = Vector2( 0, -2 )
-rotation = 1.5708
-shape = SubResource( 23 )
-disabled = true
-
-[node name="SecondaryCollisionShape" type="CollisionShape2D" parent="." index="4"]
-position = Vector2( 0, -5 )
-shape = SubResource( 24 )
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 0, -11 )
-rotation = 1.5708
-shape = SubResource( 25 )
-disabled = true
-
-[node name="SecondaryCollisionShape" type="CollisionShape2D" parent="Hurtbox" index="1"]
-position = Vector2( 0, -12 )
-shape = SubResource( 26 )
-
-[node name="HealthBar" parent="." index="9"]
-visible = false
-margin_left = -11.0
-margin_top = -28.0
-margin_right = 11.0
-margin_bottom = -24.0
-
-[node name="CollisionShape2D" parent="InteractArea" index="0"]
-position = Vector2( 0, -11 )
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, -3 )
 rotation = 1.5708
 shape = SubResource( 27 )
+
+[node name="SecondaryCollision" type="CollisionShape2D" parent="." index="2"]
+position = Vector2( -2, -10 )
+shape = SubResource( 28 )
 disabled = true
 
-[node name="SecondaryCollisionShape" type="CollisionShape2D" parent="InteractArea" index="1"]
-position = Vector2( 0, -12 )
-shape = SubResource( 28 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+anims/IdleDown = SubResource( 29 )
+anims/IdleLeft = SubResource( 30 )
+anims/IdleRight = SubResource( 31 )
+anims/IdleUp = SubResource( 32 )
+anims/WalkDown = SubResource( 33 )
+anims/WalkLeft = SubResource( 34 )
+anims/WalkRight = SubResource( 35 )
+anims/WalkUp = SubResource( 36 )
 
-[node name="Name" parent="." index="11"]
-margin_right = 136.0
-[connection signal="timeout" from="FocusTimer" to="." method="_on_FocusTimer_timeout"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
+tree_root = SubResource( 10 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 37 )
+parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Walk/blend_position = Vector2( 0, 0 )
 
-[editable path="Hurtbox"]
+[node name="Hurtbox" parent="." index="5"]
+collision_mask = 1
 
-[editable path="HealthBar"]
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -13 )
+rotation = 1.5708
+shape = SubResource( 40 )
+
+[node name="SecondaryCollision" type="CollisionShape2D" parent="Hurtbox" index="1"]
+position = Vector2( -2, -20 )
+shape = SubResource( 41 )
+disabled = true
+
+[node name="CollisionShape2D" parent="InteractArea" index="0"]
+position = Vector2( 0, -13 )
+rotation = 1.5708
+shape = SubResource( 38 )
+
+[node name="SecondaryCollision" type="CollisionShape2D" parent="InteractArea" index="1"]
+position = Vector2( -2, -17 )
+shape = SubResource( 39 )
+disabled = true
+
+[node name="Name" parent="." index="10"]
+visible = true
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="timeout" from="HealthBar/VisibilityTimer" to="." method="_on_VisibilityTimer_timeout"]
+[connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
+[connection signal="input_event" from="InteractArea" to="." method="_on_InteractArea_input_event"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_InteractArea_mouse_entered"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_InteractArea_mouse_exited"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

@@ -1,4 +1,4 @@
-extends EnemyCharacter
+extends EnemyCharacterOld
 
 const Arrow = preload("res://Characters/NPCs/Skeleton/Archer/Arrow.tscn")
 

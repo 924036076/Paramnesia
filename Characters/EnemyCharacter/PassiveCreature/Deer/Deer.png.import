@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/female_cow.png-7d7477221ad4fd9446a46c9349ccaf8e.stex"
+path="res://.import/Deer.png-d97cfcd43c7838582cae05da23be24b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Mobs/Tamed/Cow/female_cow.png"
-dest_files=[ "res://.import/female_cow.png-7d7477221ad4fd9446a46c9349ccaf8e.stex" ]
+source_file="res://Characters/EnemyCharacter/PassiveCreature/Deer/Deer.png"
+dest_files=[ "res://.import/Deer.png-d97cfcd43c7838582cae05da23be24b6.stex" ]
 
 [params]
 
