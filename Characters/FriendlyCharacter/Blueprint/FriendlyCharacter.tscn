@@ -4,7 +4,9 @@
 [ext_resource path="res://Characters/FriendlyCharacter/Blueprint/FriendlyCharacter.gd" type="Script" id=2]
 [ext_resource path="res://Control/Hitbox.tscn" type="PackedScene" id=3]
 
-[node name="FriendlyCharacter" instance=ExtResource( 1 )]
+[node name="FriendlyCharacter" groups=[
+"Friendly",
+] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Hurtbox" parent="." index="2"]

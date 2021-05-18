@@ -7,11 +7,11 @@
 radius = 6.0
 height = 22.0
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 8.0
 height = 2.0
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=3]
 resource_name = "IdleDown"
 length = 0.8
 loop = true
@@ -77,7 +77,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=4]
 resource_name = "IdleLeft"
 length = 0.8
 loop = true
@@ -143,7 +143,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=5]
 resource_name = "IdleRight"
 length = 0.8
 loop = true
@@ -209,7 +209,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=6]
 resource_name = "IdleUp"
 length = 0.8
 loop = true
@@ -275,8 +275,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "WalkDown"
+[sub_resource type="Animation" id=7]
 length = 1.2
 loop = true
 step = 0.3
@@ -341,8 +340,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "WalkLeft"
+[sub_resource type="Animation" id=8]
 length = 1.2
 loop = true
 step = 0.3
@@ -407,8 +405,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "WalkRight"
+[sub_resource type="Animation" id=9]
 length = 1.2
 loop = true
 step = 0.3
@@ -473,8 +470,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "WalkUp"
+[sub_resource type="Animation" id=10]
 length = 1.2
 loop = true
 step = 0.3
@@ -539,80 +535,79 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "IdleUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=24]
-blend_point_0/node = SubResource( 20 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=15]
+blend_point_0/node = SubResource( 11 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 21 )
+blend_point_1/node = SubResource( 12 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 22 )
+blend_point_2/node = SubResource( 13 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 23 )
+blend_point_3/node = SubResource( 14 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "WalkLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "WalkDown"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "WalkRight"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "WalkUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=13]
-blend_point_0/node = SubResource( 9 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=20]
+blend_point_0/node = SubResource( 16 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 10 )
+blend_point_1/node = SubResource( 17 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 11 )
+blend_point_2/node = SubResource( 18 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 12 )
+blend_point_3/node = SubResource( 19 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
-[sub_resource type="AnimationNodeStateMachine" id=14]
-states/Idle/node = SubResource( 24 )
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/Idle/node = SubResource( 15 )
 states/Idle/position = Vector2( 254, 129 )
-states/Walk/node = SubResource( 13 )
+states/Walk/node = SubResource( 20 )
 states/Walk/position = Vector2( 399, 129 )
-transitions = [ "Idle", "Walk", SubResource( 25 ), "Walk", "Idle", SubResource( 26 ) ]
+transitions = [ "Idle", "Walk", SubResource( 21 ), "Walk", "Idle", SubResource( 22 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=25]
 radius = 12.0
 height = 18.0
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=26]
 height = 8.0
 
 [node name="Cow" instance=ExtResource( 1 )]
-collision_layer = 16
-collision_mask = 19
+MAX_SPEED = 10
 CAN_ATTACK = false
 SPECIES = "Cow"
 idle_animation = "res://Characters/Mobs/Tamed/Cow/female_cow_idle.png"
@@ -630,51 +625,50 @@ shape = SubResource( 1 )
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="." index="2"]
 position = Vector2( 0, -5 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
-anims/IdleDown = SubResource( 17 )
-anims/IdleLeft = SubResource( 18 )
-anims/IdleRight = SubResource( 19 )
-anims/IdleUp = SubResource( 16 )
-anims/WalkDown = SubResource( 5 )
-anims/WalkLeft = SubResource( 6 )
-anims/WalkRight = SubResource( 7 )
-anims/WalkUp = SubResource( 8 )
+anims/IdleDown = SubResource( 3 )
+anims/IdleLeft = SubResource( 4 )
+anims/IdleRight = SubResource( 5 )
+anims/IdleUp = SubResource( 6 )
+anims/WalkDown = SubResource( 7 )
+anims/WalkLeft = SubResource( 8 )
+anims/WalkRight = SubResource( 9 )
+anims/WalkUp = SubResource( 10 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
-tree_root = SubResource( 14 )
+tree_root = SubResource( 23 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 15 )
+parameters/playback = SubResource( 24 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="HealthBar" parent="." index="7"]
-margin_left = -10.0
-margin_top = -26.0
-margin_right = 12.0
-margin_bottom = -22.0
+margin_left = -11.0
+margin_top = -29.0
+margin_right = 11.0
+margin_bottom = -25.0
 
 [node name="Name" parent="." index="9"]
-margin_left = -14.0
-margin_top = -41.0
-margin_right = 15.0
-margin_bottom = -27.0
+margin_left = -48.0
+margin_top = -40.0
+margin_right = 152.0
+margin_bottom = -15.0
 
 [node name="CollisionShape2D" parent="InteractArea" index="0"]
 position = Vector2( -1, -10 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 25 )
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="InteractArea" index="1"]
 position = Vector2( 0, -10 )
-shape = SubResource( 4 )
+shape = SubResource( 26 )
 disabled = true
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
-[connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
-[connection signal="input_event" from="InteractArea" to="." method="_on_InteractArea_input_event"]
-[connection signal="mouse_entered" from="InteractArea" to="." method="_on_InteractArea_mouse_entered"]
-[connection signal="mouse_exited" from="InteractArea" to="." method="_on_InteractArea_mouse_exited"]
+
+[node name="WanderTimer" parent="." index="13"]
+one_shot = true
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
 
 [editable path="HealthBar"]

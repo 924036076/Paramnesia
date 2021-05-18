@@ -50,11 +50,12 @@ position = Vector2( 661.228, 40.7871 )
 [node name="Cow" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 9 )]
 position = Vector2( -32, -124 )
 
+[node name="Cow2" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 9 )]
+position = Vector2( 97, -86 )
+PLAYER_OWNED = false
+
 [node name="Player" parent="GlobalYSort" index="3"]
 position = Vector2( -88, -168 )
-
-[node name="Pathfinding" parent="." index="5"]
-debug = true
 
 [node name="SpawnArea" type="ColorRect" parent="." index="6"]
 visible = false

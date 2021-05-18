@@ -47,6 +47,7 @@ func _ready():
 	health_bar.max_value = MAX_HEALTH
 	health = MAX_HEALTH
 	health_bar.value = health
+	health_bar.hide()
 	
 	sprite.set_material(sprite.get_material().duplicate())
 	
@@ -63,6 +64,7 @@ func _physics_process(delta):
 	
 	state_logic(delta)
 	apply_knockback(delta)
+	update_debug_info(Global.debug_show_paths)
 
 func move(delta):
 	velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
@@ -85,10 +87,17 @@ func start_path(target: Vector2) -> bool:
 			return true
 	return false
 
+func is_valid_path(target: Vector2, allow_approximation: bool = true, search_distance: int = 2) -> bool:
+	if pathfinding_controller == null:
+		pathfinding_controller = get_tree().get_current_scene().pathfinding_controller
+		if pathfinding_controller == null:
+			return false
+	return pathfinding_controller.is_valid_path(self.global_position, target, allow_approximation, search_distance)
+
 func follow_current_path(delta):
 	if current_path.size() > 0:
 		var next_point: Vector2 = current_path[0]
-		if self.global_position.distance_to(next_point) < 5:
+		if self.global_position.distance_to(next_point) < 16:
 			current_path.pop_front()
 			if current_path.size() < 1:
 				is_pathing = false
@@ -160,15 +169,37 @@ func try_to_grab_focus():
 	if Global.num_interacted_with < 1:
 		has_focus = true
 		Global.num_interacted_with = 1
-		sprite.get_material().set_shader_param("line_thickness", 1)
 		
 		mouse_entered()
 		
 		if CAN_INTERACT:
+			sprite.get_material().set_shader_param("line_thickness", 1)
 			if global_position.distance_to(get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position) > INTERACT_DISTANCE:
 				sprite.get_material().set_shader_param("outline_color", INVALID_OUTLINE_COLOR)
 			else:
 				sprite.get_material().set_shader_param("outline_color", VALID_OUTLINE_COLOR)
+
+func update_debug_info(show_debug: bool):
+	if show_debug and is_pathing:
+		get_node("Path").visible = true
+		get_node("PathTarget").visible = true
+		
+		var points: Array = [Vector2.ZERO]
+		for point in current_path:
+			points.append(point - global_position)
+		get_node("Path").points = points
+		
+		get_node("PathTarget").rect_position = points[points.size() - 1] - (get_node("PathTarget").rect_size / 2)
+		
+		if is_valid_path(path_target, false):
+			get_node("PathTarget2").visible = false
+		else:
+			get_node("PathTarget2").visible = true
+			get_node("PathTarget2").rect_position = (path_target - global_position) - (get_node("PathTarget2").rect_size / 2)
+	else:
+		get_node("Path").visible = false
+		get_node("PathTarget").visible = false
+		get_node("PathTarget2").visible = false
 
 # determine what the character should do each physics process
 # warning-ignore:unused_argument

@@ -12,7 +12,6 @@ var tilemap: TileMap
 var half_cell_size: Vector2
 var used_rect: Rect2
 var do_diagonals: bool = true
-export var debug: bool = false
 
 func create_navigation_map(passed_tilemap: TileMap):
 	tilemap = passed_tilemap
@@ -35,7 +34,7 @@ func add_obstacles():
 			var id = get_id(tile_coord)
 			if astar.has_point(id):
 				astar.set_point_disabled(id, true)
-				if debug:
+				if Global.debug_show_path_grid:
 					grid_rects[str(id)].color = disabled_color
 
 func add_traversable_tiles(tiles: Array):
@@ -43,7 +42,7 @@ func add_traversable_tiles(tiles: Array):
 		var id = get_id(tile)
 		astar.add_point(id, tile)
 	
-		if debug:
+		if Global.debug_show_path_grid:
 			var rect: ColorRect = ColorRect.new()
 			grid.add_child(rect)
 			grid_rects[str(id)] = rect
@@ -86,7 +85,7 @@ func add_tilemap_to_navigation(passed_tilemap: TileMap):
 			astar.set_point_disabled(id, true)
 			if not id in static_blocked_tiles:
 				static_blocked_tiles.append(id)
-			if debug:
+			if Global.debug_show_path_grid:
 				grid_rects[str(id)].color = disabled_color
 
 func get_id(point: Vector2):
