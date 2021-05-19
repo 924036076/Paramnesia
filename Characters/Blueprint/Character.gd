@@ -4,12 +4,14 @@ class_name Character
 
 const VALID_OUTLINE_COLOR: Color = Color("#ffffff")
 const INVALID_OUTLINE_COLOR: Color = Color("#0081ff")
+const disappear_effect = preload("res://Effects/Disappear/Disappear.tscn")
 
 onready var health_bar = get_node("HealthBar")
 onready var hurtbox = get_node("Hurtbox")
 onready var sprite = get_node("Sprite")
 onready var hit_timer = get_node("HitEffect")
 onready var invincibility_timer = get_node("InvincibilityTimer")
+onready var tween = get_node("Tween")
 onready var animation_player = get_node("AnimationPlayer")
 onready var animation_tree = get_node("AnimationTree")
 onready var animation_state = animation_tree.get("parameters/playback")
@@ -26,6 +28,7 @@ export var FLEE_HEALTH_PERCENT: float = 0.25
 export var CAN_HOVER: bool = false # whether or not mousing over the character will make something happen. For instance, displaying the level above the character.
 export var CAN_INTERACT: bool = false # whether or not the character can be right clicked on to do something. This will enable an outline when the character is moused over.
 export var INTERACT_DISTANCE: int = 50 # the distance from which the player is able to right click on the character, in pixels.
+export var DAMAGE: int = 20
 
 var health: int setget set_health
 var dir: Vector2 = Vector2(1, 0)
@@ -59,14 +62,16 @@ func _ready():
 
 func _physics_process(delta):
 	frames_elapsed += 1
-	if frames_elapsed > 20:
+	if frames_elapsed > 120:
 		frames_elapsed = 0
 		if is_pathing:
 			is_pathing = start_path(path_target)
 	
 	if fleeing:
+		animation_player.playback_speed = 1.5
 		flee_logic(delta)
 	else:
+		animation_player.playback_speed = 1.0
 		state_logic(delta)
 	apply_knockback(delta)
 	update_debug_info(Global.debug_show_paths)
@@ -127,7 +132,8 @@ func _on_HitEffect_timeout():
 
 func set_health(new_health):
 	health = new_health
-	health_bar.value = health
+	tween.interpolate_property(health_bar, "value", health_bar.value, health, 0.3, Tween.TRANS_LINEAR)
+	tween.start()
 	health_bar.show()
 	health_bar.get_node("VisibilityTimer").start(15)
 	if health <= 0:
@@ -136,13 +142,20 @@ func set_health(new_health):
 func _on_Hurtbox_area_entered(area):
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
+	
 	if invincible:
 		return
-	var damage = 0
-	if area.get_parent().has_method("get_damage"):
-		damage = area.get_parent().get_damage()
+
+	if not area.get_parent().has_method("get_damage_info"):
+		return
+	
+	var damage_info: Dictionary = area.get_parent().get_damage_info()
+	var damage: int = damage_info["damage"]
+	var reference: Object = damage_info["reference"]
+	
 	if area.get_parent().has_method("get_knockback"):
 		knockback = area.get_parent().get_knockback()
+		
 	sprite.get_material().set_shader_param("highlight", true)
 	hit_timer.start()
 	set_health(health - damage)
@@ -154,12 +167,13 @@ func _on_Hurtbox_area_entered(area):
 		invincible = true
 		invincibility_timer.start()
 	
-	var damage_info: Dictionary = area.get_parent().get_damage_info()
-	
 	if FLEE_ON_HIT:
 		fleeing = true
 		is_pathing = false
-		last_damage_source = damage_info["reference"]
+		get_node("FleeTimer").start(3.0)
+		last_damage_source = reference
+	
+	damage_taken(reference)
 
 func _on_HealthBarTimer_timeout():
 	health_bar.hide()
@@ -227,6 +241,13 @@ func set_direction(direction: Vector2):
 	animation_tree.set("parameters/Idle/blend_position", direction)
 	animation_tree.set("parameters/Walk/blend_position", direction)
 
+func get_damage_info() -> Dictionary:
+	var damage_info: Dictionary = {
+		"damage": DAMAGE,
+		"reference": self
+	}
+	return damage_info
+
 # determine what the character should do each physics process
 # warning-ignore:unused_argument
 func state_logic(delta):
@@ -238,7 +259,9 @@ func finished_path():
 
 # executed when the health of the character is zero
 func dead():
-	queue_free()
+	set_physics_process(false)
+	var death_animation = disappear_effect.instance()
+	add_child(death_animation)
 
 # executed on _ready() for classes that need additional setup
 func extra_init():
@@ -261,8 +284,16 @@ func object_interacted_with():
 func floating_damage_numbers(damage):
 	pass
 
+# warning-ignore:unused_argument
+func damage_taken(reference: Object):
+	pass
+
 func _on_InvincibilityTimer_timeout():
 	invincible = false
 
 func _on_VisibilityTimer_timeout():
 	health_bar.hide()
+
+func _on_FleeTimer_timeout():
+	fleeing = false
+

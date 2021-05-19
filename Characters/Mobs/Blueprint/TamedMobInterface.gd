@@ -24,7 +24,7 @@ func _ready():
 	else:
 		get_node("Name").text = mob.given_name
 	get_node("Species").text = mob.SPECIES + " - Lvl " + str(mob.level)
-	get_node("Sprite").texture = load(mob.idle_animation)
+	get_node("Sprite").texture = load("res://Characters/FriendlyCharacter/TamedCreature/" + mob.SPECIES + "/" + mob.SPECIES.to_lower() + "_idle.png")
 	get_node("AnimationPlayer").play("Idle")
 	match mob.follow_mode:
 		FOLLOW:

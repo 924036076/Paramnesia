@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/female_cow_idle.png-d625f55e2f2a9d8c0d2bc7b5f52a4ad4.stex"
+path="res://.import/male_cow.png-3565dfaf55906d9498ab0b6df443bb90.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Mobs/Tamed/Cow/female_cow_idle.png"
-dest_files=[ "res://.import/female_cow_idle.png-d625f55e2f2a9d8c0d2bc7b5f52a4ad4.stex" ]
+source_file="res://Characters/FriendlyCharacter/TamedCreature/Cow/male_cow.png"
+dest_files=[ "res://.import/male_cow.png-3565dfaf55906d9498ab0b6df443bb90.stex" ]
 
 [params]
 

@@ -78,6 +78,11 @@ __meta__ = {
 }
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
+
+[node name="FleeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="HealthBar/VisibilityTimer" to="." method="_on_VisibilityTimer_timeout"]
 [connection signal="timeout" from="HitEffect" to="." method="_on_HitEffect_timeout"]
@@ -85,3 +90,4 @@ __meta__ = {
 [connection signal="mouse_entered" from="InteractArea" to="." method="_on_InteractArea_mouse_entered"]
 [connection signal="mouse_exited" from="InteractArea" to="." method="_on_InteractArea_mouse_exited"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+[connection signal="timeout" from="FleeTimer" to="." method="_on_FleeTimer_timeout"]

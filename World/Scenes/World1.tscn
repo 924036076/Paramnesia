@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://World/Scenes/SceneBlueprint/SceneBlueprint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Tilemaps/grass_and_paths.tres" type="TileSet" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Effects/Particles/Smoke.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Scenes/PathFollow2D.gd" type="Script" id=9]
 [ext_resource path="res://World/Scenes/FarmTilemap.gd" type="Script" id=10]
-[ext_resource path="res://Characters/Mobs/Tamed/Cow/Cow.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Characters/NPCs/General/General.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Characters/NPCs/Skeleton/Archer/SkeletonArcher.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Structures/Dummy/TargetDummy.tscn" type="PackedScene" id=14]
@@ -26,6 +25,8 @@ extents = Vector2( 78, 35 )
 
 [node name="World1" instance=ExtResource( 1 )]
 script = ExtResource( 15 )
+save_path = ""
+key = ""
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 tile_set = ExtResource( 2 )
@@ -77,20 +78,17 @@ position = Vector2( -113.469, 263.858 )
 rotation = 0.00325977
 script = ExtResource( 9 )
 
-[node name="Cow" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 11 )]
-position = Vector2( -77, -259 )
-
-[node name="General" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 12 )]
+[node name="General" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 12 )]
 position = Vector2( 248, -87 )
 
-[node name="SkeletonArcher" parent="GlobalYSort/Mobs" index="2" instance=ExtResource( 13 )]
+[node name="SkeletonArcher" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 13 )]
 position = Vector2( -219, 60 )
 DEBUG_CAN_TARGET = false
 
-[node name="TargetDummy" parent="GlobalYSort/Mobs" index="3" instance=ExtResource( 14 )]
+[node name="TargetDummy" parent="GlobalYSort/Mobs" index="2" instance=ExtResource( 14 )]
 position = Vector2( 0, -100 )
 
-[node name="SkeletonSwordsman" parent="GlobalYSort/Mobs" index="4" instance=ExtResource( 16 )]
+[node name="SkeletonSwordsman" parent="GlobalYSort/Mobs" index="3" instance=ExtResource( 16 )]
 position = Vector2( 448, -174 )
 
 [node name="Player" parent="GlobalYSort" index="3"]

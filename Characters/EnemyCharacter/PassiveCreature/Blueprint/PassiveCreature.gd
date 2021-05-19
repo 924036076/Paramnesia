@@ -6,6 +6,7 @@ enum {
 }
 
 export var WANDER_RANGE: int = 100
+export var FLEE_FROM_PREDATORS: bool = false
 
 var state = WALK
 
@@ -37,3 +38,19 @@ func choose_new_action():
 		get_node("WanderTimer").start()
 	else:
 		state = WALK
+
+func flee_logic(delta):
+	if not is_pathing:
+		path_target = global_position - 32 * global_position.direction_to(last_damage_source.global_position) + Vector2(rand_range(-16, 16), rand_range(-16, 16))
+		is_pathing = start_path(path_target)
+	follow_current_path(delta)
+	for n in get_node("ViewDistance").get_overlapping_bodies():
+		if n.is_in_group("Predator"):
+			get_node("FleeTimer").start(3.0)
+
+func _on_ViewDistance_body_entered(body):
+	if not fleeing and FLEE_FROM_PREDATORS:
+		if body.is_in_group("Predator"):
+			last_damage_source = body
+			fleeing = true
+			get_node("FleeTimer").start(3.0)

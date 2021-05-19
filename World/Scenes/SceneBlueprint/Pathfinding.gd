@@ -11,7 +11,7 @@ var astar = AStar2D.new()
 var tilemap: TileMap
 var half_cell_size: Vector2
 var used_rect: Rect2
-var do_diagonals: bool = false
+var do_diagonals: bool = true
 
 func create_navigation_map(passed_tilemap: TileMap):
 	tilemap = passed_tilemap
