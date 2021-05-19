@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Blueprint/TamedCreature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Cow/cow.png" type="Texture" id=2]
@@ -275,7 +275,271 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=40]
+resource_name = "RunDown"
+length = 0.6
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SecondaryCollision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "RunLeft"
+length = 0.6
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SecondaryCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("InteractArea/SecondaryCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "RunRight"
+length = 0.6
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SecondaryCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("InteractArea/SecondaryCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "RunUp"
+length = 0.6
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("InteractArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SecondaryCollision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("InteractArea/SecondaryCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=41]
 length = 1.2
 loop = true
 step = 0.3
@@ -340,7 +604,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=42]
 length = 1.2
 loop = true
 step = 0.3
@@ -405,7 +669,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=43]
 length = 1.2
 loop = true
 step = 0.3
@@ -470,7 +734,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=44]
 length = 1.2
 loop = true
 step = 0.3
@@ -535,79 +799,117 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=45]
 animation = "IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=46]
 animation = "IdleDown"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=47]
 animation = "IdleRight"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "IdleUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=15]
-blend_point_0/node = SubResource( 11 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=49]
+blend_point_0/node = SubResource( 45 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 12 )
+blend_point_1/node = SubResource( 46 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 13 )
+blend_point_2/node = SubResource( 47 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 14 )
+blend_point_3/node = SubResource( 48 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "RunLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "RunDown"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "RunRight"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "RunUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=31]
+blend_point_0/node = SubResource( 36 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 37 )
+blend_point_1/pos = Vector2( 0, 1.1 )
+blend_point_2/node = SubResource( 38 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 39 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=50]
 animation = "WalkLeft"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=51]
 animation = "WalkDown"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=52]
 animation = "WalkRight"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=53]
 animation = "WalkUp"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=20]
-blend_point_0/node = SubResource( 16 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=54]
+blend_point_0/node = SubResource( 50 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 17 )
+blend_point_1/node = SubResource( 51 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 18 )
+blend_point_2/node = SubResource( 52 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 19 )
+blend_point_3/node = SubResource( 53 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
 
-[sub_resource type="AnimationNodeStateMachine" id=23]
-states/Idle/node = SubResource( 15 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=59]
+states/Idle/node = SubResource( 49 )
 states/Idle/position = Vector2( 254, 129 )
-states/Walk/node = SubResource( 20 )
+states/Run/node = SubResource( 31 )
+states/Run/position = Vector2( 321, 36 )
+states/Walk/node = SubResource( 54 )
 states/Walk/position = Vector2( 399, 129 )
-transitions = [ "Idle", "Walk", SubResource( 21 ), "Walk", "Idle", SubResource( 22 ) ]
+transitions = [ "Idle", "Walk", SubResource( 55 ), "Walk", "Idle", SubResource( 56 ), "Idle", "Run", SubResource( 32 ), "Run", "Idle", SubResource( 33 ), "Walk", "Run", SubResource( 57 ), "Run", "Walk", SubResource( 58 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
 
-[sub_resource type="CapsuleShape2D" id=25]
+[sub_resource type="CapsuleShape2D" id=61]
 radius = 12.0
 height = 18.0
 
-[sub_resource type="CapsuleShape2D" id=26]
+[sub_resource type="CapsuleShape2D" id=27]
 height = 8.0
 
 [node name="Cow" instance=ExtResource( 1 )]
 MAX_SPEED = 30
+MAX_SPEED_RUNNING = 70
 CAN_ATTACK = false
 SPECIES = "Cow"
 
@@ -615,33 +917,38 @@ SPECIES = "Cow"
 position = Vector2( 0, -14 )
 texture = ExtResource( 2 )
 hframes = 20
-frame = 16
+frame = 12
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( 0, -3 )
 rotation = 1.5708
 shape = SubResource( 1 )
+disabled = true
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="." index="2"]
 position = Vector2( 0, -5 )
 shape = SubResource( 2 )
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 anims/IdleDown = SubResource( 3 )
 anims/IdleLeft = SubResource( 4 )
 anims/IdleRight = SubResource( 5 )
 anims/IdleUp = SubResource( 6 )
-anims/WalkDown = SubResource( 7 )
-anims/WalkLeft = SubResource( 8 )
-anims/WalkRight = SubResource( 9 )
-anims/WalkUp = SubResource( 10 )
+anims/RunDown = SubResource( 40 )
+anims/RunLeft = SubResource( 28 )
+anims/RunRight = SubResource( 30 )
+anims/RunUp = SubResource( 29 )
+anims/WalkDown = SubResource( 41 )
+anims/WalkLeft = SubResource( 42 )
+anims/WalkRight = SubResource( 43 )
+anims/WalkUp = SubResource( 44 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
-tree_root = SubResource( 23 )
+tree_root = SubResource( 59 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 24 )
+parameters/playback = SubResource( 60 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Run/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="HealthBar" parent="." index="7"]
@@ -657,12 +964,12 @@ margin_bottom = -15.0
 [node name="CollisionShape2D" parent="InteractArea" index="0"]
 position = Vector2( -1, -10 )
 rotation = 1.5708
-shape = SubResource( 25 )
+shape = SubResource( 61 )
+disabled = true
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="InteractArea" index="1"]
 position = Vector2( 0, -10 )
-shape = SubResource( 26 )
-disabled = true
+shape = SubResource( 27 )
 
 [node name="WanderTimer" parent="." index="13"]
 one_shot = true

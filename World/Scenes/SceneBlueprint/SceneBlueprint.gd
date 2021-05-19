@@ -24,7 +24,6 @@ enum {
 
 func _ready():
 	pathfinding_controller.create_navigation_map(tilemap)
-	add_other_tilemaps()
 
 func _process(_delta):
 	if Global.do_day_cycle:
@@ -113,9 +112,6 @@ func get_point_in_spawn_area(used_points):
 			break
 	used_points.append(Vector2(x, y))
 	return Vector2(x, y)
-
-func add_other_tilemaps():
-	pass
 
 func load_from_save():
 	return

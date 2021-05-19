@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Deer.png-d97cfcd43c7838582cae05da23be24b6.stex"
+path="res://.import/Deer.png-bffc020927dcaf1743b4d9a0bb9c9007.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/EnemyCharacter/PassiveCreature/Deer/Deer.png"
-dest_files=[ "res://.import/Deer.png-d97cfcd43c7838582cae05da23be24b6.stex" ]
+source_file="res://Characters/EnemyCharacter/WildCreature/Deer/Deer.png"
+dest_files=[ "res://.import/Deer.png-bffc020927dcaf1743b4d9a0bb9c9007.stex" ]
 
 [params]
 

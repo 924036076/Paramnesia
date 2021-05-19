@@ -2031,10 +2031,11 @@ radius = 5.0
 height = 18.0
 
 [sub_resource type="CapsuleShape2D" id=60]
-radius = 5.0
+radius = 9.0
 height = 16.0
 
 [node name="Player" type="KinematicBody2D" groups=[
+"Friendly",
 "FriendlyArmy",
 "Persist",
 "Predator",
@@ -2102,7 +2103,6 @@ hframes = 3
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 rotation = -1.5708
 shape = SubResource( 2 )
 
@@ -2139,7 +2139,6 @@ anims/RunRight = SubResource( 56 )
 anims/RunUp = SubResource( 57 )
 
 [node name="SwordHitbox Pivot" type="Position2D" parent="."]
-visible = false
 position = Vector2( -1, -7 )
 script = ExtResource( 6 )
 
@@ -2155,7 +2154,6 @@ shape = SubResource( 58 )
 disabled = true
 
 [node name="TransTest" type="Area2D" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0.509804 )
 collision_layer = 32
 collision_mask = 32
@@ -2165,7 +2163,6 @@ position = Vector2( 0, -11 )
 shape = SubResource( 59 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 5 )]
-visible = false
 collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]

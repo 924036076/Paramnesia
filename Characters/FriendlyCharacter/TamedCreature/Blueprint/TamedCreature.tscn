@@ -27,6 +27,8 @@ __meta__ = {
 }
 
 [node name="WanderTimer" type="Timer" parent="." index="10"]
+wait_time = 2.0
+one_shot = true
 
 [node name="ViewDistance" type="Area2D" parent="." index="15"]
 collision_layer = 0
@@ -39,5 +41,6 @@ wait_time = 10.0
 one_shot = true
 
 [node name="AttackCooldown" type="Timer" parent="." index="17"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
 [connection signal="body_entered" from="ViewDistance" to="." method="_on_ViewDistance_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]

@@ -27,7 +27,3 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="WanderTimer" type="Timer" parent="." index="10"]
-one_shot = true
-[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]

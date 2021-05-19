@@ -77,17 +77,6 @@ func connect_traversable_tiles(tiles: Array):
 				
 				astar.connect_points(id, target_id, true)
 
-func add_tilemap_to_navigation(passed_tilemap: TileMap):
-	var tiles = passed_tilemap.get_used_cells()
-	for tile in tiles:
-		var id = get_id(tile)
-		if astar.has_point(id):
-			astar.set_point_disabled(id, true)
-			if not id in static_blocked_tiles:
-				static_blocked_tiles.append(id)
-			if Global.debug_show_path_grid:
-				grid_rects[str(id)].color = disabled_color
-
 func get_id(point: Vector2):
 	var x = point.x - used_rect.position.x
 	var y = point.y - used_rect.position.y

@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Characters/EnemyCharacter/WildCreature/Blueprint/WildCreature.gd" type="Script" id=1]
+[ext_resource path="res://Characters/EnemyCharacter/Blueprint/EnemyCharacter.tscn" type="PackedScene" id=2]
+
+[node name="WildCreature" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+FLEE_ON_HIT = true
+
+[node name="ViewDistance" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewDistance" index="0"]
+
+[node name="Hitbox" type="Area2D" parent="." index="5"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+
+[node name="WanderTimer" type="Timer" parent="." index="14"]
+wait_time = 2.0
+one_shot = true
+
+[node name="AgroTimer" type="Timer" parent="." index="15"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="." index="16"]
+one_shot = true
+[connection signal="body_entered" from="ViewDistance" to="." method="_on_ViewDistance_body_entered"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
+[connection signal="timeout" from="AgroTimer" to="." method="_on_AgroTimer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]

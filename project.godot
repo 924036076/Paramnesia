@@ -93,6 +93,11 @@ _global_script_classes=[ {
 "class": "TamedMob",
 "language": "GDScript",
 "path": "res://Characters/Mobs/Blueprint/TamedMob.gd"
+}, {
+"base": "EnemyCharacter",
+"class": "WildCreature",
+"language": "GDScript",
+"path": "res://Characters/EnemyCharacter/WildCreature/Blueprint/WildCreature.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
@@ -111,7 +116,8 @@ _global_script_class_icons={
 "StaticStructure": "",
 "Structure": "",
 "TamedCreature": "",
-"TamedMob": ""
+"TamedMob": "",
+"WildCreature": ""
 }
 
 [application]

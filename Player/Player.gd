@@ -160,14 +160,21 @@ func attack_animation_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
+	print("test")
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
+	
 	if hurtbox.invincible:
 		return
+	
 	sprite.get_material().set_shader_param("highlight", true)
-	var damage = 0
-	if area.get_parent().has_method("get_damage"):
-		damage = area.get_parent().get_damage()
+	
+	if not area.get_parent().has_method("get_damage_info"):
+		return
+
+	var damage_info: Dictionary = area.get_parent().get_damage_info()
+	var damage: int = damage_info["damage"]
+	
 	if area.get_parent().has_method("get_knockback"):
 		knockback = area.get_parent().get_knockback()
 

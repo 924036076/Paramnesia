@@ -57,7 +57,6 @@ func state_logic(delta):
 			attack()
 
 func walk(delta):
-	animation_state.travel("Walk")
 	if agro:
 		if stance == AGGRESSIVE:
 			check_for_enemies()
@@ -72,6 +71,9 @@ func walk(delta):
 				state = IDLE
 		if self.global_position.distance_to(path_target) < ATTACK_RANGE:
 			state = ATTACK
+			running = true
+		else:
+			running = true
 	else:
 		match follow_mode:
 			STAY:
@@ -82,17 +84,25 @@ func walk(delta):
 					is_pathing = start_path(path_target)
 					if not is_pathing:
 						state = IDLE
-				if self.global_position.distance_to(get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position) <= 32:
+				var dist_to_player = self.global_position.distance_to(get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position)
+				if dist_to_player <= 32:
 					state = IDLE
+				elif dist_to_player > 64:
+					running = true
 			WANDER:
 				if not is_pathing:
-					path_target = self.global_position + Vector2(rand_range(-100, 100), rand_range(-100, 100))
-					is_pathing = start_path(path_target)
+					if randi() % 2 == 1:
+						path_target = self.global_position + Vector2(rand_range(-100, 100), rand_range(-100, 100))
+						is_pathing = start_path(path_target)
 					if not is_pathing:
 						state = IDLE
 						wander_timer.start()
 	if is_pathing:
 		follow_current_path(delta)
+	if running:
+		animation_state.travel("Run")
+	else:
+		animation_state.travel("Walk")
 
 func idle(delta):
 	animation_state.travel("Idle")
@@ -137,6 +147,8 @@ func change_stance(new_stance):
 	stance = new_stance
 	if stance == FLEE or stance == PASSIVE:
 		agro = false
+	elif stance == AGGRESSIVE:
+		check_for_enemies()
 	FLEE_ON_HIT = (stance == FLEE)
 
 func name_changed(new_name: String):
@@ -180,11 +192,15 @@ func _on_ViewDistance_body_entered(body):
 
 func check_for_enemies():
 	var enemies = get_node("ViewDistance").get_overlapping_bodies()
-	if enemies.size() > 0:
-		get_node("AgroTimer").start(AGRO_TIME)
 	for n in enemies:
-		if n.is_in_group("Enemy") and n.global_position.distance_to(self.global_position) < last_damage_source.global_position.distance_to(self.global_position):
-			last_damage_source = n
+		if n.is_in_group("Enemy"):
+			agro = true
+			get_node("AgroTimer").start(AGRO_TIME)
+			if is_instance_valid(last_damage_source):
+				if n.global_position.distance_to(self.global_position) < last_damage_source.global_position.distance_to(self.global_position):
+					last_damage_source = n
+			else:
+				last_damage_source = n
 
 func damage_taken(reference: Object):
 	if not agro:
@@ -198,6 +214,7 @@ func damage_taken(reference: Object):
 func set_direction(direction: Vector2):
 	animation_tree.set("parameters/Idle/blend_position", direction)
 	animation_tree.set("parameters/Walk/blend_position", direction)
+	animation_tree.set("parameters/Run/blend_position", direction)
 	if CAN_ATTACK:
 		animation_tree.set("parameters/Attack/blend_position", direction)
 

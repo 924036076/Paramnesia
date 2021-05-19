@@ -18,7 +18,7 @@ onready var animation_state = animation_tree.get("parameters/playback")
 
 export var MAX_HEALTH: int = 100
 export var MAX_SPEED: int = 100
-export var MAX_SPEED_RUNNING: int = 10
+export var MAX_SPEED_RUNNING: int = 100
 export var ACCELERATION: int = 500
 export var FRICTION: int = 400
 export var INVINCIBILITY_TIME: float = 0.4
@@ -42,6 +42,7 @@ var current_path: Array = []
 var pathfinding_controller = null
 var frames_elapsed: int = 0
 var fleeing: bool = false
+var running: bool = false
 var last_damage_source: Object = null
 var current_threat
 
@@ -66,18 +67,18 @@ func _physics_process(delta):
 		frames_elapsed = 0
 		if is_pathing:
 			is_pathing = start_path(path_target)
-	
+	running = false
 	if fleeing:
-		animation_player.playback_speed = 1.5
+		running = true
+		animation_state.travel("Run")
 		flee_logic(delta)
 	else:
-		animation_player.playback_speed = 1.0
 		state_logic(delta)
 	apply_knockback(delta)
 	update_debug_info(Global.debug_show_paths)
 
 func move(delta):
-	if fleeing:
+	if running:
 		velocity = velocity.move_toward(dir * MAX_SPEED_RUNNING, ACCELERATION * delta)
 	else:
 		velocity = velocity.move_toward(dir * MAX_SPEED, ACCELERATION * delta)
@@ -240,6 +241,7 @@ func update_debug_info(show_debug: bool):
 func set_direction(direction: Vector2):
 	animation_tree.set("parameters/Idle/blend_position", direction)
 	animation_tree.set("parameters/Walk/blend_position", direction)
+	animation_tree.set("parameters/Run/blend_position", direction)
 
 func get_damage_info() -> Dictionary:
 	var damage_info: Dictionary = {

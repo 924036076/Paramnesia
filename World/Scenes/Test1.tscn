@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World/Scenes/SceneBlueprint/SceneBlueprint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Tilemaps/WaterTilemap.tscn" type="PackedScene" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://World/Trees/Oak/OakTree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://World/Houses/ResidentialHouse1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Structures/Campfire/Campfire.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Characters/EnemyCharacter/PassiveCreature/Deer/Deer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Characters/EnemyCharacter/WildCreature/Deer/Deer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Cow/Cow.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Wolf/Wolf.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Characters/EnemyCharacter/WildCreature/Wolf/Wolf.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -49,23 +50,33 @@ position = Vector2( -192, -192 )
 visible = false
 position = Vector2( 661.228, 40.7871 )
 
-[node name="Cow" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 9 )]
+[node name="Cow" parent="GlobalYSort/Mobs" index="0" groups=[
+"Friendly",
+] instance=ExtResource( 9 )]
 position = Vector2( -32, -124 )
-
-[node name="Cow2" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 9 )]
-position = Vector2( 97, -86 )
-PLAYER_OWNED = false
-
-[node name="Deer" parent="GlobalYSort/Mobs" index="2" groups=[
-"Enemy",
-] instance=ExtResource( 8 )]
-position = Vector2( -200, -118 )
 collision_layer = 16
 collision_mask = 19
-CAN_HOVER = true
 
-[node name="Wolf" parent="GlobalYSort/Mobs" index="3" instance=ExtResource( 10 )]
+[node name="Cow2" parent="GlobalYSort/Mobs" index="1" groups=[
+"Friendly",
+] instance=ExtResource( 9 )]
+position = Vector2( 97, -86 )
+collision_layer = 16
+collision_mask = 19
+PLAYER_OWNED = false
+
+[node name="Deer" parent="GlobalYSort/Mobs" index="2" instance=ExtResource( 8 )]
+position = Vector2( -200, -118 )
+
+[node name="Wolf" parent="GlobalYSort/Mobs" index="3" groups=[
+"Friendly",
+] instance=ExtResource( 10 )]
 position = Vector2( -154, -113 )
+collision_layer = 16
+collision_mask = 19
+
+[node name="Wolf2" parent="GlobalYSort/Mobs" index="4" instance=ExtResource( 11 )]
+position = Vector2( -329, 113 )
 
 [node name="Player" parent="GlobalYSort" index="3"]
 position = Vector2( -90, -168 )
