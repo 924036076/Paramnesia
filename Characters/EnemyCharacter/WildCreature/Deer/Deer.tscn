@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Characters/EnemyCharacter/WildCreature/Blueprint/WildCreature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/EnemyCharacter/WildCreature/Deer/Deer.png" type="Texture" id=2]
@@ -1196,9 +1196,6 @@ height = 10.0
 [sub_resource type="CapsuleShape2D" id=41]
 radius = 9.0
 
-[sub_resource type="CircleShape2D" id=42]
-radius = 95.0053
-
 [node name="Deer" instance=ExtResource( 1 )]
 MAX_SPEED = 25
 MAX_SPEED_RUNNING = 80
@@ -1263,9 +1260,6 @@ shape = SubResource( 40 )
 position = Vector2( -2, -17 )
 shape = SubResource( 41 )
 disabled = true
-
-[node name="CollisionShape2D" parent="ViewDistance" index="0"]
-shape = SubResource( 42 )
 
 [node name="Name" parent="." index="11"]
 visible = true

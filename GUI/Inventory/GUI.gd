@@ -62,3 +62,13 @@ func set_current_window(window):
 		current_window.queue_free()
 	current_window = window
 	add_child(current_window)
+
+func update_debug_panel(dict: Dictionary):
+	Utility.delete_children(get_node("DebugPanel/VBoxContainer"))
+	for key in dict.keys():
+		var label = Label.new()
+		label.text = key + " : " + dict[key]
+		get_node("DebugPanel/VBoxContainer").add_child(label)
+
+func _on_CheckBox_toggled(button_pressed):
+	get_node("DebugPanel").visible = button_pressed

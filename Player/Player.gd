@@ -5,6 +5,7 @@ export var ACCELERATION = 500
 export var MAX_SPEED = 100
 export var DRAIN = 10
 export var starting_direction = Vector2(1, 0)
+export var KNOCKBACK_STRENGTH: float = 100.0
 
 enum {
 	MOVE,
@@ -22,6 +23,8 @@ var base_melee_damage: int = 40
 var lock_movement: bool = false setget set_lock_movement
 var knockback: Vector2 = Vector2.ZERO
 var pathfinding
+var invincible: bool = false
+var dir: Vector2 = Vector2.ZERO
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const arrow = preload("res://Player/Arrow.tscn")
@@ -33,6 +36,13 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = get_node("SwordHitbox Pivot/SwordHitbox")
 onready var hurtbox = get_node("Hurtbox")
 onready var sprite = get_node("Sprite")
+onready var body_sprite = get_node("Body")
+onready var outfit_sprite = get_node("Outfit")
+onready var eyes_sprite = get_node("Eyes")
+onready var pupils_sprite = get_node("Pupils")
+onready var brows_sprite = get_node("Brows")
+onready var hair_sprite = get_node("Hair")
+onready var holding_sprite = get_node("Holding")
 
 enum {
 	LEFT,
@@ -46,6 +56,14 @@ func _ready():
 	sprite.set_material(sprite.get_material().duplicate())
 	set_direction(starting_direction)
 	set_sprites()
+	
+	body_sprite.set_material(body_sprite.get_material().duplicate())
+	outfit_sprite.set_material(body_sprite.get_material())
+	eyes_sprite.set_material(body_sprite.get_material())
+	pupils_sprite.set_material(body_sprite.get_material())
+	brows_sprite.set_material(body_sprite.get_material())
+	hair_sprite.set_material(body_sprite.get_material())
+	holding_sprite.set_material(body_sprite.get_material())
 
 func set_sprites():
 	get_node("Hair").texture = load("res://Player/Parts/hair/hair_" + str(PlayerData.hair) + ".png")
@@ -135,7 +153,7 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
-		swordHitbox.knockback_vector = input_vector
+		dir = input_vector
 		set_direction(input_vector)
 		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
@@ -160,31 +178,27 @@ func attack_animation_finished():
 	state = MOVE
 
 func _on_Hurtbox_area_entered(area):
-	print("test")
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
 	
-	if hurtbox.invincible:
-		return
-	
-	sprite.get_material().set_shader_param("highlight", true)
-	
-	if not area.get_parent().has_method("get_damage_info"):
+	if invincible or not area.get_parent().has_method("get_damage_info"):
 		return
 
 	var damage_info: Dictionary = area.get_parent().get_damage_info()
 	var damage: int = damage_info["damage"]
-	
-	if area.get_parent().has_method("get_knockback"):
-		knockback = area.get_parent().get_knockback()
+	var reference: Object = damage_info["reference"]
+	knockback = damage_info["knockback"]
 
 	get_node("HitEffect").start()
-
+	body_sprite.get_material().set_shader_param("highlight", true)
+	
 	var numbers = floating_numbers.instance()
 	numbers.text = str(damage)
 	add_child(numbers)
-
-	hurtbox.start_invicibility(0.4)
+	
+	get_tree().call_group("Tamed", "ally_attacked", reference)
+	invincible = true
+	hurtbox.get_node("Timer").start(0.4)
 
 func get_direction_facing():
 	var blend_position = animationTree.get("parameters/Idle/blend_position")
@@ -212,17 +226,11 @@ func create_arrow():
 	PlayerData.remove_one("arrow")
 	var arr = arrow.instance()
 	arr.global_position = global_position + Vector2(0, -12)
-	var dir = global_position.direction_to(get_global_mouse_position())
-	arr.direction = dir
-	arr.rotate(dir.angle())
+	var dir_arrow = global_position.direction_to(get_global_mouse_position())
+	arr.direction = dir_arrow
+	arr.rotate(dir_arrow.angle())
 	arr.damage = base_projectile_damge
 	get_parent().add_child(arr)
-
-func get_damage():
-	return base_melee_damage
-
-func get_knockback():
-	return swordHitbox.knockback_vector * 150
 
 func apply_offset(offset):
 	global_position += offset
@@ -247,10 +255,13 @@ func save():
 	return save_dict
 
 func _on_HitEffect_timeout():
-	sprite.get_material().set_shader_param("highlight", false)
+	body_sprite.get_material().set_shader_param("highlight", false)
 
 func set_lock_movement(new_state):
 	lock_movement = new_state
 	if lock_movement == true and structure != null:
 		structure.queue_free()
 		structure = null
+
+func _on_Timer_timeout():
+	invincible = false

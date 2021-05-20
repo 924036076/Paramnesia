@@ -1,7 +1,9 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Blueprint/TamedCreature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Wolf/Wolf.png" type="Texture" id=2]
+[ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Wolf/collar.png" type="Texture" id=3]
+[ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Wolf/Wolf.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.0
@@ -13,8 +15,7 @@ height = 14.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "AttackDown"
-length = 0.6
-step = 0.15
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -22,10 +23,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 12, 13, 14 ]
+"values": [ 36, 37, 38, 39, 40 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -121,7 +122,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -1 ) ]
+"values": [ Vector2( 0, -2 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Hitbox/CollisionShape2D:disabled")
@@ -130,7 +131,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0.15, 0.6 ),
+"times": PoolRealArray( 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -138,8 +139,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "AttackLeft"
-length = 0.6
-step = 0.15
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -147,10 +147,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 15, 16, 17 ]
+"values": [ 41, 42, 43, 44, 45 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -246,7 +246,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -14, -10 ) ]
+"values": [ Vector2( -11, -10 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Hitbox/CollisionShape2D:disabled")
@@ -255,7 +255,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0.15, 0.6 ),
+"times": PoolRealArray( 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -263,8 +263,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "AttackRight"
-length = 0.6
-step = 0.15
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -272,10 +271,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 7, 20, 19, 18 ]
+"values": [ 46, 47, 48, 49, 50 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -371,7 +370,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 14, -10 ) ]
+"values": [ Vector2( 11, -10 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Hitbox/CollisionShape2D:disabled")
@@ -380,7 +379,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0.15, 0.6 ),
+"times": PoolRealArray( 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -388,8 +387,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "AttackUp"
-length = 0.6
-step = 0.15
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -397,10 +395,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 10, 21, 22, 23 ]
+"values": [ 51, 52, 53, 54, 55 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:disabled")
@@ -496,7 +494,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, -17 ) ]
+"values": [ Vector2( 0, -18 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Hitbox/CollisionShape2D:disabled")
@@ -505,7 +503,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0.15, 0.6 ),
+"times": PoolRealArray( 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -1688,25 +1686,25 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
 switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=44]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=45]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=48]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=57]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id=49]
+[sub_resource type="AnimationNodeStateMachine" id=48]
 states/Attack/node = SubResource( 23 )
 states/Attack/position = Vector2( 183, 141 )
 states/Idle/node = SubResource( 28 )
@@ -1715,60 +1713,71 @@ states/Run/node = SubResource( 33 )
 states/Run/position = Vector2( 358, 354 )
 states/Walk/node = SubResource( 38 )
 states/Walk/position = Vector2( 358, 141 )
-transitions = [ "Walk", "Idle", SubResource( 39 ), "Idle", "Walk", SubResource( 40 ), "Attack", "Walk", SubResource( 42 ), "Run", "Attack", SubResource( 44 ), "Run", "Idle", SubResource( 45 ), "Idle", "Run", SubResource( 46 ), "Walk", "Run", SubResource( 47 ), "Run", "Walk", SubResource( 48 ), "Attack", "Run", SubResource( 57 ) ]
+transitions = [ "Walk", "Idle", SubResource( 39 ), "Idle", "Walk", SubResource( 40 ), "Attack", "Walk", SubResource( 41 ), "Run", "Attack", SubResource( 42 ), "Run", "Idle", SubResource( 43 ), "Idle", "Run", SubResource( 44 ), "Walk", "Run", SubResource( 45 ), "Run", "Walk", SubResource( 46 ), "Attack", "Run", SubResource( 47 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -293.837, 0 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=50]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=49]
 
-[sub_resource type="CapsuleShape2D" id=51]
+[sub_resource type="CapsuleShape2D" id=50]
 radius = 6.0
 height = 4.0
 
-[sub_resource type="CapsuleShape2D" id=52]
+[sub_resource type="CapsuleShape2D" id=51]
 radius = 7.0
 height = 8.0
 
-[sub_resource type="CapsuleShape2D" id=53]
-radius = 7.0
-height = 6.0
+[sub_resource type="CapsuleShape2D" id=52]
+radius = 4.0
+height = 8.0
 
-[sub_resource type="CapsuleShape2D" id=54]
+[sub_resource type="CapsuleShape2D" id=53]
 radius = 6.0
 height = 6.0
 
-[sub_resource type="CapsuleShape2D" id=55]
+[sub_resource type="CapsuleShape2D" id=54]
 radius = 9.0
 height = 6.0
 
-[sub_resource type="CircleShape2D" id=56]
-radius = 112.018
+[sub_resource type="CapsuleShape2D" id=55]
+radius = 11.0
+height = 10.0
 
 [node name="Wolf" groups=[
 "Predator",
 ] instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+MAX_HEALTH = 120
 MAX_SPEED = 60
+INTERACT_DISTANCE = 50
 SPECIES = "Wolf"
-ATTACK_RANGE = 40
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, -16 )
 texture = ExtResource( 2 )
-vframes = 12
-hframes = 3
-frame = 23
+vframes = 7
+hframes = 8
+frame = 27
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollarSprite" type="Sprite" parent="." index="1"]
+modulate = Color( 0.309804, 0.368627, 0.839216, 1 )
+position = Vector2( 0, -16 )
+texture = ExtResource( 3 )
+vframes = 7
+hframes = 8
+frame = 28
+
+[node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 0, -7 )
 shape = SubResource( 1 )
+disabled = true
 
-[node name="SecondaryCollision" type="CollisionShape2D" parent="." index="2"]
+[node name="SecondaryCollision" type="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0, -3 )
 rotation = 1.5708
 shape = SubResource( 2 )
-disabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 anims/AttackDown = SubResource( 3 )
 anims/AttackLeft = SubResource( 4 )
 anims/AttackRight = SubResource( 5 )
@@ -1786,10 +1795,10 @@ anims/WalkLeft = SubResource( 16 )
 anims/WalkRight = SubResource( 17 )
 anims/WalkUp = SubResource( 18 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
-tree_root = SubResource( 49 )
+[node name="AnimationTree" type="AnimationTree" parent="." index="5"]
+tree_root = SubResource( 48 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 50 )
+parameters/playback = SubResource( 49 )
 parameters/Attack/blend_position = Vector2( 0, 0 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
@@ -1797,41 +1806,44 @@ parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -8 )
-shape = SubResource( 51 )
+shape = SubResource( 50 )
+disabled = true
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="Hurtbox" index="1"]
 position = Vector2( 0, -7 )
 rotation = 1.5708
-shape = SubResource( 52 )
-disabled = true
+shape = SubResource( 51 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( 0, -17 )
+position = Vector2( 0, -2 )
 rotation = 1.5708
-shape = SubResource( 53 )
-
-[node name="HealthBar" parent="." index="7"]
-visible = false
-margin_top = -22.0
-margin_bottom = -18.0
-
-[node name="Name" parent="." index="9"]
-margin_top = -34.0
-margin_bottom = -9.0
+shape = SubResource( 52 )
 
 [node name="CollisionShape2D" parent="InteractArea" index="0"]
 position = Vector2( 0, -8 )
-shape = SubResource( 54 )
+shape = SubResource( 53 )
+disabled = true
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="InteractArea" index="1"]
 position = Vector2( 0, -8 )
 rotation = 1.5708
+shape = SubResource( 54 )
+
+[node name="CollisionShape2D" parent="AttackRange" index="0"]
+position = Vector2( 0, -10 )
+rotation = 1.5708
 shape = SubResource( 55 )
-disabled = true
 
-[node name="CollisionShape2D" parent="ViewDistance" index="0"]
-shape = SubResource( 56 )
+[node name="Name" parent="." index="11"]
+margin_top = -34.0
+margin_bottom = -9.0
 
-[node name="AttackCooldown" parent="." index="20"]
+[node name="HealthBar" parent="." index="12"]
+visible = false
+margin_top = -22.0
+margin_bottom = -18.0
+
+[node name="AttackCooldown" parent="." index="21"]
 one_shot = true
+[connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]
 [connection signal="timeout" from="AgroTimer" to="." method="_on_AgroTimer_timeout"]

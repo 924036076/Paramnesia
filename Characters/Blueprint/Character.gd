@@ -29,6 +29,8 @@ export var CAN_HOVER: bool = false # whether or not mousing over the character w
 export var CAN_INTERACT: bool = false # whether or not the character can be right clicked on to do something. This will enable an outline when the character is moused over.
 export var INTERACT_DISTANCE: int = 50 # the distance from which the player is able to right click on the character, in pixels.
 export var DAMAGE: int = 20
+export var VIEW_DISTANCE: int = 100
+export var KNOCKBACK_STRENGTH: float = 50.0
 
 var health: int setget set_health
 var dir: Vector2 = Vector2(1, 0)
@@ -46,6 +48,8 @@ var running: bool = false
 var last_damage_source: Object = null
 var current_threat
 
+signal update_debug
+
 func _ready():
 	animation_tree.active = true
 	set_direction(dir)
@@ -58,6 +62,11 @@ func _ready():
 	
 	sprite.set_material(sprite.get_material().duplicate())
 	invincibility_timer.wait_time = INVINCIBILITY_TIME
+	
+# warning-ignore:return_value_discarded
+	self.connect("update_debug", get_tree().get_current_scene().get_node("GUI"), "update_debug_panel")
+	
+	get_node("ViewDistance/CollisionShape2D").shape.radius = VIEW_DISTANCE
 	
 	extra_init()
 
@@ -124,7 +133,7 @@ func follow_current_path(delta):
 
 func flee_logic(delta):
 	if not is_pathing:
-		path_target = global_position - 32 * global_position.direction_to(last_damage_source.global_position) + Vector2(rand_range(-16, 16), rand_range(-16, 16))
+		path_target = global_position - 64 * global_position.direction_to(last_damage_source.global_position) + Vector2(rand_range(-16, 16), rand_range(-16, 16))
 		is_pathing = start_path(path_target)
 	follow_current_path(delta)
 
@@ -143,20 +152,18 @@ func set_health(new_health):
 func _on_Hurtbox_area_entered(area):
 	if area.get_parent().has_method("resolve_hit"):
 		area.get_parent().resolve_hit()
-	
-	if invincible:
-		return
 
-	if not area.get_parent().has_method("get_damage_info"):
+	if invincible or not area.get_parent().has_method("get_damage_info"):
 		return
 	
 	var damage_info: Dictionary = area.get_parent().get_damage_info()
 	var damage: int = damage_info["damage"]
 	var reference: Object = damage_info["reference"]
+	if reference == self:
+		return
 	
-	if area.get_parent().has_method("get_knockback"):
-		knockback = area.get_parent().get_knockback()
-		
+	knockback = damage_info["knockback"]
+	
 	sprite.get_material().set_shader_param("highlight", true)
 	hit_timer.start()
 	set_health(health - damage)
@@ -175,9 +182,6 @@ func _on_Hurtbox_area_entered(area):
 		last_damage_source = reference
 	
 	damage_taken(reference)
-
-func _on_HealthBarTimer_timeout():
-	health_bar.hide()
 
 func _on_InteractArea_mouse_entered():
 	if CAN_HOVER:
@@ -208,6 +212,7 @@ func try_to_grab_focus():
 		Global.num_interacted_with = 1
 		
 		mouse_entered()
+		emit_signal("update_debug", get_debug_dict())
 		
 		if CAN_INTERACT:
 			sprite.get_material().set_shader_param("line_thickness", 1)
@@ -245,10 +250,26 @@ func set_direction(direction: Vector2):
 
 func get_damage_info() -> Dictionary:
 	var damage_info: Dictionary = {
-		"damage": DAMAGE,
-		"reference": self
+		"damage" : DAMAGE,
+		"reference" : self,
+		"knockback" : dir * KNOCKBACK_STRENGTH
 	}
 	return damage_info
+
+func get_debug_dict() -> Dictionary:
+	var dict: Dictionary = {
+		"health" : str(health) + "/" + str(MAX_HEALTH),
+		"speed" : str(MAX_SPEED) + "->" + str(MAX_SPEED_RUNNING),
+		"damage" : str(DAMAGE),
+		"flee_on_hit" : str(FLEE_ON_HIT),
+		"flee_on_low_health" : str(FLEE_ON_LOW_HEALTH) + "(" + str(FLEE_HEALTH_PERCENT) + ")",
+		"pos" : str(global_position),
+		"velocity" : str(velocity),
+		"is_pathing" : str(is_pathing),
+		"fleeing" : str(fleeing),
+		"running" : str(running)
+	}
+	return dict
 
 # determine what the character should do each physics process
 # warning-ignore:unused_argument
@@ -299,3 +320,6 @@ func _on_VisibilityTimer_timeout():
 func _on_FleeTimer_timeout():
 	fleeing = false
 
+# warning-ignore:unused_argument
+func _on_ViewDistance_body_entered(body):
+	pass

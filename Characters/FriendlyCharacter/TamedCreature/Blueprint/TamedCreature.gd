@@ -27,7 +27,6 @@ onready var wander_timer = get_node("WanderTimer")
 
 export var FOCUS_TIME: float = 1.0
 export var SPECIES: String = ""
-export var ATTACK_RANGE: int = 20
 export var ATTACK_COOLDOWN: float = 1.0
 export var AGRO_TIME: float = 5.0
 export var PLAYER_OWNED: bool = true
@@ -58,6 +57,7 @@ func state_logic(delta):
 
 func walk(delta):
 	if agro:
+		running = true
 		if stance == AGGRESSIVE:
 			check_for_enemies()
 		if is_instance_valid(last_damage_source):
@@ -69,11 +69,12 @@ func walk(delta):
 			is_pathing = start_path(path_target)
 			if not is_pathing:
 				state = IDLE
-		if self.global_position.distance_to(path_target) < ATTACK_RANGE:
-			state = ATTACK
-			running = true
-		else:
-			running = true
+		
+		var enemies_in_range = get_node("AttackRange").get_overlapping_areas()
+		for n in enemies_in_range:
+			if n.get_parent() == last_damage_source:
+				is_pathing = false
+				state = ATTACK
 	else:
 		match follow_mode:
 			STAY:
@@ -126,6 +127,8 @@ func idle(delta):
 
 func attack():
 	if CAN_ATTACK and ready_to_attack:
+		dir = self.global_position.direction_to(last_damage_source.global_position)
+		set_direction(dir)
 		ready_to_attack = false
 		get_node("AttackCooldown").start(ATTACK_COOLDOWN)
 		animation_state.travel("Attack")
@@ -210,6 +213,18 @@ func damage_taken(reference: Object):
 			agro = true
 			is_pathing = false
 			get_node("AgroTimer").start(AGRO_TIME)
+			
+	get_tree().call_group("Tamed", "ally_attacked", reference)
+
+func ally_attacked(reference: Object):
+	if not agro:
+		if stance == NEUTRAL or stance == AGGRESSIVE:
+			if self.global_position.distance_to(reference.global_position) < 500:
+				last_damage_source = reference
+				agro = true
+				fleeing = false
+				is_pathing = false
+				get_node("AgroTimer").start(AGRO_TIME * 1.5)
 
 func set_direction(direction: Vector2):
 	animation_tree.set("parameters/Idle/blend_position", direction)
