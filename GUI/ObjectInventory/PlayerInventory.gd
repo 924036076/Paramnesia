@@ -22,8 +22,8 @@ func redraw():
 		add_child(panel)
 		
 		if i < PlayerData.inventory.size():
-			var id = PlayerData.inventory[i][0]
-			var num = PlayerData.inventory[i][1]
+			var id = PlayerData.inventory[i].id
+			var num = PlayerData.inventory[i].amount
 			var item = item_base.instance()
 			item.get_node("TextureRect").texture = load(ItemDictionary.get_item(id)["icon"])
 			if num > 0:

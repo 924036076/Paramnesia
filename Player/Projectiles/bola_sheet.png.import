@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bola_sheet.png-f1a0f9bfbf0be7d3854b17aea6f67f20.stex"
+path="res://.import/bola_sheet.png-22526e839692ded9fe0bfbf9ddb263d6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/bola_sheet.png"
-dest_files=[ "res://.import/bola_sheet.png-f1a0f9bfbf0be7d3854b17aea6f67f20.stex" ]
+source_file="res://Player/Projectiles/bola_sheet.png"
+dest_files=[ "res://.import/bola_sheet.png-22526e839692ded9fe0bfbf9ddb263d6.stex" ]
 
 [params]
 

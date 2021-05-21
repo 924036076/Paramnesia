@@ -40,7 +40,7 @@ func fell_tree():
 	queue_free()
 
 func _on_Hurtbox_area_entered(_area):
-	if PlayerData.get_item_held()[0] == "stone_axe":
+	if PlayerData.get_item_held().id == "stone_axe":
 		health_bar.health = health_bar.health - 20
 		var hit_effect
 		if get_node("Hurtbox/CollisionShape2D").global_position.x < get_tree().get_current_scene().get_node("GlobalYSort/Player").global_position.x:

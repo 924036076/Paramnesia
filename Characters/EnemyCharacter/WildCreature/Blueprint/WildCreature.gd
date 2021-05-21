@@ -177,6 +177,10 @@ func set_tame_amount(new_amount):
 		call_deferred("tame")
 
 func tame():
+	if has_focus:
+		has_focus = false
+		Global.num_interacted_with = 0
+	
 	var tamed_creature = load("res://Characters/FriendlyCharacter/TamedCreature/" + SPECIES + "/" + SPECIES + ".tscn").instance()
 	get_parent().add_child(tamed_creature)
 	tamed_creature.global_position = self.global_position
@@ -188,7 +192,7 @@ func tame():
 func move(delta):
 	var speed_multiplier: float = 1.0
 	if CAN_TAME:
-		speed_multiplier = 1 - (tame_amount / MAX_TAME)
+		speed_multiplier = 1 - 0.5 * (tame_amount / MAX_TAME)
 	if running:
 		velocity = velocity.move_toward(dir * MAX_SPEED_RUNNING * speed_multiplier, ACCELERATION * delta)
 	else:

@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://World/Houses/Interiors/Blueprint/InteriorBlueprint.gd"
 }, {
 "base": "Node",
+"class": "ItemStack",
+"language": "GDScript",
+"path": "res://Player/ItemStack.gd"
+}, {
+"base": "Node",
 "class": "LootTable",
 "language": "GDScript",
 "path": "res://Data/LootTable.gd"
@@ -106,6 +111,7 @@ _global_script_class_icons={
 "FriendlyCharacter": "",
 "House": "",
 "Interior": "",
+"ItemStack": "",
 "LootTable": "",
 "MultiPoolLootTable": "",
 "NatureTree": "",

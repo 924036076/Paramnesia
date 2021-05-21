@@ -28,6 +28,7 @@ var dir: Vector2 = Vector2.ZERO
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const arrow = preload("res://Player/Arrow.tscn")
+const bola = preload("res://Player/Projectiles/Bola.tscn")
 const floating_numbers = preload("res://Effects/DamageNumbers/EnemyNumbers.tscn")
 
 onready var animationPlayer = get_node("AnimationPlayer")
@@ -113,10 +114,11 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed("attack"):
-			if PlayerData.get_item_held()[0] == "bow":
-				if PlayerData.get_num_held("arrow")[0] > 0:
-					create_arrow()
-			elif ItemDictionary.get_item(PlayerData.get_item_held()[0])["type"] == "structure":
+			if PlayerData.get_item_held().id == "bola":
+				dir = global_position.direction_to(get_global_mouse_position())
+				set_direction(dir)
+				state = ATTACK
+			elif ItemDictionary.get_item(PlayerData.get_item_held().id)["type"] == "structure":
 				if structure == null:
 					create_structure(PlayerData.get_item_held())
 					state = PLACE
@@ -167,12 +169,12 @@ func move_state(delta):
 
 func attack_state(_delta):
 	velocity = Vector2.ZERO
-	if PlayerData.get_item_held()[0] == "stone_axe":
+	if PlayerData.get_item_held().id == "stone_axe":
 		animationState.travel("Axe")
-	elif PlayerData.get_item_held() == null or ItemDictionary.get_item(PlayerData.get_item_held()[0])["type"] == "resource" or PlayerData.get_item_held()[0] == "hands":
+	elif PlayerData.get_item_held() == null or ItemDictionary.get_item(PlayerData.get_item_held().id)["type"] == "resource" or PlayerData.get_item_held().id == "hands":
 		animationState.travel("Eat")
-	elif PlayerData.get_item_held()[0] == "bola":
-		animationState.travel("Bola")
+	elif PlayerData.get_item_held().id == "bola":
+		animationState.travel("Throw")
 	else:
 		state = MOVE
 
@@ -223,6 +225,7 @@ func set_direction(direction):
 	animationTree.set("parameters/Run/blend_position", direction)
 	animationTree.set("parameters/Axe/blend_position", direction)
 	animationTree.set("parameters/Eat/blend_position", direction)
+	animationTree.set("parameters/Throw/blend_position", direction)
 
 func create_arrow():
 	PlayerData.remove_one("arrow")
@@ -233,6 +236,13 @@ func create_arrow():
 	arr.rotate(dir_arrow.angle())
 	arr.damage = base_projectile_damage
 	get_parent().add_child(arr)
+
+func throw_item():
+	if PlayerData.remove_item("bola"):
+		var throwable = bola.instance()
+		get_parent().add_child(throwable)
+		throwable.global_position = global_position + Vector2(0, -12) + dir * 5
+		throwable.direction = global_position.direction_to(get_global_mouse_position())
 
 func apply_offset(offset):
 	global_position += offset

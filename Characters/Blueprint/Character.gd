@@ -284,6 +284,9 @@ func finished_path():
 
 # executed when the health of the character is zero
 func dead():
+	if has_focus:
+		has_focus = false
+		Global.num_interacted_with = 0
 	set_physics_process(false)
 	var death_animation = disappear_effect.instance()
 	add_child(death_animation)

@@ -29,7 +29,7 @@ func give_item(item_id, num = "1"):
 		return str('-"' + item_id + '" is not a valid item-')
 	if typeof(num) != TYPE_INT:
 		return ('-"' + str(num) + '" is not a whole number-')
-	PlayerData.add_to_inventory(0, item_id, num, true)
+	PlayerData.add_item(ItemStack.new(item_id, num))
 	return str("~Giving " + str(num) + " " + item_id + " to player~")
 
 func debug_show_paths():

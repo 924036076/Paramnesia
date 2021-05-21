@@ -37,10 +37,11 @@ func initialize():
 	inventory = []
 	
 	#debug items:
-	add_item(["stone_axe", 1])
-	add_item(["wood", 500])
-	add_item(["stone", 200])
-	add_item(["stone_axe", 1])
+	add_item(ItemStack.new("bola", 5))
+	add_item(ItemStack.new("stone_axe", 1))
+	add_item(ItemStack.new("wood", 500))
+	add_item(ItemStack.new("stone", 200))
+	add_item(ItemStack.new("stone_axe", 1))
 
 func _process(delta):
 	if Global.do_day_cycle:
@@ -63,42 +64,55 @@ func get_item_at_slot(slot: int):
 	var item = inventory[slot]
 	return item
 
-func insert_at_slot(slot: int, item: Array):
+func insert_at_slot(slot: int, item: Object):
 	if inventory.size() < max_slots:
-		inventory.insert(slot, [item[0], item[1]])
+		inventory.insert(slot, item)
 	else:
 		#drop items
 		pass
+	emit_signal("inventory_updated")
 
 func set_holding(value):
 	holding = value
 	emit_signal("inventory_updated")
 
-func add_item(item: Array):
-	var id = item[0]
-	var num = item[1]
-	var stack = ItemDictionary.get_item(id)["stack"]
+func remove_item(id: String) -> bool:
+	for slot in inventory:
+		if slot.id == id:
+			slot.amount -= 1
+			if slot.amount == 0:
+				inventory.erase(slot)
+			emit_signal("inventory_updated")
+			return true
+	return false
+
+func add_item(item: ItemStack):
+	
+	var stack_size: int = ItemDictionary.get_item(item.id)["stack"]
+	var id: String = item.id
+	var num: int = item.amount
 	
 	for i in range(max_slots):
 		if i >= inventory.size():
-			if num > stack:
-				num -= stack
-				inventory.append([id, stack])
+			if num > stack_size:
+				num -= stack_size
+				inventory.append(ItemStack.new(id, stack_size))
 			else:
-				inventory.append([id, num])
+				inventory.append(ItemStack.new(id, num))
 				num = 0
 				break
-		if inventory[i][0] == id:
-			if inventory[i][1] + num > stack:
-				num -= stack - inventory[i][1]
-				inventory[i][1] = stack
+		if inventory[i].id == id:
+			if inventory[i].room_left_in_stack() < num:
+				num -= inventory[i].room_left_in_stack()
+				inventory[i].amount += inventory[i].room_left_in_stack()
 			else:
-				inventory[i][1] = inventory[i][1] + num
+				inventory[i].amount += num
 				num = 0
 				break
-	
+
+	emit_signal("inventory_updated")
 	if num > 0:
-		return [id, num]
+		return ItemStack.new(id, num)
 	else:
 		return null
 
@@ -120,16 +134,18 @@ func set_secondary(slot: int):
 		inventory[slot] = temp_item
 	emit_signal("inventory_updated")
 
-func set_slot(slot: int, item: Array):
+func set_slot(slot: int, item: Object):
 	if slot > inventory.size() - 1:
 		return
 	inventory[slot] = item
 	emit_signal("inventory_updated")
 
-func add_without_stacking(item: Array):
+func add_without_stacking(item: Object):
 	if inventory.size() >= max_slots:
+		emit_signal("inventory_updated")
 		return item
 	inventory.append(item)
+	emit_signal("inventory_updated")
 	return null
 
 func get_item_held():
