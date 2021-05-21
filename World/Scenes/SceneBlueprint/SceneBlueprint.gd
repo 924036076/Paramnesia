@@ -130,14 +130,12 @@ func spawn_mob(mob, xcoord, ycoord):
 	match mob:
 		#tamed
 		"cow":
-			spawn = load("res://Characters/Mobs/Tamed/Cow/Cow.tscn").instance()
+			spawn = load("res://Characters/FriendlyCharacter/TamedCreature/Cow/Cow.tscn").instance()
 		#wild
 		"deer":
-			spawn = load("res://Characters/Mobs/Wild/Deer/Deer.tscn").instance()
-		"archer":
-			spawn = load("res://Characters/NPCs/Skeleton/Archer/SkeletonArcher.tscn").instance()
-		"swordsman":
-			spawn = load("res://Characters/NPCs/Skeleton/Swordsman/SkeletonSwordsman.tscn").instance()
+			spawn = load("res://Characters/EnemyCharacter/WildCreature/Deer/Deer.tscn").instance()
+		"wolf":
+			spawn = load("res://Characters/EnemyCharacter/WildCreature/Wolf/Wolf.tscn").instance()
 	get_node("GlobalYSort/Mobs").add_child(spawn)
 	if (xcoord == -10000 and ycoord == 10000):
 		spawn.global_position = get_node("GlobalYSort/Player").global_position

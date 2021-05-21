@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Blueprint/TamedCreature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/FriendlyCharacter/TamedCreature/Wolf/Wolf.png" type="Texture" id=2]
@@ -1686,34 +1686,25 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=43]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=44]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=45]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=46]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+
 [sub_resource type="AnimationNodeStateMachine" id=48]
 states/Attack/node = SubResource( 23 )
-states/Attack/position = Vector2( 183, 141 )
+states/Attack/position = Vector2( 159, 354 )
 states/Idle/node = SubResource( 28 )
 states/Idle/position = Vector2( 514, 141 )
 states/Run/node = SubResource( 33 )
 states/Run/position = Vector2( 358, 354 )
 states/Walk/node = SubResource( 38 )
 states/Walk/position = Vector2( 358, 141 )
-transitions = [ "Walk", "Idle", SubResource( 39 ), "Idle", "Walk", SubResource( 40 ), "Attack", "Walk", SubResource( 41 ), "Run", "Attack", SubResource( 42 ), "Run", "Idle", SubResource( 43 ), "Idle", "Run", SubResource( 44 ), "Walk", "Run", SubResource( 45 ), "Run", "Walk", SubResource( 46 ), "Attack", "Run", SubResource( 47 ) ]
+transitions = [ "Walk", "Idle", SubResource( 39 ), "Idle", "Walk", SubResource( 40 ), "Run", "Attack", SubResource( 42 ), "Attack", "Run", SubResource( 47 ), "Walk", "Run", SubResource( 56 ), "Run", "Walk", SubResource( 57 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -293.837, 0 )
 
@@ -1728,8 +1719,8 @@ radius = 7.0
 height = 8.0
 
 [sub_resource type="CapsuleShape2D" id=52]
-radius = 4.0
-height = 8.0
+radius = 4.99998
+height = 10.0
 
 [sub_resource type="CapsuleShape2D" id=53]
 radius = 6.0
@@ -1757,7 +1748,7 @@ position = Vector2( 0, -16 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 8
-frame = 27
+frame = 36
 
 [node name="CollarSprite" type="Sprite" parent="." index="1"]
 modulate = Color( 0.309804, 0.368627, 0.839216, 1 )
@@ -1770,12 +1761,12 @@ frame = 28
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2( 0, -7 )
 shape = SubResource( 1 )
-disabled = true
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0, -3 )
 rotation = 1.5708
 shape = SubResource( 2 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 anims/AttackDown = SubResource( 3 )
@@ -1807,12 +1798,12 @@ parameters/Walk/blend_position = Vector2( 0, 0 )
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -8 )
 shape = SubResource( 50 )
-disabled = true
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="Hurtbox" index="1"]
 position = Vector2( 0, -7 )
 rotation = 1.5708
 shape = SubResource( 51 )
+disabled = true
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 0, -2 )
@@ -1822,12 +1813,12 @@ shape = SubResource( 52 )
 [node name="CollisionShape2D" parent="InteractArea" index="0"]
 position = Vector2( 0, -8 )
 shape = SubResource( 53 )
-disabled = true
 
 [node name="SecondaryCollision" type="CollisionShape2D" parent="InteractArea" index="1"]
 position = Vector2( 0, -8 )
 rotation = 1.5708
 shape = SubResource( 54 )
+disabled = true
 
 [node name="CollisionShape2D" parent="AttackRange" index="0"]
 position = Vector2( 0, -10 )

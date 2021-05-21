@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Characters/EnemyCharacter/WildCreature/Blueprint/WildCreature.gd" type="Script" id=1]
 [ext_resource path="res://Characters/EnemyCharacter/Blueprint/EnemyCharacter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Characters/Blueprint/health_bar_top.png" type="Texture" id=3]
+[ext_resource path="res://Characters/EnemyCharacter/WildCreature/Blueprint/tame_bar_bottom.png" type="Texture" id=4]
 
 [node name="WildCreature" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
@@ -25,15 +27,28 @@ collision_mask = 12
 wait_time = 1.0
 one_shot = false
 
-[node name="WanderTimer" type="Timer" parent="." index="14"]
+[node name="TameBar" type="TextureProgress" parent="." index="8"]
+visible = false
+margin_left = -11.0
+margin_top = -23.0
+margin_right = 11.0
+margin_bottom = -19.0
+value = 100.0
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WanderTimer" type="Timer" parent="." index="15"]
 wait_time = 2.0
 one_shot = true
 
-[node name="AgroTimer" type="Timer" parent="." index="15"]
+[node name="AgroTimer" type="Timer" parent="." index="16"]
 wait_time = 3.0
 one_shot = true
 
-[node name="AttackCooldown" type="Timer" parent="." index="16"]
+[node name="AttackCooldown" type="Timer" parent="." index="17"]
 one_shot = true
 [connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
 [connection signal="timeout" from="AgroTimer" to="." method="_on_AgroTimer_timeout"]

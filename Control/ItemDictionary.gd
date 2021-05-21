@@ -186,6 +186,13 @@ const ITEMS = {
 		"stack": 100,
 		"craftable": false
 	},
+	"bola": {
+		"icon": ICON_PATH + "bola.png",
+		"type": "weapon",
+		"subtype": "throwable",
+		"stack": 20,
+		"craftable": false
+	},
 	"null": {
 		"icon": ICON_PATH + "null.png",
 		"type": null,

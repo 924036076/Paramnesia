@@ -20,10 +20,20 @@ export var FLEE_FROM_PREDATORS: bool = false
 export var stance = PASSIVE
 export var AGRO_TIME: float = 3.0
 export var ATTACK_COOLDOWN: float = 1.0
+export var MAX_TAME: float = 50.0
 
 var state = WALK
 var agro: bool = false
 var ready_to_attack: bool = true
+var tame_amount: float = 0.0 setget set_tame_amount
+
+func extra_init():
+	get_node("Name").text = get_name()
+	get_node("Name").visible = false
+	
+	get_node("TameBar").max_value = MAX_TAME
+	get_node("TameBar").value = tame_amount
+	get_node("TameBar").visible = false
 
 func state_logic(delta):
 	match state:
@@ -120,13 +130,15 @@ func _on_ViewDistance_body_entered(body):
 func _on_WanderTimer_timeout():
 	state = WALK
 
-func damage_taken(reference: Object):
-	if not agro and stance == NEUTRAL:
-		last_damage_source = reference
+func damage_taken(damage_info: Dictionary):
+	if not agro and (stance == NEUTRAL or stance == AGGRESSIVE):
+		last_damage_source = damage_info["reference"]
 		fleeing = false
 		agro = true
 		is_pathing = false
 		get_node("AgroTimer").start(AGRO_TIME)
+	if damage_info["type"] == "tame" and CAN_TAME:
+		set_tame_amount(tame_amount + damage_info["damage"])
 
 func set_direction(direction: Vector2):
 	animation_tree.set("parameters/Idle/blend_position", direction)
@@ -155,3 +167,45 @@ func _on_AgroTimer_timeout():
 
 func _on_AttackCooldown_timeout():
 	ready_to_attack = true
+
+func set_tame_amount(new_amount):
+	tame_amount = new_amount
+	get_node("TameBar").visible = true
+	tween.interpolate_property(get_node("TameBar"), "value", get_node("TameBar").value, tame_amount, 0.3, Tween.TRANS_LINEAR)
+	tween.start()
+	if tame_amount >= MAX_TAME:
+		call_deferred("tame")
+
+func tame():
+	var tamed_creature = load("res://Characters/FriendlyCharacter/TamedCreature/" + SPECIES + "/" + SPECIES + ".tscn").instance()
+	get_parent().add_child(tamed_creature)
+	tamed_creature.global_position = self.global_position
+	var particles = load("res://Effects/Particles/TameBurst.tscn").instance()
+	get_parent().add_child(particles)
+	particles.global_position = self.global_position
+	queue_free()
+
+func move(delta):
+	var speed_multiplier: float = 1.0
+	if CAN_TAME:
+		speed_multiplier = 1 - (tame_amount / MAX_TAME)
+	if running:
+		velocity = velocity.move_toward(dir * MAX_SPEED_RUNNING * speed_multiplier, ACCELERATION * delta)
+	else:
+		velocity = velocity.move_toward(dir * MAX_SPEED * speed_multiplier, ACCELERATION * delta)
+	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+	velocity = move_and_slide(velocity)
+
+func get_damage_info() -> Dictionary:
+	var damage_amount = DAMAGE
+	var knockback_amount = dir * KNOCKBACK_STRENGTH
+	if CAN_TAME:
+		damage_amount += tame_amount / MAX_TAME * DAMAGE * 5
+		knockback_amount *= tame_amount / MAX_TAME * 3
+	var damage_info: Dictionary = {
+		"damage" : damage_amount,
+		"reference" : self,
+		"knockback" : knockback_amount,
+		"type" : "normal"
+	}
+	return damage_info

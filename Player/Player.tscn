@@ -2063,7 +2063,7 @@ position = Vector2( 1, -14 )
 texture = ExtResource( 8 )
 vframes = 14
 hframes = 3
-frame = 12
+frame = 6
 
 [node name="Outfit" type="Sprite" parent="."]
 material = SubResource( 3 )
@@ -2071,35 +2071,35 @@ position = Vector2( 1, -14 )
 texture = ExtResource( 9 )
 vframes = 14
 hframes = 3
-frame = 12
+frame = 6
 
 [node name="Eyes" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 10 )
 vframes = 14
 hframes = 3
-frame = 12
+frame = 6
 
 [node name="Pupils" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 11 )
 vframes = 14
 hframes = 3
-frame = 12
+frame = 6
 
 [node name="Brows" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 12 )
 vframes = 14
 hframes = 3
-frame = 12
+frame = 6
 
 [node name="Hair" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 13 )
 vframes = 14
 hframes = 3
-frame = 12
+frame = 6
 
 [node name="Holding" type="Sprite" parent="."]
 visible = false
@@ -2107,7 +2107,7 @@ position = Vector2( 1, -14 )
 texture = ExtResource( 14 )
 vframes = 4
 hframes = 3
-frame = 10
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
@@ -2146,7 +2146,8 @@ anims/RunRight = SubResource( 58 )
 anims/RunUp = SubResource( 59 )
 
 [node name="SwordHitbox Pivot" type="Position2D" parent="."]
-position = Vector2( -1, -7 )
+position = Vector2( 2, -10 )
+rotation = 3.14159
 script = ExtResource( 6 )
 
 [node name="SwordHitbox" parent="SwordHitbox Pivot" instance=ExtResource( 1 )]
@@ -2165,7 +2166,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( -2.11758e-22, -11 )
+position = Vector2( 0, -11 )
 scale = Vector2( 2.16802, 2.06853 )
 shape = SubResource( 61 )
 

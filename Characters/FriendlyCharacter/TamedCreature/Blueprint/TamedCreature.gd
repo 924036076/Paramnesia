@@ -205,16 +205,16 @@ func check_for_enemies():
 			else:
 				last_damage_source = n
 
-func damage_taken(reference: Object):
+func damage_taken(damage_info: Dictionary):
 	if not agro:
 		if stance == NEUTRAL or stance == AGGRESSIVE:
-			last_damage_source = reference
+			last_damage_source = damage_info["reference"]
 			fleeing = false
 			agro = true
 			is_pathing = false
 			get_node("AgroTimer").start(AGRO_TIME)
 			
-	get_tree().call_group("Tamed", "ally_attacked", reference)
+	get_tree().call_group("Tamed", "ally_attacked", damage_info["reference"])
 
 func ally_attacked(reference: Object):
 	if not agro:

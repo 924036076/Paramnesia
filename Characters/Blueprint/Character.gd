@@ -72,7 +72,7 @@ func _ready():
 
 func _physics_process(delta):
 	frames_elapsed += 1
-	if frames_elapsed > 120:
+	if frames_elapsed > 30:
 		frames_elapsed = 0
 		if is_pathing:
 			is_pathing = start_path(path_target)
@@ -126,10 +126,11 @@ func follow_current_path(delta):
 			if current_path.size() < 1:
 				is_pathing = false
 				finished_path()
-		else:
-			dir = self.global_position.direction_to(next_point)
-			set_direction(dir)
-			move(delta)
+				return
+			next_point = current_path[0]
+		dir = self.global_position.direction_to(next_point)
+		set_direction(dir)
+		move(delta)
 
 func flee_logic(delta):
 	if not is_pathing:
@@ -181,7 +182,7 @@ func _on_Hurtbox_area_entered(area):
 		get_node("FleeTimer").start(3.0)
 		last_damage_source = reference
 	
-	damage_taken(reference)
+	damage_taken(damage_info)
 
 func _on_InteractArea_mouse_entered():
 	if CAN_HOVER:
@@ -252,7 +253,8 @@ func get_damage_info() -> Dictionary:
 	var damage_info: Dictionary = {
 		"damage" : DAMAGE,
 		"reference" : self,
-		"knockback" : dir * KNOCKBACK_STRENGTH
+		"knockback" : dir * KNOCKBACK_STRENGTH,
+		"type" : "normal"
 	}
 	return damage_info
 
@@ -308,7 +310,7 @@ func floating_damage_numbers(damage):
 	pass
 
 # warning-ignore:unused_argument
-func damage_taken(reference: Object):
+func damage_taken(damage_info: Dictionary):
 	pass
 
 func _on_InvincibilityTimer_timeout():

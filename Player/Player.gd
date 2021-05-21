@@ -18,7 +18,7 @@ var state = MOVE
 var velocity: Vector2 = Vector2.ZERO
 var structure = null
 var last_held
-var base_projectile_damge: int = 25
+var base_projectile_damage: int = 25
 var base_melee_damage: int = 40
 var lock_movement: bool = false setget set_lock_movement
 var knockback: Vector2 = Vector2.ZERO
@@ -171,6 +171,8 @@ func attack_state(_delta):
 		animationState.travel("Axe")
 	elif PlayerData.get_item_held() == null or ItemDictionary.get_item(PlayerData.get_item_held()[0])["type"] == "resource" or PlayerData.get_item_held()[0] == "hands":
 		animationState.travel("Eat")
+	elif PlayerData.get_item_held()[0] == "bola":
+		animationState.travel("Bola")
 	else:
 		state = MOVE
 
@@ -229,7 +231,7 @@ func create_arrow():
 	var dir_arrow = global_position.direction_to(get_global_mouse_position())
 	arr.direction = dir_arrow
 	arr.rotate(dir_arrow.angle())
-	arr.damage = base_projectile_damge
+	arr.damage = base_projectile_damage
 	get_parent().add_child(arr)
 
 func apply_offset(offset):

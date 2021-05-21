@@ -6,7 +6,7 @@ const floating_numbers = preload("res://Effects/DamageNumbers/FriendlyNumbers.ts
 
 export var SPECIES: String = ""
 
-var level: int = 1
+var level: int = 10
 
 func extra_init():
 	get_node("Name").text = get_name()
