@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Characters/Enemy/WildCreature/Blueprint/WildCreature.gd" type="Script" id=1]
+[ext_resource path="res://Characters/Enemy/Blueprint/EnemyCharacter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Characters/Blueprint/health_bar_top.png" type="Texture" id=3]
+[ext_resource path="res://Characters/Enemy/WildCreature/Blueprint/tame_bar_bottom.png" type="Texture" id=4]
+
+[node name="WildCreature" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+MAX_HEALTH = 100
+MAX_SPEED = 100
+MAX_SPEED_RUNNING = 100
+ACCELERATION = 500
+FRICTION = 400
+INVINCIBILITY_TIME = 0.4
+FLEE_ON_HIT = true
+FLEE_ON_LOW_HEALTH = false
+FLEE_HEALTH_PERCENT = 0.25
+CAN_INTERACT = false
+INTERACT_DISTANCE = 50
+DAMAGE = 20
+VIEW_DISTANCE = 90
+KNOCKBACK_STRENGTH = 50.0
+
+[node name="Hitbox" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+
+[node name="AttackRange" type="Area2D" parent="." index="6"]
+monitorable = false
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" index="0"]
+
+[node name="VisibilityTimer" parent="HealthBar" index="0"]
+wait_time = 1.0
+one_shot = false
+
+[node name="TameBar" type="TextureProgress" parent="." index="8"]
+visible = false
+margin_left = -11.0
+margin_top = -23.0
+margin_right = 11.0
+margin_bottom = -19.0
+value = 100.0
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WanderTimer" type="Timer" parent="." index="15"]
+wait_time = 2.0
+one_shot = true
+
+[node name="AgroTimer" type="Timer" parent="." index="16"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="." index="17"]
+one_shot = true
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
+[connection signal="timeout" from="AgroTimer" to="." method="_on_AgroTimer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]

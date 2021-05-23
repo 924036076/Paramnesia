@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Characters/Friendly/Blueprint/FriendlyCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/Friendly/TamedCreature/Blueprint/TamedCreature.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/24pt Landasan.tres" type="DynamicFont" id=3]
+
+
+[node name="TamedCreature" groups=[
+"Tamed",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+CAN_HOVER = true
+CAN_INTERACT = true
+INTERACT_DISTANCE = 100
+
+[node name="AttackRange" type="Area2D" parent="." index="6"]
+monitorable = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" index="0"]
+
+[node name="Name" type="Label" parent="." index="7"]
+visible = false
+margin_left = -50.0
+margin_top = -38.0
+margin_right = 150.0
+margin_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 3 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisibilityTimer" parent="HealthBar" index="0"]
+wait_time = 1.0
+one_shot = false
+
+[node name="WanderTimer" type="Timer" parent="." index="11"]
+wait_time = 2.0
+one_shot = true
+
+[node name="AgroTimer" type="Timer" parent="." index="16"]
+wait_time = 10.0
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="." index="17"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]

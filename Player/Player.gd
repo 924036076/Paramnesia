@@ -27,7 +27,6 @@ var invincible: bool = false
 var dir: Vector2 = Vector2.ZERO
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
-const arrow = preload("res://Player/Arrow.tscn")
 const bola = preload("res://Player/Projectiles/Bola.tscn")
 const floating_numbers = preload("res://Effects/DamageNumbers/EnemyNumbers.tscn")
 
@@ -226,16 +225,6 @@ func set_direction(direction):
 	animationTree.set("parameters/Axe/blend_position", direction)
 	animationTree.set("parameters/Eat/blend_position", direction)
 	animationTree.set("parameters/Throw/blend_position", direction)
-
-func create_arrow():
-	PlayerData.remove_one("arrow")
-	var arr = arrow.instance()
-	arr.global_position = global_position + Vector2(0, -12)
-	var dir_arrow = global_position.direction_to(get_global_mouse_position())
-	arr.direction = dir_arrow
-	arr.rotate(dir_arrow.angle())
-	arr.damage = base_projectile_damage
-	get_parent().add_child(arr)
 
 func throw_item():
 	if PlayerData.remove_item("bola"):

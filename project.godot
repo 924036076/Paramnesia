@@ -17,17 +17,12 @@ _global_script_classes=[ {
 "base": "Character",
 "class": "EnemyCharacter",
 "language": "GDScript",
-"path": "res://Characters/EnemyCharacter/Blueprint/EnemyCharacter.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "EnemyCharacterOld",
-"language": "GDScript",
-"path": "res://Characters/NPCs/Blueprint/EnemyCharacter.gd"
+"path": "res://Characters/Enemy/Blueprint/EnemyCharacter.gd"
 }, {
 "base": "Character",
 "class": "FriendlyCharacter",
 "language": "GDScript",
-"path": "res://Characters/FriendlyCharacter/Blueprint/FriendlyCharacter.gd"
+"path": "res://Characters/Friendly/Blueprint/FriendlyCharacter.gd"
 }, {
 "base": "StaticBody2D",
 "class": "House",
@@ -64,16 +59,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://GUI/ObjectInventory/ObjectInventoryInterface.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "PassiveMob",
-"language": "GDScript",
-"path": "res://Characters/Mobs/Blueprint/PassiveMob.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "QuestCharacter",
-"language": "GDScript",
-"path": "res://Characters/NPCs/Blueprint/QuestCharacter.gd"
-}, {
 "base": "Node2D",
 "class": "RootScene",
 "language": "GDScript",
@@ -92,22 +77,16 @@ _global_script_classes=[ {
 "base": "FriendlyCharacter",
 "class": "TamedCreature",
 "language": "GDScript",
-"path": "res://Characters/FriendlyCharacter/TamedCreature/Blueprint/TamedCreature.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "TamedMob",
-"language": "GDScript",
-"path": "res://Characters/Mobs/Blueprint/TamedMob.gd"
+"path": "res://Characters/Friendly/TamedCreature/Blueprint/TamedCreature.gd"
 }, {
 "base": "EnemyCharacter",
 "class": "WildCreature",
 "language": "GDScript",
-"path": "res://Characters/EnemyCharacter/WildCreature/Blueprint/WildCreature.gd"
+"path": "res://Characters/Enemy/WildCreature/Blueprint/WildCreature.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "EnemyCharacter": "",
-"EnemyCharacterOld": "",
 "FriendlyCharacter": "",
 "House": "",
 "Interior": "",
@@ -116,13 +95,10 @@ _global_script_class_icons={
 "MultiPoolLootTable": "",
 "NatureTree": "",
 "ObjectInventory": "",
-"PassiveMob": "",
-"QuestCharacter": "",
 "RootScene": "",
 "StaticStructure": "",
 "Structure": "",
 "TamedCreature": "",
-"TamedMob": "",
 "WildCreature": ""
 }
 

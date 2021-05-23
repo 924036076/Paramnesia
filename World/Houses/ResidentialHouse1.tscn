@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://World/Houses/Blueprint/House.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Tilemaps/BasicHouses.tres" type="TileSet" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 52, 31 )
 
 [node name="House" instance=ExtResource( 1 )]
 interior_path = "res://World/Houses/Interiors/ResidentialInterior1.tscn"
@@ -18,9 +15,8 @@ tile_data = PoolIntArray( -196611, 9, 65536, -196610, 9, 65539, -196609, 9, 6554
 tile_set = ExtResource( 2 )
 tile_data = PoolIntArray( -524289, 8, 2, -589824, 8, 3, -589823, 8, 4, -458755, 8, 65536, -458754, 8, 65537, -458753, 8, 65538, -524288, 8, 65539, -524287, 8, 65540, -524286, 8, 65541, -524285, 8, 65542, -393219, 8, 131072, -393218, 8, 131073, -393217, 8, 131074, -458752, 8, 131075, -458751, 8, 131076, -458750, 8, 131077, -458749, 8, 131078, -327683, 8, 196608, -327682, 8, 196609, -327681, 8, 196610, -393216, 8, 327683, -393215, 8, 196612, -393214, 8, 196613, -393213, 8, 196614, -262147, 8, 393216, -262146, 8, 393217, -262145, 8, 262146, -327680, 8, 393219, -327679, 8, 262148, -327678, 8, 262149, -327677, 8, 393222, -196611, 9, 65536, -262141, 9, 65543 )
 
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( 8, -33 )
-shape = SubResource( 1 )
-
-[node name="Door" parent="." index="4"]
+[node name="Door" parent="." index="3"]
 position = Vector2( 8, -3 )
+
+[node name="CollisionPolygon2D" parent="." index="4"]
+polygon = PoolVector2Array( -44, -2, 60, -2, 60, -63, -44, -64 )

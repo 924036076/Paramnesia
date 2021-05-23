@@ -10,19 +10,20 @@
 script = ExtResource( 3 )
 
 [node name="Base" type="TileMap" parent="."]
+z_index = -10
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
+cell_tile_origin = 2
 format = 1
 
 [node name="Roof" type="TileMap" parent="."]
-z_index = 5
+z_index = 10
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -38 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
