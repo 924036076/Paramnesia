@@ -4,7 +4,6 @@
 [ext_resource path="res://Characters/Friendly/TamedCreature/Blueprint/TamedCreature.gd" type="Script" id=2]
 [ext_resource path="res://Fonts/24pt Landasan.tres" type="DynamicFont" id=3]
 
-
 [node name="TamedCreature" groups=[
 "Tamed",
 ] instance=ExtResource( 1 )]

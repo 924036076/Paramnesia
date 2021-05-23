@@ -25,6 +25,8 @@ var knockback: Vector2 = Vector2.ZERO
 var pathfinding
 var invincible: bool = false
 var dir: Vector2 = Vector2.ZERO
+var riding: bool = false
+var current_mount: Object = null
 
 const unplaced_structure = preload("res://Structures/Blueprint/Unplaced/UnplacedObject.tscn")
 const bola = preload("res://Player/Projectiles/Bola.tscn")
@@ -95,6 +97,9 @@ func update_from_save(data):
 	PlayerData.emit_signal("inventory_updated")
 
 func _physics_process(delta):
+	if riding:
+		global_position = current_mount.global_position
+		return
 	match state:
 		MOVE:
 			move_state(delta)
@@ -111,6 +116,8 @@ func _physics_process(delta):
 		get_node("Light2D").visible = true 
 
 func _unhandled_input(event):
+	if riding:
+		return
 	if event is InputEventMouseButton:
 		if Input.is_action_just_pressed("attack"):
 			if PlayerData.get_item_held().id == "bola":
@@ -266,3 +273,33 @@ func set_lock_movement(new_state):
 
 func _on_Timer_timeout():
 	invincible = false
+
+func start_riding(mount: Object):
+	current_mount = mount
+	riding = true
+	
+	body_sprite.visible = false
+	outfit_sprite.visible = false
+	eyes_sprite.visible = false
+	pupils_sprite.visible = false
+	brows_sprite.visible = false
+	hair_sprite.visible = false
+	holding_sprite.visible = false
+	
+	get_node("CollisionShape2D").disabled = true
+	get_node("Hurtbox/CollisionShape2D").disabled = true
+
+func stop_riding():
+	riding = false
+	
+	body_sprite.visible = true
+	outfit_sprite.visible = true
+	eyes_sprite.visible = true
+	pupils_sprite.visible = true
+	brows_sprite.visible = true
+	hair_sprite.visible = true
+	
+	get_node("CollisionShape2D").disabled = false
+	get_node("Hurtbox/CollisionShape2D").disabled = false
+	
+	global_position = current_mount.global_position + Vector2(0, 15)

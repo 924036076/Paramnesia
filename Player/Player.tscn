@@ -2465,45 +2465,45 @@ frame = 108
 material = SubResource( 2 )
 position = Vector2( 1, -14 )
 texture = ExtResource( 8 )
-vframes = 14
+vframes = 16
 hframes = 3
-frame = 35
+frame = 25
 
 [node name="Outfit" type="Sprite" parent="."]
 material = SubResource( 3 )
 position = Vector2( 1, -14 )
 texture = ExtResource( 9 )
-vframes = 14
+vframes = 16
 hframes = 3
-frame = 35
+frame = 25
 
 [node name="Eyes" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 10 )
-vframes = 14
+vframes = 16
 hframes = 3
-frame = 35
+frame = 25
 
 [node name="Pupils" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 11 )
-vframes = 14
+vframes = 16
 hframes = 3
-frame = 35
+frame = 25
 
 [node name="Brows" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 12 )
-vframes = 14
+vframes = 16
 hframes = 3
-frame = 35
+frame = 25
 
 [node name="Hair" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
 texture = ExtResource( 13 )
-vframes = 14
+vframes = 16
 hframes = 3
-frame = 35
+frame = 25
 
 [node name="Holding" type="Sprite" parent="."]
 visible = false

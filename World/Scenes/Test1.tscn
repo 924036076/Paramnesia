@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://World/Scenes/SceneBlueprint/SceneBlueprint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Tilemaps/WaterTilemap.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Characters/Friendly/TamedCreature/Wolf/Wolf.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Characters/Enemy/WildCreature/Wolf/Wolf.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Tilemaps/Steampunk/SteampunkTileset.tres" type="TileSet" id=12]
+[ext_resource path="res://Characters/Friendly/TamedCreature/Horse/Horse.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -75,49 +76,25 @@ position = Vector2( 661.228, 40.7871 )
 
 [node name="Cow" parent="GlobalYSort/Mobs" index="0" instance=ExtResource( 9 )]
 position = Vector2( -32, -124 )
-MAX_HEALTH = 100
-ACCELERATION = 500
-FRICTION = 400
-INVINCIBILITY_TIME = 0.4
-FLEE_ON_HIT = false
-FLEE_ON_LOW_HEALTH = false
-FLEE_HEALTH_PERCENT = 0.25
-DAMAGE = 20
-VIEW_DISTANCE = 100
-KNOCKBACK_STRENGTH = 50.0
 
 [node name="Cow2" parent="GlobalYSort/Mobs" index="1" instance=ExtResource( 9 )]
 position = Vector2( 97, -86 )
-MAX_HEALTH = 100
-ACCELERATION = 500
-FRICTION = 400
-INVINCIBILITY_TIME = 0.4
-FLEE_ON_HIT = false
-FLEE_ON_LOW_HEALTH = false
-FLEE_HEALTH_PERCENT = 0.25
-DAMAGE = 20
-VIEW_DISTANCE = 100
-KNOCKBACK_STRENGTH = 50.0
 PLAYER_OWNED = false
 
-[node name="Deer" parent="GlobalYSort/Mobs" index="2" groups=[
-"Enemy",
-] instance=ExtResource( 8 )]
+[node name="Deer" parent="GlobalYSort/Mobs" index="2" instance=ExtResource( 8 )]
 position = Vector2( -228, -117 )
-CAN_HOVER = true
 VIEW_DISTANCE = 100
 
 [node name="Wolf" parent="GlobalYSort/Mobs" index="3" instance=ExtResource( 10 )]
 position = Vector2( -175, -63 )
 
-[node name="Wolf2" parent="GlobalYSort/Mobs" index="4" groups=[
-"Enemy",
-] instance=ExtResource( 11 )]
+[node name="Wolf2" parent="GlobalYSort/Mobs" index="4" instance=ExtResource( 11 )]
 position = Vector2( -245, 217 )
-collision_layer = 16
-collision_mask = 19
-CAN_HOVER = true
 VIEW_DISTANCE = 100
+
+[node name="Horse" parent="GlobalYSort/Mobs" index="5" instance=ExtResource( 13 )]
+position = Vector2( -153, -129 )
+FRICTION = 500
 
 [node name="Player" parent="GlobalYSort" index="3"]
 position = Vector2( -90, -168 )
