@@ -9,16 +9,17 @@ func _ready():
 	update_days()
 
 func _process(_delta):
-	if Global.do_day_cycle:
-		var time: String = "0:00"
-		if PlayerData.time_of_day > 13:
-			time = str(int(PlayerData.time_of_day - 13)) + ":" + str(int((PlayerData.time_of_day - int(PlayerData.time_of_day)) * 60)) + " p.m."
-		else:
-			time = str(int(PlayerData.time_of_day)) + ":" + str(int((PlayerData.time_of_day - int(PlayerData.time_of_day)) * 60)) + " a.m."
-		
-		get_node("Time").text = time
+	var time: String = "0:00"
+	if PlayerData.time_of_day >= 12 and PlayerData.time_of_day < 13:
+		time = str(int(PlayerData.time_of_day)) + ":" + str(int((PlayerData.time_of_day - int(PlayerData.time_of_day)) * 60)) + " p.m."
+	elif PlayerData.time_of_day >= 13:
+		time = str(int(PlayerData.time_of_day - 12)) + ":" + str(int((PlayerData.time_of_day - int(PlayerData.time_of_day)) * 60)) + " p.m."
+	elif PlayerData.time_of_day < 1:
+		time = "12" + ":" + str(int((PlayerData.time_of_day - int(PlayerData.time_of_day)) * 60)) + " a.m."
 	else:
-		get_node("Time").text = "12:00 p.m."
+		time = str(int(PlayerData.time_of_day)) + ":" + str(int((PlayerData.time_of_day - int(PlayerData.time_of_day)) * 60)) + " a.m."
+		
+	get_node("Time").text = time
 
 func update_coins():
 	get_node("CoinsAmount").text = str(PlayerData.coins)
